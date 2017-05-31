@@ -1,6 +1,6 @@
 ---
 title: This is my page
-layout: post
+layout: default
 theme: jekyll-theme-cayman
 ---
 This is a test
