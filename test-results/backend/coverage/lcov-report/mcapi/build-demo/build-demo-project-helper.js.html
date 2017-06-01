@@ -1,0 +1,1766 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mcapi/build-demo/build-demo-project-helper.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">mcapi/build-demo/</a> build-demo-project-helper.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>373/381</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>78/120</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>39/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>216/224</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">424×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">424×</span>
+<span class="cline-any cline-yes">424×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">424×</span>
+<span class="cline-any cline-yes">1861×</span>
+<span class="cline-any cline-yes">339×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">424×</span>
+<span class="cline-any cline-yes">85×</span>
+<span class="cline-any cline-yes">85×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">85×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">339×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">424×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">420×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">504×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">420×</span>
+<span class="cline-any cline-yes">420×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">420×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">119×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">119×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-yes">153×</span>
+<span class="cline-any cline-yes">593×</span>
+<span class="cline-any cline-yes">153×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">63×</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">76×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">76×</span>
+<span class="cline-any cline-yes">76×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">76×</span>
+<span class="cline-any cline-yes">76×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">76×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-yes">456×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-yes">456×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">57×</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-yes">57×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">57×</span>
+<span class="cline-any cline-yes">57×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">880×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">336×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">357×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">336×</span>
+<span class="cline-any cline-yes">336×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">336×</span>
+<span class="cline-any cline-yes">336×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">336×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">384×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">384×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">384×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">384×</span>
+<span class="cline-any cline-yes">384×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">342×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">342×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">95×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">861×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
+const os = require('os');
+const promise = require('bluebird');
+const md5File = promise.promisify(require('md5-file'));
+const copy = require('copy');
+const copyOne = promise.promisify(copy.one);
+&nbsp;
+const resourcesProjectsExperimentsProcesses =
+    require('../resources/projects/experiments/processes');
+const dbModelProjects = require('../db/model/projects');
+const dbModelExperiments = require('../db/model/experiments');
+const dbModelProcesses = require('../db/model/processes');
+const dbModelSamples = require('../db/model/samples');
+const dbModelDirectories = require('../db/model/directories');
+const fileUtils = require('./../../lib/create-file-utils');
+&nbsp;
+const demoProjectConf = require('./build-demo-project-conf');
+&nbsp;
+function* createOrFindDemoProjectForUser(user) {
+    // Note create project returns the project if it already exists, by name
+    // It does not create a duplicate!
+    let attributes = {
+        name: demoProjectConf.demoProjectName,
+        description: demoProjectConf.demoProjectDescription
+    };
+    // ret == val.ok_val or error.error
+    return yield dbModelProjects.createProject(user, attributes);
+}
+&nbsp;
+function* createOrFindDemoProjectExperiment(project) {
+    let experimentName = demoProjectConf.demoProjectExperimentName;
+    let experimentDescription = demoProjectConf.demoProjectExperimentDescription;
+    let ret = yield dbModelExperiments.getAllForProject(project.id);
+    if (<span class="missing-if-branch" title="if path not taken" >I</span>ret.val) {
+        let experiment = null;
+        let experiments = ret.val;
+        experiments.forEach((e) =&gt; {
+            if (<span class="missing-if-branch" title="else path not taken" >E</span>e.name == experimentName) {
+                experiment = e;
+            }
+        });
+        if (experiment) {
+            ret = {val: experiment}
+        } else {
+            let args = {
+                project_id: project.id,
+                name: experimentName,
+                description: experimentDescription
+            };
+            ret = yield dbModelExperiments.create(args, project.owner);
+        }
+    }
+    // ret == val.ok_val or error.error
+    return ret;
+}
+&nbsp;
+function* createOrFindDemoProcess(project, experiment, processName, templateId) {
+    let simple = true;
+    let ret = yield dbModelExperiments.getProcessesForExperiment(experiment.id, simple);
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        let processes = ret.val;
+        let nameMatchProcess = null;
+        processes.forEach((process) =&gt; {
+            if (process.name == processName) {
+                nameMatchProcess = process;
+            }
+        });
+        if (!nameMatchProcess) {
+            ret = yield dbModelExperiments.addProcessFromTemplate(project.id, experiment.id, templateId, project.owner);
+            if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+                let process = ret.val;
+                let args = {name: processName, files: [], properties: [], samples: []};
+                ret = yield dbModelProcesses.updateProcess(process.id, args);
+            }
+        } else {
+            ret.val = nameMatchProcess;
+        }
+    }
+    // ret == val.ok_val or error.error
+    return ret;
+}
+&nbsp;
+function* createOrFindAllDemoProcesses(project, experiment) {
+    let ret = {error: "unknown error in createOrFindAllDemoProcesses"};
+    let processes = [];
+&nbsp;
+    for (let i = 0; i &lt; demoProjectConf.processesData.length; i++) {
+        let processData = demoProjectConf.processesData[i];
+        let processName = processData.name;
+        let templateId = processData.templateId;
+&nbsp;
+        ret = yield createOrFindDemoProcess(project, experiment, processName, templateId);
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>ret.error) {
+            break;
+        }
+        let process = ret.val;
+        processes.push(process);
+    }
+&nbsp;
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        ret.val = processes;
+    }
+&nbsp;
+    // ret == val.ok_val or error.error
+    return ret;
+}
+function* createOrFindProcessOutputSamples(project, experiment, process, sampleNameList) {
+    let resultsingSamples = [];
+    let copyOfNames = sampleNameList.slice();
+    let ret = yield dbModelProcesses.getProcess(process.id);
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        let detailedProcess = ret.val;
+        let outputSamples = detailedProcess.output_samples;
+        for (let i = 0; i &lt; outputSamples.length; i++) {
+            let sample = outputSamples[i];
+            let loc = copyOfNames.indexOf(sample.name);
+            if (loc &gt; -1) {
+                copyOfNames.splice(loc, 1);
+                resultsingSamples.push(sample);
+            }
+        }
+        if (copyOfNames.length &gt; 0) {
+            let sampleNameArgs = [];
+            copyOfNames.forEach((name) =&gt; {
+                sampleNameArgs.push({name: name});
+            });
+            ret = yield dbModelSamples.createSamples(project.id, process.id, sampleNameArgs, project.owner);
+            if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+                let samples = ret.val.samples;
+                resultsingSamples = resultsingSamples.concat(samples);
+                let idList = [];
+                samples.forEach((sample) =&gt; {
+                    idList.push(sample.id);
+                });
+                ret = yield dbModelExperiments.addSamples(experiment.id, idList);
+            }
+        }
+    }
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        let output = [];
+        sampleNameList.forEach((name) =&gt; {
+            resultsingSamples.forEach((sample) =&gt; {
+                if (name == sample.name) {
+                    output.push(sample);
+                }
+            });
+        });
+        ret.val = output;
+    }
+    return ret
+}
+&nbsp;
+function* createOrFindOutputSamplesForAllProcesses(project, experiment, processList, sampleNameList, map) {
+&nbsp;
+    let ret = {error: "Failure in 'createOrFindOutputSamplesForAllProcesses'"};
+    let outputSampleList = [];
+&nbsp;
+    for (let mapIndex = 0; mapIndex &lt; map.length; mapIndex++) {
+        let mapEntry = map[mapIndex];
+&nbsp;
+        let process = processList[mapEntry.processIndex];
+&nbsp;
+        let sampleIndexList = mapEntry.sampleIndexList;
+        let sampleNames = [];
+        for (let i = 0; i &lt; sampleIndexList.length; i++) {
+            sampleNames.push(demoProjectConf.sampleNameData[sampleIndexList[i]]);
+        }
+&nbsp;
+        ret = yield createOrFindProcessOutputSamples(project, experiment, process, sampleNames);
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+            let samples = ret.val;
+            samples.forEach((sample) =&gt; {
+                outputSampleList.push(sample)
+            })
+        }
+    }
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        ret.val = outputSampleList;
+    }
+    return ret;
+}
+&nbsp;
+function* createOrFindInputSamplesForProcess(project, experiment, process, sampleList) {
+    let resultsingSamples = [];
+    let ret = yield dbModelProcesses.getProcess(process.id);
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        process = ret.val;
+        if (process.input_samples.length &gt; 0) {
+            resultsingSamples = process.input_samples;
+        }
+        if (resultsingSamples.length != sampleList.length) {
+            let samplesData = [];
+            sampleList.forEach((sample) =&gt; {
+                let found = false;
+                if (<span class="missing-if-branch" title="if path not taken" >I</span>resultsingSamples.length &gt; 0) {
+                    resultsingSamples.<span class="cstat-no" title="statement not covered" >forEach(<span class="fstat-no" title="function not covered" >(foundSample) =&gt; {</span></span>
+                        if (<span class="cstat-no" title="statement not covered" >foundSample.id == sample.id) {</span>
+                            found = <span class="cstat-no" title="statement not covered" >true;</span>
+                        }
+                    });
+                }
+                if (<span class="missing-if-branch" title="else path not taken" >E</span>!found) {
+                    samplesData.push({
+                        command: 'add',
+                        id: sample.id,
+                        property_set_id: sample.property_set_id
+                    })
+                }
+            });
+            if (<span class="missing-if-branch" title="if path not taken" >I</span>samplesData.length &gt; 0) {
+                let args = {
+                    template_id: process.template_id,
+                    process_id: process.id,
+                    samples: samplesData
+                };
+                let params = {
+                    project_id: project.id,
+                    experiment_id: experiment.id,
+                    process_id: process.id
+                };
+                let errors = yield resourcesProjectsExperimentsProcesses
+                    .validateUpdateExperimentProcessTemplateArgs(args, params);
+                if (<span class="missing-if-branch" title="else path not taken" >E</span>errors != null) {
+                    ret = <span class="cstat-no" title="statement not covered" >errors;</span>
+                } else {
+                    let properties = [];
+                    let files = [];
+                    let samples = args.samples;
+                    ret = yield dbModelExperiments.updateProcess(experiment.id, process.id,
+                        properties, files, samples);
+                    resultsingSamples = ret.val.input_samples;
+                }
+            }
+        }
+    }
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        ret.val = resultsingSamples;
+    }
+    return ret;
+}
+&nbsp;
+function* createOrFindInputSamplesForAllProcesses(project, experiment, processes, samples, map) {
+&nbsp;
+    let ret = {error: "Failure in 'createOrFindInputSamplesForAllProcesses'"};
+    let inputSampleList = [];
+&nbsp;
+    for (let i = 0; i &lt; map.length; i++) {
+        let mapEntry = demoProjectConf.inputSampleIndexMap[i];
+        let process = processes[mapEntry.processIndex];
+        let sampleList = [];
+        let sampleIndexList = mapEntry.sampleIndexList;
+&nbsp;
+        sampleIndexList.forEach((index) =&gt; {
+            sampleList.push(samples[index]);
+        });
+&nbsp;
+        ret = yield createOrFindInputSamplesForProcess(project, experiment, process, sampleList);
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>ret.error) {
+            break;
+        }
+        inputSampleList.push(ret.val);
+    }
+&nbsp;
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        ret.val = inputSampleList;
+    }
+&nbsp;
+    return ret;
+}
+&nbsp;
+function* createOrFindDemoProcessSetupProperties(project, experiment, process, propList) {
+    let ret = {error: "unexpected error in createOrFindDemoProcessSetupProperties"};
+    let args = {
+        template_id: process.template_id,
+        process_id: process.id,
+        properties: propList
+    };
+    let params = {
+        project_id: project.id,
+        experiment_id: experiment.id,
+        process_id: process.id
+    };
+    let errors = yield resourcesProjectsExperimentsProcesses
+        .validateUpdateExperimentProcessTemplateArgs(args, params);
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>errors != null) {
+        ret = <span class="cstat-no" title="statement not covered" >{error: errors};</span>
+    } else {
+        let properties = args.properties;
+        let files = [];
+        let samples = [];
+        ret = yield dbModelExperiments.updateProcess(experiment.id, process.id,
+            properties, files, samples);
+        if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+            ret = yield dbModelProcesses.getProcess(process.id);
+        }
+    }
+    return ret;
+}
+&nbsp;
+function* createOrFindSetupPropertiesForAllDemoProcesses(project, experiment, processes) {
+    let ret = {error: "unexpected error in createOrFindSetupPropertiesForAllDemoProcesses"};
+&nbsp;
+    let templateTable = yield makeTemplateTable();
+&nbsp;
+    for (let processIndex = 0; processIndex &lt; processes.length; processIndex++) {
+&nbsp;
+        let process = processes[processIndex];
+        let templateId = process['template_id'];
+        let template = templateTable[templateId];
+        let templatePropertyList = template.setup[0].properties;
+&nbsp;
+        let templetPropertyTable = {};
+        templatePropertyList.forEach((property) =&gt; {
+            templetPropertyTable[property.attribute] = property;
+        });
+&nbsp;
+        let processSetupPropertyList = process.setup[0].properties;
+        let processSetupTable = {};
+        processSetupPropertyList.forEach((property) =&gt; {
+            processSetupTable[property.attribute] = property;
+        });
+&nbsp;
+        let valuesForSetup = demoProjectConf.processesData[processIndex].properties;
+&nbsp;
+        if (valuesForSetup &amp;&amp; valuesForSetup.length &gt; 0) {
+&nbsp;
+            let args = [];
+            valuesForSetup.forEach((setupValue) =&gt; {
+                let property = processSetupTable[setupValue.attribute];
+&nbsp;
+                if (<span class="missing-if-branch" title="else path not taken" >E</span>property) {
+                    property.setup_attribute = "instrument";
+                    property.value = setupValue.value;
+                    if (setupValue.unit) {
+                        property.unit = setupValue.unit;
+                    }
+                    args.push(property);
+                }
+            });
+&nbsp;
+            ret = yield createOrFindDemoProcessSetupProperties(project, experiment, process, args);
+            if (<span class="missing-if-branch" title="else path not taken" >E</span>ret.error) {
+                break;
+            }
+        }
+    }
+&nbsp;
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        ret = yield createOrFindAllDemoProcesses(project, experiment);
+    }
+&nbsp;
+    return ret;
+}
+&nbsp;
+function* updateMeasurementForProcessSamples(process, measurement) {
+    let samples = process.output_samples;
+    let samplesArg = [];
+    samples.forEach((sample) =&gt; {
+        samplesArg.push({id: sample.id, property_set_id: sample.property_set_id});
+    });
+    let propertyArg = {
+        name: measurement.name,
+        attribute: measurement.attribute
+    };
+&nbsp;
+    let propertiesArg = [{
+        add_as: 'seperate',
+        samples: samplesArg,
+        property: propertyArg,
+        measurements: [measurement]
+    }];
+&nbsp;
+    let ret = yield dbModelSamples.addSamplesMeasurements(process.id, propertiesArg);
+&nbsp;
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        let samplesToReturn = [];
+        for (let i = 0; i &lt; samples.length; i++) {
+            if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+                ret = yield dbModelSamples.getSample(samples[i].id);
+                if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+                    let sample = ret.val;
+                    samplesToReturn.push(sample);
+                }
+            }
+        }
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+            ret.val = samplesToReturn;
+        }
+    }
+    return ret;
+}
+&nbsp;
+function filesDescriptions() {
+    return demoProjectConf.checksumsFilesAndMimiTypes;
+}
+&nbsp;
+function* filesMissingInFolder(datapathPrefix) {
+    let ret = [];
+    for (let i = 0; i &lt; filesDescriptions().length; i++) {
+        let checksumAndFilename = filesDescriptions()[i];
+        let expectedChecksum = checksumAndFilename[0];
+        let filename = checksumAndFilename[1];
+        let path = datapathPrefix + `${demoProjectConf.datapath}/${filename}`;
+        let ok = false;
+        if (<span class="missing-if-branch" title="if path not taken" >I</span>fs.existsSync(path)) {
+            let checksum = yield md5File(path);
+            if (<span class="missing-if-branch" title="else path not taken" >E</span>checksum == expectedChecksum) {
+                ok = true;
+            }
+        }
+        if (<span class="missing-if-branch" title="if path not taken" >I</span>!ok) {
+            ret.<span class="cstat-no" title="statement not covered" >push(filename);</span>
+        }
+    }
+    return ret;
+}
+&nbsp;
+function* filesMissingInDatabase(project) {
+    let files = yield filesForProject(project);
+    let table = {};
+    files.forEach((file) =&gt; {
+        table[file.checksum] = file;
+    });
+&nbsp;
+    let ret = [];
+    filesDescriptions().forEach((fileDescription) =&gt; {
+        let expectedChecksum = fileDescription[0];
+        let filename = fileDescription[1];
+        let ok = table[expectedChecksum];
+        if (<span class="missing-if-branch" title="if path not taken" >I</span>!ok) {
+            ret.<span class="cstat-no" title="statement not covered" >push(filename);</span>
+        }
+    });
+    return ret;
+}
+&nbsp;
+function* addAllFilesToProject(user, project, datapathPrefix) {
+    let top_directory = yield dbModelDirectories.get(project.id, 'top');
+    let tempDir = os.tmpdir();
+    for (let i = 0; i &lt; filesDescriptions().length; i++) {
+        let checksumFilenameAndMimetype = filesDescriptions()[i];
+        let expectedChecksum = checksumFilenameAndMimetype[0];
+        let filename = checksumFilenameAndMimetype[1];
+        let mimetype = checksumFilenameAndMimetype[2];
+        let path = datapathPrefix + `${demoProjectConf.datapath}/${filename}`;
+        let checksum = yield md5File(path);
+        if (<span class="missing-if-branch" title="if path not taken" >I</span>expectedChecksum == checksum) {
+            let stats = fs.statSync(path);
+            let fileSizeInBytes = stats.size;
+            let source = yield copyOne(path, tempDir);
+            path = source.path;
+            let args = {
+                name: filename,
+                checksum: checksum,
+                mediatype: fileUtils.mediaTypeDescriptionsFromMime(mimetype),
+                filesize: fileSizeInBytes,
+                filepath: path
+            };
+            yield dbModelDirectories.ingestSingleLocalFile(project.id, top_directory.id, user.id, args);
+        }
+    }
+}
+&nbsp;
+function* filesForProject(project) {
+    let top_directory = yield dbModelDirectories.get(project.id, 'top');
+    let children = top_directory.children;
+    let files = [];
+    for (let i = 0; i &lt; children.length; i++) {
+        let fileOrDir = children[i];
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>fileOrDir.otype == 'file') files.push(fileOrDir);
+    }
+    files = restoreProjectSourceOrderToFiles(files);
+    return files;
+}
+&nbsp;
+function restoreProjectSourceOrderToFiles(files){
+    let returnFileList = [];
+    let fileTable = {};
+    files.forEach((file) =&gt; {
+        fileTable[file.checksum] = file;
+    });
+    demoProjectConf.checksumsFilesAndMimiTypes.forEach((fileEntry) =&gt; {
+        let checksum = fileEntry[0];
+        returnFileList.push(fileTable[checksum]);
+    });
+    return returnFileList;
+}
+&nbsp;
+function* addAllFilesToExperimentProcesses(project,experiment,processes,files) {
+    let ret = {error: "unexpected error in createOrFindDemoProcessSetupProperties"};
+    let processesToReturn = [];
+    for (let processIndex = 0; processIndex &lt; demoProjectConf.processFileIndexList.length; processIndex++) {
+        let process = processes[processIndex];
+        let fileIndexes = demoProjectConf.processFileIndexList[processIndex];
+        let filesArg = [];
+        for (let i = 0; i &lt; fileIndexes.length; i++) {
+            let file = files[fileIndexes[i]];
+            filesArg.push({command: 'add', id: file.id});
+        }
+        // Note: no duplication of redundent files
+        let args = {
+            template_id: process.template_id,
+            process_id: process.id,
+            files: filesArg
+        };
+        let params = {
+            project_id: project.id,
+            experiment_id: experiment.id,
+            process_id: process.id
+        };
+        let errors = yield resourcesProjectsExperimentsProcesses
+            .validateUpdateExperimentProcessTemplateArgs(args, params);
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>errors != null) {
+            ret = <span class="cstat-no" title="statement not covered" >{error: errors};</span>
+        } else {
+            let properties = [];
+            let files = args.files;
+            let samples = [];
+            ret = yield dbModelExperiments.updateProcess(experiment.id, process.id,
+                properties, files, samples);
+        }
+        if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+            ret = yield dbModelProcesses.getProcess(process.id);
+            if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+                let process = ret.val;
+                processesToReturn.push(process);
+            }
+        }
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>ret.error) break;
+    }
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        ret.val = processesToReturn;
+    }
+    return ret;
+}
+&nbsp;
+function* makeTemplateTable() {
+    let ret = yield dbModelProcesses.getProcessTemplates();
+    let table = {};
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>ret.val) {
+        let templates = ret.val;
+        templates.forEach((template) =&gt; {
+            table[template.id] = template;
+        });
+    }
+    return table;
+}
+&nbsp;
+module.exports = {
+    createOrFindDemoProjectForUser,
+    createOrFindDemoProjectExperiment,
+    createOrFindDemoProcess,
+    createOrFindAllDemoProcesses,
+    createOrFindProcessOutputSamples,
+    createOrFindOutputSamplesForAllProcesses,
+    createOrFindInputSamplesForProcess,
+    createOrFindInputSamplesForAllProcesses,
+    createOrFindDemoProcessSetupProperties,
+    createOrFindSetupPropertiesForAllDemoProcesses,
+    updateMeasurementForProcessSamples,
+    filesDescriptions,
+    filesMissingInFolder,
+    filesMissingInDatabase,
+    addAllFilesToProject,
+    filesForProject,
+    addAllFilesToExperimentProcesses,
+    makeTemplateTable
+};</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 31 2017 08:14:32 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,1640 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mcapi/resources/projects/experiments/datasets.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">mcapi/resources/projects/experiments/</a> datasets.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.91% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>35/393</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/186</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.83% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>34/314</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const experimentDatasets = require('../../../db/model/experiment-datasets');
+const experimentDatasetsDoi = require('../../../db/model/experiment-datasets-doi');
+const check = require('../../../db/model/check');
+const schema = require('../../../schema');
+const parse = require('co-body');
+const status = require('http-status');
+const _ = require('lodash');
+const ra = require('../../resource-access');
+const Router = require('koa-router');
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* getDatasetsForExperiment(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.getDatasetsForExperiment(this.params.experiment_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* getDatasetForExperiment(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.getDataset(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* createDatasetForExperiment(next) {</span></span></span></span>
+    let datasetArgs = yield <span class="cstat-no" title="statement not covered" >parse(this);</span>
+    schema.<span class="cstat-no" title="statement not covered" >prepare(schema.createDatasetSchema, datasetArgs);</span>
+    let errors = yield <span class="cstat-no" title="statement not covered" >schema.validate(schema.createDatasetSchema, datasetArgs);</span>
+    if (<span class="cstat-no" title="statement not covered" >errors !== null) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = errors;</span>
+    } else {
+        let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.createDatasetForExperiment(this.params.experiment_id, this.reqctx.user.id, datasetArgs);</span>
+        if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+        }
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* deleteDatasetFromExperiment(next) {</span></span></span>
+    let dsrv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.getDataset(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >dsrv.val.published) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = {error: `You may only delete unpublished datasets`};</span>
+    } else {
+        let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.deleteDataset(this.params.dataset_id);</span>
+        if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+        }
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updateDatasetForExperiment(next) {</span></span></span></span>
+    let datasetArgs = yield <span class="cstat-no" title="statement not covered" >parse(this);</span>
+    schema.<span class="cstat-no" title="statement not covered" >prepare(schema.updateDatasetSchema, datasetArgs);</span>
+    let errors = yield <span class="cstat-no" title="statement not covered" >validateUpdateDataset(datasetArgs);</span>
+    if (<span class="cstat-no" title="statement not covered" >errors !== null) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = errors;</span>
+    } else {
+        let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.updateDataset(this.params.dataset_id, datasetArgs);</span>
+        if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+        }
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* validateUpdateDataset(datasetArgs) {</span></span></span></span></span></span></span></span></span>
+    let errors = yield <span class="cstat-no" title="statement not covered" >schema.validate(schema.updateDatasetSchema, datasetArgs);</span>
+    if (<span class="cstat-no" title="statement not covered" >errors !== null) {</span>
+        return <span class="cstat-no" title="statement not covered" >errors;</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >datasetArgs.authors &amp;&amp; !_.isArray(datasetArgs.authors)) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `authors field must be an array`};</span>
+    } else if (<span class="cstat-no" title="statement not covered" >datasetArgs.authors) {</span>
+        for (let author of <span class="cstat-no" title="statement not covered" >datasetArgs.authors) {</span>
+            schema.<span class="cstat-no" title="statement not covered" >prepare(schema.datasetAuthor, author);</span>
+            let e = yield <span class="cstat-no" title="statement not covered" >schema.validate(schema.datasetAuthor, author);</span>
+            if (<span class="cstat-no" title="statement not covered" >e !== null) {</span>
+                return <span class="cstat-no" title="statement not covered" >e;</span>
+            }
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >datasetArgs.papers &amp;&amp; !_.isArray(datasetArgs.papers)) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `papers field must be an array`};</span>
+    } else if (<span class="cstat-no" title="statement not covered" >datasetArgs.papers) {</span>
+        for (let paper of <span class="cstat-no" title="statement not covered" >datasetArgs.papers) {</span>
+            schema.<span class="cstat-no" title="statement not covered" >prepare(schema.datasetPaper, paper);</span>
+            let e = yield <span class="cstat-no" title="statement not covered" >schema.validate(schema.datasetPaper, paper);</span>
+            if (<span class="cstat-no" title="statement not covered" >e !== null) {</span>
+                return <span class="cstat-no" title="statement not covered" >e;</span>
+            }
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >datasetArgs.license &amp;&amp; datasetArgs.license.name) {</span>
+        let license;
+        switch (<span class="cstat-no" title="statement not covered" >datasetArgs.license.name) {</span>
+            case `Public Domain Dedication and License (PDDL)`:
+                license = <span class="cstat-no" title="statement not covered" >{</span>
+                    name: `Public Domain Dedication and License (PDDL)`,
+                    link: `http://opendatacommons.org/licenses/pddl/summary/`
+                };
+                break;
+            case `Attribution License (ODC-By)`:
+                license = <span class="cstat-no" title="statement not covered" >{</span>
+                    name: `Attribution License (ODC-By)`,
+                    link: `http://opendatacommons.org/licenses/by/summary/`
+                };
+                break;
+            case `Open Database License (ODC-ODbL)`:
+                license = <span class="cstat-no" title="statement not covered" >{</span>
+                    name: `Open Database License (ODC-ODbL)`,
+                    link: `http://opendatacommons.org/licenses/odbl/summary/`
+                };
+                break;
+            default:
+                if (<span class="cstat-no" title="statement not covered" >datasetArgs.license.name === "") {</span>
+                    license = <span class="cstat-no" title="statement not covered" >{</span>
+                        name: '',
+                        link: ''
+                    };
+                } else {
+                    return <span class="cstat-no" title="statement not covered" >{error: `Unknown license ${datasetArgs.license.name}`};</span>
+                }
+        }
+        datasetArgs.<span class="cstat-no" title="statement not covered" >license = license;</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >datasetArgs.keywords) {</span>
+        for (let i = 0; <span class="cstat-no" title="statement not covered" >i &lt; datasetArgs.keywords.length; i++) {</span>
+            if (!<span class="cstat-no" title="statement not covered" >_.isString(datasetArgs.keywords[i])) {</span>
+                return <span class="cstat-no" title="statement not covered" >{error: `Keywords must be strings`};</span>
+            }
+        }
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >null;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* addSampleToDataset(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.addSampleToDataset(this.params.dataset_id, this.params.sample_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updateSamplesInDataset(next) {</span></span></span></span></span></span>
+    let sampleArgs = yield <span class="cstat-no" title="statement not covered" >parse(this);</span>
+    let errors = yield <span class="cstat-no" title="statement not covered" >validateUpdateSamplesInDataset(this.params.experiment_id, this.params.dataset_id, sampleArgs);</span>
+    if (<span class="cstat-no" title="statement not covered" >errors !== null) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = errors;</span>
+    } else {
+        let addSamples = sampleArgs.samples.filter(<span class="fstat-no" title="function not covered" >s =&gt; <span class="cstat-no" title="statement not covered" >s.command === 'add');</span></span>
+        let deleteSamples = sampleArgs.samples.filter(<span class="fstat-no" title="function not covered" >s =&gt; <span class="cstat-no" title="statement not covered" >s.command === 'delete');</span></span>
+        let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.updateSamplesInDataset(this.params.dataset_id, addSamples, deleteSamples);</span>
+        if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+        }
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* validateUpdateSamplesInDataset(experimentId, datasetId, sampleArgs) {</span></span></span></span></span></span></span></span>
+    if (<span class="cstat-no" title="statement not covered" >!sampleArgs.samples || !_.isArray(sampleArgs.samples)) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments samples is a required field`};</span>
+    }
+    let idsToAdd = [];
+    let idsToDelete = [];
+    for (let i = 0; <span class="cstat-no" title="statement not covered" >i &lt; sampleArgs.samples.length; i++) {</span>
+        let s = sampleArgs.samples[i];
+        if (!<span class="cstat-no" title="statement not covered" >_.isObject(s)) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments sample is not an object ${s}`};</span>
+        } else if (<span class="cstat-no" title="statement not covered" >!s.command || !s.id) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments no command or id ${s}`};</span>
+        } else if (<span class="cstat-no" title="statement not covered" >s.command === 'add') {</span>
+            idsToAdd.<span class="cstat-no" title="statement not covered" >push(s.id);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (s.command === 'delete') {</span>
+            idsToDelete.<span class="cstat-no" title="statement not covered" >push(s.id);</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >idsToAdd.length) {</span>
+        let allInExperiment = yield <span class="cstat-no" title="statement not covered" >check.allSamplesInExperiment(experimentId, idsToAdd);</span>
+        if (!<span class="cstat-no" title="statement not covered" >allInExperiment) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Some samples not in experiment`};</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >idsToDelete.length) {</span>
+        let allInDataset = yield <span class="cstat-no" title="statement not covered" >check.allSamplesInDataset(datasetId, idsToDelete);</span>
+        if (!<span class="cstat-no" title="statement not covered" >allInDataset) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Some samples not in dataset`};</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!idsToAdd.length &amp;&amp; !idsToDelete.length) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `No samples to add or delete from dataset`};</span>
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >null;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updateFilesInDataset(next) {</span></span></span></span></span></span>
+    let fileArgs = yield <span class="cstat-no" title="statement not covered" >parse(this);</span>
+    let errors = yield <span class="cstat-no" title="statement not covered" >validateUpdateFilesInDataset(this.params.experiment_id, this.params.dataset_id, fileArgs);</span>
+    if (<span class="cstat-no" title="statement not covered" >errors !== null) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = errors;</span>
+    } else {
+        let addFiles = fileArgs.files.filter(<span class="fstat-no" title="function not covered" >s =&gt; <span class="cstat-no" title="statement not covered" >s.command === 'add');</span></span>
+        let deleteFiles = fileArgs.files.filter(<span class="fstat-no" title="function not covered" >s =&gt; <span class="cstat-no" title="statement not covered" >s.command === 'delete');</span></span>
+        let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.updateFilesInDataset(this.params.dataset_id, addFiles, deleteFiles);</span>
+        if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+        }
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* validateUpdateFilesInDataset(experimentId, datasetId, filesArgs) {</span></span></span></span></span></span></span></span>
+    if (<span class="cstat-no" title="statement not covered" >!filesArgs.files || !_.isArray(filesArgs.files)) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments files is a required field`};</span>
+    }
+    let idsToAdd = [];
+    let idsToDelete = [];
+    for (let i = 0; <span class="cstat-no" title="statement not covered" >i &lt; filesArgs.files.length; i++) {</span>
+        let f = filesArgs.files[i];
+        if (!<span class="cstat-no" title="statement not covered" >_.isObject(f)) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments file is not an object ${f}`};</span>
+        } else if (<span class="cstat-no" title="statement not covered" >!f.command || !f.id) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments no command or id ${f}`};</span>
+        } else if (<span class="cstat-no" title="statement not covered" >f.command === 'add') {</span>
+            idsToAdd.<span class="cstat-no" title="statement not covered" >push(f.id);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (f.command === 'delete') {</span>
+            idsToDelete.<span class="cstat-no" title="statement not covered" >push(f.id);</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >idsToAdd.length) {</span>
+        let allInExperiment = yield <span class="cstat-no" title="statement not covered" >check.allFilesInExperiment(experimentId, idsToAdd);</span>
+        if (!<span class="cstat-no" title="statement not covered" >allInExperiment) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Some files not in experiment`};</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >idsToDelete.length) {</span>
+        let allInDataset = yield <span class="cstat-no" title="statement not covered" >check.allFilesInDataset(datasetId, idsToDelete);</span>
+        if (!<span class="cstat-no" title="statement not covered" >allInDataset) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Some files not in dataset`};</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!idsToAdd.length &amp;&amp; !idsToDelete.length) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `No files to add or delete from dataset`};</span>
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >null;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updateProcessesInDataset(next) {</span></span></span></span></span></span>
+    let processArgs = yield <span class="cstat-no" title="statement not covered" >parse(this);</span>
+    let errors = yield <span class="cstat-no" title="statement not covered" >validateUpdateProcessesInDataset(this.params.experiment_id, this.params.dataset_id, processArgs);</span>
+    if (<span class="cstat-no" title="statement not covered" >errors !== null) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = errors;</span>
+    } else {
+        let addProcesses = processArgs.processes.filter(<span class="fstat-no" title="function not covered" >s =&gt; <span class="cstat-no" title="statement not covered" >s.command === 'add');</span></span>
+        let deleteProcesses = processArgs.processes.filter(<span class="fstat-no" title="function not covered" >s =&gt; <span class="cstat-no" title="statement not covered" >s.command === 'delete');</span></span>
+        let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.updateProcessesInDataset(this.params.dataset_id, addProcesses, deleteProcesses);</span>
+        if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+        }
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* validateUpdateProcessesInDataset(experimentId, datasetId, processArgs) {</span></span></span></span></span></span></span></span>
+    if (<span class="cstat-no" title="statement not covered" >!processArgs.processes || !_.isArray(processArgs.processes)) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments processes is a required field`};</span>
+    }
+    let idsToAdd = [];
+    let idsToDelete = [];
+    for (let i = 0; <span class="cstat-no" title="statement not covered" >i &lt; processArgs.processes.length; i++) {</span>
+        let p = processArgs.processes[i];
+        if (!<span class="cstat-no" title="statement not covered" >_.isObject(p)) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments process is not an object ${p}`};</span>
+        } else if (<span class="cstat-no" title="statement not covered" >!p.command || !p.id) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Bad arguments no command or id ${p}`};</span>
+        } else if (<span class="cstat-no" title="statement not covered" >p.command === 'add') {</span>
+            idsToAdd.<span class="cstat-no" title="statement not covered" >push(p.id);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (p.command === 'delete') {</span>
+            idsToDelete.<span class="cstat-no" title="statement not covered" >push(p.id);</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >idsToAdd.length) {</span>
+        let allInExperiment = yield <span class="cstat-no" title="statement not covered" >check.allProcessesInExperiment(experimentId, idsToAdd);</span>
+        if (!<span class="cstat-no" title="statement not covered" >allInExperiment) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Some processes not in experiment`};</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >idsToDelete.length) {</span>
+        let allInDataset = yield <span class="cstat-no" title="statement not covered" >check.allProcessesInDataset(datasetId, idsToDelete);</span>
+        if (!<span class="cstat-no" title="statement not covered" >allInDataset) {</span>
+            return <span class="cstat-no" title="statement not covered" >{error: `Some processes not in dataset`};</span>
+        }
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!idsToAdd.length &amp;&amp; !idsToDelete.length) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: `No processes to add or delete from dataset`};</span>
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >null;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* getSamplesForDataset(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.getSamplesForDataset(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* publishDataset(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.publishDataset(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.UNAUTHORIZED;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* unpublishDataset(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.unpublishDataset(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.UNAUTHORIZED;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv.val;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* createAndAddNewDoi(next) {</span></span></span></span></span>
+    let processArgs = yield <span class="cstat-no" title="statement not covered" >parse(this);</span>
+    let ok = yield <span class="cstat-no" title="statement not covered" >experimentDatasetsDoi.doiServerStatusIsOK();</span>
+    if (!<span class="cstat-no" title="statement not covered" >ok) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.SERVICE_UNAVAILABLE;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = "DOI Service is Unavaiable";</span>
+    } else {
+        let error = validateDoiMintingArgs(processArgs);
+        if (<span class="cstat-no" title="statement not covered" >error) {</span>
+            this.<span class="cstat-no" title="statement not covered" >status = status.UNAUTHORIZED;</span>
+            this.<span class="cstat-no" title="statement not covered" >body = error;</span>
+        }
+        else {
+            let otherArgs = {};
+            if (<span class="cstat-no" title="statement not covered" >processArgs.description) {</span>
+                otherArgs.<span class="cstat-no" title="statement not covered" >description = processArgs.description;</span>
+            }
+            this.<span class="cstat-no" title="statement not covered" >body = yield <span class="cstat-no" title="statement not covered" >experimentDatasetsDoi.doiMint(this.params.dataset_id,</span></span>
+                processArgs.title, processArgs.author, processArgs.publication_year, otherArgs);
+        }
+    }
+&nbsp;
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function validateDoiMintingArgs(processArgs) {</span>
+    if (<span class="cstat-no" title="statement not covered" >!processArgs.title) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: 'Bad arguments - title is a required field'};</span>
+    }
+    if (<span class="cstat-no" title="statement not covered" >!processArgs.author) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: 'Bad arguments - author is a required field'};</span>
+    }
+    if (<span class="cstat-no" title="statement not covered" >!processArgs.publication_year) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: 'Bad arguments - publication_year is a required field'};</span>
+    }
+    return <span class="cstat-no" title="statement not covered" >null;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* getDoiServerLink(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasetsDoi.doiGetServerLink(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.UNAUTHORIZED;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = {val: rv};</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* doiServerStatus(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasetsDoi.doiServerStatusIsOK();</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.UNAUTHORIZED;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* getDoiMetadata(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasetsDoi.doiGetMetadata(this.params.dataset_id);</span>
+    if (<span class="cstat-no" title="statement not covered" >rv.error) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.UNAUTHORIZED;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    } else {
+        this.<span class="cstat-no" title="statement not covered" >body = rv;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* validateDoiServerSetup(next) {</span></span></span></span></span></span></span></span>
+    let publicationURLBase = process.env.MC_DOI_PUBLICATION_BASE;
+    let doiNamespace = process.env.MC_DOI_NAMESPACE;
+    let doiUser = process.env.MC_DOI_USER;
+    let doiPassword = process.env.MC_DOI_PW;
+    let envOk = !!(publicationURLBase &amp;&amp; doiNamespace &amp;&amp; doiUser &amp;&amp; doiUser);
+    if (!<span class="cstat-no" title="statement not covered" >envOk) {</span>
+        let missing = [];
+        if (<span class="cstat-no" title="statement not covered" >!publicationURLBase) <span class="cstat-no" title="statement not covered" >missing.push("MC_DOI_PUBLICATION_BASE");</span></span>
+        if (<span class="cstat-no" title="statement not covered" >!doiNamespace) <span class="cstat-no" title="statement not covered" >missing.push("MC_DOI_NAMESPACE");</span></span>
+        if (<span class="cstat-no" title="statement not covered" >!doiUser) <span class="cstat-no" title="statement not covered" >missing.push("MC_DOI_USER");</span></span>
+        if (<span class="cstat-no" title="statement not covered" >!doiPassword) <span class="cstat-no" title="statement not covered" >missing.push("MC_DOI_PW");</span></span>
+        let message = "DOI server setup is missing env settings: " + missing.join();
+        this.<span class="cstat-no" title="statement not covered" >status = status.UNPROCESSABLE_ENTITY;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = {error: message};</span>
+        return <span class="cstat-no" title="statement not covered" >this.status;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* validateHasDoi(next) {</span></span>
+    let rv = yield <span class="cstat-no" title="statement not covered" >experimentDatasets.getDataset(this.params.dataset_id);</span>
+    if (!(<span class="cstat-no" title="statement not covered" >rv.val &amp;&amp; rv.val.doi)) {</span>
+        this.<span class="cstat-no" title="statement not covered" >status = status.BAD_REQUEST;</span>
+        this.<span class="cstat-no" title="statement not covered" >body = {error: "dataset does not have a DOI value"};</span>
+        return <span class="cstat-no" title="statement not covered" >this.status;</span>
+    }
+    yield <span class="cstat-no" title="statement not covered" >next;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function createResource() {</span>
+    const <span class="cstat-no" title="statement not covered" >router = new Router();</span>
+    router.<span class="cstat-no" title="statement not covered" >get('/', getDatasetsForExperiment);</span>
+    router.<span class="cstat-no" title="statement not covered" >post('/', createDatasetForExperiment);</span>
+&nbsp;
+    router.<span class="cstat-no" title="statement not covered" >use('/:dataset_id', ra.validateDatasetInExperiment);</span>
+&nbsp;
+    router.<span class="cstat-no" title="statement not covered" >get('/:dataset_id', getDatasetForExperiment);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id', updateDatasetForExperiment);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id/publish', publishDataset);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id/unpublish', unpublishDataset);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id/samples/:sample_id', ra.validateSampleInExperiment, addSampleToDataset);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id/samples', updateSamplesInDataset);</span>
+    router.<span class="cstat-no" title="statement not covered" >get('/:dataset_id/samples', getSamplesForDataset);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id/files', updateFilesInDataset);</span>
+    router.<span class="cstat-no" title="statement not covered" >put('/:dataset_id/processes', updateProcessesInDataset);</span>
+&nbsp;
+    router.<span class="cstat-no" title="statement not covered" >use('/:dataset_id/doi', validateDoiServerSetup);</span>
+&nbsp;
+    router.<span class="cstat-no" title="statement not covered" >post('/:dataset_id/doi', createAndAddNewDoi);</span>
+    router.<span class="cstat-no" title="statement not covered" >get('/:dataset_id/doi', validateHasDoi, getDoiMetadata);</span>
+    // router.put('/:dataset_id/doi', updateDoiMetadata);
+    router.<span class="cstat-no" title="statement not covered" >get('/:dataset_id/doi/link', validateHasDoi, getDoiServerLink);</span>
+&nbsp;
+    router.<span class="cstat-no" title="statement not covered" >get('/:dataset_id/doiserverstatus', doiServerStatus);</span>
+&nbsp;
+    router.<span class="cstat-no" title="statement not covered" >delete('/:dataset_id', deleteDatasetFromExperiment);</span>
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >router;</span>
+}
+&nbsp;
+module.exports = {
+    createResource
+};
+&nbsp;
+// http://mctest.localhost/api/v2/projects/aaf60d8a-2fa2-4d57-b5f7-65289955bd6f/experiments/05ed147f-a187-4e93-871f-9ce11e00d3ee/datasets/0c10708a-6649-47b6-a902-8336afa5083c/doi/doi%3A10.5072%2FFK2G73F14J
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 31 2017 08:14:32 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mcapi/build-demo/build-demo-project.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">mcapi/build-demo/</a> build-demo-project.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>55/55</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>10/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>34/34</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const helper = require('./build-demo-project-helper');
+const demoConfig = require('./build-demo-project-conf');
+&nbsp;
+function* findOrBuildAllParts(user,datapathPrefix) {
+&nbsp;
+    let project = null;
+    let experiment = null;
+    let processes = null;
+    let samples = null;
+    let files = null;
+&nbsp;
+    let ret = yield helper.createOrFindDemoProjectForUser(user);
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        project = ret.val;
+        ret = yield helper.createOrFindDemoProjectExperiment(project); }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        experiment = ret.val;
+        ret = yield helper.createOrFindAllDemoProcesses(project, experiment); }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        processes = ret.val;
+        ret = yield helper.createOrFindOutputSamplesForAllProcesses(
+            project, experiment, processes, demoConfig.sampleNameData, demoConfig.outputSampleIndexMap);
+    }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        samples = ret.val;
+        ret = yield helper.createOrFindInputSamplesForAllProcesses(
+            project, experiment, processes, samples, demoConfig.inputSampleIndexMap);
+    }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        // Note: refresh process list. If they were created for the first time on the above call, then the
+        // body of the returned process is not sufficently decorated to support inserting properties;
+        // however, on refresh it is. Needs to be investigated.
+        ret = yield helper.createOrFindAllDemoProcesses(project, experiment);
+    }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        processes = ret.val;
+        ret = yield helper.createOrFindSetupPropertiesForAllDemoProcesses(project, experiment, processes);
+    }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        // Note: special case, in this instance only one process with measurements
+        let process = processes[0];
+        let processData = demoConfig.processesData[0];
+        let measurement = processData.measurements[0];
+&nbsp;
+        ret = yield helper.updateMeasurementForProcessSamples(process, measurement);
+    }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        yield helper.addAllFilesToProject(user, project,datapathPrefix);
+        files = yield helper.filesForProject(project);
+        ret = yield helper.createOrFindAllDemoProcesses(project, experiment);
+    }
+    if (!<span class="missing-if-branch" title="if path not taken" >I</span>ret.error) {
+        processes = ret.val;
+        ret = yield helper.addAllFilesToExperimentProcesses(project,experiment,processes,files);
+    }
+    if (<span class="missing-if-branch" title="else path not taken" >E</span>!ret.error) {
+        let processes = ret.val;
+        ret.val = {
+            project: project,
+            experiment: experiment,
+            processes: processes,
+            samples: samples,
+            files: files
+        }
+    }
+    return ret;
+}
+&nbsp;
+module.exports = {
+    findOrBuildAllParts
+};</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 31 2017 08:14:32 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

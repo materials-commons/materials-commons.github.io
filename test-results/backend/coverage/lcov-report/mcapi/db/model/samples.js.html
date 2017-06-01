@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mcapi/db/model/samples.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">mcapi/db/model/</a> samples.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.13% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>113/179</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">38.89% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">44.12% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>15/34</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.25% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>74/117</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">176×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">123×</span>
+<span class="cline-any cline-yes">123×</span>
+<span class="cline-any cline-yes">123×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const r = require('../r');
+const dbExec = require('./run');
+const model = require('./model');
+const db = require('./db');
+const _ = require('lodash');
+const commonQueries = require('../../../lib/common-queries');
+&nbsp;
+function* getSample(sampleID) {
+    let rql = r.table('samples').get(sampleID)
+        .merge(function (sample) {
+            return {
+                processes: r.table('process2sample').getAll(sample('id'), {index: 'sample_id'})
+                    .eqJoin('process_id', r.table('processes')).zip()
+                    .merge(function (process) {
+                        return {
+                            measurements: r.table('process2measurement')
+                                .getAll(process('process_id'), {index: 'process_id'})
+                                .eqJoin('measurement_id', r.table('measurements')).zip().coerceTo('array'),
+                            experiments: r.table('experiment2process')
+                                .getAll(process('process_id'), {index: 'process_id'})
+                                .eqJoin('experiment_id', r.table('experiments')).zip().coerceTo('array')
+                        };
+                    }).orderBy('birthtime').coerceTo('array'),
+                files: r.table('sample2datafile').getAll(sample('id'), {index: 'sample_id'})
+                    .eqJoin('datafile_id', r.table('datafiles')).zip().coerceTo('array'),
+                experiments: r.table('experiment2sample')
+                    .getAll(sampleID, {index: 'sample_id'})
+                    .eqJoin('experiment_id', r.table('experiments')).zip().coerceTo('array')
+            }
+        });
+    let sample = yield dbExec(rql);
+    return {val: sample};
+}
+&nbsp;
+function* getAllSamplesForProject(projectID) {
+    // let projectSamplesRql = r.table('project2sample').getAll(projectID, {index: 'project_id'})
+    //     .eqJoin('sample_id', r.table('sample2propertyset'), {index: 'sample_id'})
+    //     .zip().filter({'current': true})
+    //     .eqJoin('sample_id', r.table('samples')).zip();
+    let rql = r.table('project2sample').getAll(projectID, {index: 'project_id'})
+        .eqJoin('sample_id', r.table('samples')).zip()
+        .merge(function (sample) {
+            return {
+                versions: r.table('process2sample').getAll(sample('id'), {index: 'sample_id'})
+                    .filter({direction: 'out'})
+                    .eqJoin('process_id', r.table('processes')).zip()
+                    .coerceTo('array'),
+                processes: r.table('process2sample').getAll(sample('id'), {index: 'sample_id'})
+                    .eqJoin('process_id', r.table('processes')).zip().coerceTo('array'),
+                experiments: r.table('experiment2sample')
+                    .getAll(sample('id'), {index: 'sample_id'})
+                    .eqJoin('experiment_id', r.table('experiments')).zip().coerceTo('array')
+            }
+        });
+    let samples = yield dbExec(rql);
+    return {val: samples};
+}
+&nbsp;
+function* getAllSamplesForExperiment(experimentId) {
+    let rql = r.table('experiment2sample').getAll(experimentId, {index: 'experiment_id'})
+        .eqJoin('sample_id', r.table('samples')).zip()
+        .merge(function (sample) {
+            return {
+                versions: r.table('process2sample').getAll(sample('id'), {index: 'sample_id'})
+                    .filter({direction: 'out'})
+                    .eqJoin('process_id', r.table('processes')).zip()
+                    .coerceTo('array'),
+                processes: r.table('process2sample').getAll(sample('id'), {index: 'sample_id'})
+                    .eqJoin('process_id', r.table('processes')).zip().coerceTo('array'),
+                experiments: r.table('experiment2sample')
+                    .getAll(sample('id'), {index: 'sample_id'})
+                    .eqJoin('experiment_id', r.table('experiments')).zip().coerceTo('array')
+            }
+        });
+    let samples = yield dbExec(rql);
+    return {val: samples};
+}
+&nbsp;
+// function* getAllSamplesFromQuery(query) {
+//     let rql = commonQueries.sampleDetailsRql(query, r);
+//     let samples = yield dbExec(rql);
+//     samples = samples.map(s =&gt; {
+//         s.transforms = s.processes.filter(p =&gt; p.does_transform).length;
+//         s.properties = s.properties.map(p =&gt; {
+//             if (p.best_measure.length) {
+//                 p.best_measure = p.best_measure[0];
+//             } else {
+//                 p.best_measure = null;
+//             }
+//             return p;
+//         });
+//         return s;
+//     });
+//     return {val: samples};
+// }
+&nbsp;
+function* createSamples(projectId, processId, samples, owner) {
+    let pset = new model.PropertySet(true);
+    let createdPSet = yield db.insert('propertysets', pset);
+    let createdSamples = [];
+    for (let i = 0; i &lt; samples.length; i++) {
+        let sampleParams = samples[i];
+        let s = new model.Sample(sampleParams.name, sampleParams.description, owner);
+        let createdSample = yield db.insert('samples', s);
+        let s2ps = new model.Sample2PropertySet(createdSample.id, createdPSet.id, true);
+        yield db.insert('sample2propertyset', s2ps);
+        let proc2sample = new model.Process2Sample(processId, createdSample.id, createdPSet.id, 'out');
+        let proj2sample = new model.Project2Sample(projectId, createdSample.id);
+        yield db.insert('process2sample', proc2sample);
+        yield db.insert('project2sample', proj2sample);
+        createdSamples.push({name: s.name, id: createdSample.id, property_set_id: createdPSet.id, otype: createdSample.otype});
+    }
+&nbsp;
+    return {val: {samples: createdSamples}};
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* isValidCreateSamplesProcess(projectId, processId) {</span></span></span>
+    let processes = yield <span class="cstat-no" title="statement not covered" >r.table('project2process').getAll([projectId, processId], {index: 'project_process'});</span>
+    if (<span class="cstat-no" title="statement not covered" >processes.length === 0) {</span>
+        return <span class="cstat-no" title="statement not covered" >false;</span>
+    }
+    let process = yield <span class="cstat-no" title="statement not covered" >r.table('processes').get(processId)</span>
+        .merge(<span class="fstat-no" title="function not covered" >(p) =&gt; <span class="cstat-no" title="statement not covered" >r.table('templates').get(p('template_id')).pluck('category'));</span></span>
+    return (<span class="cstat-no" title="statement not covered" >process.category === 'create_sample') || (process.category === 'sectioning');</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function* updateSamples(samples) {</span>
+    yield <span class="cstat-no" title="statement not covered" >r.table('samples').insert(samples, {conflict: 'update'});</span>
+    return <span class="cstat-no" title="statement not covered" >{val: samples};</span>
+}
+&nbsp;
+function* addSamplesMeasurements(processId, properties) {
+    for (let i = 0; i &lt; properties.length; i++) {
+        let prop = properties[i];
+        if (<span class="missing-if-branch" title="else path not taken" >E</span>prop.add_as === 'shared') {
+            yield <span class="cstat-no" title="statement not covered" >addSharedPropertyMeasurementsForSamples(processId, prop);</span>
+        } else {
+            yield addSeparatePropertyMeasurementsForSamples(processId, prop);
+        }
+    }
+    return {val: true};
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* addSharedPropertyMeasurementsForSamples(processId, prop) {</span></span></span></span></span></span>
+    let p = new model.Property(prop.name, prop.attribute);
+    let insertedProperty = yield <span class="cstat-no" title="statement not covered" >db.insert('properties', p);</span>
+    yield <span class="cstat-no" title="statement not covered" >addPropertyMeasurements(processId, insertedProperty.id, "", prop.name, prop.attribute, prop.measurements);</span>
+    for (let i = 0; <span class="cstat-no" title="statement not covered" >i &lt; prop.samples.length; i++) {</span>
+        let s = prop.samples[i];
+        yield <span class="cstat-no" title="statement not covered" >addPropertyToPropertySet(insertedProperty.id, s.property_set_id);</span>
+    }
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* addPropertyToPropertySet(propertyId, psetId) {</span></span>
+    let ps2p = new model.PropertySet2Property(propertyId, psetId);
+    yield <span class="cstat-no" title="statement not covered" >db.insert('propertyset2property', ps2p);</span>
+}
+&nbsp;
+function* addPropertyMeasurements(processId, propertyId, sampleId, pName, pAttr, measurements) {
+    for (let i = 0; i &lt; measurements.length; i++) {
+        let current = measurements[i];
+        let m = new model.Measurement(pName, pAttr, sampleId);
+        m.value = current.value;
+        m.unit = current.unit;
+        m.otype = current.otype;
+        let insertedMeasurement = yield db.insert('measurements', m);
+        if (<span class="missing-if-branch" title="if path not taken" >I</span>current.is_best_measure) {
+            yield addAsBestMeasure(propertyId, insertedMeasurement.id)
+        }
+        yield addMeasurementToProperty(propertyId, insertedMeasurement.id);
+        yield addMeasurementToProcess(processId, insertedMeasurement.id);
+    }
+}
+&nbsp;
+function* addMeasurementToProperty(propID, mID) {
+    let a2m = new model.Property2Measurement(propID, mID);
+    yield db.insert('property2measurement', a2m);
+}
+&nbsp;
+function* addMeasurementToProcess(processId, mId) {
+    let p2m = new model.Process2Measurement(processId, mId);
+    yield db.insert('process2measurement', p2m);
+}
+&nbsp;
+function* addSeparatePropertyMeasurementsForSamples(processId, prop) {
+    for (let i = 0; i &lt; prop.samples.length; i++) {
+        let s = prop.samples[i];
+        yield addNewPropertyMeasurements(processId, s.id, s.property_set_id, prop.property, prop.measurements);
+    }
+}
+&nbsp;
+function* addAsBestMeasure(propertyID, measurementID) {
+    let existing = yield r.table('best_measure_history').getAll(propertyID, {index: 'property_id'});
+    if (!existing.length) {
+        let bmh = new model.BestMeasureHistory(propertyID, measurementID);
+        let inserted = yield db.insert('best_measure_history', bmh);
+        yield r.table('properties').get(propertyID).update({best_measure_id: inserted.id});
+    } else {
+        yield r.table('best_measure_history').get(existing[0].id).update({measurement_id: measurementID});
+    }
+}
+&nbsp;
+function *addNewPropertyMeasurements(processId, sampleID, psetID, prop, measurements) {
+    let propertyId;
+    let matches = yield r.table('propertyset2property').getAll(psetID, {index: 'property_set_id'})
+        .eqJoin('property_id', r.table('properties')).zip().filter({attribute: prop.attribute});
+    if (matches.length) {
+        propertyId = matches[0].property_id;
+    } else {
+        let p = new model.Property(prop.name, prop.attribute);
+        let inserted = yield db.insert('properties', p);
+        propertyId = inserted.id;
+        let ps2p = new model.PropertySet2Property(inserted.id, psetID);
+        yield db.insert('propertyset2property', ps2p);
+    }
+    yield addPropertyMeasurements(processId, propertyId, sampleID, prop.name, prop.attribute, measurements);
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updateSamplesMeasurements() {</span></span></span></span></span></span></span>
+    for (let i = 0; <span class="cstat-no" title="statement not covered" >i &lt; properties.length; i++) {</span>
+        let prop = properties[i];
+        let measurementsToAdd = prop.measurements.filter(<span class="fstat-no" title="function not covered" >(m) =&gt; <span class="cstat-no" title="statement not covered" >!m.id);</span></span>
+        let measurementsToUpdate = prop.measurements.filter(<span class="fstat-no" title="function not covered" >(m) =&gt; <span class="cstat-no" title="statement not covered" >m.id);</span></span>
+        let propToAdd = _.clone(prop),
+            propToUpdate = _.clone(prop);
+        propToAdd.<span class="cstat-no" title="statement not covered" >measurements = measurementsToAdd;</span>
+        propToUpdate.<span class="cstat-no" title="statement not covered" >measurements = measurementsToUpdate;</span>
+        if (<span class="cstat-no" title="statement not covered" >propToAdd.measurements.length) {</span>
+            if (<span class="cstat-no" title="statement not covered" >propToAdd.add_as === 'shared') {</span>
+                yield <span class="cstat-no" title="statement not covered" >addSharedPropertyMeasurementsForSamples(propToAdd);</span>
+            } else {
+                yield <span class="cstat-no" title="statement not covered" >addSeparatePropertyMeasurementsForSamples(propToAdd);</span>
+            }
+        }
+&nbsp;
+        if (<span class="cstat-no" title="statement not covered" >propToUpdate.measurements.length) {</span>
+            yield <span class="cstat-no" title="statement not covered" >updatedExistingPropertyMeasurementsForSamples(propToUpdate);</span>
+        }
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >{val: true};</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updatedExistingPropertyMeasurementsForSamples(prop) {</span></span>
+    let measurementsWithUpdates = prop.measurements.map(<span class="fstat-no" title="function not covered" >(m) =&gt; {</span>
+        return <span class="cstat-no" title="statement not covered" >{id: m.id, unit: m.unit, value: m.value};</span>
+    });
+    yield <span class="cstat-no" title="statement not covered" >r.table('measurements').insert(measurementsWithUpdates, {conflict: 'update'});</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function* deleteSamplesMeasurements() {</span>
+    return <span class="cstat-no" title="statement not covered" >null;</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* updateSampleFiles(sampleId, sampleFiles) {</span></span></span></span>
+    let fileSamplesToAdd = sampleFiles.filter(<span class="fstat-no" title="function not covered" >s2d =&gt; <span class="cstat-no" title="statement not covered" >s2d.command === 'add')</span></span>
+        .map(<span class="fstat-no" title="function not covered" >s2d =&gt; <span class="cstat-no" title="statement not covered" >new model.Sample2Datafile(sampleId, s2d.id));</span></span>
+    fileSamplesToAdd = yield <span class="cstat-no" title="statement not covered" >removeExistingSampleFileEntries(fileSamplesToAdd);</span>
+    if (<span class="cstat-no" title="statement not covered" >fileSamplesToAdd.length) {</span>
+        yield <span class="cstat-no" title="statement not covered" >r.table('sample2datafile').insert(fileSamplesToAdd);</span>
+    }
+&nbsp;
+    let fileSamplesToDelete = sampleFiles.filter(<span class="fstat-no" title="function not covered" >s2d =&gt; <span class="cstat-no" title="statement not covered" >s2d.command === 'delete').map(<span class="fstat-no" title="function not covered" >s2d =&gt; <span class="cstat-no" title="statement not covered" >[sampleId, s2d.id]);</span></span></span></span>
+    if (<span class="cstat-no" title="statement not covered" >fileSamplesToDelete.length) {</span>
+        yield <span class="cstat-no" title="statement not covered" >r.table('sample2datafile').getAll(r.args(fileSamplesToDelete), {index: 'sample_file'}).delete();</span>
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >{val: true};</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* removeExistingSampleFileEntries(sampleFileEntries) {</span></span></span></span>
+    if (<span class="cstat-no" title="statement not covered" >sampleFileEntries.length) {</span>
+        let indexEntries = sampleFileEntries.map(<span class="fstat-no" title="function not covered" >entry =&gt; <span class="cstat-no" title="statement not covered" >[entry.sample_id, entry.datafile_id]);</span></span>
+        let matchingEntries = yield <span class="cstat-no" title="statement not covered" >r.table('sample2datafile').getAll(r.args(indexEntries), {index: 'sample_file'});</span>
+        let byFileID = _.indexBy(matchingEntries, 'datafile_id');
+        return <span class="cstat-no" title="statement not covered" >sampleFileEntries.filter(<span class="fstat-no" title="function not covered" >entry =&gt; (<span class="cstat-no" title="statement not covered" >!(entry.datafile_id in byFileID)));</span></span></span>
+    }
+    return <span class="cstat-no" title="statement not covered" >sampleFileEntries;</span>
+}
+&nbsp;
+module.exports = {
+    getSample,
+    getAllSamplesForProject,
+    getAllSamplesForExperiment,
+    createSamples,
+    isValidCreateSamplesProcess,
+    updateSamples,
+    addSamplesMeasurements,
+    updateSamplesMeasurements,
+    deleteSamplesMeasurements,
+    updateSampleFiles
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 31 2017 08:14:32 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

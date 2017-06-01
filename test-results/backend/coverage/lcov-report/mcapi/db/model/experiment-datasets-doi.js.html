@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mcapi/db/model/experiment-datasets-doi.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">mcapi/db/model/</a> experiment-datasets-doi.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">22.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/75</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.11% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.04% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/47</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const r = require('../r');
+const request = require('request-promise');
+&nbsp;
+const datasets = require('./experiment-datasets');
+&nbsp;
+l</span>et doiUrl = process.env.MC_DOI_SERVICE_URL || <span class="branch-1 cbranch-no" title="branch not covered" >'https://ezid.lib.purdue.edu/';
+l</span>et doiPublisher = process.env.MC_DOI_PUBLISHER || <span class="branch-1 cbranch-no" title="branch not covered" >"Materials Commons";
+let publicationURLBase = process.env.MC_DOI_PUBLICATION_BASE;
+&nbsp;
+let doiNamespace = process.env.MC_DOI_NAMESPACE;
+let doiUser = process.env.MC_DOI_USER;
+let doiPassword = process.env.MC_DOI_PW;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* doiServerStatusIsOK() {</span></span></span></span>
+    let url = doiUrl + "status";
+    let options = {
+        method: 'GET',
+        uri: url,
+        resolveWithFullResponse: true
+    };
+    let response = yield <span class="cstat-no" title="statement not covered" >request(options);</span>
+    return ((<span class="cstat-no" title="statement not covered" >response.statusCode == "200")</span>
+    &amp;&amp; (response.body == "success: EZID is up"));
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* doiMint(datasetId, title, creator, publicationYear, otherArgs) {</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+    let namespace = doiNamespace;
+    let user = doiUser;
+    let pw = doiPassword;
+    let description = null;
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >otherArgs &amp;&amp; otherArgs.description) {</span>
+        description = <span class="cstat-no" title="statement not covered" >otherArgs.description;</span>
+    }
+&nbsp;
+    let publisher = doiPublisher;
+    let targetUrl = publicationURLBase + "/" + datasetId;
+    let createCall = "shoulder/" + namespace;
+    let url = doiUrl + createCall;
+    let body = "_target: " + targetUrl + "\n"
+        + "datacite.creator: " + creator + "\n"
+        + "datacite.title: " + title + "\n"
+        + "datacite.publisher: " + publisher + "\n"
+        + "datacite.publicationyear: " + publicationYear + "\n"
+        + "datacite.resourcetype: Dataset";
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >description) {</span>
+        body = <span class="cstat-no" title="statement not covered" >"datacite.description:" + description + "\n" + body;</span>
+    }
+&nbsp;
+    let options = {
+        method: 'POST', // POST = Mint operation
+        body: body,
+        uri: url,
+        auth: {
+            user: user,
+            pass: pw,
+            sendImmediately: false
+        },
+        headers: {'Content-Type': 'text/plain'}
+    };
+&nbsp;
+    let doi = null;
+    try {
+        let response = yield <span class="cstat-no" title="statement not covered" >request(options);</span>
+        let matches = response.match(/doi:\S*/i);
+        doi = <span class="cstat-no" title="statement not covered" >matches[0];</span>
+    } catch (e) {
+        return <span class="cstat-no" title="statement not covered" >{</span>
+            error: e
+        };
+    }
+&nbsp;
+    let status = yield <span class="cstat-no" title="statement not covered" >r.table('datasets').get(datasetId).update({doi: doi});</span>
+    if (<span class="cstat-no" title="statement not covered" >status.replaced != 1) {</span>
+        return <span class="cstat-no" title="statement not covered" >{</span>
+            error: `Update of DOI in dataset, ${datasetId}, failed.`
+        };
+    }
+&nbsp;
+    return yield <span class="cstat-no" title="statement not covered" >datasets.getDataset(datasetId);</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* doiGetMetadata(datasetId) {</span></span></span></span></span></span></span></span>
+    let dataset = yield <span class="cstat-no" title="statement not covered" >datasets.getDataset(datasetId);</span>
+    let doi = dataset.val.doi;
+&nbsp;
+    let link = doiUrlLink(doi);
+&nbsp;
+    let options = {
+        method: 'GET',
+        uri: link,
+        headers: {'Content-Type': 'text/plain'}
+    };
+&nbsp;
+    let response = null;
+    try {
+        response = yield <span class="cstat-no" title="statement not covered" >request(options);</span>
+    } catch (e) {
+        return <span class="cstat-no" title="statement not covered" >{</span>
+            error: e
+        };
+    }
+&nbsp;
+    let matches = response.match(/doi:\S*/i);
+    if (<span class="cstat-no" title="statement not covered" >doi != matches[0]) {</span>
+        return <span class="cstat-no" title="statement not covered" >{error: "Matadata not available for doi: " + doi};</span>
+    }
+&nbsp;
+    return <span class="cstat-no" title="statement not covered" >parseNameValueList(response);</span>
+&nbsp;
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function* doiGetServerLink(datasetId) {</span></span></span>
+    let dataset = yield <span class="cstat-no" title="statement not covered" >datasets.getDataset(datasetId);</span>
+    let doi = dataset.val.doi;
+    return <span class="cstat-no" title="statement not covered" >doiUrlLink(doi);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function doiUrlLink(doi) {</span>
+    return `${<span class="cstat-no" title="statement not covered" >doiUrl}id/${doi}`;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function parseNameValueList(linesInAString) {</span>
+    let <span class="cstat-no" title="statement not covered" >ret = {};</span>
+    let <span class="cstat-no" title="statement not covered" >lines = linesInAString.split('\n');</span>
+    for (let <span class="cstat-no" title="statement not covered" >line of <span class="cstat-no" title="statement not covered" >lines) {</span></span>
+        line = <span class="cstat-no" title="statement not covered" >line.trim();</span>
+        let <span class="cstat-no" title="statement not covered" >index = line.indexOf(':');</span>
+        if (<span class="cstat-no" title="statement not covered" >index &gt; -1) {</span>
+            let <span class="cstat-no" title="statement not covered" >key = line.substr(0, index).trim();</span>
+            ret[<span class="cstat-no" title="statement not covered" >key] = line.substr(index + 1).trim();</span>
+        }
+    }
+    return <span class="cstat-no" title="statement not covered" >ret;</span>
+}
+&nbsp;
+module.exports = {
+    doiServerStatusIsOK,
+    doiMint,
+    doiGetMetadata,
+    doiGetServerLink
+};</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 31 2017 08:14:32 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
