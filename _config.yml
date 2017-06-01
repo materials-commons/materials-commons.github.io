@@ -3,4 +3,4 @@ gems:
   - jekyll-sitemap
 title: Materials Commons GitHub Site Documentation
 description: This is a draft version of the Materials Commons GitHub Site Documentation
-show_downloads: true
+show_downloads: false
