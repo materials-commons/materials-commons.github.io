@@ -6,7 +6,7 @@ This documentation site covers the Python API and various Continuous Integration
 results.
 
 * [The Python API](./python-api)
-* [The Python Command List Interface (CLI)](./python-cli)
+* [The Python CASM Tools and Command List Interface (CLI)](./python-casm)
 * [The Materials Commons Wiki](https://github.com/materials-commons/materialscommons.org/wiki)
   * [Including - the help pages](https://github.com/materials-commons/materialscommons.org/wiki/Help)
 * [Test Results](./test-results)
