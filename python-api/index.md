@@ -5,7 +5,9 @@ layout: default
 
 Materials Commons Python API
 ============================
-**[View on GitHub](https://github.com/materials-commons/mcapi/tree/master/python)**
+**[View Python API on GitHub](https://github.com/materials-commons/mcapi/tree/master/python)**
+-- Return to [top level page](../)
+-- Go to [API details page](./api) --
 
 Overview
 --------
@@ -108,7 +110,12 @@ myProject = create_project("Project One","This is my first Project")
 myExperiment = myProject.create_experiment("Experiment","This is my first Experiment")
 ```
 
+Where ```create_project``` is a top level function, and ```create_experiment``` is a method
+of **Project**. For complete details see [API details page](./api) .
+
 More Code Examples
 ------------------
 
 (coming soon - next release is end of June 2017)
+
+Return to [top level page](../)
