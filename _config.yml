@@ -2,5 +2,5 @@ theme: jekyll-theme-cayman
 gems:
   - jekyll-sitemap
 title: Materials Commons GitHub Site Documentation
-description: This is a draft version of the Materials Commons GitHub Site Documentation
+description: A general index of Documentation of Materials Commons
 show_downloads: false

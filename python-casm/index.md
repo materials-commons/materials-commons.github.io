@@ -1,5 +1,5 @@
 ---
-Title: The Python CASM Tools and Command List Interface
+Title: The Python CASM Tools and CLI
 layout: default
 ---
 
@@ -7,8 +7,8 @@ layout: default
 -- Return to [top level page](../)
 -- Go to [CASM details page](./casm_mcapi) --
 
-The Python CASM Tools and Command List Interface (CLI)
-=======================================
+The Python CASM Tools and Command Line Interface (CLI)
+======================================================
 
 Overview
 --------
