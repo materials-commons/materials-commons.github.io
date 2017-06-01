@@ -10,20 +10,16 @@ Materials Commons Python API
 Overview
 --------
 
-These pages provide a description of the User Interface to the Materials Commons server.
-and instructions on how to use it. We assume that the reader has
-used (or is otherwise familiar with)
-the Materials Commons web site,
-[https://materialscommons.org/](https://materialscommons.org/) and intends to use
+In this document, we describe the Python API (Application Programmer Interface)
+to the Materials Commons server. We assume that the reader has used
+(or is otherwise familiar with) the Materials Commons web site,
+[https://materialscommons.org/](https://materialscommons.org/), and intends to use
 this interface in that context. If you are using another
 site based on the materials commons web application, that is
 with will have a different URL, then corrections to
 the instructions will have to be made, accordingly.
 
-In this document, we describe the Python API to the Materials Commons.
-It is a Python module embodying the API (Application Programmer Interface)
-that support a python-code interaction with the Materials Commons
-server. This API supports creating, modifying, and deleting Materials
+This API supports creating, modifying, and deleting Materials
 Commons Projects and their parts: Experiments, Processes, Samples,
 Directories, and Files. These "objects of discourse" are depicted
 in this object-relation sketch.
@@ -40,9 +36,9 @@ felt it best that the web site should be used for that final
 publication.
 
 In the diagram above the lines between the objects a
-      relationship, but do not specify the nature of that relationship.
-      In this document, those relations can be thought of as "contains"
-      in the following way:
+relationship, but do not specify the nature of that relationship.
+In this document, those relations can be thought of as "contains"
+in the following way:
 * **Project** contains:
   * a list of **Experiment**
   * a root **Directory**
@@ -61,8 +57,7 @@ These objects are described in the [API details page](./api) .
 Access to the API
 -----------------
 
-All API access is through function or method calls in the API. 
-The API requires a configuration with a **base url** and an **apikey**.
+Using the API requires a configuration with a **base url** and an **apikey**.
 The configuration is set up using the file **~/.materialscommons/config.json**
 (where ~ denoted the user's home directory) . 
 The URL for the API support by the production version of the
@@ -96,9 +91,11 @@ Calls to the API
 ----------------
 
 Most of the calls to the API are based on the contains
-relationship described above. The are "methods" of an object; that
-is, they are functions that are called using the object that they
-pertain to. Except in the case of a few "top level function", you
+relationship described above. For example, to create an **Experiment**
+you first have to create or obtain a **Project**, because Experments
+are contains in Projects. These actions, create, modify, delete and others,
+are "methods" of an object; that is, they are functions that are called
+using the object that they pertain to. Except in the case of a few "top level function", you
 first have to obtain the object. For example to make an API call
 to create a process from a template, you first have to obtain an
 Experiment: Process objects are "contained" in an Experiment.
@@ -111,7 +108,7 @@ myProject = create_project("Project One","This is my first Project")
 myExperiment = myProject.create_experiment("Experiment","This is my first Experiment")
 ```
 
-More Examples
--------------
+More Code Examples
+------------------
 
 (coming soon - next release is end of June 2017)
