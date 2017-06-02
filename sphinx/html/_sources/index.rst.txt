@@ -1,0 +1,18 @@
+
+Material Commons Python API
+===========================
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Contents:
+
+   demo_project
+   mcapi
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

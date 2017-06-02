@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['goals',['goals',['../classmcapi_1_1mc_1_1_experiment.html#ad1b46ec5270478784d79d0e1fd17075b',1,'mcapi::mc::Experiment']]],
-  ['group_5fsize',['group_size',['../classmcapi_1_1mc_1_1_sample.html#af25456f017cf939daeef7c3fea26ea87',1,'mcapi::mc::Sample']]]
+  ['goals',['goals',['../classmcapi_1_1mc_1_1_experiment.html#abbce8f92300d8df24b2a996410697760',1,'mcapi::mc::Experiment']]],
+  ['group_5fsize',['group_size',['../classmcapi_1_1mc_1_1_sample.html#ad6d4a74991308a2449ffd68d43f0dc83',1,'mcapi::mc::Sample']]]
 ];
