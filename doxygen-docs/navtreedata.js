@@ -1,20 +1,20 @@
 var NAVTREE =
 [
   [ "Materials Commons Python API", "index.html", [
-    [ "Modules", null, [
-      [ "Modules List", "namespaces.html", "namespaces" ],
-      [ "Module Members", "namespacemembers.html", [
+    [ "Packages", null, [
+      [ "Packages", "namespaces.html", "namespaces" ],
+      [ "Package Functions", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions/Subroutines", "namespacemembers_func.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ]
       ] ]
     ] ],
-    [ "Data Types List", "annotated.html", [
-      [ "Data Types List", "annotated.html", "annotated_dup" ],
-      [ "Data Types", "classes.html", null ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Data Fields", "functions.html", [
+      [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions/Subroutines", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -27,7 +27,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "____init_____8py.html",
-"classmcapi_1_1mc_1_1_process.html#ae488a55193fa58289b90be7e5235e5e2"
+"classmcapi_1_1mc_1_1_sample.html#a38ffdbdfaecbfd7466f480d8aaa18992"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

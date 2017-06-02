@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['user',['User',['../classmcapi_1_1mc_1_1_user.html',1,'mcapi::mc']]]
+  ['vectorproperty',['VectorProperty',['../classmcapi_1_1mc_1_1_vector_property.html',1,'mcapi::mc']]]
 ];

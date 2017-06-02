@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['api',['api',['../namespacemcapi_1_1api.html',1,'mcapi']]],
   ['base',['base',['../namespacemcapi_1_1base.html',1,'mcapi']]],
-  ['config',['config',['../namespacemcapi_1_1config.html',1,'mcapi']]],
   ['make_5fbase_5fobject_5ffor_5ftype',['make_base_object_for_type',['../namespacemcapi_1_1mc.html#a0d1ee9c9b211772a50346172d839db24',1,'mcapi::mc']]],
   ['make_5fdir_5ftree_5ftable',['make_dir_tree_table',['../namespacemcapi_1_1mc.html#a8e455250989589eca4567d41f4dd6f98',1,'mcapi::mc']]],
   ['make_5flist_5fof_5fsamples_5fwith_5fproperty_5fset_5fids',['make_list_of_samples_with_property_set_ids',['../classmcapi_1_1mc_1_1_process.html#aebc7add072d902000448735c2ac45db7',1,'mcapi::mc::Process']]],
@@ -10,16 +8,11 @@ var searchData=
   ['make_5fmeasurement_5fobject',['make_measurement_object',['../namespacemcapi_1_1measurement.html#a061a68a180c1692e8fcae2e55ab4d6e1',1,'mcapi::measurement']]],
   ['make_5fobject',['make_object',['../namespacemcapi_1_1mc.html#a3f34b17589e1191d3d22826398f2225d',1,'mcapi::mc']]],
   ['make_5fproperty_5fobject',['make_property_object',['../namespacemcapi_1_1mc.html#a273a473665f457b4624e6d1dff32abb9',1,'mcapi::mc']]],
-  ['make_5furl',['make_url',['../classmcapi_1_1remote_1_1_remote.html#a5cd14e42656e542f5eaeb00b77a5205c',1,'mcapi::remote::Remote']]],
-  ['make_5furl_5fv2',['make_url_v2',['../classmcapi_1_1remote_1_1_remote.html#ab502a8696a98102c875ce4f7ad07780e',1,'mcapi::remote::Remote']]],
   ['matrixproperty',['MatrixProperty',['../classmcapi_1_1mc_1_1_matrix_property.html',1,'mcapi::mc']]],
   ['mc',['mc',['../namespacemcapi_1_1mc.html',1,'mcapi']]],
   ['mc_2epy',['mc.py',['../mc_8py.html',1,'']]],
   ['mcapi',['mcapi',['../namespacemcapi.html',1,'']]],
-  ['mcapikey',['mcapikey',['../classmcapi_1_1config_1_1_config.html#ab3587f8e0eb917a700ecf4203fc42c44',1,'mcapi::config::Config']]],
   ['mcobject',['MCObject',['../classmcapi_1_1base_1_1_m_c_object.html',1,'mcapi::base']]],
-  ['mcorg',['mcorg',['../namespacemcapi_1_1api.html#a3b5bdc814886539bde06bab1499d4eaa',1,'mcapi::api']]],
-  ['mcurl',['mcurl',['../classmcapi_1_1config_1_1_config.html#a2d052f31226d758d9cbd1aa574da548d',1,'mcapi::config::Config']]],
   ['measuredproperty',['MeasuredProperty',['../classmcapi_1_1mc_1_1_measured_property.html',1,'mcapi::mc']]],
   ['measurement',['Measurement',['../classmcapi_1_1measurement_1_1_measurement.html',1,'mcapi.measurement.Measurement'],['../namespacemcapi_1_1measurement.html',1,'mcapi.measurement']]],
   ['measurement_2epy',['measurement.py',['../measurement_8py.html',1,'']]],
@@ -38,7 +31,5 @@ var searchData=
   ['mediatype',['mediatype',['../classmcapi_1_1mc_1_1_file.html#af8530157443ab57389a0e51242b07b56',1,'mcapi::mc::File']]],
   ['mediatypes',['mediatypes',['../classmcapi_1_1mc_1_1_project.html#a7ed01c36a3423ea93e2b35f9a275ec5d',1,'mcapi::mc::Project']]],
   ['move',['move',['../classmcapi_1_1mc_1_1_directory.html#abab8a4881ceeaa98c19f4f3dd97b9bb6',1,'mcapi.mc.Directory.move()'],['../classmcapi_1_1mc_1_1_file.html#a0e0864712d97ec0f19f51b8f3f9511b1',1,'mcapi.mc.File.move()']]],
-  ['mtime',['mtime',['../classmcapi_1_1base_1_1_m_c_object.html#a1b26f0ac2af93ae522fc8f7c7073df4d',1,'mcapi::base::MCObject']]],
-  ['remote',['remote',['../namespacemcapi_1_1remote.html',1,'mcapi']]],
-  ['version',['version',['../namespacemcapi_1_1version.html',1,'mcapi']]]
+  ['mtime',['mtime',['../classmcapi_1_1base_1_1_m_c_object.html#a1b26f0ac2af93ae522fc8f7c7073df4d',1,'mcapi::base::MCObject']]]
 ];

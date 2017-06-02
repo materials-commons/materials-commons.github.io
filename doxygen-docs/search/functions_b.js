@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['unset_5fremote',['unset_remote',['../namespacemcapi_1_1api.html#ac5149fe28ed1c51c62107241bad8b76b',1,'mcapi::api']]],
-  ['update_5fprocess_5fsetup_5fproperties',['update_process_setup_properties',['../namespacemcapi_1_1api.html#a7c58d6be844b116bef01b31f88812374',1,'mcapi::api']]],
-  ['update_5fprocess_5fsetup_5fproperties_5fmake_5fdata',['update_process_setup_properties_make_data',['../namespacemcapi_1_1api.html#a47ab9895bbc1552f9b8121f91e9a23df',1,'mcapi::api']]],
-  ['update_5fproject',['update_project',['../namespacemcapi_1_1api.html#a1e28ce37997f12d3b361b8d354e456ab',1,'mcapi::api']]],
-  ['update_5fsetup_5fproperties',['update_setup_properties',['../classmcapi_1_1mc_1_1_process.html#a6720be13067419f7f7c316c960a7dc21',1,'mcapi::mc::Process']]],
-  ['update_5fwith_5fdetails',['update_with_details',['../classmcapi_1_1mc_1_1_sample.html#ab6d043975b6a55c1ca82262613ebd5bb',1,'mcapi::mc::Sample']]],
-  ['use_5fremote',['use_remote',['../namespacemcapi_1_1api.html#a59e96d6ae253e9ee139bdc7fbedcd2ee',1,'mcapi::api']]],
-  ['user_5fcan_5faccess_5fproject',['user_can_access_project',['../namespacemcapi_1_1api.html#af973d700a0ce685961928688ad0144f1',1,'mcapi::api']]]
+  ['set_5fmeasurement',['set_measurement',['../classmcapi_1_1mc_1_1_process.html#accfc581849ba355aa237993bf2598d85',1,'mcapi::mc::Process']]],
+  ['set_5fmeasurements_5ffor_5fprocess_5fsamples',['set_measurements_for_process_samples',['../classmcapi_1_1mc_1_1_process.html#a57586b74a867ac7c1c31c8d93d219f29',1,'mcapi::mc::Process']]],
+  ['set_5funit_5fof_5fsetup_5fproperty',['set_unit_of_setup_property',['../classmcapi_1_1mc_1_1_process.html#ab117131312f0142a7edaaa67c0c5a833',1,'mcapi::mc::Process']]],
+  ['set_5fvalue_5fof_5fsetup_5fproperty',['set_value_of_setup_property',['../classmcapi_1_1mc_1_1_process.html#a9e0bd25b7bef49a0681a3f4721b6b096',1,'mcapi::mc::Process']]],
+  ['str',['str',['../classmcapi_1_1base_1_1_pretty_print.html#ad7800ee8f012e630bfeb8292232230d5',1,'mcapi::base::PrettyPrint']]]
 ];

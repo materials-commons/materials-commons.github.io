@@ -1,19 +1,12 @@
 var searchData=
 [
-  ['decorate_5fwith_5finput_5fsamples',['decorate_with_input_samples',['../classmcapi_1_1mc_1_1_process.html#a9ee0e87923b56a3dbd6af52145fc22bb',1,'mcapi::mc::Process']]],
-  ['decorate_5fwith_5foutput_5fsamples',['decorate_with_output_samples',['../classmcapi_1_1mc_1_1_process.html#a68c3a04978ba91ae340fc4644d16dfdf',1,'mcapi::mc::Process']]],
-  ['decorate_5fwith_5fprocesses',['decorate_with_processes',['../classmcapi_1_1mc_1_1_experiment.html#a013d8e654ae9a27de1fd55673d1e2629',1,'mcapi.mc.Experiment.decorate_with_processes()'],['../classmcapi_1_1mc_1_1_sample.html#ad1e827506a9105923daca3969b9129d8',1,'mcapi.mc.Sample.decorate_with_processes()']]],
-  ['decorate_5fwith_5fsamples',['decorate_with_samples',['../classmcapi_1_1mc_1_1_experiment.html#ac10e9a7b3c672b35b5ecfa45f5ab18ba',1,'mcapi::mc::Experiment']]],
-  ['delete',['delete',['../classmcapi_1_1mc_1_1_project.html#a52e10ef40b219920d68e7d02b84f365a',1,'mcapi.mc.Project.delete()'],['../classmcapi_1_1mc_1_1_experiment.html#ad992daa66cef5a8c64be02f183507842',1,'mcapi.mc.Experiment.delete()'],['../classmcapi_1_1mc_1_1_sample.html#ae2e3cfe368786fa439aa6addbf79d455',1,'mcapi.mc.Sample.delete()'],['../classmcapi_1_1mc_1_1_directory.html#a9f1cdb96d07dd9a7179299316dde6ead',1,'mcapi.mc.Directory.delete()'],['../namespacemcapi_1_1api.html#a360c29ea73c20ea24e0762b193f9566a',1,'mcapi.api.delete()']]],
-  ['delete_5fexperiment',['delete_experiment',['../namespacemcapi_1_1api.html#a7eb5689cc1213163d33a3cafe2dd7bb2',1,'mcapi::api']]],
-  ['delete_5fexperiment_5fdry_5frun',['delete_experiment_dry_run',['../namespacemcapi_1_1api.html#a99ad49d9e0cd6ff09cfcabe0aa51e9a2',1,'mcapi::api']]],
-  ['delete_5fexperiment_5ffully',['delete_experiment_fully',['../namespacemcapi_1_1api.html#a3e18ed93b608664b25d40facbabf27dc',1,'mcapi::api']]],
-  ['delete_5fproject',['delete_project',['../namespacemcapi_1_1api.html#a47b6846a504f04dad785967b826e02f6',1,'mcapi::api']]],
-  ['delete_5fproject_5fdry_5frun',['delete_project_dry_run',['../namespacemcapi_1_1api.html#a1ba83faeb12a40248c1e384b8b91abb5',1,'mcapi::api']]],
-  ['detele',['detele',['../classmcapi_1_1mc_1_1_file.html#ab1c661d72ba010644d6e9da3cd42038d',1,'mcapi::mc::File']]],
-  ['directory_5fby_5fid',['directory_by_id',['../namespacemcapi_1_1api.html#ac568f39ff980ac4d53b75c134c083f48',1,'mcapi::api']]],
-  ['directory_5fmove',['directory_move',['../namespacemcapi_1_1api.html#affe6e3644d7478a36bdf61124e92780b',1,'mcapi::api']]],
-  ['directory_5frename',['directory_rename',['../namespacemcapi_1_1api.html#abdc63ffc13bd6afdf8bfc6335ada29e4',1,'mcapi::api']]],
-  ['disable_5fwarnings',['disable_warnings',['../namespacemcapi_1_1api.html#a1b64d367f8d3c7b77bad4651794fbece',1,'mcapi::api']]],
-  ['download_5ffile_5fcontent',['download_file_content',['../classmcapi_1_1mc_1_1_file.html#a5f9d06270afc2b2b0499c156ef24638b',1,'mcapi::mc::File']]]
+  ['can_5faccess',['can_access',['../classmcapi_1_1mc_1_1_user.html#af778454aa6e6fca32dfc3318ab893078',1,'mcapi::mc::User']]],
+  ['create_5fdescendant_5flist_5fby_5fpath',['create_descendant_list_by_path',['../classmcapi_1_1mc_1_1_directory.html#a2e1282aa60e8307442dbb46ee99cf573',1,'mcapi::mc::Directory']]],
+  ['create_5fexperiment',['create_experiment',['../classmcapi_1_1mc_1_1_project.html#a94623c8582329faca88d58eafc8cddce',1,'mcapi::mc::Project']]],
+  ['create_5fmeasurement',['create_measurement',['../classmcapi_1_1mc_1_1_process.html#ae488a55193fa58289b90be7e5235e5e2',1,'mcapi::mc::Process']]],
+  ['create_5for_5fget_5fall_5fdirectories_5fon_5fpath',['create_or_get_all_directories_on_path',['../classmcapi_1_1mc_1_1_project.html#a804023d36f16b7f8733d2eaf702ea37c',1,'mcapi::mc::Project']]],
+  ['create_5fprocess_5ffrom_5ftemplate',['create_process_from_template',['../classmcapi_1_1mc_1_1_experiment.html#a8f96c6b8cf56504e78987fd474079a78',1,'mcapi::mc::Experiment']]],
+  ['create_5fproject',['create_project',['../namespacemcapi_1_1mc.html#af44078e82f15c60fe878a7baf19a578c',1,'mcapi::mc']]],
+  ['create_5fsamples',['create_samples',['../classmcapi_1_1mc_1_1_process.html#ab96eafaf36d0a23609c27bb1f6cec28a',1,'mcapi::mc::Process']]],
+  ['created_5fdirectory',['created_directory',['../classmcapi_1_1mc_1_1_project.html#a8788797e0e0f225ebc993687a99c60f5',1,'mcapi::mc::Project']]]
 ];

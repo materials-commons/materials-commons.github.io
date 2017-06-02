@@ -1,4 +1,23 @@
 var searchData=
 [
-  ['local_5fpath',['local_path',['../classmcapi_1_1mc_1_1_file.html#aaa6e8958e35e0b98a787770495890fb3',1,'mcapi::mc::File']]]
+  ['get_5fall_5fdirectories',['get_all_directories',['../classmcapi_1_1mc_1_1_project.html#af18338cf48991c5143568a6ecae43703',1,'mcapi::mc::Project']]],
+  ['get_5fall_5fexperiments',['get_all_experiments',['../classmcapi_1_1mc_1_1_project.html#a834b6740b0426f87155afa5966eef145',1,'mcapi::mc::Project']]],
+  ['get_5fall_5fprocesses',['get_all_processes',['../classmcapi_1_1mc_1_1_project.html#a32c24ebf86d4b1bc8280eb1d832b0df5',1,'mcapi.mc.Project.get_all_processes()'],['../classmcapi_1_1mc_1_1_experiment.html#adbe2f8943beadb1d0151be9616bb74b4',1,'mcapi.mc.Experiment.get_all_processes()']]],
+  ['get_5fall_5fprojects',['get_all_projects',['../namespacemcapi_1_1mc.html#ab7aa189afadfaacc0a8d80a16eee3357',1,'mcapi::mc']]],
+  ['get_5fall_5fsamples',['get_all_samples',['../classmcapi_1_1mc_1_1_project.html#a7ab2e291b02586f7b46350d4856d8e65',1,'mcapi.mc.Project.get_all_samples()'],['../classmcapi_1_1mc_1_1_experiment.html#a7ddbea55a49a2449194b82df9d2c8c4f',1,'mcapi.mc.Experiment.get_all_samples()'],['../classmcapi_1_1mc_1_1_process.html#adb7d5701f95a5a453a519e0c4b183724',1,'mcapi.mc.Process.get_all_samples()']]],
+  ['get_5fall_5ftemplates',['get_all_templates',['../namespacemcapi_1_1mc.html#ad9811ea9a3b1186706eb0fe290caf02f',1,'mcapi::mc']]],
+  ['get_5fall_5fusers',['get_all_users',['../namespacemcapi_1_1mc.html#a7a01966e0448f99348df6dde1e12fc8a',1,'mcapi::mc']]],
+  ['get_5fby_5flocal_5fpath',['get_by_local_path',['../classmcapi_1_1mc_1_1_project.html#a05d298c2660bc8219c282515c87999fd',1,'mcapi::mc::Project']]],
+  ['get_5fchildren',['get_children',['../classmcapi_1_1mc_1_1_directory.html#a6b24ff028b2ceed7973b93804bfbdeaf',1,'mcapi::mc::Directory']]],
+  ['get_5fdescendant_5flist_5fby_5fpath',['get_descendant_list_by_path',['../classmcapi_1_1mc_1_1_directory.html#a85c8011ad9158045314394e400ff9328',1,'mcapi::mc::Directory']]],
+  ['get_5fdirectory',['get_directory',['../classmcapi_1_1mc_1_1_project.html#a8cdf86afd5122c007eb58daa47b4c783',1,'mcapi::mc::Project']]],
+  ['get_5fdirectory_5fby_5fid',['get_directory_by_id',['../classmcapi_1_1mc_1_1_project.html#a6fd4c5ffef661920aa6953a8d3301849',1,'mcapi::mc::Project']]],
+  ['get_5fdirectory_5flist',['get_directory_list',['../classmcapi_1_1mc_1_1_project.html#ade936acadfbe8957d77eff34d293ef6d',1,'mcapi::mc::Project']]],
+  ['get_5fexisting_5fproject',['get_existing_project',['../classdemo__project_1_1demo__project_1_1_demo_project.html#a488c24b11c6860d3e45d4792d3dadbb5',1,'demo_project::demo_project::DemoProject']]],
+  ['get_5fexperiment_5fby_5fid',['get_experiment_by_id',['../classmcapi_1_1mc_1_1_project.html#ad37aa640fca87be2a3c21b382e36a5dd',1,'mcapi::mc::Project']]],
+  ['get_5fprocess_5fby_5fid',['get_process_by_id',['../classmcapi_1_1mc_1_1_project.html#aa28e7856a5999e5e203b6dadc70b06a5',1,'mcapi.mc.Project.get_process_by_id()'],['../classmcapi_1_1mc_1_1_experiment.html#a920ebffe43b01f3a0e58b1478ceef9a2',1,'mcapi.mc.Experiment.get_process_by_id()']]],
+  ['get_5fproject_5fby_5fid',['get_project_by_id',['../namespacemcapi_1_1mc.html#a41b36b14af2ed0ebfcd19d8029e05df9',1,'mcapi::mc']]],
+  ['get_5fsample_5fby_5fid',['get_sample_by_id',['../classmcapi_1_1mc_1_1_project.html#a5e18d6c405e90ce9247f3706f939c2c1',1,'mcapi.mc.Project.get_sample_by_id()'],['../classmcapi_1_1mc_1_1_experiment.html#a0a655d0323f32ffaa760fbb44f5c73ec',1,'mcapi.mc.Experiment.get_sample_by_id()'],['../classmcapi_1_1mc_1_1_process.html#a8953a41297afcc70f0cfc21290b27ad0',1,'mcapi.mc.Process.get_sample_by_id()']]],
+  ['get_5fsetup_5fproperties_5fas_5fdictionary',['get_setup_properties_as_dictionary',['../classmcapi_1_1mc_1_1_process.html#a26f829cc54243e9fb393b443297bb12b',1,'mcapi::mc::Process']]],
+  ['get_5ftop_5fdirectory',['get_top_directory',['../classmcapi_1_1mc_1_1_project.html#a1f402fe572ebe4ed376cbaa2f79bd9e4',1,'mcapi::mc::Project']]]
 ];

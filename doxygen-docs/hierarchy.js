@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "demo_project.demo_project.DemoProject", "classdemo__project_1_1demo__project_1_1_demo_project.html", null ],
     [ "object", null, [
       [ "mcapi.base.MCObject", "classmcapi_1_1base_1_1_m_c_object.html", [
         [ "mcapi.mc.Directory", "classmcapi_1_1mc_1_1_directory.html", null ],
@@ -36,8 +37,6 @@ var hierarchy =
         ] ]
       ] ],
       [ "mcapi.base.PrettyPrint", "classmcapi_1_1base_1_1_pretty_print.html", null ],
-      [ "mcapi.config.Config", "classmcapi_1_1config_1_1_config.html", null ],
-      [ "mcapi.mc.DeleteTally", "classmcapi_1_1mc_1_1_delete_tally.html", null ],
-      [ "mcapi.remote.Remote", "classmcapi_1_1remote_1_1_remote.html", null ]
+      [ "mcapi.mc.DeleteTally", "classmcapi_1_1mc_1_1_delete_tally.html", null ]
     ] ]
 ];
