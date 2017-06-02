@@ -1,0 +1,88 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mcapi.api</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mcapi.html"><font color="#ffffff">mcapi</font></a>.api</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/weymouth/Library/Python/2.7/lib/python/site-packages/mcapi/api.py">/Users/weymouth/Library/Python/2.7/lib/python/site-packages/mcapi/api.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="magic.html">magic</a><br>
+</td><td width="25%" valign=top><a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-add_files_to_process"><strong>add_files_to_process</strong></a>(project_id, experiment_id, process, files, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-add_samples_to_experiment"><strong>add_samples_to_experiment</strong></a>(project_id, experiment_id, sample_id_list, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-add_samples_to_process"><strong>add_samples_to_process</strong></a>(project_id, experiment_id, process, samples, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-check_statue_of_doi_server"><strong>check_statue_of_doi_server</strong></a>(project_id, experiment_id, dataset_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-create_dataset"><strong>create_dataset</strong></a>(project_id, experiment_id, title, description, remote<font color="#909090">=None</font>)</dt><dd><tt>#&nbsp;for&nbsp;testing&nbsp;only</tt></dd></dl>
+ <dl><dt><a name="-create_doi"><strong>create_doi</strong></a>(project_id, experiment_id, dataset_id, title, description, author, year, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-create_experiment"><strong>create_experiment</strong></a>(project_id, name, description, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-create_fetch_all_directories_on_path"><strong>create_fetch_all_directories_on_path</strong></a>(project_id, directory_id, path, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-create_process_from_template"><strong>create_process_from_template</strong></a>(project_id, experiment_id, template_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-create_project"><strong>create_project</strong></a>(name, description, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-create_samples_in_project"><strong>create_samples_in_project</strong></a>(project_id, process_id, sample_names, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-delete"><strong>delete</strong></a>(restpath, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-delete_experiment"><strong>delete_experiment</strong></a>(project_id, experiment_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-delete_experiment_dry_run"><strong>delete_experiment_dry_run</strong></a>(project_id, experiment_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-delete_experiment_fully"><strong>delete_experiment_fully</strong></a>(project_id, experiment_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-delete_project"><strong>delete_project</strong></a>(project_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-delete_project_dry_run"><strong>delete_project_dry_run</strong></a>(project_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-directory_by_id"><strong>directory_by_id</strong></a>(project_id, directory_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-directory_move"><strong>directory_move</strong></a>(project_id, directory_id, new_directory_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-directory_rename"><strong>directory_rename</strong></a>(project_id, directory_id, new_name, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-disable_warnings"><strong>disable_warnings</strong></a>()</dt><dd><tt>Temporary&nbsp;fix&nbsp;to&nbsp;disable&nbsp;requests'&nbsp;InsecureRequestWarning</tt></dd></dl>
+ <dl><dt><a name="-fetch_experiment_processes"><strong>fetch_experiment_processes</strong></a>(project_id, experiment_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-fetch_experiment_samples"><strong>fetch_experiment_samples</strong></a>(project_id, experiment_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-fetch_experiments"><strong>fetch_experiments</strong></a>(project_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-fetch_sample_details"><strong>fetch_sample_details</strong></a>(project_id, sample_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-file_download"><strong>file_download</strong></a>(project_id, file_id, output_file_path, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-file_move"><strong>file_move</strong></a>(project_id, old_directory_id, new_directory_id, file_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-file_rename"><strong>file_rename</strong></a>(project_id, file_id, new_file_name, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-file_upload"><strong>file_upload</strong></a>(project_id, directory_id, file_name, input_path, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get"><strong>get</strong></a>(restpath, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_all_templates"><strong>get_all_templates</strong></a>(remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_all_users"><strong>get_all_users</strong></a>(remote<font color="#909090">=None</font>)</dt><dd><tt>#&nbsp;users</tt></dd></dl>
+ <dl><dt><a name="-get_doi_link"><strong>get_doi_link</strong></a>(project_id, experiment_id, dataset_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_doi_metadata"><strong>get_doi_metadata</strong></a>(project_id, experiment_id, dataset_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_experiment_process_by_id"><strong>get_experiment_process_by_id</strong></a>(project_id, experiment_id, process_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_experiment_sample_by_id"><strong>get_experiment_sample_by_id</strong></a>(project_id, experiment_id, process_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_process_by_id"><strong>get_process_by_id</strong></a>(project_id, process_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_project_by_id"><strong>get_project_by_id</strong></a>(project_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_project_processes"><strong>get_project_processes</strong></a>(project_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_project_sample_by_id"><strong>get_project_sample_by_id</strong></a>(project_id, sample_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_project_samples"><strong>get_project_samples</strong></a>(project_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-get_remote_config_url"><strong>get_remote_config_url</strong></a>()</dt></dl>
+ <dl><dt><a name="-get_sample_by_id"><strong>get_sample_by_id</strong></a>(project_id, process_id, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-mcorg"><strong>mcorg</strong></a>()</dt></dl>
+ <dl><dt><a name="-post"><strong>post</strong></a>(restpath, data, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-projects"><strong>projects</strong></a>(remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-push_name_for_process"><strong>push_name_for_process</strong></a>(project_id, process_id, name, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-put"><strong>put</strong></a>(restpath, data, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-set_measurement_for_process_samples"><strong>set_measurement_for_process_samples</strong></a>(project_id, experiment_id, process_id, samples, measurement_property, measurements, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-set_remote"><strong>set_remote</strong></a>(remote)</dt></dl>
+ <dl><dt><a name="-set_remote_config_url"><strong>set_remote_config_url</strong></a>(url)</dt></dl>
+ <dl><dt><a name="-unset_remote"><strong>unset_remote</strong></a>()</dt></dl>
+ <dl><dt><a name="-update_process_setup_properties"><strong>update_process_setup_properties</strong></a>(project_id, experiment_id, process, properties, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-update_process_setup_properties_make_data"><strong>update_process_setup_properties_make_data</strong></a>(setup_property)</dt></dl>
+ <dl><dt><a name="-update_project"><strong>update_project</strong></a>(project_id, name, description, remote<font color="#909090">=None</font>)</dt></dl>
+ <dl><dt><a name="-use_remote"><strong>use_remote</strong></a>()</dt></dl>
+ <dl><dt><a name="-user_can_access_project"><strong>user_can_access_project</strong></a>(user_id, project_id, project_title, remote<font color="#909090">=None</font>)</dt></dl>
+</td></tr></table>
+</body></html>
