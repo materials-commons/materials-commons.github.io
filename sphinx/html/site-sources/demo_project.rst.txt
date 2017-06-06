@@ -1,10 +1,10 @@
-demo\_project package
-=====================
+Package - demo\_project
+=======================
 
-Demo_Project
-------------
+Class - Demo_Project
+--------------------
 
-.. automodule:: demo_project.demo_project
+.. autoclass:: demo_project.demo_project.DemoProject
     :members:
     :undoc-members:
     :show-inheritance:

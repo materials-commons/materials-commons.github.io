@@ -1,7 +1,9 @@
-mcapi package
-=============
+Package - mcapi
+===============
 
-.. automodule:: mcapi
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. toctree::
+    :maxdepth: 3
+    :caption: Contents of package:
+
+    top_level_functions
+    mcapi_classes
