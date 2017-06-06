@@ -7,7 +7,7 @@ Materials Commons Python API
 ============================
 **[View Python API on GitHub](https://github.com/materials-commons/mcapi/tree/master/python)**
 -- Return to [top level page](../)
--- Go to [API details page](./api) --
+-- Go to [API details page](../sphinx/html) --
 
 Overview
 --------
