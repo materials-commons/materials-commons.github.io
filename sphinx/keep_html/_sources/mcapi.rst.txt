@@ -1,9 +1,6 @@
 mcapi package
 =============
 
-Module contents
----------------
-
 .. automodule:: mcapi
     :members:
     :undoc-members:

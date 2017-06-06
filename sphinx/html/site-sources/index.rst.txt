@@ -7,7 +7,7 @@ Welcome to source's documentation!
 ==================================
 
 .. toctree::
-   :maxdepth: 8
+   :maxdepth: 4
    :caption: Contents:
 
    demo_project
