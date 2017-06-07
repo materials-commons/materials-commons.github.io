@@ -9,6 +9,7 @@ Project
     :undoc-members:
     :show-inheritance:
 
+
 Experiment
 ----------
 
@@ -45,6 +46,22 @@ File
 ----
 
 .. autoclass:: mcapi.File
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+User
+----
+
+.. autoclass:: mcapi.User
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+DeleteTally
+-----------
+
+.. autoclass:: mcapi.DeleteTally
     :members:
     :undoc-members:
     :show-inheritance:

@@ -62,38 +62,32 @@
 <dt id="mcapi.get_all_projects">
 <code class="descclassname">mcapi.</code><code class="descname">get_all_projects</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#get_all_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.get_all_projects" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of all the project to which the current user has access.</p>
-<dl class="docutils">
-<dt>Example::</dt>
-<dd><p class="first">project_list = get_all_projects()
-for project in project_list:</p>
-<blockquote class="last">
-<div>print project.name</div></blockquote>
-</dd>
-</dl>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project_list</span> <span class="o">=</span> <span class="n">get_all_projects</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">project_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="mcapi.create_project">
 <code class="descclassname">mcapi.</code><code class="descname">create_project</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#create_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.create_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new Project object in the database and return it.</p>
-<p>Example:
-“</p>
-<blockquote>
-<div>name = “A Project”
-description = “This is a project for me”
-project = mcapi.create_project(name,description)
-print project.name, project.description</div></blockquote>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;A Project&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This is a project for me&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">description</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="mcapi.get_project_by_id">
 <code class="descclassname">mcapi.</code><code class="descname">get_project_by_id</code><span class="sig-paren">(</span><em>project_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#get_project_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.get_project_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch a project from the database and return it/</p>
-<dl class="docutils">
-<dt>Example::</dt>
-<dd>project = get_project_by_id(“e4fd5c88-2fb7-40af-b3fc-2711d786e5f6”)</dd>
-</dl>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="s2">&quot;e4fd5c88-2fb7-40af-b3fc-2711d786e5f6&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -103,14 +97,11 @@ print project.name, project.description</div></blockquote>
 <dt id="mcapi.get_all_users">
 <code class="descclassname">mcapi.</code><code class="descname">get_all_users</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#get_all_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.get_all_users" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of all users registerd on the server.</p>
-<dl class="docutils">
-<dt>Example::</dt>
-<dd><p class="first">user_list = get_all_users()
-for user in user_list:</p>
-<blockquote class="last">
-<div>print user.fullname, user.email</div></blockquote>
-</dd>
-</dl>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">user_list</span> <span class="o">=</span> <span class="n">get_all_users</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">user_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">user</span><span class="o">.</span><span class="n">fullname</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -120,14 +111,11 @@ for user in user_list:</p>
 <dt id="mcapi.get_all_templates">
 <code class="descclassname">mcapi.</code><code class="descname">get_all_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#get_all_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.get_all_templates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of all the templates known to the system.</p>
-<dl class="docutils">
-<dt>Example::</dt>
-<dd><p class="first">template_list = get_all_templates()
-for template in template_list:</p>
-<blockquote class="last">
-<div>print template.name, template.id</div></blockquote>
-</dd>
-</dl>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">template_list</span> <span class="o">=</span> <span class="n">get_all_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">template_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">template</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">template</span><span class="o">.</span><span class="n">id</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
