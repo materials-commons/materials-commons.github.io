@@ -411,6 +411,8 @@
 
 <span class="sd">        :return: a :class:`mcapi.Directory` instance</span>
 
+<span class="sd">        &gt;&gt;&gt; directory = project.get_top_directory()</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_top</span><span class="p">:</span>
             <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;top&quot;</span><span class="p">)</span>
@@ -485,7 +487,7 @@
 
 <div class="viewcode-block" id="Project.add_directory"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Project.add_directory">[docs]</a>    <span class="k">def</span> <span class="nf">add_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Given a directory path, creates all the directories on the path and returns the last one.</span>
+<span class="sd">        Given a directory path, returns the last directory on the path.</span>
 <span class="sd">        If a directory is missing, in the path, it is created.</span>
 
 <span class="sd">        :param path: the path, within the project, of the directory - string</span>
@@ -511,7 +513,7 @@
 <span class="sd">        :param file_name: the name that file is to take within the project directory</span>
 <span class="sd">        :param local_path: the local path to the file</span>
 <span class="sd">        :param verbose: (optional) a Flag; if true print out a trace of the actions</span>
-<span class="sd">        :param limit: the maximum number of MB to be uploaded</span>
+<span class="sd">        :param limit: (optional) the maximum number of MB to be uploaded</span>
 <span class="sd">        :return: the :class:`mcapi.File` instance representing the uploaded file</span>
 
 <span class="sd">        &gt;&gt;&gt; directory = directory = project.add_directory(&quot;/A/B&quot;)</span>
@@ -540,16 +542,18 @@
 <span class="sd">        directories as necessary; the file name on the directory of the project (remote) is the</span>
 <span class="sd">        file name from the local path. See :func:`mcapi.Project.add_file_using_directory`.</span>
 
+<span class="sd">        ..note This functions assumes the setting on setting of local_path on the project, see example</span>
+
 <span class="sd">        :param local_path: the local path to the file</span>
 <span class="sd">        :param verbose: (optional) a Flag; if true print out a trace of the actions</span>
-<span class="sd">        :param limit: the maximum number of MB to be uploaded</span>
+<span class="sd">        :param limit: (optional) the maximum number of MB to be uploaded</span>
 <span class="sd">        :return: the :class:`mcapi.File` instance representing the uploaded file</span>
 
-<span class="sd">        &gt;&gt;&gt; self.local_path = &quot;/path/to/Proj&quot;</span>
-<span class="sd">        &gt;&gt;&gt; local_path = self.local_path + &quot;/test_dir/file_A.txt&quot;</span>
-<span class="sd">        &gt;&gt;&gt; file = project.add_file_by_local_path(local_path)</span>
-<span class="sd">        &gt;&gt;&gt; # uploads file_A.txt</span>
+<span class="sd">        &gt;&gt;&gt; # uploads file_A.txt from the local path /path/to/Proj/test_dir/file_A.txt</span>
 <span class="sd">        &gt;&gt;&gt; # returns File object representing file_A.txt at project directory /test_dir</span>
+<span class="sd">        &gt;&gt;&gt; project.local_path = &quot;/path/to/Proj&quot;</span>
+<span class="sd">        &gt;&gt;&gt; local_path = project.local_path + &quot;/test_dir/file_A.txt&quot;</span>
+<span class="sd">        &gt;&gt;&gt; file = project.add_file_by_local_path(local_path)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dir_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_local_path_to_path</span><span class="p">(</span><span class="n">os_path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
@@ -563,17 +567,19 @@
 <span class="sd">        creating intermediate directories as necessary; the directory name,</span>
 <span class="sd">        in project (remote), is the same as the local directory name.</span>
 
+<span class="sd">        ..note This functions assumes the setting on setting of local_path on the project, see example</span>
+
 <span class="sd">        :param local_path: the local path to the directory</span>
 <span class="sd">        :param verbose: (optional) a Flag; if true print out a trace of the actions</span>
-<span class="sd">        :param limit: the maximum number of MB to be uploaded for any file in the path</span>
+<span class="sd">        :param limit: (optional) the maximum number of MB to be uploaded for any file in the path</span>
 <span class="sd">        :return: the :class:`mcapi.Directory` instance representing the uploaded directory</span>
 
-<span class="sd">        &gt;&gt;&gt; self.local_path = &quot;/path/to/Proj&quot;</span>
-<span class="sd">        &gt;&gt;&gt; local_path = self.local_path + &quot;/test_dir/dir_A&quot; # a local directory</span>
-<span class="sd">        &gt;&gt;&gt; file = project.add_directory_tree_by_local_path(local_path)</span>
 <span class="sd">        &gt;&gt;&gt; # uploads dir_A and all of it&#39;s contents</span>
 <span class="sd">        &gt;&gt;&gt; # returns Directory object representing project directory /test_dir/dir_a</span>
-<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; project.local_path = &quot;/path/to/Proj&quot;</span>
+<span class="sd">        &gt;&gt;&gt; local_path = project.local_path + &quot;/test_dir/dir_A&quot; # a local directory</span>
+<span class="sd">        &gt;&gt;&gt; file = project.add_directory_tree_by_local_path(local_path)</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_local_path_to_path</span><span class="p">(</span><span class="n">os_path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
         <span class="nb">dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_or_get_all_directories_on_path</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -584,15 +590,18 @@
 
 <div class="viewcode-block" id="Project.get_by_local_path"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Project.get_by_local_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_by_local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Uses path on local machine to get a File or Directory</span>
-<span class="sd">        </span>
-<span class="sd">        Arguments:</span>
-<span class="sd">            proj: mcapi.Project.</span>
+<span class="sd">        Uses path on local machine to get a the matching File or Directory in the project.</span>
+<span class="sd">        Return None if the local file or directory does not match one in the project.</span>
 
-<span class="sd">            local_path: file or directory local path equivalant.</span>
-<span class="sd">        </span>
-<span class="sd">        Returns:</span>
-<span class="sd">            obj: mcapi.File, mcapi.Directory, or None.</span>
+<span class="sd">        :param local_path: file or directory local path equivalant.</span>
+<span class="sd">        :return: one of :class:`mcapi.File`, :class:&#39;mcapi.Directory`, or None.</span>
+
+<span class="sd">        &gt;&gt;&gt; project.local_path = &quot;/path/to/Proj&quot;</span>
+<span class="sd">        &gt;&gt;&gt; local_path = project.local_path + &quot;/test_dir/dir_A&quot; # a local directory</span>
+<span class="sd">        &gt;&gt;&gt; directory = get_by_local_path(local_path)</span>
+<span class="sd">        &gt;&gt;&gt; if (directory):</span>
+<span class="sd">        &gt;&gt;&gt;     print directory.path</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Error in Project.get_by_local_path: Project.local_path is None&quot;</span>
@@ -611,15 +620,23 @@
 <div class="viewcode-block" id="Project.file_exists_by_local_path"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Project.file_exists_by_local_path">[docs]</a>    <span class="k">def</span> <span class="nf">file_exists_by_local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_path</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if files exists locally and remotely. Optionally compares md5 hash.</span>
-<span class="sd">        </span>
-<span class="sd">        Returns:</span>
-<span class="sd">            file_exists [, checksum_equal]</span>
-<span class="sd">            </span>
-<span class="sd">            file_exists: bool</span>
-<span class="sd">                True if file exists locally and remotely</span>
-<span class="sd">            </span>
-<span class="sd">            checksum_equal:</span>
-<span class="sd">                Returns (local checksum == remote checksum), if &#39;checksum&#39; == True,</span>
+
+<span class="sd">        :param local_path: file or directory local path equivalent.</span>
+<span class="sd">        :param checksum: (optional) a flag (True) to complare local and remote checksums</span>
+<span class="sd">        :return: file_exists [, checksums_are_equal] - both Boolean</span>
+
+<span class="sd">        Return Values::</span>
+
+<span class="sd">            **file_exists** is True file exists locally and remotely</span>
+<span class="sd">            **checksums_are_equal** (when requested by checksum=True)</span>
+<span class="sd">                is True when both files exist and have the same checksum value</span>
+
+<span class="sd">        &gt;&gt;&gt; project.local_path = &quot;/path/to/Proj&quot;</span>
+<span class="sd">        &gt;&gt;&gt; local_path = project.local_path + &quot;/test_dir/dir_A&quot; # a local directory</span>
+<span class="sd">        &gt;&gt;&gt; files_ok, checksums_ok = file_exists_by_local_path(local_path, checksum = True)</span>
+<span class="sd">        &gt;&gt;&gt; if files_ok and checksums_ok:</span>
+<span class="sd">        &gt;&gt;&gt;     print local_path + &quot; found on on remote site.&quot;</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">os_path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os_path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">local_path</span><span class="p">):</span>
             <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
@@ -645,6 +662,8 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of all processes in this project.</span>
 
+<span class="sd">        :return: a list of :class:`mcapi.Process` - the processes for the Project</span>
+
 <span class="sd">        &gt;&gt;&gt; process_list = project.get_all_processes()</span>
 <span class="sd">        &gt;&gt;&gt; for process in process_list:</span>
 <span class="sd">        &gt;&gt;&gt;     print process.name</span>
@@ -659,7 +678,10 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a project sample by process id.</span>
 
-<span class="sd">        &gt;&gt;&gt; sample = project.get_process_by_id(process.id)</span>
+<span class="sd">        :param process_id: the process id value - string</span>
+<span class="sd">        :return: a class:`mcapi.Process`  - the intended process</span>
+
+<span class="sd">        &gt;&gt;&gt; process = project.get_process_by_id(process.id)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">)</span>
@@ -674,9 +696,11 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of all samples in this project.</span>
 
+<span class="sd">        :return: a list of :class:`mcapi.Sample` - the samples for the Project</span>
+
 <span class="sd">        &gt;&gt;&gt; sample_list = project.get_all_samples()</span>
-<span class="sd">        &gt;&gt;&gt; for process in process_list:</span>
-<span class="sd">        &gt;&gt;&gt;     print process.name</span>
+<span class="sd">        &gt;&gt;&gt; for sample in sample_list:</span>
+<span class="sd">        &gt;&gt;&gt;     print sample.name</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">samples_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_samples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span>
@@ -685,8 +709,17 @@
         <span class="k">return</span> <span class="n">samples</span></div>
 
 <div class="viewcode-block" id="Project.fetch_sample_by_id"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Project.fetch_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
+        <span class="c1"># TODO: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the sample in question.</span>
+
+<span class="sd">        :param sample_id: the sample id value - string</span>
+<span class="sd">        :return: a class:`mcapi.Sample` - the intended sample</span>
+
+<span class="sd">        &gt;&gt;&gt; sample = project.get_sample_by_id(sample.id)</span>
+
+<span class="sd">        ..todo:: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sample_json_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">)</span>
         <span class="n">sample</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">sample_json_dict</span><span class="p">)</span>
@@ -694,8 +727,17 @@
         <span class="k">return</span> <span class="n">sample</span></div>
 
 <div class="viewcode-block" id="Project.get_sample_by_id"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Project.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
+        <span class="c1"># TODO: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the sample in question.</span>
+
+<span class="sd">        :param sample_id: the sample id value - string</span>
+<span class="sd">        :return: a class:`mcapi.Sample` - the intended sample</span>
+
+<span class="sd">        &gt;&gt;&gt; sample = project.fetch_sample_by_id(sample.id)</span>
+
+<span class="sd">        ..todo:: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">)</span>
         <span class="n">sample</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
@@ -705,34 +747,38 @@
 
 <div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Materials Commons Experiment. Normally created by project.create_experiment()</span>
+<span class="sd">    A Materials Commons Experiment. Normally created from database by project.create_experiment()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>                        <span class="c1">#: experiment id - string (from database)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                        <span class="c1">#: experiment name - string (from database)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                 <span class="c1">#: experiment description - string (from database)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>                   <span class="c1">#: the :class:`mcapi.Project` instance of the project that contains this experiment</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">funding</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>                    <span class="c1">#: the status of the experiment - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funding</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                     <span class="c1">#: funding description - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                        <span class="c1">#: any notes - string</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">publications</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collaborators</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">citations</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aims</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publications</span> <span class="o">=</span> <span class="kc">None</span>              <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="kc">None</span>                     <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="kc">None</span>                    <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collaborators</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">citations</span> <span class="o">=</span> <span class="kc">None</span>                 <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="kc">None</span>                     <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aims</span> <span class="o">=</span> <span class="kc">None</span>                      <span class="c1">#: list of string</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="kc">None</span>                  <span class="c1">#: string</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># a set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>                     <span class="c1">#: list of :class:`mcapi.Sample` instances</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">{}</span>                   <span class="c1">#: set of :class:`mcapi.Process` instances</span>
+
+        <span class="c1">#: the :class:`mcapi.DeleteTally` once the experiment has been deleted;</span>
+        <span class="c1">#: **delete_tally** is only set if the experiment was deleted directly;</span>
+        <span class="c1">#: for example, not if the experiment was deleted by deleting it&#39;s project</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delete_tally</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
@@ -820,7 +866,7 @@
 <span class="sd">        Create a process from a template</span>
 
 <span class="sd">        :param template_id:</span>
-<span class="sd">        :return:</span>
+<span class="sd">        :return: the :class:`mcapi.Process` instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
@@ -836,7 +882,7 @@
 <span class="sd">        Get a process for a given process id value.</span>
 
 <span class="sd">        :param process_id:</span>
-<span class="sd">        :return:</span>
+<span class="sd">        :return: the :class:`mcapi.Process` instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
@@ -851,7 +897,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all the processes in this Experiment.</span>
 
-<span class="sd">        :return:</span>
+<span class="sd">        :return: the list of :class:`mcapi.Process` instances</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">process_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">fetch_experiment_processes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
@@ -869,7 +915,7 @@
 <span class="sd">        Get a Sample value from a sample id value.</span>
 
 <span class="sd">        :param sample_id:</span>
-<span class="sd">        :return:</span>
+<span class="sd">        :return: the :class:`mcapi.Sample` instance</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
@@ -884,7 +930,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all samples in this Experiment.</span>
 
-<span class="sd">        :return:</span>
+<span class="sd">        :return: the list of :class:`mcapi.Sample` instances</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">samples_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">fetch_experiment_samples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
@@ -896,13 +942,29 @@
     <span class="c1"># Experiment - additional method</span>
 <div class="viewcode-block" id="Experiment.decorate_with_samples"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Experiment.decorate_with_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add all the Experiment&#39;s</span>
-<span class="sd">        :return:</span>
+<span class="sd">        Add all the Experiment&#39;s samples (from the database) into the local copy</span>
+
+<span class="sd">        :return: this experiment with the instances of :class:mcapi.Sample added as the samples attribute</span>
+
+<span class="sd">        &gt;&gt;&gt; experiment = experiment.decorate_with_samples()</span>
+<span class="sd">        &gt;&gt;&gt; for sample in experiment.samples:</span>
+<span class="sd">        &gt;&gt;&gt;     print sample.name</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="Experiment.decorate_with_processes"><a class="viewcode-back" href="../../mcapi_classes.html#mcapi.Experiment.decorate_with_processes">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add all the Experiment&#39;s processes (from the database) into the local copy</span>
+
+<span class="sd">        :return: this experiment with the instances of :class:mcapi.Process added as the processes attribute</span>
+
+<span class="sd">        &gt;&gt;&gt; experiment = experiment.decorate_with_processes()</span>
+<span class="sd">        &gt;&gt;&gt; for process in experiment.processes:</span>
+<span class="sd">        &gt;&gt;&gt;     print process.name</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_processes</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div></div>
 

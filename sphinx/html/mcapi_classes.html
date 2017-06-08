@@ -292,6 +292,9 @@ the experiments and from that list, compare id values to find the experiment req
 </tr>
 </tbody>
 </table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_top_directory</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -377,7 +380,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 <dl class="method">
 <dt id="mcapi.Project.add_directory">
 <code class="descname">add_directory</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a directory path, creates all the directories on the path and returns the last one.
+<dd><p>Given a directory path, returns the last directory on the path.
 If a directory is missing, in the path, it is created.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -409,7 +412,7 @@ uploads the file, creates a file descriptor in the database, and returns file de
 <li><strong>file_name</strong> – the name that file is to take within the project directory</li>
 <li><strong>local_path</strong> – the local path to the file</li>
 <li><strong>verbose</strong> – (optional) a Flag; if true print out a trace of the actions</li>
-<li><strong>limit</strong> – the maximum number of MB to be uploaded</li>
+<li><strong>limit</strong> – (optional) the maximum number of MB to be uploaded</li>
 </ul>
 </td>
 </tr>
@@ -431,6 +434,7 @@ uploads the file, creates a file descriptor in the database, and returns file de
 <dd><p>Upload a file, specified by local_path, creating intermediate 
 directories as necessary; the file name on the directory of the project (remote) is the
 file name from the local path. See <a class="reference internal" href="#mcapi.Project.add_file_using_directory" title="mcapi.Project.add_file_using_directory"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_file_using_directory()</span></code></a>.</p>
+<p>..note This functions assumes the setting on setting of local_path on the project, see example</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -438,7 +442,7 @@ file name from the local path. See <a class="reference internal" href="#mcapi.Pr
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>local_path</strong> – the local path to the file</li>
 <li><strong>verbose</strong> – (optional) a Flag; if true print out a trace of the actions</li>
-<li><strong>limit</strong> – the maximum number of MB to be uploaded</li>
+<li><strong>limit</strong> – (optional) the maximum number of MB to be uploaded</li>
 </ul>
 </td>
 </tr>
@@ -447,11 +451,11 @@ file name from the local path. See <a class="reference internal" href="#mcapi.Pr
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/file_A.txt&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_file_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads file_A.txt</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads file_A.txt from the local path /path/to/Proj/test_dir/file_A.txt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># returns File object representing file_A.txt at project directory /test_dir</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/file_A.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_file_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -462,6 +466,7 @@ file name from the local path. See <a class="reference internal" href="#mcapi.Pr
 <dd><p>Upload a directory, specified by local_path, and all its contents 
 creating intermediate directories as necessary; the directory name,
 in project (remote), is the same as the local directory name.</p>
+<p>..note This functions assumes the setting on setting of local_path on the project, see example</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -469,7 +474,7 @@ in project (remote), is the same as the local directory name.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>local_path</strong> – the local path to the directory</li>
 <li><strong>verbose</strong> – (optional) a Flag; if true print out a trace of the actions</li>
-<li><strong>limit</strong> – the maximum number of MB to be uploaded for any file in the path</li>
+<li><strong>limit</strong> – (optional) the maximum number of MB to be uploaded for any file in the path</li>
 </ul>
 </td>
 </tr>
@@ -478,11 +483,11 @@ in project (remote), is the same as the local directory name.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_tree_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads dir_A and all of it&#39;s contents</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads dir_A and all of it&#39;s contents</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># returns Directory object representing project directory /test_dir/dir_a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_tree_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -490,38 +495,73 @@ in project (remote), is the same as the local directory name.</p>
 <dl class="method">
 <dt id="mcapi.Project.get_by_local_path">
 <code class="descname">get_by_local_path</code><span class="sig-paren">(</span><em>local_path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_by_local_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses path on local machine to get a File or Directory</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><p class="first">proj: mcapi.Project.</p>
-<p class="last">local_path: file or directory local path equivalant.</p>
-</dd>
-<dt>Returns:</dt>
-<dd>obj: mcapi.File, mcapi.Directory, or None.</dd>
-</dl>
+<dd><p>Uses path on local machine to get a the matching File or Directory in the project.
+Return None if the local file or directory does not match one in the project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>local_path</strong> – file or directory local path equivalant.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">one of <a class="reference internal" href="#mcapi.File" title="mcapi.File"><code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code></a>, :class:’mcapi.Directory`, or None.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">get_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.file_exists_by_local_path">
 <code class="descname">file_exists_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>checksum=False</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.file_exists_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.file_exists_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if files exists locally and remotely. Optionally compares md5 hash.</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd><p class="first">file_exists [, checksum_equal]</p>
-<dl class="last docutils">
-<dt>file_exists: bool</dt>
-<dd>True if file exists locally and remotely</dd>
-<dt>checksum_equal:</dt>
-<dd>Returns (local checksum == remote checksum), if ‘checksum’ == True,</dd>
-</dl>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>local_path</strong> – file or directory local path equivalent.</li>
+<li><strong>checksum</strong> – (optional) a flag (True) to complare local and remote checksums</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">file_exists [, checksums_are_equal] - both Boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Return Values:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">file_exists</span><span class="o">**</span> <span class="ow">is</span> <span class="kc">True</span> <span class="n">file</span> <span class="n">exists</span> <span class="n">locally</span> <span class="ow">and</span> <span class="n">remotely</span>
+<span class="o">**</span><span class="n">checksums_are_equal</span><span class="o">**</span> <span class="p">(</span><span class="n">when</span> <span class="n">requested</span> <span class="n">by</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="ow">is</span> <span class="kc">True</span> <span class="n">when</span> <span class="n">both</span> <span class="n">files</span> <span class="n">exist</span> <span class="ow">and</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="n">checksum</span> <span class="n">value</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files_ok</span><span class="p">,</span> <span class="n">checksums_ok</span> <span class="o">=</span> <span class="n">file_exists_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">checksum</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">files_ok</span> <span class="ow">and</span> <span class="n">checksums_ok</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot; found on on remote site.&quot;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.get_all_processes">
 <code class="descname">get_all_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_all_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_all_processes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all processes in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code> - the processes for the Project</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">process_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_processes</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span>
@@ -533,7 +573,17 @@ in project (remote), is the same as the local directory name.</p>
 <dt id="mcapi.Project.get_process_by_id">
 <code class="descname">get_process_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_process_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a project sample by process id.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_id</strong> – the process id value - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a class:<cite>mcapi.Process</cite>  - the intended process</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">process</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -542,9 +592,17 @@ in project (remote), is the same as the local directory name.</p>
 <dt id="mcapi.Project.get_all_samples">
 <code class="descname">get_all_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_all_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_all_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all samples in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></a> - the samples for the Project</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">sample</span><span class="o">.</span><span class="n">name</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -553,12 +611,40 @@ in project (remote), is the same as the local directory name.</p>
 <dt id="mcapi.Project.fetch_sample_by_id">
 <code class="descname">fetch_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.fetch_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.fetch_sample_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the sample in question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – the sample id value - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a class:<cite>mcapi.Sample</cite> - the intended sample</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_sample_by_id</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>..todo:: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.get_sample_by_id">
 <code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the sample in question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – the sample id value - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a class:<cite>mcapi.Sample</cite> - the intended sample</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">fetch_sample_by_id</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>..todo:: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</p>
 </dd></dl>
 
 </dd></dl>
@@ -570,7 +656,117 @@ in project (remote), is the same as the local directory name.</p>
 <dt id="mcapi.Experiment">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Experiment</code><span class="sig-paren">(</span><em>project_id=None</em>, <em>name=None</em>, <em>description=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
-<p>A Materials Commons Experiment. Normally created by project.create_experiment()</p>
+<p>A Materials Commons Experiment. Normally created from database by project.create_experiment()</p>
+<dl class="attribute">
+<dt id="mcapi.Experiment.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>experiment id - string (from database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.project">
+<code class="descname">project</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>the <a class="reference internal" href="#mcapi.Project" title="mcapi.Project"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code></a> instance of the project that contains this experiment</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.status">
+<code class="descname">status</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>the status of the experiment - string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.funding">
+<code class="descname">funding</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.funding" title="Permalink to this definition">¶</a></dt>
+<dd><p>funding description - string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.note">
+<code class="descname">note</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.note" title="Permalink to this definition">¶</a></dt>
+<dd><p>any notes - string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.publications">
+<code class="descname">publications</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.publications" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.notes">
+<code class="descname">notes</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.papers">
+<code class="descname">papers</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.papers" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.collaborators">
+<code class="descname">collaborators</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.collaborators" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.citations">
+<code class="descname">citations</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.citations" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.goals">
+<code class="descname">goals</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.goals" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.aims">
+<code class="descname">aims</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.aims" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.category">
+<code class="descname">category</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.category" title="Permalink to this definition">¶</a></dt>
+<dd><p>string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.samples">
+<code class="descname">samples</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></a> instances</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.processes">
+<code class="descname">processes</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.processes" title="Permalink to this definition">¶</a></dt>
+<dd><p>set of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code> instances</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.delete_tally">
+<code class="descname">delete_tally</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.delete_tally" title="Permalink to this definition">¶</a></dt>
+<dd><p>the <a class="reference internal" href="#mcapi.DeleteTally" title="mcapi.DeleteTally"><code class="xref py py-class docutils literal"><span class="pre">mcapi.DeleteTally</span></code></a> once the experiment has been deleted;
+<strong>delete_tally</strong> is only set if the experiment was deleted directly;
+for example, not if the experiment was deleted by deleting it’s project</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>experiment name - string (from database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Experiment.description">
+<code class="descname">description</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Experiment.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>experiment description - string (from database)</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mcapi.Experiment.rename">
 <code class="descname">rename</code><span class="sig-paren">(</span><em>name</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.rename" title="Permalink to this definition">¶</a></dt>
@@ -640,7 +836,7 @@ determine the objects to be deleted.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>template_id</strong> – </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code> instance</td>
 </tr>
 </tbody>
 </table>
@@ -656,7 +852,7 @@ determine the objects to be deleted.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_id</strong> – </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code> instance</td>
 </tr>
 </tbody>
 </table>
@@ -670,7 +866,7 @@ determine the objects to be deleted.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code> instances</td>
 </tr>
 </tbody>
 </table>
@@ -686,7 +882,7 @@ determine the objects to be deleted.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></a> instance</td>
 </tr>
 </tbody>
 </table>
@@ -700,7 +896,7 @@ determine the objects to be deleted.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the list of <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></a> instances</td>
 </tr>
 </tbody>
 </table>
@@ -709,14 +905,40 @@ determine the objects to be deleted.</p>
 <dl class="method">
 <dt id="mcapi.Experiment.decorate_with_samples">
 <code class="descname">decorate_with_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.decorate_with_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.decorate_with_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add all the Experiment’s
-:return:</p>
+<dd><p>Add all the Experiment’s samples (from the database) into the local copy</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this experiment with the instances of :class:mcapi.Sample added as the samples attribute</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">decorate_with_samples</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">experiment</span><span class="o">.</span><span class="n">samples</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">sample</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.decorate_with_processes">
 <code class="descname">decorate_with_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.decorate_with_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.decorate_with_processes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add all the Experiment’s processes (from the database) into the local copy</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this experiment with the instances of :class:mcapi.Process added as the processes attribute</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">decorate_with_processes</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">experiment</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </dd></dl>
 
