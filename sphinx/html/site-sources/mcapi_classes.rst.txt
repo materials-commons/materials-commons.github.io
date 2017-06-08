@@ -1,6 +1,8 @@
 Package mcapi - classes
 =======================
 
+.. contents::
+
 Project
 -------
 

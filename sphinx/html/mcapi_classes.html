@@ -53,30 +53,109 @@
           <div class="body" role="main">
             
   <div class="section" id="package-mcapi-classes">
-<h1>Package mcapi - classes<a class="headerlink" href="#package-mcapi-classes" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id1">Package mcapi - classes</a><a class="headerlink" href="#package-mcapi-classes" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#package-mcapi-classes" id="id1">Package mcapi - classes</a><ul>
+<li><a class="reference internal" href="#project" id="id2">Project</a></li>
+<li><a class="reference internal" href="#experiment" id="id3">Experiment</a></li>
+<li><a class="reference internal" href="#sample" id="id4">Sample</a></li>
+<li><a class="reference internal" href="#template" id="id5">Template</a></li>
+<li><a class="reference internal" href="#directory" id="id6">Directory</a></li>
+<li><a class="reference internal" href="#file" id="id7">File</a></li>
+<li><a class="reference internal" href="#user" id="id8">User</a></li>
+<li><a class="reference internal" href="#deletetally" id="id9">DeleteTally</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="project">
-<h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Project</a><a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Project">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=”</em>, <em>description=”</em>, <em>remote_url=”</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
 <p>A Materials Commons Project. Normally created by top level function <a class="reference internal" href="top_level_functions.html#mcapi.create_project" title="mcapi.create_project"><code class="xref py py-func docutils literal"><span class="pre">mcapi.create_project()</span></code></a>.</p>
+<dl class="attribute">
+<dt id="mcapi.Project.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Project.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>project id - string (from database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Project.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Project.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>project name - string (from database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Project.description">
+<code class="descname">description</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Project.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>project description - string (from database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Project.source">
+<code class="descname">source</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Project.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>remote URL for this project - string (local only - not in database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Project.delete_tally">
+<code class="descname">delete_tally</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Project.delete_tally" title="Permalink to this definition">¶</a></dt>
+<dd><p>the <a class="reference internal" href="#mcapi.DeleteTally" title="mcapi.DeleteTally"><code class="xref py py-class docutils literal"><span class="pre">mcapi.DeleteTally</span></code></a> once the project has been deleted</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mcapi.Project.pretty_print">
 <code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.pretty_print" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prints a nice layout of the object and all of it’s values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shift</strong> – the offset from the start of the line, in increments of indent</li>
+<li><strong>indent</strong> – the indent used for layout, in characters</li>
+<li><strong>out</strong> – the stream to which the object in printed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.rename">
 <code class="descname">rename</code><span class="sig-paren">(</span><em>name</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.rename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Change the name and (optionally) description of a project.
 Returns the new project from the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – new name for project</li>
+<li><strong>description</strong> – (optional) new description for project; if not given, descriptions is unchanged,</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an instance of :class: <cite>mcapi.Project</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.put">
 <code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.put" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition note">
+<dd><p>Copy local values to database.</p>
+<div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Not currently implemented. All functions that change the object also update
 the object in the database; for example, <a class="reference internal" href="#mcapi.Project.rename" title="mcapi.Project.rename"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.rename()</span></code></a></p>
@@ -86,15 +165,39 @@ the object in the database; for example, <a class="reference internal" href="#mc
 <dl class="method">
 <dt id="mcapi.Project.delete">
 <code class="descname">delete</code><span class="sig-paren">(</span><em>dry_run=False</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete this project from the database.
-If dry_run is True, only determines the object to be deleted, but does not actually delete them.</p>
-<p>Returns a <code class="xref py py-class docutils literal"><span class="pre">DeleteTally</span></code> instance, which lists the id’s of the objects (to be or actually) deleted.</p>
+<dd><p>Delete this project from the database or (when dry_run is True)
+determine the objects to be deleted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dry_run</strong> – (optional) if True, then only determine what would be deleted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <a class="reference internal" href="#mcapi.DeleteTally" title="mcapi.DeleteTally"><code class="xref py py-class docutils literal"><span class="pre">mcapi.DeleteTally</span></code></a> instance, which lists the id’s of the objects (to be or actually) deleted.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.create_experiment">
 <code class="descname">create_experiment</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.create_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.create_experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create and return an Experiemnt in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – name for the Experiment</li>
+<li><strong>description</strong> – description for the Experiment</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <a class="reference internal" href="#mcapi.Experiment" title="mcapi.Experiment"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Experiment</span></code></a> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">experiment</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">create_experiment</span><span class="p">(</span><span class="s2">&quot;Experiment 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Test Procedures&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -114,6 +217,14 @@ the experiments and from that list, compare id values to find the experiment req
 <dt id="mcapi.Project.get_all_experiments">
 <code class="descname">get_all_experiments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_all_experiments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_all_experiments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all the experiments in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <a class="reference internal" href="#mcapi.Experiment" title="mcapi.Experiment"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Experiment</span></code></a> instances</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">experiment_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_experiments</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">experiment_list</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">name</span>
@@ -138,9 +249,9 @@ the experiments and from that list, compare id values to find the experiment req
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory_id</strong> – The id of the directory to fetch.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory_id</strong> (<em>str.</em>) – The id of the directory to fetch.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">mcapi.Directory</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instance</td>
 </tr>
 </tbody>
 </table>
@@ -154,6 +265,14 @@ the experiments and from that list, compare id values to find the experiment req
 <dt id="mcapi.Project.get_all_directories">
 <code class="descname">get_all_directories</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_all_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_all_directories" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all the directories in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instances</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_directories</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directory_list</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">directory_name</span><span class="p">,</span> <span class="n">directory_path</span>
@@ -165,6 +284,14 @@ the experiments and from that list, compare id values to find the experiment req
 <dt id="mcapi.Project.get_top_directory">
 <code class="descname">get_top_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_top_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_top_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the top leve directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instance</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -172,6 +299,16 @@ the experiments and from that list, compare id values to find the experiment req
 <code class="descname">get_directory_list</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_directory_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory path, returns a list of all the directoreis on the path.
 Can fail if the path does not exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the path, within the project, of the directory - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instances</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># In this example, the list would consist of three directories, assuming that they exist:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   the Root directory (or &#39;top&#39; directory)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;A&#39;</span>
@@ -189,6 +326,23 @@ Can fail if the path does not exist.</p>
 <dt id="mcapi.Project.get_directory">
 <code class="descname">get_directory</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the indicated directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory_id</strong> – <ul class="simple">
+<li>the id of the intended directory - string</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory</span><span class="p">(</span><span class="s2">&quot;352eb9b1-8553-4be5-8c08-cbb496ef60ea&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -196,6 +350,28 @@ Can fail if the path does not exist.</p>
 <code class="descname">create_or_get_all_directories_on_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.create_or_get_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.create_or_get_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory path, returns a list of all the directories on the path.
 If a directory is missing, in the path, it is created and returned in the list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the path, within the project, of the directory - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instances</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># In this example, the list would consist of three directories, where</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># any missing directory would be have been created:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   the Root directory (or &#39;top&#39; directory)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;B&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory_list</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">directory_list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directory_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -203,6 +379,16 @@ If a directory is missing, in the path, it is created and returned in the list.<
 <code class="descname">add_directory</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory path, creates all the directories on the path and returns the last one.
 If a directory is missing, in the path, it is created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the path, within the project, of the directory - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instance</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
 </pre></div>
@@ -214,20 +400,91 @@ If a directory is missing, in the path, it is created.</p>
 <code class="descname">add_file_using_directory</code><span class="sig-paren">(</span><em>directory</em>, <em>file_name</em>, <em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_file_using_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_file_using_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory, a file_name, a local directory path to the file -
 uploads the file, creates a file descriptor in the database, and returns file descriptor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>directory</strong> – a class:<cite>mcapi.Directory</cite> instance, a directory in the project</li>
+<li><strong>file_name</strong> – the name that file is to take within the project directory</li>
+<li><strong>local_path</strong> – the local path to the file</li>
+<li><strong>verbose</strong> – (optional) a Flag; if true print out a trace of the actions</li>
+<li><strong>limit</strong> – the maximum number of MB to be uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <a class="reference internal" href="#mcapi.File" title="mcapi.File"><code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code></a> instance representing the uploaded file</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_file_using_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span><span class="s2">&quot;Test-Results&quot;</span><span class="p">,</span><span class="s2">&quot;/tmp/results.txt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.add_file_by_local_path">
 <code class="descname">add_file_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_file_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_file_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload a file, specified by local_path, creating intermediate 
-directories as necessary</p>
+directories as necessary; the file name on the directory of the project (remote) is the
+file name from the local path. See <a class="reference internal" href="#mcapi.Project.add_file_using_directory" title="mcapi.Project.add_file_using_directory"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_file_using_directory()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>local_path</strong> – the local path to the file</li>
+<li><strong>verbose</strong> – (optional) a Flag; if true print out a trace of the actions</li>
+<li><strong>limit</strong> – the maximum number of MB to be uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <a class="reference internal" href="#mcapi.File" title="mcapi.File"><code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code></a> instance representing the uploaded file</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/file_A.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_file_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads file_A.txt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># returns File object representing file_A.txt at project directory /test_dir</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.add_directory_tree_by_local_path">
 <code class="descname">add_directory_tree_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_directory_tree_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_directory_tree_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload a directory, specified by local_path, and all its contents 
-creating intermediate directories as necessary</p>
+creating intermediate directories as necessary; the directory name,
+in project (remote), is the same as the local directory name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>local_path</strong> – the local path to the directory</li>
+<li><strong>verbose</strong> – (optional) a Flag; if true print out a trace of the actions</li>
+<li><strong>limit</strong> – the maximum number of MB to be uploaded for any file in the path</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <a class="reference internal" href="#mcapi.Directory" title="mcapi.Directory"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></a> instance representing the uploaded directory</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_tree_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads dir_A and all of it&#39;s contents</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># returns Directory object representing project directory /test_dir/dir_a</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -265,18 +522,31 @@ creating intermediate directories as necessary</p>
 <dt id="mcapi.Project.get_all_processes">
 <code class="descname">get_all_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_all_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_all_processes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all processes in this project.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">process_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_processes</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.get_process_by_id">
 <code class="descname">get_process_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_process_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a project sample by process id.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Project.get_all_samples">
 <code class="descname">get_all_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_all_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_all_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all samples in this project.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -295,7 +565,7 @@ creating intermediate directories as necessary</p>
 
 </div>
 <div class="section" id="experiment">
-<h2>Experiment<a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Experiment</a><a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Experiment">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Experiment</code><span class="sig-paren">(</span><em>project_id=None</em>, <em>name=None</em>, <em>description=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment" title="Permalink to this definition">¶</a></dt>
@@ -303,48 +573,145 @@ creating intermediate directories as necessary</p>
 <p>A Materials Commons Experiment. Normally created by project.create_experiment()</p>
 <dl class="method">
 <dt id="mcapi.Experiment.rename">
-<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.rename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.rename" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – </li>
+<li><strong>description</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.put">
 <code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.put" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Copy local values to database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.delete">
 <code class="descname">delete</code><span class="sig-paren">(</span><em>dry_run=False</em>, <em>delete_processes_and_samples=False</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.delete" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Delete this Experiment from the database or (when dry_run is True)
+determine the objects to be deleted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dry_run</strong> – (optional) if True, then only determine what would be deleted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">DeleteTally</span></code> instance, which lists the id’s of the objects (to be or actually) deleted.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.create_process_from_template">
 <code class="descname">create_process_from_template</code><span class="sig-paren">(</span><em>template_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.create_process_from_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.create_process_from_template" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Create a process from a template</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>template_id</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.get_process_by_id">
 <code class="descname">get_process_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.get_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.get_process_by_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get a process for a given process id value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_id</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.get_all_processes">
 <code class="descname">get_all_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.get_all_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.get_all_processes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get all the processes in this Experiment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.get_sample_by_id">
 <code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get a Sample value from a sample id value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.get_all_samples">
 <code class="descname">get_all_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.get_all_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.get_all_samples" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get all samples in this Experiment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.decorate_with_samples">
 <code class="descname">decorate_with_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.decorate_with_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.decorate_with_samples" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add all the Experiment’s
+:return:</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Experiment.decorate_with_processes">
@@ -355,7 +722,7 @@ creating intermediate directories as necessary</p>
 
 </div>
 <div class="section" id="sample">
-<h2>Sample<a class="headerlink" href="#sample" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Sample</a><a class="headerlink" href="#sample" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Sample">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Sample</code><span class="sig-paren">(</span><em>name=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample" title="Permalink to this definition">¶</a></dt>
@@ -365,7 +732,24 @@ creating intermediate directories as necessary</p>
 <dl class="method">
 <dt id="mcapi.Sample.pretty_print">
 <code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample.pretty_print" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prints a nice layout of the object and all of it’s values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shift</strong> – the offset from the start of the line, in increments of indent</li>
+<li><strong>indent</strong> – the indent used for layout, in characters</li>
+<li><strong>out</strong> – the stream to which the object in printed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Sample.rename">
@@ -375,7 +759,20 @@ creating intermediate directories as necessary</p>
 <dl class="method">
 <dt id="mcapi.Sample.put">
 <code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample.put" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Copy local values to database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Sample.delete">
@@ -396,7 +793,7 @@ creating intermediate directories as necessary</p>
 
 </div>
 <div class="section" id="template">
-<h2>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Template</a><a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Template">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Template</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Template" title="Permalink to this definition">¶</a></dt>
@@ -427,13 +824,30 @@ the only way in which Template is used, for now.</p>
 <dl class="method">
 <dt id="mcapi.Template.pretty_print">
 <code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Template.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Template.pretty_print" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prints a nice layout of the object and all of it’s values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shift</strong> – the offset from the start of the line, in increments of indent</li>
+<li><strong>indent</strong> – the indent used for layout, in characters</li>
+<li><strong>out</strong> – the stream to which the object in printed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="directory">
-<h2>Directory<a class="headerlink" href="#directory" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Directory</a><a class="headerlink" href="#directory" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Directory">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=”</em>, <em>path=”</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Directory" title="Permalink to this definition">¶</a></dt>
@@ -454,7 +868,20 @@ create directories on a given path.</p>
 <dl class="method">
 <dt id="mcapi.Directory.put">
 <code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Directory.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Directory.put" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Copy local values to database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Directory.delete">
@@ -490,7 +917,7 @@ create directories on a given path.</p>
 
 </div>
 <div class="section" id="file">
-<h2>File<a class="headerlink" href="#file" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">File</a><a class="headerlink" href="#file" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.File">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">File</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#File"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.File" title="Permalink to this definition">¶</a></dt>
@@ -509,7 +936,20 @@ create directories on a given path.</p>
 <dl class="method">
 <dt id="mcapi.File.put">
 <code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#File.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.File.put" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Copy local values to database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.File.detele">
@@ -535,7 +975,7 @@ create directories on a given path.</p>
 
 </div>
 <div class="section" id="user">
-<h2>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">User</a><a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.User">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">User</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.User" title="Permalink to this definition">¶</a></dt>
@@ -545,6 +985,16 @@ create directories on a given path.</p>
 <dt id="mcapi.User.can_access">
 <code class="descname">can_access</code><span class="sig-paren">(</span><em>project</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#User.can_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.User.can_access" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does this user have permission to access the indicated project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project</strong> – an instance of the :class: <cite>mcapi.Project</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">user_list</span> <span class="o">=</span> <span class="n">get_all_users</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">user_list</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">can_access</span><span class="p">(</span><span class="n">project</span><span class="p">):</span>
@@ -557,7 +1007,7 @@ create directories on a given path.</p>
 
 </div>
 <div class="section" id="deletetally">
-<h2>DeleteTally<a class="headerlink" href="#deletetally" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">DeleteTally</a><a class="headerlink" href="#deletetally" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.DeleteTally">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">DeleteTally</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#DeleteTally"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.DeleteTally" title="Permalink to this definition">¶</a></dt>
