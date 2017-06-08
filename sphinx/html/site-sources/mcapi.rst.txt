@@ -6,4 +6,6 @@ Package - mcapi
     :caption: Contents of package:
 
     top_level_functions
-    mcapi_classes
+    mcapi_main_classes
+    mcapi_property
+    mcapi_measurement

@@ -1,5 +1,5 @@
-Package mcapi - classes
-=======================
+Package mcapi - main classes
+============================
 
 .. contents::
 
@@ -24,6 +24,14 @@ Sample
 ------
 
 .. autoclass:: mcapi.Sample
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Process
+-------
+
+.. autoclass:: mcapi.Process
     :members:
     :undoc-members:
     :show-inheritance:

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>mcapi.measurement &#8212; source  documentation</title>
+    <title>mcapi.measurement &#8212; github::materialscommons.org 1.0beta1 documentation</title>
     
     <link rel="stylesheet" href="../../site-static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '',
+        VERSION:     '1.0beta1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -34,10 +34,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">source  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
@@ -52,7 +49,7 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">StringIO</span> <span class="k">import</span> <span class="n">StringIO</span>
 
-<div class="viewcode-block" id="Measurement"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.Measurement">[docs]</a><span class="k">class</span> <span class="nc">Measurement</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Measurement"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.Measurement">[docs]</a><span class="k">class</span> <span class="nc">Measurement</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Measurement</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -69,10 +66,10 @@
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Measurement.abbrev_print"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.Measurement.abbrev_print">[docs]</a>    <span class="k">def</span> <span class="nf">abbrev_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">abbrev_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
         
-<div class="viewcode-block" id="Measurement.pretty_print"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.Measurement.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="n">pp</span> <span class="o">=</span> <span class="n">PrettyPrint</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
         <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;attribute: &quot;</span> <span class="o">+</span> <span class="n">pp</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="p">))</span>
         <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -99,69 +96,69 @@
                 <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
                     <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-                <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">-=</span> <span class="mi">1</span></div></div>
+                <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">-=</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="MeasurementComposition"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementComposition">[docs]</a><span class="k">class</span> <span class="nc">MeasurementComposition</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementComposition"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementComposition">[docs]</a><span class="k">class</span> <span class="nc">MeasurementComposition</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementComposition</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementString"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementString">[docs]</a><span class="k">class</span> <span class="nc">MeasurementString</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementString"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementString">[docs]</a><span class="k">class</span> <span class="nc">MeasurementString</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementString</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementMatrix"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementMatrix">[docs]</a><span class="k">class</span> <span class="nc">MeasurementMatrix</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementMatrix"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementMatrix">[docs]</a><span class="k">class</span> <span class="nc">MeasurementMatrix</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementMatrix</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementVector"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementVector">[docs]</a><span class="k">class</span> <span class="nc">MeasurementVector</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementVector"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementVector">[docs]</a><span class="k">class</span> <span class="nc">MeasurementVector</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementVector</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementSelection"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementSelection">[docs]</a><span class="k">class</span> <span class="nc">MeasurementSelection</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementSelection"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementSelection">[docs]</a><span class="k">class</span> <span class="nc">MeasurementSelection</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementSelection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementFile"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementFile">[docs]</a><span class="k">class</span> <span class="nc">MeasurementFile</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementFile"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementFile">[docs]</a><span class="k">class</span> <span class="nc">MeasurementFile</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementFile</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementInteger"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementInteger">[docs]</a><span class="k">class</span> <span class="nc">MeasurementInteger</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementInteger"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementInteger">[docs]</a><span class="k">class</span> <span class="nc">MeasurementInteger</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementInteger</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementNumber"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementNumber">[docs]</a><span class="k">class</span> <span class="nc">MeasurementNumber</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MeasurementNumber</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementNumber</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementNumber</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="MeasurementBoolean"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementBoolean">[docs]</a><span class="k">class</span> <span class="nc">MeasurementBoolean</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementBoolean"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementBoolean">[docs]</a><span class="k">class</span> <span class="nc">MeasurementBoolean</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementBoolean</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MeasurementSample"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.MeasurementSample">[docs]</a><span class="k">class</span> <span class="nc">MeasurementSample</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementSample"><a class="viewcode-back" href="../../mcapi_measurement.html#mcapi.MeasurementSample">[docs]</a><span class="k">class</span> <span class="nc">MeasurementSample</span><span class="p">(</span><span class="n">Measurement</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;name&#39;, &#39;attribute&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;, &#39;unit&#39;, &#39;value&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MeasurementSample</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="make_measurement_object"><a class="viewcode-back" href="../../mcapi.html#mcapi.measurement.make_measurement_object">[docs]</a><span class="k">def</span> <span class="nf">make_measurement_object</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_measurement_object</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">obj</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">MCObject</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">input_data</span>
@@ -195,7 +192,7 @@
             <span class="k">return</span> <span class="n">holder</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No Measurement Object, unrecognized otype = &quot;</span> <span class="o">+</span> <span class="n">object_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No Measurement Object, otype not defined&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No Measurement Object, otype not defined&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 
           </div>
@@ -223,15 +220,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">source  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Author.
+        &#169; Copyright 2017, Materials Commons.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
     </div>
   </body>
