@@ -1459,18 +1459,22 @@ below at <a class="reference internal" href="#mcapi.Process.set_measurements_for
 <dl class="method">
 <dt id="mcapi.Process.set_measurement">
 <code class="descname">set_measurement</code><span class="sig-paren">(</span><em>attribute</em>, <em>measurement_data</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.set_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.set_measurement" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>A low-level function for adding a measurement to the output samples of this process.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>attribute</strong> – </li>
-<li><strong>measurement_data</strong> – </li>
-<li><strong>name</strong> – </li>
+<li><strong>attribute</strong> – string - the measurement attribute</li>
+<li><strong>measurement_data</strong> – <ul>
+<li>an dictionary with the name-value pairs for the measurement</li>
+</ul>
+</li>
+<li><strong>name</strong> – (optional) string - if not given the name=attribute</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
 </td>
 </tr>
 </tbody>
@@ -1479,53 +1483,299 @@ below at <a class="reference internal" href="#mcapi.Process.set_measurements_for
 
 <dl class="method">
 <dt id="mcapi.Process.add_integer_measurement">
-<code class="descname">add_integer_measurement</code><span class="sig-paren">(</span><em>attribute</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_integer_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_integer_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">add_integer_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_integer_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_integer_measurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper function to add integer measurements to the output samples of this process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>integer</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_number_measurement">
 <code class="descname">add_number_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_number_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_number_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>number</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_boolean_measurement">
 <code class="descname">add_boolean_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_boolean_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_boolean_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>boolean (True or False)</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_string_measurement">
 <code class="descname">add_string_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_string_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_string_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_file_measurement">
 <code class="descname">add_file_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>file</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_file_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_file_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>file</strong> – a <a class="reference internal" href="#mcapi.File" title="mcapi.File"><code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code></a> instance</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_sample_measurement">
 <code class="descname">add_sample_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>sample</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_sample_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_sample_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>sample</strong> – a <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></a> instance</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_list_measurement">
 <code class="descname">add_list_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>value_type</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_list_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_list_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>a list in which all the objects are the same type</li>
+</ul>
+</li>
+<li><strong>value_type</strong> – <ul>
+<li>string, the type of the objects in the list</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_numpy_matrix_measurement">
 <code class="descname">add_numpy_matrix_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_numpy_matrix_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_numpy_matrix_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>a numpy Matrix</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_selection_measurement">
 <code class="descname">add_selection_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_selection_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_selection_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – one of the choices in a selection</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.add_vector_measurement">
 <code class="descname">add_vector_measurement</code><span class="sig-paren">(</span><em>attrname</em>, <em>value</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_vector_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_vector_measurement" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attrname</strong> – <ul>
+<li>string</li>
+</ul>
+</li>
+<li><strong>value</strong> – <ul>
+<li>a list of float values</li>
+</ul>
+</li>
+<li><strong>name</strong> – <ul>
+<li>(optional) string - if not given the name=attribute</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.decorate_with_output_samples">
