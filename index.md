@@ -9,7 +9,7 @@ part of the [PRiSMS Center](http://www.prisms-center.org/#/home).
 * [The Materials Commons Wiki](https://github.com/materials-commons/materialscommons.org/wiki)
   * [Including - the help pages](https://github.com/materials-commons/materialscommons.org/wiki/Help)
 * [The Python API](./python-api)
-* [The Python CASM Tools and Command Line Interface (CLI)](./python-casm)
+* [The Python CASM Tools and Command Line Interface (CLI)](./python-casm-and-cli)
 * GitHub sites
   * [materialscommons.org](https://github.com/materials-commons/materialscommons.org)
   * [mcapi](https://github.com/materials-commons/mcapi)
