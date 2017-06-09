@@ -1433,22 +1433,22 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A helper function to add integer measurements to the output samples of this process.</span>
 
-<span class="sd">        :param attrname: - string</span>
+<span class="sd">        :param attrname: the name of the attribute - string</span>
 <span class="sd">        :param value: - integer</span>
 <span class="sd">        :param name: - (optional) string - if not given the name=attribute</span>
 <span class="sd">        :return: the updated process</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">name</span><span class="p">):</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">attribute</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">attrname</span>
 
         <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-            <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attribute</span><span class="p">,</span>
+            <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
             <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
             <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
             <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Process.add_number_measurement"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Process.add_number_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_number_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1747,24 +1747,24 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>                          <span class="c1"># id for this Sample - string</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                          <span class="c1"># name for this Sample - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>                          <span class="c1">#: id for this Sample - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                          <span class="c1">#: name for this Sample - string</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>               <span class="c1"># the id of the related property set</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>                     <span class="c1"># the project that &#39;contains&#39; this Sample</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="kc">None</span>                  <span class="c1"># the experiment that &#39;contains&#39; this Sample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>               <span class="c1">#: the id of the related property set</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>                     <span class="c1">#: the project that &#39;contains&#39; this Sample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="kc">None</span>                  <span class="c1">#: the experiment that &#39;contains&#39; this Sample</span>
         <span class="c1"># filled in when measurements exist (?)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="p">[]</span>                    <span class="c1"># when measurements exist - the properties of this sample</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">experiments</span> <span class="o">=</span> <span class="p">[]</span>                   <span class="c1"># the experiments that create or transform this sample</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1"># the id of the property_set for this sample</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                     <span class="c1"># the direction relationship (&#39;input&#39; or &#39;output&#39;) that sample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="p">[]</span>                    <span class="c1">#: when measurements exist - the properties of this sample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiments</span> <span class="o">=</span> <span class="p">[]</span>                   <span class="c1">#: the experiments that create or transform this sample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="kc">None</span>             <span class="c1">#: the id of the property_set for this sample</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                     <span class="c1">#: the direction relationship (&#39;input&#39; or &#39;output&#39;) that sample</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># to be filled in later</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_grouped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">has_group</span> <span class="o">=</span> <span class="kc">False</span><span class="p">;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_grouped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_group</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_size</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1863,16 +1863,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Materials Commons Directory.</span>
 
-<span class="sd">    .. note:: normally created from the databse by all to :func:`mcapi.Project.add_directory` or</span>
+<span class="sd">    .. note:: normally created from the databse by call to :func:`mcapi.Project.add_directory` or</span>
 <span class="sd">        any of the project methods that create directories on a given path</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># normally, from the data base</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                            <span class="c1">#: directory id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                          <span class="c1">#: directory name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checksum</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                          <span class="c1">#: directory path within project</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="c1"># additional fields</span>
@@ -1907,15 +1907,27 @@
 
     <span class="c1"># directory - basic methods: rename, move, put, delete</span>
 <div class="viewcode-block" id="Directory.rename"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rename this directory. Top level directory, can not be renamed, rename project instead.</span>
+<span class="sd">        :param new_name: string</span>
+<span class="sd">        :return: updated directory</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dir_data</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
         <span class="n">updated_directory</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">dir_data</span><span class="p">)</span>
         <span class="n">updated_directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
         <span class="k">return</span> <span class="n">updated_directory</span></div>
 
-<div class="viewcode-block" id="Directory.move"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_directory</span><span class="p">):</span>
+<div class="viewcode-block" id="Directory.move"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_parent_directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move this directory into another directory. Changes the path of this</span>
+<span class="sd">        directory and the contents of the new parent directory.</span>
+
+<span class="sd">        :param new_parent_directory: an instance of :class:`mcapi.Directory`</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
-        <span class="n">new_directory_id</span> <span class="o">=</span> <span class="n">new_directory</span><span class="o">.</span><span class="n">id</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_directory</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">new_directory_id</span> <span class="o">=</span> <span class="n">new_parent_directory</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_parent_directory</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="n">updated_directory</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">updated_directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">updated_directory</span><span class="o">.</span><span class="n">_parent_id</span><span class="p">:</span>
@@ -1935,10 +1947,24 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Directory.delete"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete this directory.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        .. note:: Currently not implemented</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO Directory.delete() ?? only when empty</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Directory.get_children"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.get_children">[docs]</a>    <span class="k">def</span> <span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the contents of this directory.</span>
+
+<span class="sd">        :return: a list of :class:`mcapi.Directory` and/or :class:`mcapi.File` instances</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">dir_or_file</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]:</span>
@@ -1954,6 +1980,13 @@
         <span class="k">return</span> <span class="n">ret</span></div>
 
 <div class="viewcode-block" id="Directory.create_descendant_list_by_path"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.create_descendant_list_by_path">[docs]</a>    <span class="k">def</span> <span class="nf">create_descendant_list_by_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create any directories missing on the given path, relative to this directory, and return all the</span>
+<span class="sd">        directories on the path.</span>
+
+<span class="sd">        :param path: string</span>
+<span class="sd">        :return: a list of :class:`mcapi.Directory` instances</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_fetch_all_directories_on_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="n">dir_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
@@ -1967,6 +2000,13 @@
         <span class="k">return</span> <span class="n">dir_list</span></div>
 
 <div class="viewcode-block" id="Directory.get_descendant_list_by_path"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.get_descendant_list_by_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_descendant_list_by_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all the directories on the given path, relative to this directory; if any are missing</span>
+<span class="sd">        and error is generated.</span>
+
+<span class="sd">        :param path: string</span>
+<span class="sd">        :return: a list of :class:`mcapi.Directory` instances</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_directories</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">get_all_directories</span><span class="p">()</span>
         <span class="n">dir_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
@@ -1981,11 +2021,29 @@
                 <span class="n">dir_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">dir_list</span></div>
 
-<div class="viewcode-block" id="Directory.add_file"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.add_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">input_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">add_file_using_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">input_path</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+<div class="viewcode-block" id="Directory.add_file"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.add_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">local_input_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Upload local file, and attach it to an new file in this directory.</span>
+
+<span class="sd">        :param file_name: name of the new file - string</span>
+<span class="sd">        :param local_input_path: path to the local file - string</span>
+<span class="sd">        :param verbose: (optional) flag to print trace of all actions - True or False</span>
+<span class="sd">        :param limit: (optional) the limit in MB of the size of the file to upload</span>
+<span class="sd">        :return: an instance of :class:`mcapi.File` - the new file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">add_file_using_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">local_input_path</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="Directory.add_directory_tree"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Directory.add_directory_tree">[docs]</a>    <span class="k">def</span> <span class="nf">add_directory_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">input_dir_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given the path to a local directory, create that directory path in the database.</span>
+
+<span class="sd">        :param dir_name:</span>
+<span class="sd">        :param input_dir_path:</span>
+<span class="sd">        :param verbose:</span>
+<span class="sd">        :param limit:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os_path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">input_dir_path</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
@@ -1993,7 +2051,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shallow</span><span class="p">:</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
             <span class="nb">print</span> <span class="s2">&quot;base directory: &quot;</span><span class="p">,</span> <span class="n">name</span>
-        <span class="n">dir_tree_table</span> <span class="o">=</span> <span class="n">make_dir_tree_table</span><span class="p">(</span><span class="n">input_dir_path</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">dir_tree_table</span> <span class="o">=</span> <span class="n">_make_dir_tree_table</span><span class="p">(</span><span class="n">input_dir_path</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="p">{})</span>
         <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">error</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">relative_dir_path</span> <span class="ow">in</span> <span class="n">dir_tree_table</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -2012,7 +2070,7 @@
 
 
 <span class="c1"># -- helper function for Directory.add_directory_tree - above</span>
-<span class="k">def</span> <span class="nf">make_dir_tree_table</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">relative_base</span><span class="p">,</span> <span class="n">table_so_far</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_make_dir_tree_table</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">,</span> <span class="n">relative_base</span><span class="p">,</span> <span class="n">table_so_far</span><span class="p">):</span>
     <span class="n">local_path</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">)</span>
     <span class="n">file_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">data_file</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">local_path</span><span class="p">):</span>
@@ -2024,7 +2082,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
         <span class="n">base</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">relative_base</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">os_path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-            <span class="n">table_so_far</span> <span class="o">=</span> <span class="n">make_dir_tree_table</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">table_so_far</span><span class="p">)</span>
+            <span class="n">table_so_far</span> <span class="o">=</span> <span class="n">_make_dir_tree_table</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">table_so_far</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">table_so_far</span>
 
 
@@ -2037,19 +2095,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># normally, from the data base</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                        <span class="c1">#: file id - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                      <span class="c1">#: file name - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>               <span class="c1">#: file description - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                     <span class="c1">#: file owner - string</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                      <span class="c1">#: file path - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>                       <span class="c1">#: file size - long</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uploaded</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">checksum</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mediatype</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checksum</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>                  <span class="c1">#: file checksum - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="kc">True</span>                 <span class="c1">#: file version flag - boolean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mediatype</span> <span class="o">=</span> <span class="p">{}</span>                 <span class="c1">#: - directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>                      <span class="c1">#: - array of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="p">[]</span>                     <span class="c1">#: - array of string</span>
 
         <span class="c1"># from database, not inserted now, additional code needed</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2083,6 +2141,12 @@
     <span class="c1"># File - basic methods: rename, move, put, delete</span>
 
 <div class="viewcode-block" id="File.rename"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rename this file.</span>
+
+<span class="sd">        :param new_file_name: string</span>
+<span class="sd">        :return: the updated file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
         <span class="n">file_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_rename</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">)</span>
@@ -2091,6 +2155,12 @@
         <span class="k">return</span> <span class="n">updated_file</span></div>
 
 <div class="viewcode-block" id="File.move"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move this file to another directory.</span>
+
+<span class="sd">        :param new_directory: the :class:`mcapi.Directory` instance of the new location</span>
+<span class="sd">        :return: the updated file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
         <span class="n">old_directory_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_directory_id</span>
         <span class="n">new_directory_id</span> <span class="o">=</span> <span class="n">new_directory</span><span class="o">.</span><span class="n">id</span>
@@ -2112,21 +2182,46 @@
         <span class="c1"># TODO File.put()</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="File.detele"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.detele">[docs]</a>    <span class="k">def</span> <span class="nf">detele</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="File.delete"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete this file from the database.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        .. note:: Currently not implemented</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO File.delete()</span>
         <span class="k">pass</span></div>
 
     <span class="c1"># File - additional methods</span>
 <div class="viewcode-block" id="File.download_file_content"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.download_file_content">[docs]</a>    <span class="k">def</span> <span class="nf">download_file_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Down a copy of the file from the database into a local file on a local path.</span>
+<span class="sd">        Will overwrite any existing file.</span>
+
+<span class="sd">        :param local_download_file_path: the local path ending in the intended file name.</span>
+<span class="sd">        :return: the output file path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
         <span class="n">file_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
         <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_download</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output_file_path</span></div>
 
 <div class="viewcode-block" id="File.parent"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.parent">[docs]</a>    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: the parent :class:`mcapi.Directory` instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">get_directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_directory_id</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="File.local_path"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.File.local_path">[docs]</a>    <span class="k">def</span> <span class="nf">local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the context of the project for this file, assuming that project.local_path is set for that project,</span>
+<span class="sd">        get the local_path indicated by this files database path and name.</span>
+
+<span class="sd">        :return: the full local path of this file including the filename.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
         <span class="n">proj</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">_project</span>
         <span class="n">proj_dirname</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
@@ -2145,7 +2240,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># global static</span>
-    <span class="n">create</span> <span class="o">=</span> <span class="s2">&quot;global_Create Samples&quot;</span>
+    <span class="n">create</span> <span class="o">=</span> <span class="s2">&quot;global_Create Samples&quot;</span>                <span class="c1">#: a typical template id, used for testing.</span>
     <span class="n">compute</span> <span class="o">=</span> <span class="s2">&quot;global_Computation&quot;</span>
     <span class="n">primitive_crystal_structure</span> <span class="o">=</span> <span class="s2">&quot;global_Primitive Crystal Structure&quot;</span>
 
@@ -2204,23 +2299,28 @@
 
 <div class="viewcode-block" id="Property"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.Property">[docs]</a><span class="k">class</span> <span class="nc">Property</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Materials Commons Property. Normally created by</span>
+<span class="sd">    A Materials Commons Property.</span>
+<span class="sd">    Normally created by calls to :func:`mcapi.Process.set_measurements_for_process_samples`</span>
+<span class="sd">    or :func:`mcapi.Process.update_setup_properties`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                        <span class="c1">#: this property&#39;s id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                      <span class="c1">#:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>               <span class="c1">#:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                  <span class="c1">#: the id of the setup, if set indicates that this is a setup property</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>           <span class="c1">#: the property_set id, if set this property for measurement</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1">#: previous version of this property, if any</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">property_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>               <span class="c1">#: this property&#39;s id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>               <span class="c1">#: a required property?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                      <span class="c1">#: unit, if any</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1">#: attribute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                     <span class="c1">#: value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[]</span>                     <span class="c1">#: array of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">[]</span>                   <span class="c1">#: array of string</span>
+
         <span class="c1"># attr = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Property</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">setup_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parent_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">property_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># of string</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">choices</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># of string</span>
 
         <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;setup_id&#39;</span><span class="p">,</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">,</span> <span class="s1">&#39;attribute&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
@@ -2230,10 +2330,10 @@
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[]))</span>
 
-    <span class="k">def</span> <span class="nf">abbrev_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+<div class="viewcode-block" id="Property.abbrev_print"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.Property.abbrev_print">[docs]</a>    <span class="k">def</span> <span class="nf">abbrev_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+<div class="viewcode-block" id="Property.pretty_print"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.Property.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints a nice layout of the object and all of it&#39;s values.</span>
 
@@ -2266,10 +2366,16 @@
                 <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
                     <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-                <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">-=</span> <span class="mi">1</span></div>
+                <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">-=</span> <span class="mi">1</span></div></div>
 
 
 <div class="viewcode-block" id="MeasuredProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.MeasuredProperty">[docs]</a><span class="k">class</span> <span class="nc">MeasuredProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A property that is associated with a measurement.</span>
+
+<span class="sd">    See :class:`mcapi.Property`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># attr = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;,</span>
         <span class="c1"># &#39;setup_id&#39;, &#39;required&#39;, &#39;unit&#39;, &#39;attribute&#39;, &#39;value&#39;, &#39;units&#39;, &#39;choices&#39;]</span>
@@ -2295,46 +2401,73 @@
 
 
 <div class="viewcode-block" id="NumberProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.NumberProperty">[docs]</a><span class="k">class</span> <span class="nc">NumberProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">NumberProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="StringProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.StringProperty">[docs]</a><span class="k">class</span> <span class="nc">StringProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">StringProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BooleanProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.BooleanProperty">[docs]</a><span class="k">class</span> <span class="nc">BooleanProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BooleanProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="DateProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.DateProperty">[docs]</a><span class="k">class</span> <span class="nc">DateProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DateProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SelectionProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.SelectionProperty">[docs]</a><span class="k">class</span> <span class="nc">SelectionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SelectionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FunctionProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.FunctionProperty">[docs]</a><span class="k">class</span> <span class="nc">FunctionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FunctionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CompositionProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.CompositionProperty">[docs]</a><span class="k">class</span> <span class="nc">CompositionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CompositionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VectorProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.VectorProperty">[docs]</a><span class="k">class</span> <span class="nc">VectorProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VectorProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MatrixProperty"><a class="viewcode-back" href="../../mcapi_property.html#mcapi.MatrixProperty">[docs]</a><span class="k">class</span> <span class="nc">MatrixProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    See :class:`mcapi.Property`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MatrixProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 

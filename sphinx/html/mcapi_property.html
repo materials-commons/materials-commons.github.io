@@ -78,7 +78,113 @@
 <dl class="class">
 <dt id="mcapi.Property">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Property</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Property" title="Permalink to this definition">¶</a></dt>
-<dd><p>A Materials Commons Property. Normally created by</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
+<p>A Materials Commons Property.
+Normally created by calls to <a class="reference internal" href="mcapi_main_classes.html#mcapi.Process.set_measurements_for_process_samples" title="mcapi.Process.set_measurements_for_process_samples"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Process.set_measurements_for_process_samples()</span></code></a>
+or <a class="reference internal" href="mcapi_main_classes.html#mcapi.Process.update_setup_properties" title="mcapi.Process.update_setup_properties"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Process.update_setup_properties()</span></code></a>.</p>
+<dl class="attribute">
+<dt id="mcapi.Property.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>this property’s id</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.description">
+<code class="descname">description</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.setup_id">
+<code class="descname">setup_id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.setup_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the id of the setup, if set indicates that this is a setup property</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.property_set_id">
+<code class="descname">property_set_id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.property_set_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>the property_set id, if set this property for measurement</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.parent_id">
+<code class="descname">parent_id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>previous version of this property, if any</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.property_id">
+<code class="descname">property_id</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.property_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>this property’s id</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.required">
+<code class="descname">required</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.required" title="Permalink to this definition">¶</a></dt>
+<dd><p>a required property?</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.unit">
+<code class="descname">unit</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>unit, if any</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.attribute">
+<code class="descname">attribute</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>attribute</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.value">
+<code class="descname">value</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.units">
+<code class="descname">units</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.units" title="Permalink to this definition">¶</a></dt>
+<dd><p>array of string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mcapi.Property.choices">
+<code class="descname">choices</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Property.choices" title="Permalink to this definition">¶</a></dt>
+<dd><p>array of string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Property.abbrev_print">
+<code class="descname">abbrev_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Property.abbrev_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Property.abbrev_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Property.pretty_print">
+<code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Property.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Property.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a nice layout of the object and all of it’s values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shift</strong> – the offset from the start of the line, in increments of indent</li>
+<li><strong>indent</strong> – the indent used for layout, in characters</li>
+<li><strong>out</strong> – the stream to which the object in printed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -87,7 +193,9 @@
 <dl class="class">
 <dt id="mcapi.MeasuredProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">MeasuredProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#MeasuredProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.MeasuredProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>A property that is associated with a measurement.</p>
+<p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="numberproperty">
@@ -95,7 +203,8 @@
 <dl class="class">
 <dt id="mcapi.NumberProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">NumberProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#NumberProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.NumberProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="stringproperty">
@@ -103,7 +212,8 @@
 <dl class="class">
 <dt id="mcapi.StringProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">StringProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#StringProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.StringProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="booleanproperty">
@@ -111,7 +221,8 @@
 <dl class="class">
 <dt id="mcapi.BooleanProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">BooleanProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#BooleanProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BooleanProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="dateproperty">
@@ -119,7 +230,8 @@
 <dl class="class">
 <dt id="mcapi.DateProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">DateProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#DateProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.DateProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="selectionproperty">
@@ -127,7 +239,8 @@
 <dl class="class">
 <dt id="mcapi.SelectionProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">SelectionProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#SelectionProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.SelectionProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="functionproperty">
@@ -135,7 +248,8 @@
 <dl class="class">
 <dt id="mcapi.FunctionProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">FunctionProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#FunctionProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.FunctionProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="compositionproperty">
@@ -143,7 +257,8 @@
 <dl class="class">
 <dt id="mcapi.CompositionProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">CompositionProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#CompositionProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.CompositionProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="vectorproperty">
@@ -151,7 +266,8 @@
 <dl class="class">
 <dt id="mcapi.VectorProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">VectorProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#VectorProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.VectorProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 <div class="section" id="matrixproperty">
@@ -159,7 +275,8 @@
 <dl class="class">
 <dt id="mcapi.MatrixProperty">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">MatrixProperty</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#MatrixProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.MatrixProperty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>See <a class="reference internal" href="#mcapi.Property" title="mcapi.Property"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></a></p>
+</dd></dl>
 
 </div>
 </div>

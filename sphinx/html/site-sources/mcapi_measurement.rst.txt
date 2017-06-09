@@ -7,6 +7,10 @@ Package mcapi - measurement classes
 Measurement
 -----------
 .. autoclass:: mcapi.Measurement
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 MeasurementComposition
 ----------------------

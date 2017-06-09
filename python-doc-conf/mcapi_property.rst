@@ -7,6 +7,10 @@ Property
 --------
 
 .. autoclass:: mcapi.Property
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 MeasuredProperty
 ----------------
