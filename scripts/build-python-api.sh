@@ -51,6 +51,6 @@ popd
 # back up current version
 # clear current version
 # set current version to new version
-cp -R $PYTHON_API_BUILD_TEMP/_build/html $DOC_BASE/pytnon-api/sphinx/
+# cp -R $PYTHON_API_BUILD_TEMP/_build/html $DOC_BASE/pytnon-api/sphinx/
 
 
