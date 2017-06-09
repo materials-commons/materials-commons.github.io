@@ -6,7 +6,7 @@ layout: default
 Materials Commons CASM Tools and CLI
 ============================
 **[View Python API on GitHub](https://github.com/materials-commons/mcapi/tree/master/python)**
--- Return to [top level page](../)
+-- Return to [top level page](../) -- [Details of API](sphinx/html)
 
 (In Preparation...)
 
