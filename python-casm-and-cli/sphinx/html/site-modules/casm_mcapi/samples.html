@@ -1,0 +1,759 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>casm_mcapi.samples &#8212; github::materialscommons.org 1.0beta1 documentation</title>
+    
+    <link rel="stylesheet" href="../../site-static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0beta1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../site-static/jquery.js"></script>
+    <script type="text/javascript" src="../../site-static/underscore.js"></script>
+    <script type="text/javascript" src="../../site-static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for casm_mcapi.samples</h1><div class="highlight"><pre>
+<span></span><span class="c1"># this script creates a &#39;CASM Monte Carlo Calculation&#39; process</span>
+<span class="c1"># and uploads the results files</span>
+
+<span class="c1"># TODO - link up casm.project</span>
+<span class="c1"># import casm.project</span>
+<span class="kn">import</span> <span class="nn">mcapi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="k">import</span> <span class="n">ascii_lowercase</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="c1"># TODO -- the following objects not defined</span>
+<span class="n">subprocess</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">re</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">schoenflies_symbol</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">space_group_symbol</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">space_group_schoenflies_symbol</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="c1"># TODO -- stub functions - either not defined or not imported!</span>
+<span class="k">def</span> <span class="nf">_parameteric_formula</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Note assume throughout that mcapi.Project.local_abspath is set with local</span>
+<span class="c1"># Materials Commons project directory tree location</span>
+
+
+<span class="c1"># Schoenflies to Hermann-Mauguin</span>
+<span class="n">symmap</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Ci&#39;</span><span class="p">:</span> <span class="s1">&#39;-1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S2&#39;</span><span class="p">:</span> <span class="s1">&#39;-1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Cs&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C1h&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2h&#39;</span><span class="p">:</span> <span class="s1">&#39;2/m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2&#39;</span><span class="p">:</span> <span class="s1">&#39;222&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="s1">&#39;222&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2v&#39;</span><span class="p">:</span> <span class="s1">&#39;mm2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2h&#39;</span><span class="p">:</span> <span class="s1">&#39;mmm&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Vh&#39;</span><span class="p">:</span> <span class="s1">&#39;mmm&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C4&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S4&#39;</span><span class="p">:</span> <span class="s1">&#39;-4&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C4h&#39;</span><span class="p">:</span> <span class="s1">&#39;4/m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D4&#39;</span><span class="p">:</span> <span class="s1">&#39;422&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C4v&#39;</span><span class="p">:</span> <span class="s1">&#39;4mm&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2d&#39;</span><span class="p">:</span> <span class="s1">&#39;-42m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Vd&#39;</span><span class="p">:</span> <span class="s1">&#39;-42m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D4h&#39;</span><span class="p">:</span> <span class="s1">&#39;4/mmm&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S6&#39;</span><span class="p">:</span> <span class="s1">&#39;-3&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3i&#39;</span><span class="p">:</span> <span class="s1">&#39;-3&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3&#39;</span><span class="p">:</span> <span class="s1">&#39;32&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3v&#39;</span><span class="p">:</span> <span class="s1">&#39;3m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3d&#39;</span><span class="p">:</span> <span class="s1">&#39;-3m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C6&#39;</span><span class="p">:</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3h&#39;</span><span class="p">:</span> <span class="s1">&#39;-6&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C6h&#39;</span><span class="p">:</span> <span class="s1">&#39;6/m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D6&#39;</span><span class="p">:</span> <span class="s1">&#39;622&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C6v&#39;</span><span class="p">:</span> <span class="s1">&#39;6mm&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3h&#39;</span><span class="p">:</span> <span class="s1">&#39;-6m2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D6h&#39;</span><span class="p">:</span> <span class="s1">&#39;6/mmm&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="s1">&#39;23&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Th&#39;</span><span class="p">:</span> <span class="s1">&#39;m-3&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="s1">&#39;432&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Td&#39;</span><span class="p">:</span> <span class="s1">&#39;-43m&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Oh&#39;</span><span class="p">:</span> <span class="s1">&#39;m-3m&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># lattice system</span>
+<span class="n">latsysmap</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;Ci&#39;</span><span class="p">:</span> <span class="s1">&#39;triclinic&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S2&#39;</span><span class="p">:</span> <span class="s1">&#39;triclinic&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2h&#39;</span><span class="p">:</span> <span class="s1">&#39;monoclinic&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2h&#39;</span><span class="p">:</span> <span class="s1">&#39;orthorhombic&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D4h&#39;</span><span class="p">:</span> <span class="s1">&#39;tetragonal&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3d&#39;</span><span class="p">:</span> <span class="s1">&#39;rhombohedral&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D6h&#39;</span><span class="p">:</span> <span class="s1">&#39;hexagonal&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Oh&#39;</span><span class="p">:</span> <span class="s1">&#39;cubic&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># crystal system to Schoenflies</span>
+<span class="n">xtalsysmap</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;triclinic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;Ci&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;monoclinic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;Cs&#39;</span><span class="p">,</span> <span class="s1">&#39;C1h&#39;</span><span class="p">,</span> <span class="s1">&#39;C2h&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;orthorhombic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D2&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;C2v&#39;</span><span class="p">,</span> <span class="s1">&#39;D2h&#39;</span><span class="p">,</span> <span class="s1">&#39;Vh&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;tetragonal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="s1">&#39;S4&#39;</span><span class="p">,</span> <span class="s1">&#39;C4h&#39;</span><span class="p">,</span> <span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="s1">&#39;C4v&#39;</span><span class="p">,</span> <span class="s1">&#39;D2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Vd&#39;</span><span class="p">,</span> <span class="s1">&#39;D4h&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;trigonal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="s1">&#39;S6&#39;</span><span class="p">,</span> <span class="s1">&#39;C3i&#39;</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">,</span> <span class="s1">&#39;C3v&#39;</span><span class="p">,</span> <span class="s1">&#39;D3d&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;hexagonal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C6&#39;</span><span class="p">,</span> <span class="s1">&#39;C3h&#39;</span><span class="p">,</span> <span class="s1">&#39;C6h&#39;</span><span class="p">,</span> <span class="s1">&#39;D6&#39;</span><span class="p">,</span> <span class="s1">&#39;C6v&#39;</span><span class="p">,</span> <span class="s1">&#39;D3h&#39;</span><span class="p">,</span> <span class="s1">&#39;D6h&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;cubic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Th&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;Td&#39;</span><span class="p">,</span> <span class="s1">&#39;Oh&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># crystal family to Schoenflies</span>
+<span class="n">xtalfamilymap</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;triclinic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;Ci&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;monoclinic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;Cs&#39;</span><span class="p">,</span> <span class="s1">&#39;C1h&#39;</span><span class="p">,</span> <span class="s1">&#39;C2h&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;orthorhombic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;D2&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;C2v&#39;</span><span class="p">,</span> <span class="s1">&#39;D2h&#39;</span><span class="p">,</span> <span class="s1">&#39;Vh&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;tetragonal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="s1">&#39;S4&#39;</span><span class="p">,</span> <span class="s1">&#39;C4h&#39;</span><span class="p">,</span> <span class="s1">&#39;D4&#39;</span><span class="p">,</span> <span class="s1">&#39;C4v&#39;</span><span class="p">,</span> <span class="s1">&#39;D2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Vd&#39;</span><span class="p">,</span> <span class="s1">&#39;D4h&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;hexagonal&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="s1">&#39;S6&#39;</span><span class="p">,</span> <span class="s1">&#39;C3i&#39;</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">,</span> <span class="s1">&#39;C3v&#39;</span><span class="p">,</span> <span class="s1">&#39;D3d&#39;</span><span class="p">,</span> <span class="s1">&#39;C6&#39;</span><span class="p">,</span> <span class="s1">&#39;C3h&#39;</span><span class="p">,</span> <span class="s1">&#39;C6h&#39;</span><span class="p">,</span> <span class="s1">&#39;D6&#39;</span><span class="p">,</span> <span class="s1">&#39;C6v&#39;</span><span class="p">,</span> <span class="s1">&#39;D3h&#39;</span><span class="p">,</span> <span class="s1">&#39;D6h&#39;</span><span class="p">],</span>
+  <span class="s1">&#39;cubic&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Th&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;Td&#39;</span><span class="p">,</span> <span class="s1">&#39;Oh&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># crystal family to Schoenflies</span>
+<span class="n">space_group_number_map</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Ci&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S2&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2&#39;</span><span class="p">:</span> <span class="s1">&#39;3:5&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Cs&#39;</span><span class="p">:</span> <span class="s1">&#39;6:9&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C1h&#39;</span><span class="p">:</span> <span class="s1">&#39;6:9&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2h&#39;</span><span class="p">:</span> <span class="s1">&#39;10:15&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2&#39;</span><span class="p">:</span> <span class="s1">&#39;16:24&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="s1">&#39;16:24&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C2v&#39;</span><span class="p">:</span> <span class="s1">&#39;25:46&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2h&#39;</span><span class="p">:</span> <span class="s1">&#39;47:74&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Vh&#39;</span><span class="p">:</span> <span class="s1">&#39;47:74&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C4&#39;</span><span class="p">:</span> <span class="s1">&#39;75:80&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S4&#39;</span><span class="p">:</span> <span class="s1">&#39;81:82&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C4h&#39;</span><span class="p">:</span> <span class="s1">&#39;83:88&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D4&#39;</span><span class="p">:</span> <span class="s1">&#39;89:98&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C4v&#39;</span><span class="p">:</span> <span class="s1">&#39;99:110&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D2d&#39;</span><span class="p">:</span> <span class="s1">&#39;111:122&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Vd&#39;</span><span class="p">:</span> <span class="s1">&#39;111:122&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D4h&#39;</span><span class="p">:</span> <span class="s1">&#39;123:142&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3&#39;</span><span class="p">:</span> <span class="s1">&#39;143:146&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;S6&#39;</span><span class="p">:</span> <span class="s1">&#39;147:148&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3i&#39;</span><span class="p">:</span> <span class="s1">&#39;149:155&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3&#39;</span><span class="p">:</span> <span class="s1">&#39;149:155&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3v&#39;</span><span class="p">:</span> <span class="s1">&#39;156:161&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3d&#39;</span><span class="p">:</span> <span class="s1">&#39;162:167&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C6&#39;</span><span class="p">:</span> <span class="s1">&#39;168:173&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C3h&#39;</span><span class="p">:</span> <span class="s1">&#39;174&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C6h&#39;</span><span class="p">:</span> <span class="s1">&#39;175:176&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D6&#39;</span><span class="p">:</span> <span class="s1">&#39;177:182&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;C6v&#39;</span><span class="p">:</span> <span class="s1">&#39;183:186&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D3h&#39;</span><span class="p">:</span> <span class="s1">&#39;187:190&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;D6h&#39;</span><span class="p">:</span> <span class="s1">&#39;191:194&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="s1">&#39;195:199&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Th&#39;</span><span class="p">:</span> <span class="s1">&#39;200:206&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="s1">&#39;207:214&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Td&#39;</span><span class="p">:</span> <span class="s1">&#39;215:220&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Oh&#39;</span><span class="p">:</span> <span class="s1">&#39;221:230&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># The following create and set measurments, updating &#39;create_sample_process&#39;</span>
+
+<span class="k">def</span> <span class="nf">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">attribute</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">measurement_data</span><span class="p">:</span>
+        <span class="n">measurement_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;attribute&quot;</span> <span class="ow">in</span> <span class="n">measurement_data</span><span class="p">:</span>
+        <span class="n">measurement_data</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attribute</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="s2">&quot;unit&quot;</span> <span class="ow">in</span> <span class="n">measurement_data</span><span class="p">:</span>
+        <span class="n">measurement_data</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">measurement</span> <span class="o">=</span> <span class="n">create_sample_process</span><span class="o">.</span><span class="n">create_measurement</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">measurement_data</span><span class="p">)</span>
+
+    <span class="n">measurement_property</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attribute</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">create_sample_process</span><span class="o">.</span><span class="n">set_measurements_for_process_samples</span><span class="p">(</span>
+        <span class="n">measurement_property</span><span class="p">,</span> <span class="p">[</span><span class="n">measurement</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">_add_integer_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">attribute</span>
+
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attribute</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_number_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_boolean_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_add_selection_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;selection&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_add_numpy_matrix_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;matrix&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+            <span class="s2">&quot;otype&quot;</span><span class="p">:</span>  <span class="s2">&quot;float&quot;</span> <span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_add_vector_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;vector&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
+            <span class="s2">&quot;otype&quot;</span><span class="p">:</span>  <span class="s2">&quot;float&quot;</span> <span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_add_list_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">value_type</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;vector&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
+            <span class="s2">&quot;otype&quot;</span><span class="p">:</span>  <span class="n">value_type</span> <span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_add_file_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;file&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;file_id&quot;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># NOTE: no covering test or example for this function - probably works - Terry, Jan 20, 2016</span>
+<span class="k">def</span> <span class="nf">_add_sample_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">property_set</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">attrname</span><span class="p">,</span>
+        <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;sample&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;sampled_id&quot;</span><span class="p">:</span> <span class="n">sample</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;sample_name&quot;</span><span class="p">:</span> <span class="n">sample</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;property_set_id&quot;</span><span class="p">:</span> <span class="n">property_set</span><span class="o">.</span><span class="n">id</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_set_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_file_abspath</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Upload a file, matching local directory structure and creating intermediate</span>
+<span class="sd">    remote directories as necessary. Uses local filename.</span>
+<span class="sd">    </span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        proj: mcapi.Project object</span>
+<span class="sd">        local_file_abspath: absolute path to local file</span>
+<span class="sd">        filename: name to give file on Materials Commons (default=os.path.basename(local_file_abspath))</span>
+<span class="sd">            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_relpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">local_file_abspath</span><span class="p">)</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">get_top_directory</span><span class="p">()</span>
+    
+    <span class="c1"># get mcapi.Directory to add file, creating intermediates as necessary</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">get_descendent_list_by_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">file_relpath</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">local_file_abspath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dir</span><span class="o">.</span><span class="n">add_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">local_file_abspath</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_add_files_recursively</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_dir_abspath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        proj: mcapi.Project object</span>
+<span class="sd">        local_dir_abspath: absolute path to local directory to add files from, recursively</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        files: List of mcapi.File objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">local_dir_abspath</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_add_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">files</span>
+
+
+<div class="viewcode-block" id="create_prim_sample"><a class="viewcode-back" href="../../mcapi-casm.html#casm_mcapi.create_prim_sample">[docs]</a><span class="k">def</span> <span class="nf">create_prim_sample</span><span class="p">(</span><span class="n">expt</span><span class="p">,</span> <span class="n">casm_proj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a CASM Primitive Crystal Structure Sample</span>
+<span class="sd">    </span>
+<span class="sd">    Assumes expt.proj.local_abspath exists and adds files relative to that path.</span>
+<span class="sd">    </span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        expt: mcapi.Experiment object</span>
+<span class="sd">        casm_proj: casm.project.Project object</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        create_sample_process: mcapi.Process that created the sample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_angle</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+    
+    <span class="k">def</span> <span class="nf">_lattice_parameters</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            L: lattice as column vector array-like</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            {&quot;a&quot;:a, &quot;b&quot;:b, &quot;c&quot;:c, &quot;alpha&quot;:alpha, &quot;beta&quot;:beta, &quot;gamma&quot;:gamma}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">_angle</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">L</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">_angle</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">L</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="n">_angle</span><span class="p">(</span><span class="n">L</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">L</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="n">c</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span><span class="n">alpha</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">:</span><span class="n">beta</span><span class="p">,</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span><span class="n">gamma</span><span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">_lattice_symmetry</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse from &#39;casm sym&#39;, return Schoenflies form</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">stdout</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Lattice point group is:&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;casm&quot;</span><span class="p">,</span> <span class="s2">&quot;sym&quot;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+        <span class="n">stdout</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">parse</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_lattice_system</span><span class="p">(</span><span class="n">schoenflies_symbol</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Determine from lattice symmetry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">latsysmap</span><span class="p">[</span><span class="n">schoenflies_symbol</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">_crystal_symmetry</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse from &#39;casm sym&#39;, return Schoenflies form</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">stdout</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">stdout</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Crystal point group is:&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;casm&quot;</span><span class="p">,</span> <span class="s2">&quot;sym&quot;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+        <span class="n">stdout</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">parse</span><span class="p">(</span><span class="n">stdout</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">_crystal_symmetry_hm</span><span class="p">(</span><span class="n">schoenflies_symbol</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse from &#39;casm sym&#39;, return Hermann-Mauguin form</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">symmap</span><span class="p">[</span><span class="n">schoenflies_symbol</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">_crystal_system</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Determine crystal system from crystal symmetry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">xtalsysmap</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">schoenflies_symbol</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="k">def</span> <span class="nf">_crystal_family</span><span class="p">(</span><span class="n">schoenflies_symbol</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Determine crystal family from crystal symmetry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">xtalfamilymap</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">schoenflies_symbol</span> <span class="ow">in</span> <span class="n">val</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="k">def</span> <span class="nf">_components</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="c1"># raw composition_axes.json (for some properties not yet supported in the casm.project API)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">composition_axes</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">raw_composition_axes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">comp</span> <span class="o">=</span> <span class="n">raw_composition_axes</span><span class="p">[</span><span class="s2">&quot;standard_axes&quot;</span><span class="p">][</span><span class="s2">&quot;0&quot;</span><span class="p">][</span><span class="s2">&quot;components&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">comp</span>
+
+    <span class="k">def</span> <span class="nf">_elements</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="c1"># currently identical to components</span>
+        <span class="k">return</span> <span class="n">_components</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_n_independent_compositions</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="c1"># raw composition_axes.json (for some properties not yet supported in the casm.project API)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">composition_axes</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">raw_composition_axes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">raw_composition_axes</span><span class="p">[</span><span class="s2">&quot;standard_axes&quot;</span><span class="p">][</span><span class="s2">&quot;0&quot;</span><span class="p">][</span><span class="s2">&quot;independent_compositions&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">_degrees_of_freedom</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get allowed types of DoF, as vector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># currently only &quot;occupation&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;occupation&quot;</span><span class="p">]</span>
+    
+    <span class="c1">## Create Sample</span>
+    <span class="n">create_sample_process</span> <span class="o">=</span> <span class="n">expt</span><span class="o">.</span><span class="n">create_process_from_template</span><span class="p">(</span><span class="s2">&quot;global_Primitive Crystal Structure&quot;</span><span class="p">)</span>
+
+    <span class="c1"># casm.project.ProjectSettings instance</span>
+    <span class="n">proj_set</span> <span class="o">=</span> <span class="n">casm_proj</span><span class="o">.</span><span class="n">settings</span>
+    
+    <span class="c1"># casm.project.DirectoryStructure instance</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">casm_proj</span><span class="o">.</span><span class="n">dir</span>
+    
+    <span class="c1"># raw project_settings.json (for some properties not yet supported in the casm.project API)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">project_settings</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">raw_proj_set</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+    <span class="c1"># raw prim.json (for some properties not yet supported in the casm.project API)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">prim</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">raw_prim</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+    <span class="c1"># Sample attributes (how to check names?):</span>
+    <span class="c1"># &quot;name&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">raw_proj_set</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># &quot;lattice&quot;</span>
+    <span class="c1">#     &quot;matrix&quot;</span>
+    <span class="c1">#     &quot;parameters&quot; (a, b, c, alpha, beta, gamma)</span>
+    <span class="c1">#     &quot;system&quot; (&quot;triclinic&quot;, &quot;monoclinic&quot;, &quot;orthorhombic&quot;, &quot;tetragonal&quot;, &quot;hexagonal&quot;, &quot;rhombohedral&quot;, &quot;cubic&quot;)</span>
+    <span class="c1">#     &quot;symmetry&quot; (Schoenflies symbol)</span>
+    <span class="n">lattice_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raw_prim</span><span class="p">[</span><span class="s1">&#39;lattice_vectors&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">_add_numpy_matrix_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;lattice&#39;</span><span class="p">,</span> <span class="n">lattice_matrix</span><span class="p">)</span>
+
+    <span class="n">lattice_parameters</span> <span class="o">=</span> <span class="n">_lattice_parameters</span><span class="p">(</span><span class="n">lattice_matrix</span><span class="p">)</span>
+    <span class="n">_add_vector_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;parameters&#39;</span><span class="p">,</span> <span class="n">lattice_parameters</span><span class="p">)</span>
+
+    <span class="n">lattice_symmetry</span> <span class="o">=</span> <span class="n">_lattice_symmetry</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;symmetry&#39;</span><span class="p">,</span> <span class="n">lattice_symmetry</span><span class="p">)</span>
+
+    <span class="n">lattice_system</span> <span class="o">=</span> <span class="n">_lattice_system</span><span class="p">(</span><span class="n">lattice_symmetry</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="n">lattice_system</span><span class="p">)</span>
+
+    <span class="c1"># &quot;space_group&quot;</span>
+    <span class="c1">#      &quot;schonflies_symbol&quot;</span>
+    <span class="c1">#      &quot;hermann_mauguin_symbol&quot;</span>
+    <span class="c1">#      &quot;number&quot;</span>
+    <span class="c1">#      &quot;family&quot; (&quot;triclinic&quot;, &quot;monoclinic&quot;, &quot;orthorhombic&quot;, &quot;tetragonal&quot;, &quot;hexagonal&quot;, &quot;cubic&quot;)</span>
+    <span class="c1">#      &quot;system&quot; (&quot;triclinic&quot;, &quot;monoclinic&quot;, &quot;orthorhombic&quot;, &quot;tetragonal&quot;, &quot;hexagonal&quot;, &quot;trigonal&quot;, &quot;cubic&quot;)</span>
+    <span class="n">crystal_pg_schoenflies_symbol</span> <span class="o">=</span> <span class="n">_crystal_symmetry</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;schonflies_space_group_symbol&#39;</span><span class="p">,</span> <span class="n">crystal_pg_schoenflies_symbol</span><span class="p">)</span>
+
+    <span class="n">crystal_pg_hermann_mauguin_symbol</span> <span class="o">=</span> <span class="n">_crystal_symmetry_hm</span><span class="p">(</span><span class="n">space_group_symbol</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;hermann_mauguin_space_group_symbol&#39;</span><span class="p">,</span> <span class="n">crystal_pg_hermann_mauguin_symbol</span><span class="p">)</span>
+
+    <span class="n">crystal_family</span> <span class="o">=</span> <span class="n">_crystal_family</span><span class="p">(</span><span class="n">space_group_schoenflies_symbol</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;crystal_family&#39;</span><span class="p">,</span> <span class="n">crystal_family</span><span class="p">)</span>
+
+    <span class="n">crystal_system</span> <span class="o">=</span> <span class="n">_crystal_system</span><span class="p">(</span><span class="n">space_group_schoenflies_symbol</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;crystal_system&#39;</span><span class="p">,</span> <span class="n">crystal_system</span><span class="p">)</span>
+
+    <span class="c1"># right now, this is a string giving a range of possible values based on the</span>
+    <span class="c1">#   crystal point group</span>
+    <span class="n">space_group_number</span> <span class="o">=</span> <span class="n">space_group_number_map</span><span class="p">[</span><span class="n">space_group_schoenflies_symbol</span><span class="p">]</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;space_group_number&#39;</span><span class="p">,</span> <span class="n">space_group_number</span><span class="p">)</span>
+
+    <span class="c1"># &quot;file&quot;</span>
+    <span class="c1"># filename = dir.prim()  </span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">_add_file</span><span class="p">(</span><span class="n">expt</span><span class="o">.</span><span class="n">proj</span><span class="p">,</span> <span class="nb">dir</span><span class="o">.</span><span class="n">prim</span><span class="p">())</span> 
+    <span class="n">_add_file_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;casm_prism_file&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+
+    <span class="c1"># &quot;elements&quot; - currently only elemental components are allowed</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">_elements</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+    <span class="n">_add_list_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;elements&#39;</span><span class="p">,</span> <span class="n">elements</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>  <span class="c1">#check</span>
+    
+    <span class="c1"># &quot;n_elements&quot; </span>
+    <span class="n">n_elements</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+    <span class="n">_add_integer_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;n_elements&#39;</span><span class="p">,</span> <span class="n">n_elements</span><span class="p">)</span>
+    
+    <span class="c1"># &quot;components&quot; - currently only elemental components are allowed</span>
+    <span class="n">components</span> <span class="o">=</span> <span class="n">_components</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+    <span class="n">_add_list_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;components&#39;</span><span class="p">,</span> <span class="n">components</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>  <span class="c1">#check</span>
+    
+    <span class="c1"># &quot;n_components&quot;</span>
+    <span class="n">n_components</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+    <span class="n">_add_integer_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;n_components&#39;</span><span class="p">,</span> <span class="n">n_components</span><span class="p">)</span>
+    
+    <span class="c1"># &quot;n_independent_compositions&quot;</span>
+    <span class="n">n_independent_compositions</span> <span class="o">=</span> <span class="n">_n_independent_compositions</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+    <span class="n">_add_integer_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;n_independent_compositions&#39;</span><span class="p">,</span> <span class="n">n_independent_compositions</span><span class="p">)</span>
+    
+    <span class="c1"># &quot;degrees_of_freedom&quot; (&quot;occupation&quot;, &quot;displacement&quot;, &quot;strain&quot;)</span>
+    <span class="n">degrees_of_freedom</span> <span class="o">=</span> <span class="n">_degrees_of_freedom</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;degrees_of_freedom&#39;</span><span class="p">,</span> <span class="n">degrees_of_freedom</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">create_sample_process</span></div>
+    
+
+<div class="viewcode-block" id="create_composition_axes_sample"><a class="viewcode-back" href="../../mcapi-casm.html#casm_mcapi.create_composition_axes_sample">[docs]</a><span class="k">def</span> <span class="nf">create_composition_axes_sample</span><span class="p">(</span><span class="n">expt</span><span class="p">,</span> <span class="n">casm_proj</span><span class="p">,</span> <span class="n">prim</span><span class="p">,</span> <span class="n">clex_desc</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a CASM Composition Axes Sample</span>
+<span class="sd">    </span>
+<span class="sd">    Assumes expt.proj.local_abspath exists and adds files relative to that path.</span>
+<span class="sd">    </span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        expt: mcapi.Experiment object</span>
+<span class="sd">        casm_proj: casm.project.Project object</span>
+<span class="sd">        prim: mcapi.Sample object of type CASM &quot;global_Primitive Crystal Structure&quot;</span>
+<span class="sd">        clex_desc: casm.project.ClexDescription object</span>
+<span class="sd">        axes_name: str, naming composition axes</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        create_sample_process: mcapi.Process that created the sample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_end_members</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Currently only &#39;standard_axes&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            casm_proj: casm.project.Project object</span>
+<span class="sd">            axes_name: string, naming composition axes</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># raw composition_axes.json (for some properties not yet supported in the casm.project API)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">composition_axes</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">result</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;standard_axes&#39;</span><span class="p">][</span><span class="n">axes_name</span><span class="p">][</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ascii_lowercase</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;standard_axes&#39;</span><span class="p">][</span><span class="n">axes_name</span><span class="p">]:</span>
+                    <span class="n">result</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;standard_axes&#39;</span><span class="p">][</span><span class="n">axes_name</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+        <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="k">def</span> <span class="nf">_formula</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Currently only &#39;standard_axes&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            casm_proj: casm.project.Project object</span>
+<span class="sd">            axes_name: string, naming composition axes</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># raw composition_axes.json (for some properties not yet supported in the casm.project API)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">composition_axes</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;standard_axes&#39;</span><span class="p">][</span><span class="n">axes_name</span><span class="p">][</span><span class="s1">&#39;mol_formula&#39;</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">_parametric_formula</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Currently only &#39;standard_axes&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+<span class="sd">            casm_proj: casm.project.Project object</span>
+<span class="sd">            axes_name: string, naming composition axes</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># raw composition_axes.json (for some properties not yet supported in the casm.project API)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">dir</span><span class="o">.</span><span class="n">composition_axes</span><span class="p">())</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;standard_axes&#39;</span><span class="p">][</span><span class="n">axes_name</span><span class="p">][</span><span class="s1">&#39;param_formula&#39;</span><span class="p">]</span>
+    
+    <span class="c1">## Create Sample</span>
+    <span class="n">create_sample_process</span> <span class="o">=</span> <span class="n">expt</span><span class="o">.</span><span class="n">create_process_from_template</span><span class="p">(</span><span class="s1">&#39;global_Composition Axes&#39;</span><span class="p">)</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">create_sample_process</span><span class="o">.</span><span class="n">create_samples</span><span class="p">(</span>
+        <span class="n">sample_names</span><span class="o">=</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># casm.project.DirectoryStructure instance</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">casm_proj</span><span class="o">.</span><span class="n">dir</span>
+    
+    <span class="c1"># &quot;prim&quot;</span>
+    <span class="n">_add_sample_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;prim&#39;</span><span class="p">,</span> <span class="n">prim</span><span class="p">)</span>
+    
+    <span class="c1"># end members:</span>
+    <span class="c1">#     &quot;origin&quot;</span>
+    <span class="c1">#     &quot;a&quot;, &quot;b&quot;, etc.</span>
+    <span class="n">end_members</span> <span class="o">=</span> <span class="n">_end_members</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">end_members</span><span class="p">:</span>
+        <span class="n">_add_vector_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">end_members</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    
+    <span class="c1"># &quot;formula&quot;</span>
+    <span class="n">formula</span> <span class="o">=</span> <span class="n">_formula</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;formula&#39;</span><span class="p">,</span> <span class="n">formula</span><span class="p">)</span>
+    
+    <span class="c1"># &quot;parametric_formula&quot;</span>
+    <span class="n">parametric_formula</span> <span class="o">=</span> <span class="n">_parameteric_formula</span><span class="p">(</span><span class="n">casm_proj</span><span class="p">,</span> <span class="n">axes_name</span><span class="p">)</span>
+    <span class="n">_add_string_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;parametric_formula&#39;</span><span class="p">,</span> <span class="n">parametric_formula</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">create_sample_process</span></div>
+
+
+<div class="viewcode-block" id="create_clex_sample"><a class="viewcode-back" href="../../mcapi-casm.html#casm_mcapi.create_clex_sample">[docs]</a><span class="k">def</span> <span class="nf">create_clex_sample</span><span class="p">(</span><span class="n">expt</span><span class="p">,</span> <span class="n">casm_proj</span><span class="p">,</span> <span class="n">prim</span><span class="p">,</span> <span class="n">clex_desc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a CASM Cluster Expansion Effective Hamiltonian Sample</span>
+<span class="sd">    </span>
+<span class="sd">    Assumes expt.proj.local_abspath exists and adds files relative to that path.</span>
+<span class="sd">    </span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        expt: mcapi.Experiment object</span>
+<span class="sd">        casm_proj: casm.project.Project object</span>
+<span class="sd">        prim: mcapi.Sample object of type CASM &quot;global_Primitive Crystal Structure&quot;</span>
+<span class="sd">        clex_desc: casm.project.ClexDescription object</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        create_sample_process: mcapi.Process that created the sample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">## Create Sample</span>
+    <span class="n">create_sample_process</span> <span class="o">=</span> <span class="n">expt</span><span class="o">.</span><span class="n">create_process_from_template</span><span class="p">(</span><span class="s1">&#39;global_Cluster Expansion Effective Hamiltonian&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># casm.project.DirectoryStructure instance</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">casm_proj</span><span class="o">.</span><span class="n">dir</span>
+    
+    <span class="c1"># &quot;prim&quot; (sample)</span>
+    <span class="n">_add_sample_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;prim&#39;</span><span class="p">,</span> <span class="n">prim</span><span class="p">)</span>
+    
+    <span class="c1"># &quot;bspecs&quot; (file)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">_add_file</span><span class="p">(</span><span class="n">expt</span><span class="o">.</span><span class="n">proj</span><span class="p">,</span> <span class="nb">dir</span><span class="o">.</span><span class="n">bspecs</span><span class="p">(</span><span class="n">clex_desc</span><span class="p">))</span>
+    <span class="n">_add_file_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;bspecs&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+    
+    <span class="c1"># &quot;eci&quot; (file)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">_add_file</span><span class="p">(</span><span class="n">expt</span><span class="o">.</span><span class="n">proj</span><span class="p">,</span> <span class="nb">dir</span><span class="o">.</span><span class="n">eci</span><span class="p">(</span><span class="n">clex_desc</span><span class="p">))</span>
+    <span class="n">_add_file_measurement</span><span class="p">(</span><span class="n">create_sample_process</span><span class="p">,</span> <span class="s1">&#39;eci&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">create_sample_process</span></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Materials Commons.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
+    </div>
+  </body>
+</html>

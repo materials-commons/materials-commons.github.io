@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Package casm_mcapi &#8212; github::materialscommons.org 1.0beta1 documentation</title>
+    
+    <link rel="stylesheet" href="site-static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="site-static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0beta1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="site-static/jquery.js"></script>
+    <script type="text/javascript" src="site-static/underscore.js"></script>
+    <script type="text/javascript" src="site-static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Package mcapi.cli" href="mcapi-cli.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mcapi-cli.html" title="Package mcapi.cli"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="package-casm-mcapi">
+<h1><a class="toc-backref" href="#id1">Package casm_mcapi</a><a class="headerlink" href="#package-casm-mcapi" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#package-casm-mcapi" id="id1">Package casm_mcapi</a></li>
+</ul>
+</div>
+<span class="target" id="module-casm_mcapi"></span><dl class="function">
+<dt id="casm_mcapi.casm_subcommand">
+<code class="descclassname">casm_mcapi.</code><code class="descname">casm_subcommand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/casm_mcapi/cli.html#casm_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#casm_mcapi.casm_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="casm_mcapi.create_clex_sample">
+<code class="descclassname">casm_mcapi.</code><code class="descname">create_clex_sample</code><span class="sig-paren">(</span><em>expt</em>, <em>casm_proj</em>, <em>prim</em>, <em>clex_desc</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/casm_mcapi/samples.html#create_clex_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#casm_mcapi.create_clex_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CASM Cluster Expansion Effective Hamiltonian Sample</p>
+<p>Assumes expt.proj.local_abspath exists and adds files relative to that path.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>expt: mcapi.Experiment object
+casm_proj: casm.project.Project object
+prim: mcapi.Sample object of type CASM “global_Primitive Crystal Structure”
+clex_desc: casm.project.ClexDescription object</dd>
+<dt>Returns:</dt>
+<dd>create_sample_process: mcapi.Process that created the sample</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="casm_mcapi.create_composition_axes_sample">
+<code class="descclassname">casm_mcapi.</code><code class="descname">create_composition_axes_sample</code><span class="sig-paren">(</span><em>expt</em>, <em>casm_proj</em>, <em>prim</em>, <em>clex_desc</em>, <em>axes_name</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/casm_mcapi/samples.html#create_composition_axes_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#casm_mcapi.create_composition_axes_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CASM Composition Axes Sample</p>
+<p>Assumes expt.proj.local_abspath exists and adds files relative to that path.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>expt: mcapi.Experiment object
+casm_proj: casm.project.Project object
+prim: mcapi.Sample object of type CASM “global_Primitive Crystal Structure”
+clex_desc: casm.project.ClexDescription object
+axes_name: str, naming composition axes</dd>
+<dt>Returns:</dt>
+<dd>create_sample_process: mcapi.Process that created the sample</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="casm_mcapi.create_monte_carlo_process">
+<code class="descclassname">casm_mcapi.</code><code class="descname">create_monte_carlo_process</code><span class="sig-paren">(</span><em>expt</em>, <em>settings_local_abspath</em>, <em>prim</em>, <em>comp_axes</em>, <em>formation_energy_clex</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/casm_mcapi/processes.html#create_monte_carlo_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#casm_mcapi.create_monte_carlo_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CASM Monte Carlo Calculation process and uploads associated files</p>
+<p>Assumes expt.proj.local_abspath exists and adds files relative to that path.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><p class="first">expt: mcapi.Experiment object
+settings_local_abspath: Path to Monte Carlo input setttings file. Results</p>
+<blockquote>
+<div>are expected in the same directory.</div></blockquote>
+<p class="last">prim: Parent Crystal Structure sample
+comp_axes: Composition Axes sample
+formation_energy_clex: Formation energy Clex sample</p>
+</dd>
+<dt>Returns:</dt>
+<dd>proc: mcapi.Process</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="casm_mcapi.create_prim_sample">
+<code class="descclassname">casm_mcapi.</code><code class="descname">create_prim_sample</code><span class="sig-paren">(</span><em>expt</em>, <em>casm_proj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/casm_mcapi/samples.html#create_prim_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#casm_mcapi.create_prim_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CASM Primitive Crystal Structure Sample</p>
+<p>Assumes expt.proj.local_abspath exists and adds files relative to that path.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>expt: mcapi.Experiment object
+casm_proj: casm.project.Project object</dd>
+<dt>Returns:</dt>
+<dd>create_sample_process: mcapi.Process that created the sample</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mcapi-cli.html"
+                        title="previous chapter">Package mcapi.cli</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="site-sources/mcapi-casm.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mcapi-cli.html" title="Package mcapi.cli"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Materials Commons.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
+    </div>
+  </body>
+</html>
