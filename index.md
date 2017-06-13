@@ -5,7 +5,7 @@ layout: default
 Links to various documents for The Materials Commons
 part of the [PRiSMS Center](http://www.prisms-center.org/#/home).
 
-* [The Materials Commonons web app](https://materialscommons.org/)
+* [The Materials Commons web app](https://materialscommons.org/)
 * [The Materials Commons Wiki](https://github.com/materials-commons/materialscommons.org/wiki)
   * [Including - the help pages](https://github.com/materials-commons/materialscommons.org/wiki/Help)
 * [The Python API](./python-api)
