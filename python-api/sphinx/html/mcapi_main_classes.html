@@ -2418,7 +2418,7 @@ get the local_path indicated by this files database path and name.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>parallel</strong> – boolean - flag indicating that the upload should be multithreaded</li>
 <li><strong>verbose</strong> – boolean - flag indicating that trace output should be printed</li>
-<li><strong>limit</strong> – int - maximum size in MB of files that we be upload XXX</li>
+<li><strong>limit</strong> – int - maximum size in MB of files that we be upload</li>
 </ul>
 </td>
 </tr>
@@ -2431,11 +2431,11 @@ get the local_path indicated by this files database path and name.</p>
 that is project.local_path is the directory that contains the directory to be uploaded.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This function achieves a speedup of file upload for large directory trees in two ways: the</p>
+<p class="last">This function achieves a speedup of file upload for large directory trees in two ways:
+the directory structure, in the data base, is created prior to any file upload; the uploads
+are (by default) done in parallel with multi-threading. Creating the directory structure
+in advance removes overhead that would normally occur when files are uploaded one at a time.</p>
 </div>
-<p>directory structure, in the data base, is created prior to any file upload; the uploads are (by default)
-done in parallel with multi-threading. Creating the directory structure in advance removes overhead that
-would normally occur when files are uploaded one at a time.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
