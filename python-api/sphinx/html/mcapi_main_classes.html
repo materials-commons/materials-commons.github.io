@@ -2410,7 +2410,7 @@ get the local_path indicated by this files database path and name.</p>
 <dt id="mcapi.BulkFileUploader">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">BulkFileUploader</code><span class="sig-paren">(</span><em>parallel=True</em>, <em>verbose=False</em>, <em>limit=500</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>A utility for uploading entire directory trees. See <a href="#id1"><span class="problematic" id="id2">:funciton:`bulk_upload`</span></a>.</p>
+<p>A utility for uploading entire directory trees. See <a href="#id1"><span class="problematic" id="id2">:funciton:`mcapi.BuildFileUploader.bulk_upload`</span></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2427,8 +2427,9 @@ get the local_path indicated by this files database path and name.</p>
 <dl class="method">
 <dt id="mcapi.BulkFileUploader.bulk_upload">
 <code class="descname">bulk_upload</code><span class="sig-paren">(</span><em>project</em>, <em>local_directory</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader.bulk_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader.bulk_upload" title="Permalink to this definition">¶</a></dt>
-<dd><p>Upload the entire content of a local_directory using the projects.local_path to the base directory;
-that is project.local_path is the directory that contains the directory to be uploaded.</p>
+<dd><p>Upload the entire content of a local_directory using the <strong>projects.local_path</strong> to the base directory;
+that is <strong>project.local_path</strong> is the directory that contains the directory to be uploaded.
+See <a class="reference internal" href="#mcapi.Project" title="mcapi.Project"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code></a> for a description of local_path.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This function achieves a speedup of file upload for large directory trees in two ways:
@@ -2441,7 +2442,7 @@ in advance removes overhead that would normally occur when files are uploaded on
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>project</strong> – an instance of <code class="xref py py-class docutils literal"><span class="pre">mcaip.mc.Project</span></code></li>
+<li><strong>project</strong> – an instance of <code class="xref py py-class docutils literal"><span class="pre">mcaip.Project</span></code></li>
 <li><strong>local_directory</strong> – the directory path (either absolute or relative) of the directory to be uploaded</li>
 </ul>
 </td>
