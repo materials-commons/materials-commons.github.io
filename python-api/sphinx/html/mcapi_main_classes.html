@@ -66,7 +66,8 @@
 <li><a class="reference internal" href="#directory" id="id7">Directory</a></li>
 <li><a class="reference internal" href="#file" id="id8">File</a></li>
 <li><a class="reference internal" href="#user" id="id9">User</a></li>
-<li><a class="reference internal" href="#deletetally" id="id10">DeleteTally</a></li>
+<li><a class="reference internal" href="#bulkfileuploader" id="id10">BulkFileUploader</a></li>
+<li><a class="reference internal" href="#deletetally" id="id11">DeleteTally</a></li>
 </ul>
 </li>
 </ul>
@@ -2403,8 +2404,41 @@ get the local_path indicated by this files database path and name.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="bulkfileuploader">
+<h2><a class="toc-backref" href="#id10">BulkFileUploader</a><a class="headerlink" href="#bulkfileuploader" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.BulkFileUploader">
+<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">BulkFileUploader</code><span class="sig-paren">(</span><em>parallel=True</em>, <em>verbose=False</em>, <em>limit=500</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mcapi.BulkFileUploader.bulk_upload">
+<code class="descname">bulk_upload</code><span class="sig-paren">(</span><em>project</em>, <em>local_directory</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader.bulk_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader.bulk_upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload the entire content of a local_directory using the projects.local_path to the base directory;
+that is project.local_path is the directory that contains the directory to be uploaded.</p>
+<p>directory structure, in the data base, is created prior to any file upload; the uploads are (by default)
+done in parallel with multi-threading. Creating the directory structure in advance removes overhead that
+would normally occur when files are uploaded one at a time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> – an instance of <code class="xref py py-class docutils literal"><span class="pre">mcaip.mc.Project</span></code></li>
+<li><strong>local_directory</strong> – the directory path (either absolute or relative) of the directory to be uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of files in the directory that failed to upload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="deletetally">
-<h2><a class="toc-backref" href="#id10">DeleteTally</a><a class="headerlink" href="#deletetally" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">DeleteTally</a><a class="headerlink" href="#deletetally" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.DeleteTally">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">DeleteTally</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#DeleteTally"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.DeleteTally" title="Permalink to this definition">¶</a></dt>
@@ -2434,6 +2468,7 @@ Or, in the case of dry_run==True, that would be deleted.</p>
 <li><a class="reference internal" href="#directory">Directory</a></li>
 <li><a class="reference internal" href="#file">File</a></li>
 <li><a class="reference internal" href="#user">User</a></li>
+<li><a class="reference internal" href="#bulkfileuploader">BulkFileUploader</a></li>
 <li><a class="reference internal" href="#deletetally">DeleteTally</a></li>
 </ul>
 </li>

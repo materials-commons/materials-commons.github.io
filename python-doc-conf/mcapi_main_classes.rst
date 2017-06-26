@@ -68,6 +68,14 @@ User
     :undoc-members:
     :show-inheritance:
 
+BulkFileUploader
+----------------
+
+.. autoclass:: mcapi.BulkFileUploader
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 DeleteTally
 -----------
 
