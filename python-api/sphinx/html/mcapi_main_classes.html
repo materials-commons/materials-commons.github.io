@@ -305,7 +305,7 @@ the experiments and from that list, compare id values to find the experiment req
 <dl class="method">
 <dt id="mcapi.Project.get_directory_list">
 <code class="descname">get_directory_list</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_directory_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a directory path, returns a list of all the directoreis on the path.
+<dd><p>Given a directory path, returns a list of all the directories on the path.
 Can fail if the path does not exist.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -399,6 +399,41 @@ If a directory is missing, in the path, it is created.</p>
 </table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.add_directory_list">
+<code class="descname">add_directory_list</code><span class="sig-paren">(</span><em>path_list</em>, <em>top=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_directory_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of directory paths, create all the directories in the path; this is be most efficent
+if the paths in the list are all leaf directories in the desired tree. The intent of this
+method is to support rapid upload of multiple files by pre-creating the needed directories.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path_list</strong> – a list of project directory paths, limit 100;
+see <a class="reference internal" href="#mcapi.Project.add_directory" title="mcapi.Project.add_directory"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code></a> for more information</li>
+<li><strong>top</strong> – (optional) an instance of <code class="xref py py-class docutils literal"><span class="pre">mcaip.Directory</span></code> - if given will be use
+as the top level directory for the request; otherwise the project’s root directory
+is used</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a dictionary, indexed by path of the ids of the created directories,
+see <a class="reference internal" href="#mcapi.Project.get_directory" title="mcapi.Project.get_directory"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.get_directory()</span></code></a> to get a directory by it’s id.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory_path_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/a/b/c&#39;</span><span class="p">,</span> <span class="s1">&#39;/a/b/e&#39;</span><span class="p">,</span> <span class="s1">&#39;/a/f/g&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_id_table</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_list</span><span class="p">(</span><span class="n">directory_path_list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">directory_path_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">id</span> <span class="o">=</span> <span class="n">directory_id_table</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">path</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1071,6 +1106,22 @@ using a ‘create sample’ style process.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="mcapi.Sample.link_files">
+<code class="descname">link_files</code><span class="sig-paren">(</span><em>file_list</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample.link_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample.link_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link files to sample</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_list</strong> – list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.mc.File</span></code> instances</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">instance of <code class="xref py py-class docutils literal"><span class="pre">mcapi.mc.Sample</span></code> - the updated sample</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="mcapi.Sample.update_with_details">
 <code class="descname">update_with_details</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample.update_with_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample.update_with_details" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1199,6 +1250,12 @@ see <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><cod
 <dd><p>list of <a class="reference internal" href="mcapi_measurement.html#mcapi.Measurement" title="mcapi.Measurement"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></a> instances - filled in when measurements are attached</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mcapi.Process.notes">
+<code class="descname">notes</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Process.notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>extra field for convenience; equivalent to description</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mcapi.Process.pretty_print">
 <code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.pretty_print" title="Permalink to this definition">¶</a></dt>
@@ -1254,6 +1311,16 @@ see <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><cod
 <p class="last">Currently not implemented</p>
 </div>
 </dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Process.set_notes">
+<code class="descname">set_notes</code><span class="sig-paren">(</span><em>note_text</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.set_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.set_notes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Process.add_to_notes">
+<code class="descname">add_to_notes</code><span class="sig-paren">(</span><em>note_text</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_to_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_to_notes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.create_samples">
@@ -2076,7 +2143,8 @@ and error is generated.</p>
 <dl class="method">
 <dt id="mcapi.Directory.add_directory_tree">
 <code class="descname">add_directory_tree</code><span class="sig-paren">(</span><em>dir_name</em>, <em>input_dir_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Directory.add_directory_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Directory.add_directory_tree" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given the path to a local directory, create that directory path in the database.</p>
+<dd><p>Given the path to a local directory, create that directory path in the database,
+loading all the files in the tree.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
