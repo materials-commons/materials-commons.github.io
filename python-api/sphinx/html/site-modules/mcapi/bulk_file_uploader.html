@@ -53,7 +53,7 @@
 
 <div class="viewcode-block" id="BulkFileUploader"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.BulkFileUploader">[docs]</a><span class="k">class</span> <span class="nc">BulkFileUploader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    A utility for uploading entire directory trees. See :funciton:`mcapi.BuildFileUploader.bulk_upload`.</span>
+<span class="sd">    A utility for uploading entire directory trees. See :func:`mcapi.BuildFileUploader.bulk_upload`.</span>
 
 <span class="sd">    :param parallel: boolean - flag indicating that the upload should be multithreaded</span>
 <span class="sd">    :param verbose: boolean - flag indicating that trace output should be printed</span>
@@ -69,17 +69,26 @@
 <div class="viewcode-block" id="BulkFileUploader.bulk_upload"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.BulkFileUploader.bulk_upload">[docs]</a>    <span class="k">def</span> <span class="nf">bulk_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">local_directory</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Upload the entire content of a local_directory using the **projects.local_path** to the base directory;</span>
-<span class="sd">        that is **project.local_path** is the directory that contains the directory to be uploaded.</span>
-<span class="sd">        See :class:`mcapi.Project` for a description of local_path.</span>
+<span class="sd">        that is **project.local_path** is the directory that contains the directory to be uploaded, see example.</span>
 
 <span class="sd">        .. note:: This function achieves a speedup of file upload for large directory trees in two ways:</span>
 <span class="sd">            the directory structure, in the data base, is created prior to any file upload; the uploads</span>
 <span class="sd">            are (by default) done in parallel with multi-threading. Creating the directory structure</span>
 <span class="sd">            in advance removes overhead that would normally occur when files are uploaded one at a time.</span>
 
-<span class="sd">        :param project: an instance of :class:`mcaip.Project`</span>
+<span class="sd">        :param project: an instance of :class:`mcapi.Project`</span>
 <span class="sd">        :param local_directory: the directory path (either absolute or relative) of the directory to be uploaded</span>
-<span class="sd">        :return: a list of files in the directory that failed to upload</span>
+<span class="sd">        :return: a list of paths of the files in the directory that it failed to upload</span>
+
+<span class="sd">        &gt;&gt;&gt; project.local_path = &quot;/path/to/Proj&quot;</span>
+<span class="sd">        &gt;&gt;&gt; local_path = project.local_path + &quot;/data_dir&quot; # a local directory</span>
+<span class="sd">        &gt;&gt;&gt; loader=BulkFileUploader()</span>
+<span class="sd">        &gt;&gt;&gt; missed_files = loader.bulk_upload(project, local_path)</span>
+<span class="sd">        &gt;&gt;&gt; if missed_files:</span>
+<span class="sd">        &gt;&gt;&gt;     print &quot;The following files were not uploaded --&quot;</span>
+<span class="sd">        &gt;&gt;&gt;     for path in missed_files:</span>
+<span class="sd">        &gt;&gt;&gt;         print path</span>
+
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os_path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">local_directory</span><span class="p">):</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Attempt to upload directory from path that is not a directory: &quot;</span> <span class="o">+</span> <span class="n">local_directory</span>
