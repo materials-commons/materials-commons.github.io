@@ -51,15 +51,15 @@
 <span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">walk</span>
 
 
-<div class="viewcode-block" id="BulkFileUploader"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.BulkFileUploader">[docs]</a><span class="k">class</span> <span class="nc">BulkFileUploader</span><span class="p">:</span>
+<div class="viewcode-block" id="BulkFileUploader"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.BulkFileUploader">[docs]</a><span class="k">class</span> <span class="nc">BulkFileUploader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A utility for uploading entire directory trees. See :funciton:`bulk_upload`.</span>
 
 <span class="sd">        :param parallel: boolean - flag indicating that the upload should be multithreaded</span>
 <span class="sd">        :param verbose: boolean - flag indicating that trace output should be printed</span>
 <span class="sd">        :param limit: int - maximum size in MB of files that we be upload</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parallel</span> <span class="o">=</span> <span class="n">parallel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
