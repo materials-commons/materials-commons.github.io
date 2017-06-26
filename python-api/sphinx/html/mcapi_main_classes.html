@@ -2414,7 +2414,8 @@ get the local_path indicated by this files database path and name.</p>
 <code class="descname">bulk_upload</code><span class="sig-paren">(</span><em>project</em>, <em>local_directory</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader.bulk_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader.bulk_upload" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload the entire content of a local_directory using the projects.local_path to the base directory;
 that is project.local_path is the directory that contains the directory to be uploaded.</p>
-<p>directory structure, in the data base, is created prior to any file upload; the uploads are (by default)
+<p>..note This function achieves a speedup of file upload for large directory trees in two ways: the
+directory structure, in the data base, is created prior to any file upload; the uploads are (by default)
 done in parallel with multi-threading. Creating the directory structure in advance removes overhead that
 would normally occur when files are uploaded one at a time.</p>
 <table class="docutils field-list" frame="void" rules="none">
