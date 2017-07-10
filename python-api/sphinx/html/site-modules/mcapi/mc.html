@@ -128,7 +128,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_users</span><span class="p">()</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">make_object</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">make_object</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">users</span></div>
 
 
@@ -190,8 +190,11 @@
 <span class="sd">        &gt;&gt;&gt;         print user.fullname, user.email</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">user_can_access_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">results</span></div></div>
+        <span class="n">user_ids</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_access_list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">user_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div></div>
 
 
 <div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
@@ -788,8 +791,50 @@
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">)</span>
         <span class="n">sample</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">sample</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span>
-        <span class="k">return</span> <span class="n">sample</span></div></div>
+        <span class="k">return</span> <span class="n">sample</span></div>
 
+    <span class="c1"># Project - users with access to project</span>
+<div class="viewcode-block" id="Project.get_access_list"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Project.get_access_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_access_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the list of users with access to this project (actually their id&#39;s; which are their e-mail addresses)</span>
+
+<span class="sd">        :return: a list of string - the id/email of each user with access</span>
+
+<span class="sd">        &gt;&gt;&gt; user_id_list = project.get_access_list()</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">users_with_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]:</span>
+                <span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">list</span></div>
+
+<div class="viewcode-block" id="Project.add_user_to_access_list"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Project.add_user_to_access_list">[docs]</a>    <span class="k">def</span> <span class="nf">add_user_to_access_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_user</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Add a user, by user id, to the access list of this project.</span>
+
+<span class="sd">        :param new_user: the user_id of the user to add</span>
+<span class="sd">        :return: string - the user_id, if added; otherwise error message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_user_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_user</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Project.remove_user_from_access_list"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Project.remove_user_from_access_list">[docs]</a>    <span class="k">def</span> <span class="nf">remove_user_from_access_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_to_remote</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Remove a user, by user id, form the access list of this project.</span>
+
+<span class="sd">        :param user_to_remote: the user_id of the user to the user to remove</span>
+<span class="sd">        :return: string - the user_id (in any case)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">remove_user_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user_to_remote</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span></div></div>
 
 <div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1035,7 +1080,7 @@
 <span class="sd">    .. note:: Normally created from the database by a call to :func:`mcapi.Experiment.create_process_from_template`</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">process_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">process_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">does_transform</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_files</span> <span class="o">=</span> <span class="p">[]</span>               <span class="c1">#: list of :class:`mcapi.File` instance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_files</span> <span class="o">=</span> <span class="p">[]</span>              <span class="c1">#: list of :class:`mcapi.File` instance</span>
@@ -1094,17 +1139,6 @@
                 <span class="s1">&#39;experiments&#39;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[]))</span>
-
-        <span class="k">if</span> <span class="n">process_type</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_type</span> <span class="o">=</span> <span class="n">process_type</span>
-        <span class="k">if</span> <span class="n">process_name</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_name</span> <span class="o">=</span> <span class="n">process_name</span>
-        <span class="k">if</span> <span class="n">project_id</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">project_id</span>
-        <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="k">if</span> <span class="n">description</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
 
     <span class="k">def</span> <span class="nf">_process_special_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Process</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_process_special_objects</span><span class="p">()</span>
@@ -2741,6 +2775,48 @@
                     <span class="s1">&#39;experiment_task_processes&#39;</span><span class="p">,</span> <span class="s1">&#39;experiment_tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">,</span> <span class="s1">&#39;reviews&#39;</span><span class="p">,</span> <span class="s1">&#39;experiments&#39;</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span></div>
+
+
+<span class="c1">#</span>
+<span class="c1"># ---</span>
+<span class="c1">#    testing template backend</span>
+<span class="c1"># ---</span>
+<span class="k">def</span> <span class="nf">_create_new_tamplate</span><span class="p">(</span><span class="n">template_data</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="s2">&quot;Create new template&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">_create_new_template</span><span class="p">(</span><span class="n">template_data</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">template</span>
+
+<span class="k">def</span> <span class="nf">_update_template</span><span class="p">(</span><span class="n">template_id</span><span class="p">,</span><span class="n">template_data</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="s2">&quot;Updating template&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">_update_template</span><span class="p">(</span><span class="n">template_id</span><span class="p">,</span><span class="n">template_data</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">template</span>
+
+<span class="c1">#</span>
+<span class="c1"># ---</span>
+<span class="c1">#   testing user profile backend</span>
+<span class="c1"># ---</span>
+<span class="k">def</span> <span class="nf">_storeInUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">_storeInUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+<span class="k">def</span> <span class="nf">_getFromUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">_getFromUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+<span class="k">def</span> <span class="nf">_clearFromUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">_clearFromUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">value</span>
 </pre></div>
 
           </div>

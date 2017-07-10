@@ -686,6 +686,55 @@ Return None if the local file or directory does not match one in the project.</p
 <p>..todo:: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</p>
 </dd></dl>
 
+<dl class="method">
+<dt id="mcapi.Project.get_access_list">
+<code class="descname">get_access_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of users with access to this project (actually their id’s; which are their e-mail addresses)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of string - the id/email of each user with access</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">user_id_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_access_list</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.add_user_to_access_list">
+<code class="descname">add_user_to_access_list</code><span class="sig-paren">(</span><em>new_user</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_user_to_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_user_to_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a user, by user id, to the access list of this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_user</strong> – the user_id of the user to add</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string - the user_id, if added; otherwise error message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.remove_user_from_access_list">
+<code class="descname">remove_user_from_access_list</code><span class="sig-paren">(</span><em>user_to_remote</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.remove_user_from_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.remove_user_from_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a user, by user id, form the access list of this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_to_remote</strong> – the user_id of the user to the user to remove</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string - the user_id (in any case)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1139,7 +1188,7 @@ using a ‘create sample’ style process.</p>
 <h2><a class="toc-backref" href="#id5">Process</a><a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Process">
-<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Process</code><span class="sig-paren">(</span><em>name=None</em>, <em>description=None</em>, <em>project_id=None</em>, <em>process_type=None</em>, <em>process_name=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Process</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
 <p>A Materials Commons Process.</p>
 <div class="admonition note">
