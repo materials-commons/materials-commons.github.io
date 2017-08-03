@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#----
+#
+#  Run using command line: $build-python-api.sh
+#
+#----
+
 pushd () {
     command pushd "$@" > /dev/null
 }
@@ -52,5 +58,7 @@ popd
 # clear current version
 # set current version to new version
 cp -R $PYTHON_API_BUILD_TEMP/_build/html $DOC_BASE/python-api/sphinx/
+
+echo "Copied html site from _build/html to $DOC_BASE/python-api/sphinx/"
 
 

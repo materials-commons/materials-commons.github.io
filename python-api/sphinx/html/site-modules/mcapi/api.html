@@ -228,12 +228,38 @@
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes&quot;</span>
     <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
 
+
 <span class="k">def</span> <span class="nf">get_project_samples</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
         <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples&quot;</span>
     <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
 
+<span class="k">def</span> <span class="nf">users_with_access_to_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/access&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">add_user_access_to_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span><span class="n">user_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;add&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/access&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove_user_access_to_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span><span class="n">user_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/access&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span><span class="n">data</span><span class="p">)</span>
 
 <span class="c1"># Experiment</span>
 
@@ -321,12 +347,23 @@
     <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
 
 
+<span class="k">def</span> <span class="nf">set_notes_for_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">value</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
 <span class="k">def</span> <span class="nf">get_process_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
         <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> \
               <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
     <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
 
 <span class="k">def</span> <span class="nf">get_experiment_process_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
@@ -346,6 +383,7 @@
               <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
     <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
 
+
 <span class="k">def</span> <span class="nf">get_experiment_sample_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
         <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
@@ -353,6 +391,7 @@
               <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> \
               <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
     <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
 
 <span class="k">def</span> <span class="nf">create_samples_in_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
@@ -374,6 +413,22 @@
     <span class="p">}</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> <span class="s2">&quot;/samples&quot;</span>
     <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">link_files_to_sample</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">file_id_list</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">command_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">file_id_list</span><span class="p">:</span>
+        <span class="n">command_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;add&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">id</span>
+        <span class="p">})</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="n">command_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples/&quot;</span> <span class="o">+</span> <span class="n">sample_id</span> <span class="o">+</span> <span class="s2">&quot;/files&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">fetch_sample_details</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -475,20 +530,7 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
         <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
-    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
-
-
-<span class="k">def</span> <span class="nf">user_can_access_project</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">project_title</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
-        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
-    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;access/new&quot;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
-        <span class="s2">&quot;project_id&quot;</span><span class="p">:</span> <span class="n">project_id</span><span class="p">,</span>
-        <span class="s2">&quot;project_name&quot;</span><span class="p">:</span> <span class="n">project_title</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
-
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
 
 <span class="c1"># directory</span>
 
@@ -536,6 +578,17 @@
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
               <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span>
     <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">directory_create_subdirectories_from_path_list</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">path_list</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;paths&#39;</span><span class="p">:</span> <span class="n">path_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
 
 
 <span class="c1"># file</span>
@@ -671,6 +724,50 @@
               <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
               <span class="s2">&quot;/doi/link&quot;</span>
     <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_create_new_template</span><span class="p">(</span><span class="n">template_data</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;templates/&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">template_data</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_update_template</span><span class="p">(</span><span class="n">template_id</span><span class="p">,</span> <span class="n">template_data</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;templates/&quot;</span> <span class="o">+</span> <span class="n">template_id</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">template_data</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># ---</span>
+<span class="c1">#   testing user profile backend</span>
+<span class="c1"># ---</span>
+<span class="k">def</span> <span class="nf">_storeInUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users/&quot;</span> <span class="o">+</span> <span class="n">user_id</span> <span class="o">+</span> <span class="s2">&quot;/profiles/&quot;</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">value</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_getFromUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users/&quot;</span> <span class="o">+</span> <span class="n">user_id</span> <span class="o">+</span> <span class="s2">&quot;/profiles/&quot;</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_clearFromUserProfile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users/&quot;</span> <span class="o">+</span> <span class="n">user_id</span> <span class="o">+</span> <span class="s2">&quot;/profiles/&quot;</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
 </pre></div>
 
           </div>

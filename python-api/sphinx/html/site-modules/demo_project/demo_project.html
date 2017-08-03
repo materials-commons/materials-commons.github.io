@@ -50,18 +50,8 @@
 <span class="kn">from</span> <span class="nn">mcapi</span> <span class="k">import</span> <span class="n">Remote</span><span class="p">,</span> <span class="n">Config</span><span class="p">,</span> <span class="n">set_remote</span>
 
 <div class="viewcode-block" id="DemoProject"><a class="viewcode-back" href="../../demo_project.html#demo_project.demo_project.DemoProject">[docs]</a><span class="k">class</span> <span class="nc">DemoProject</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">data_directory_path</span><span class="p">,</span> <span class="n">apikey</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_directory_path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">build_data_directory</span> <span class="o">=</span> <span class="n">data_directory_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">host</span> <span class="o">+</span> <span class="s1">&#39;/api&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">apikey</span> <span class="o">=</span> <span class="n">apikey</span>
-
-        <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="n">override_config</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">apikey</span><span class="p">,</span>
-            <span class="s2">&quot;mcurl&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
-        <span class="p">})</span>
-        <span class="n">remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-        <span class="n">set_remote</span><span class="p">(</span><span class="n">remote</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">project_name</span> <span class="o">=</span> <span class="s2">&quot;Demo Project&quot;</span>
 
 <div class="viewcode-block" id="DemoProject.does_project_exist"><a class="viewcode-back" href="../../demo_project.html#demo_project.demo_project.DemoProject.does_project_exist">[docs]</a>    <span class="k">def</span> <span class="nf">does_project_exist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

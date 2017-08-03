@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#----
+#
+#  Run using command line: $build-python-casm-and-cli.sh
+#
+#----
+
 pushd () {
     command pushd "$@" > /dev/null
 }
@@ -51,4 +57,5 @@ popd
 # set current version to new version
 cp -R $PYTHON_CASM_BUILD_TEMP/_build/html $DOC_BASE/python-casm-and-cli/sphinx/
 
+echo "Copied html site from _build/html to $DOC_BASE/python-casm-and-cli/sphinx/"
 

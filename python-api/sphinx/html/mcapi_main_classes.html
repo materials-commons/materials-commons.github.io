@@ -66,7 +66,8 @@
 <li><a class="reference internal" href="#directory" id="id7">Directory</a></li>
 <li><a class="reference internal" href="#file" id="id8">File</a></li>
 <li><a class="reference internal" href="#user" id="id9">User</a></li>
-<li><a class="reference internal" href="#deletetally" id="id10">DeleteTally</a></li>
+<li><a class="reference internal" href="#bulkfileuploader" id="id10">BulkFileUploader</a></li>
+<li><a class="reference internal" href="#deletetally" id="id11">DeleteTally</a></li>
 </ul>
 </li>
 </ul>
@@ -305,7 +306,7 @@ the experiments and from that list, compare id values to find the experiment req
 <dl class="method">
 <dt id="mcapi.Project.get_directory_list">
 <code class="descname">get_directory_list</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_directory_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a directory path, returns a list of all the directoreis on the path.
+<dd><p>Given a directory path, returns a list of all the directories on the path.
 Can fail if the path does not exist.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -399,6 +400,41 @@ If a directory is missing, in the path, it is created.</p>
 </table>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.add_directory_list">
+<code class="descname">add_directory_list</code><span class="sig-paren">(</span><em>path_list</em>, <em>top=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_directory_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of directory paths, create all the directories in the path; this is be most efficent
+if the paths in the list are all leaf directories in the desired tree. The intent of this
+method is to support rapid upload of multiple files by pre-creating the needed directories.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path_list</strong> – a list of project directory paths, limit 100;
+see <a class="reference internal" href="#mcapi.Project.add_directory" title="mcapi.Project.add_directory"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code></a> for more information</li>
+<li><strong>top</strong> – (optional) an instance of <code class="xref py py-class docutils literal"><span class="pre">mcaip.Directory</span></code> - if given will be use
+as the top level directory for the request; otherwise the project’s root directory
+is used</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a dictionary, indexed by path of the ids of the created directories,
+see <a class="reference internal" href="#mcapi.Project.get_directory" title="mcapi.Project.get_directory"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.get_directory()</span></code></a> to get a directory by it’s id.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">directory_path_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/a/b/c&#39;</span><span class="p">,</span> <span class="s1">&#39;/a/b/e&#39;</span><span class="p">,</span> <span class="s1">&#39;/a/f/g&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_id_table</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_list</span><span class="p">(</span><span class="n">directory_path_list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">directory_path_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">id</span> <span class="o">=</span> <span class="n">directory_id_table</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">path</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -648,6 +684,55 @@ Return None if the local file or directory does not match one in the project.</p
 </pre></div>
 </div>
 <p>..todo:: determine and document the differance between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.get_access_list">
+<code class="descname">get_access_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.get_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.get_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of users with access to this project (actually their id’s; which are their e-mail addresses)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of string - the id/email of each user with access</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">user_id_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_access_list</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.add_user_to_access_list">
+<code class="descname">add_user_to_access_list</code><span class="sig-paren">(</span><em>new_user</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.add_user_to_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.add_user_to_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a user, by user id, to the access list of this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_user</strong> – the user_id of the user to add</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string - the user_id, if added; otherwise error message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Project.remove_user_from_access_list">
+<code class="descname">remove_user_from_access_list</code><span class="sig-paren">(</span><em>user_to_remote</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project.remove_user_from_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project.remove_user_from_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a user, by user id, form the access list of this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_to_remote</strong> – the user_id of the user to the user to remove</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string - the user_id (in any case)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -1071,6 +1156,22 @@ using a ‘create sample’ style process.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="mcapi.Sample.link_files">
+<code class="descname">link_files</code><span class="sig-paren">(</span><em>file_list</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample.link_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample.link_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link files to sample</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_list</strong> – list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.mc.File</span></code> instances</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">instance of <code class="xref py py-class docutils literal"><span class="pre">mcapi.mc.Sample</span></code> - the updated sample</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="mcapi.Sample.update_with_details">
 <code class="descname">update_with_details</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Sample.update_with_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Sample.update_with_details" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1087,7 +1188,7 @@ using a ‘create sample’ style process.</p>
 <h2><a class="toc-backref" href="#id5">Process</a><a class="headerlink" href="#process" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Process">
-<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Process</code><span class="sig-paren">(</span><em>name=None</em>, <em>description=None</em>, <em>project_id=None</em>, <em>process_type=None</em>, <em>process_name=None</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Process</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
 <p>A Materials Commons Process.</p>
 <div class="admonition note">
@@ -1199,6 +1300,12 @@ see <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><cod
 <dd><p>list of <a class="reference internal" href="mcapi_measurement.html#mcapi.Measurement" title="mcapi.Measurement"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></a> instances - filled in when measurements are attached</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="mcapi.Process.notes">
+<code class="descname">notes</code><em class="property"> = None</em><a class="headerlink" href="#mcapi.Process.notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>extra field for convenience; equivalent to description</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="mcapi.Process.pretty_print">
 <code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.pretty_print" title="Permalink to this definition">¶</a></dt>
@@ -1254,6 +1361,16 @@ see <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><cod
 <p class="last">Currently not implemented</p>
 </div>
 </dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Process.set_notes">
+<code class="descname">set_notes</code><span class="sig-paren">(</span><em>note_text</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.set_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.set_notes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Process.add_to_notes">
+<code class="descname">add_to_notes</code><span class="sig-paren">(</span><em>note_text</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.add_to_notes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.add_to_notes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="mcapi.Process.create_samples">
@@ -1859,7 +1976,7 @@ below at <a class="reference internal" href="#mcapi.Process.set_measurements_for
 <dt id="mcapi.Template">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Template</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Template" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
-<p>A Materials Commons Sample.</p>
+<p>A Materials Commons Template.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Only available through the top level function get_all_templates().</p>
@@ -2076,7 +2193,8 @@ and error is generated.</p>
 <dl class="method">
 <dt id="mcapi.Directory.add_directory_tree">
 <code class="descname">add_directory_tree</code><span class="sig-paren">(</span><em>dir_name</em>, <em>input_dir_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Directory.add_directory_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Directory.add_directory_tree" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given the path to a local directory, create that directory path in the database.</p>
+<dd><p>Given the path to a local directory, create that directory path in the database,
+loading all the files in the tree.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -2335,8 +2453,70 @@ get the local_path indicated by this files database path and name.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="bulkfileuploader">
+<h2><a class="toc-backref" href="#id10">BulkFileUploader</a><a class="headerlink" href="#bulkfileuploader" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.BulkFileUploader">
+<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">BulkFileUploader</code><span class="sig-paren">(</span><em>parallel=True</em>, <em>verbose=False</em>, <em>limit=500</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A utility for uploading entire directory trees.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parallel</strong> – boolean - flag indicating that the upload should be multithreaded</li>
+<li><strong>verbose</strong> – boolean - flag indicating that trace output should be printed</li>
+<li><strong>limit</strong> – int - maximum size in MB of files that we be upload</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="mcapi.BulkFileUploader.bulk_upload">
+<code class="descname">bulk_upload</code><span class="sig-paren">(</span><em>project</em>, <em>local_directory</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/bulk_file_uploader.html#BulkFileUploader.bulk_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.BulkFileUploader.bulk_upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload the entire content of a local_directory using the <strong>projects.local_path</strong> to the base directory;
+that is <strong>project.local_path</strong> is the directory that contains the directory to be uploaded, see example.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function achieves a speedup of file upload for large directory trees in two ways:
+the directory structure, in the data base, is created prior to any file upload; the uploads
+are (by default) done in parallel with multi-threading. Creating the directory structure
+in advance removes overhead that would normally occur when files are uploaded one at a time.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>project</strong> – an instance of <a class="reference internal" href="#mcapi.Project" title="mcapi.Project"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code></a></li>
+<li><strong>local_directory</strong> – the directory path (either absolute or relative) of the directory to be uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of paths of the files in the directory that it failed to upload</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/data_dir&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loader</span><span class="o">=</span><span class="n">BulkFileUploader</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">missed_files</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">bulk_upload</span><span class="p">(</span><span class="n">project</span><span class="p">,</span> <span class="n">local_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">missed_files</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="s2">&quot;The following files were not uploaded --&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">missed_files</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="nb">print</span> <span class="n">path</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="deletetally">
-<h2><a class="toc-backref" href="#id10">DeleteTally</a><a class="headerlink" href="#deletetally" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">DeleteTally</a><a class="headerlink" href="#deletetally" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.DeleteTally">
 <em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">DeleteTally</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#DeleteTally"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.DeleteTally" title="Permalink to this definition">¶</a></dt>
@@ -2366,6 +2546,7 @@ Or, in the case of dry_run==True, that would be deleted.</p>
 <li><a class="reference internal" href="#directory">Directory</a></li>
 <li><a class="reference internal" href="#file">File</a></li>
 <li><a class="reference internal" href="#user">User</a></li>
+<li><a class="reference internal" href="#bulkfileuploader">BulkFileUploader</a></li>
 <li><a class="reference internal" href="#deletetally">DeleteTally</a></li>
 </ul>
 </li>

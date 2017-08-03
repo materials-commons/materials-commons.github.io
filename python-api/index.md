@@ -54,7 +54,7 @@ in the following way:
 * a **Directory** contains
   * a list of **Directory** and **File**
 
-These objects are described in the [API details page](./api) .
+These objects are described in the [API details page](sphinx/html) .
 
 Access to the API
 -----------------
@@ -111,11 +111,11 @@ myExperiment = myProject.create_experiment("Experiment","This is my first Experi
 ```
 
 Where ```create_project``` is a top level function, and ```create_experiment``` is a method
-of **Project**. For complete details see [API details page](./api) .
+of **Project**. For complete details see [API details page](sphinx/html) .
 
 More Code Examples
 ------------------
 
-(coming soon - next release is end of June 2017)
+(coming soon - next release is end of July 2017)
 
 Return to [top level page](../)
