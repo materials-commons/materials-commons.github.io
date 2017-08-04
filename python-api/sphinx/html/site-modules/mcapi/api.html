@@ -347,6 +347,13 @@
     <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
 
 
+<span class="k">def</span> <span class="nf">delete_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
+
 <span class="k">def</span> <span class="nf">set_notes_for_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
         <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
@@ -679,6 +686,20 @@
               <span class="s2">&quot;/datasets&quot;</span>
     <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
 
+<span class="k">def</span> <span class="nf">add_process_to_dataset</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;processes&#39;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">process_id</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">check_statue_of_doi_server</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
