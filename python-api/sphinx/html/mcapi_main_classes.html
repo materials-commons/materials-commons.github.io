@@ -988,7 +988,7 @@ determine the objects to be deleted.</p>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Currently not implemented</p>
+<p class="last">Currently not implemented - as an alternative delete the Experiment and rebuild it</p>
 </div>
 </dd></dl>
 
@@ -1368,7 +1368,8 @@ see <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><cod
 <dd><p>Delete this process. The process is removed from the database leaving only the local copy.
 A process can not be deleted if any of the follwoing are true: (1) it is not a leaf node in
 the workflow, (2) is is in a dataset, (3) it is a create sample (type) process with one or
-more output samples. For an alternative: see <cite>:func:`mcapi.Experiment.delete_workflow()</cite></p>
+more output samples.
+For an alternative: see <a class="reference internal" href="#mcapi.Experiment.deleteAllProcessesAndSamples" title="mcapi.Experiment.deleteAllProcessesAndSamples"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Experiment.deleteAllProcessesAndSamples()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
