@@ -2,7 +2,7 @@ Documentation for Python API
 ============================
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 4
     :caption: Contents:
 
     mcapi-cli

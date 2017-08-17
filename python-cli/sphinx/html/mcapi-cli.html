@@ -55,10 +55,300 @@
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#package-mcapi-cli" id="id1">Package mcapi.cli</a></li>
+<li><a class="reference internal" href="#package-mcapi-cli" id="id1">Package mcapi.cli</a><ul>
+<li><a class="reference internal" href="#submodules" id="id2">Submodules</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.clone" id="id3">mcapi.cli.clone module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.down" id="id4">mcapi.cli.down module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.expt" id="id5">mcapi.cli.expt module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.functions" id="id6">mcapi.cli.functions module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.init" id="id7">mcapi.cli.init module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.list_objects" id="id8">mcapi.cli.list_objects module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.ls" id="id9">mcapi.cli.ls module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.parser" id="id10">mcapi.cli.parser module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.proc" id="id11">mcapi.cli.proc module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.proj" id="id12">mcapi.cli.proj module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.remote" id="id13">mcapi.cli.remote module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.samp" id="id14">mcapi.cli.samp module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.templates" id="id15">mcapi.cli.templates module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.up" id="id16">mcapi.cli.up module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli" id="id17">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<span class="target" id="module-mcapi.cli"></span><dl class="class">
+<div class="section" id="submodules">
+<h2><a class="toc-backref" href="#id2">Submodules</a><a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mcapi.cli.clone">
+<span id="mcapi-cli-clone-module"></span><h2><a class="toc-backref" href="#id3">mcapi.cli.clone module</a><a class="headerlink" href="#module-mcapi.cli.clone" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.clone.clone_subcommand">
+<code class="descclassname">mcapi.cli.clone.</code><code class="descname">clone_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/clone.html#clone_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.clone.clone_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘Clone’ a project, i.e. set the local directory tree where files should
+be uploaded/downloaded. Creates a ‘.mc/config.json’.</p>
+<p>mc clone &lt;projid&gt; [–remote &lt;remotename&gt;]</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.down">
+<span id="mcapi-cli-down-module"></span><h2><a class="toc-backref" href="#id4">mcapi.cli.down module</a><a class="headerlink" href="#module-mcapi.cli.down" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.down.down_subcommand">
+<code class="descclassname">mcapi.cli.down.</code><code class="descname">down_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/down.html#down_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.down.down_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>download files from Materials Commons</p>
+<p>mc down [-r] [&lt;pathspec&gt; …]</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.expt">
+<span id="mcapi-cli-expt-module"></span><h2><a class="toc-backref" href="#id5">mcapi.cli.expt module</a><a class="headerlink" href="#module-mcapi.cli.expt" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.expt.expt_subcommand">
+<code class="descclassname">mcapi.cli.expt.</code><code class="descname">expt_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/expt.html#expt_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.expt.expt_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>List, create, delete, and modify experiments</p>
+<p>mc expt
+mc expt [-c] &lt;exptname&gt;</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.functions">
+<span id="mcapi-cli-functions-module"></span><h2><a class="toc-backref" href="#id6">mcapi.cli.functions module</a><a class="headerlink" href="#module-mcapi.cli.functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.functions.make_local_project">
+<code class="descclassname">mcapi.cli.functions.</code><code class="descname">make_local_project</code><span class="sig-paren">(</span><em>path=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/functions.html#make_local_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.functions.make_local_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mcapi.cli.functions.make_local_expt">
+<code class="descclassname">mcapi.cli.functions.</code><code class="descname">make_local_expt</code><span class="sig-paren">(</span><em>proj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/functions.html#make_local_expt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.functions.make_local_expt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mcapi.cli.functions.set_current_experiment">
+<code class="descclassname">mcapi.cli.functions.</code><code class="descname">set_current_experiment</code><span class="sig-paren">(</span><em>proj</em>, <em>expt</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/functions.html#set_current_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.functions.set_current_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.init">
+<span id="mcapi-cli-init-module"></span><h2><a class="toc-backref" href="#id7">mcapi.cli.init module</a><a class="headerlink" href="#module-mcapi.cli.init" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.init.init_subcommand">
+<code class="descclassname">mcapi.cli.init.</code><code class="descname">init_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/init.html#init_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.init.init_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new project</p>
+<p>mc init [–remote &lt;remote&gt;] [–desc &lt;description&gt;]</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.list_objects">
+<span id="mcapi-cli-list-objects-module"></span><h2><a class="toc-backref" href="#id8">mcapi.cli.list_objects module</a><a class="headerlink" href="#module-mcapi.cli.list_objects" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.list_objects.output_method">
+<code class="descclassname">mcapi.cli.list_objects.</code><code class="descname">output_method</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#output_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.list_objects.output_method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="mcapi.cli.list_objects.ListObjects">
+<em class="property">class </em><code class="descclassname">mcapi.cli.list_objects.</code><code class="descname">ListObjects</code><span class="sig-paren">(</span><em>cmdname</em>, <em>typename</em>, <em>typename_plural</em>, <em>desc=None</em>, <em>requires_project=True</em>, <em>proj_member=True</em>, <em>expt_member=True</em>, <em>list_columns=[]</em>, <em>headers=None</em>, <em>deletable=False</em>, <em>has_owner=True</em>, <em>creatable=False</em>, <em>custom_options=False</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#ListObjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.list_objects.ListObjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base class to create an ‘mc X’ command for listing objects of type X.</p>
+<dl class="docutils">
+<dt>Expects derived class members:</dt>
+<dd>get_all_from_experiment(self, expt)
+get_all_from_project(self, proj)
+list_data(self, obj)</dd>
+<dt>Optional derived class members:</dt>
+<dd>create(self, args)
+add_create_options(self, parser)</dd>
+</dl>
+<p>See ProcSubcommand for an example.</p>
+<dl class="method">
+<dt id="mcapi.cli.list_objects.ListObjects.get_all_objects">
+<code class="descname">get_all_objects</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#ListObjects.get_all_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.list_objects.ListObjects.get_all_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.list_objects.ListObjects.output">
+<code class="descname">output</code><span class="sig-paren">(</span><em>out</em>, <em>args</em>, <em>objects</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#ListObjects.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.list_objects.ListObjects.output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.ls">
+<span id="mcapi-cli-ls-module"></span><h2><a class="toc-backref" href="#id9">mcapi.cli.ls module</a><a class="headerlink" href="#module-mcapi.cli.ls" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.ls.ls_subcommand">
+<code class="descclassname">mcapi.cli.ls.</code><code class="descname">ls_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/ls.html#ls_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.ls.ls_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘ls’ a project directory to see local and remote files and directories.</p>
+<p>mc ls [&lt;pathspec&gt; …]</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.parser">
+<span id="mcapi-cli-parser-module"></span><h2><a class="toc-backref" href="#id10">mcapi.cli.parser module</a><a class="headerlink" href="#module-mcapi.cli.parser" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.cli.parser.CommonsCLIParser">
+<em class="property">class </em><code class="descclassname">mcapi.cli.parser.</code><code class="descname">CommonsCLIParser</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/parser.html#CommonsCLIParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.parser.CommonsCLIParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="mcapi.cli.parser.CommonsCLIParser.standard_usage">
+<code class="descname">standard_usage</code><em class="property"> = [{‘subcommand’: &lt;function remote_subcommand&gt;, ‘name’: ‘remote’, ‘desc’: ‘List servers’}, {‘subcommand’: &lt;mcapi.cli.proj.ProjSubcommand object&gt;, ‘name’: ‘proj’, ‘desc’: ‘List projects’}, {‘subcommand’: &lt;function expt_subcommand&gt;, ‘name’: ‘expt’, ‘desc’: ‘List, create, delete, and modify experiments’}, {‘subcommand’: &lt;function init_subcommand&gt;, ‘name’: ‘init’, ‘desc’: ‘Initialize a new project’}, {‘subcommand’: &lt;function clone_subcommand&gt;, ‘name’: ‘clone’, ‘desc’: ‘Clone an existing project’}, {‘subcommand’: &lt;function ls_subcommand&gt;, ‘name’: ‘ls’, ‘desc’: ‘List local and remote directory contents’}, {‘subcommand’: &lt;function up_subcommand&gt;, ‘name’: ‘up’, ‘desc’: ‘Upload files’}, {‘subcommand’: &lt;function down_subcommand&gt;, ‘name’: ‘down’, ‘desc’: ‘Download files’}, {‘subcommand’: &lt;mcapi.cli.templates.TemplatesSubcommand object&gt;, ‘name’: ‘templates’, ‘desc’: ‘List process templates’}, {‘subcommand’: &lt;mcapi.cli.proc.ProcSubcommand object&gt;, ‘name’: ‘proc’, ‘desc’: ‘List processes’}, {‘subcommand’: &lt;mcapi.cli.samp.SampSubcommand object&gt;, ‘name’: ‘samp’, ‘desc’: ‘List samples’}]</em><a class="headerlink" href="#mcapi.cli.parser.CommonsCLIParser.standard_usage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.proc">
+<span id="mcapi-cli-proc-module"></span><h2><a class="toc-backref" href="#id11">mcapi.cli.proc module</a><a class="headerlink" href="#module-mcapi.cli.proc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.cli.proc.ProcSubcommand">
+<em class="property">class </em><code class="descclassname">mcapi.cli.proc.</code><code class="descname">ProcSubcommand</code><a class="reference internal" href="site-modules/mcapi/cli/proc.html#ProcSubcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proc.ProcSubcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcapi.cli.list_objects.ListObjects" title="mcapi.cli.list_objects.ListObjects"><code class="xref py py-class docutils literal"><span class="pre">mcapi.cli.list_objects.ListObjects</span></code></a></p>
+<dl class="method">
+<dt id="mcapi.cli.proc.ProcSubcommand.get_all_from_experiment">
+<code class="descname">get_all_from_experiment</code><span class="sig-paren">(</span><em>expt</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proc.html#ProcSubcommand.get_all_from_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proc.ProcSubcommand.get_all_from_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proc.ProcSubcommand.get_all_from_project">
+<code class="descname">get_all_from_project</code><span class="sig-paren">(</span><em>proj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proc.html#ProcSubcommand.get_all_from_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proc.ProcSubcommand.get_all_from_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proc.ProcSubcommand.list_data">
+<code class="descname">list_data</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proc.html#ProcSubcommand.list_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proc.ProcSubcommand.list_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proc.ProcSubcommand.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>objects</em>, <em>dry_run</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proc.html#ProcSubcommand.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proc.ProcSubcommand.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.proj">
+<span id="mcapi-cli-proj-module"></span><h2><a class="toc-backref" href="#id12">mcapi.cli.proj module</a><a class="headerlink" href="#module-mcapi.cli.proj" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.cli.proj.ProjSubcommand">
+<em class="property">class </em><code class="descclassname">mcapi.cli.proj.</code><code class="descname">ProjSubcommand</code><a class="reference internal" href="site-modules/mcapi/cli/proj.html#ProjSubcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proj.ProjSubcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcapi.cli.list_objects.ListObjects" title="mcapi.cli.list_objects.ListObjects"><code class="xref py py-class docutils literal"><span class="pre">mcapi.cli.list_objects.ListObjects</span></code></a></p>
+<dl class="method">
+<dt id="mcapi.cli.proj.ProjSubcommand.get_all_from_experiment">
+<code class="descname">get_all_from_experiment</code><span class="sig-paren">(</span><em>expt</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proj.html#ProjSubcommand.get_all_from_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proj.ProjSubcommand.get_all_from_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proj.ProjSubcommand.get_all_from_project">
+<code class="descname">get_all_from_project</code><span class="sig-paren">(</span><em>proj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proj.html#ProjSubcommand.get_all_from_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proj.ProjSubcommand.get_all_from_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proj.ProjSubcommand.get_all">
+<code class="descname">get_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proj.html#ProjSubcommand.get_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proj.ProjSubcommand.get_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proj.ProjSubcommand.list_data">
+<code class="descname">list_data</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proj.html#ProjSubcommand.list_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proj.ProjSubcommand.list_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.proj.ProjSubcommand.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>objects</em>, <em>dry_run</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/proj.html#ProjSubcommand.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.proj.ProjSubcommand.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.remote">
+<span id="mcapi-cli-remote-module"></span><h2><a class="toc-backref" href="#id13">mcapi.cli.remote module</a><a class="headerlink" href="#module-mcapi.cli.remote" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.remote.remote_subcommand">
+<code class="descclassname">mcapi.cli.remote.</code><code class="descname">remote_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/remote.html#remote_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.remote.remote_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show / modify list of known Materials Commons servers.</p>
+<dl class="docutils">
+<dt>Goal:</dt>
+<dd>mc remote [-v]
+mc remote add 
+mc remote remove</dd>
+<dt>Current:</dt>
+<dd>mc remote</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.samp">
+<span id="mcapi-cli-samp-module"></span><h2><a class="toc-backref" href="#id14">mcapi.cli.samp module</a><a class="headerlink" href="#module-mcapi.cli.samp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.cli.samp.SampSubcommand">
+<em class="property">class </em><code class="descclassname">mcapi.cli.samp.</code><code class="descname">SampSubcommand</code><a class="reference internal" href="site-modules/mcapi/cli/samp.html#SampSubcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.samp.SampSubcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcapi.cli.list_objects.ListObjects" title="mcapi.cli.list_objects.ListObjects"><code class="xref py py-class docutils literal"><span class="pre">mcapi.cli.list_objects.ListObjects</span></code></a></p>
+<dl class="method">
+<dt id="mcapi.cli.samp.SampSubcommand.get_all_from_experiment">
+<code class="descname">get_all_from_experiment</code><span class="sig-paren">(</span><em>expt</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/samp.html#SampSubcommand.get_all_from_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.samp.SampSubcommand.get_all_from_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.samp.SampSubcommand.get_all_from_project">
+<code class="descname">get_all_from_project</code><span class="sig-paren">(</span><em>proj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/samp.html#SampSubcommand.get_all_from_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.samp.SampSubcommand.get_all_from_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.samp.SampSubcommand.list_data">
+<code class="descname">list_data</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/samp.html#SampSubcommand.list_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.samp.SampSubcommand.list_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.samp.SampSubcommand.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>objects</em>, <em>dry_run</em>, <em>out=&lt;open file ‘&lt;stdout&gt;’</em>, <em>mode ‘w’&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/samp.html#SampSubcommand.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.samp.SampSubcommand.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.templates">
+<span id="mcapi-cli-templates-module"></span><h2><a class="toc-backref" href="#id15">mcapi.cli.templates module</a><a class="headerlink" href="#module-mcapi.cli.templates" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mcapi.cli.templates.TemplatesSubcommand">
+<em class="property">class </em><code class="descclassname">mcapi.cli.templates.</code><code class="descname">TemplatesSubcommand</code><a class="reference internal" href="site-modules/mcapi/cli/templates.html#TemplatesSubcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.templates.TemplatesSubcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mcapi.cli.list_objects.ListObjects" title="mcapi.cli.list_objects.ListObjects"><code class="xref py py-class docutils literal"><span class="pre">mcapi.cli.list_objects.ListObjects</span></code></a></p>
+<dl class="method">
+<dt id="mcapi.cli.templates.TemplatesSubcommand.get_all_from_experiment">
+<code class="descname">get_all_from_experiment</code><span class="sig-paren">(</span><em>expt</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/templates.html#TemplatesSubcommand.get_all_from_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.templates.TemplatesSubcommand.get_all_from_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.templates.TemplatesSubcommand.get_all_from_project">
+<code class="descname">get_all_from_project</code><span class="sig-paren">(</span><em>proj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/templates.html#TemplatesSubcommand.get_all_from_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.templates.TemplatesSubcommand.get_all_from_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.templates.TemplatesSubcommand.get_all">
+<code class="descname">get_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/templates.html#TemplatesSubcommand.get_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.templates.TemplatesSubcommand.get_all" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.templates.TemplatesSubcommand.list_data">
+<code class="descname">list_data</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/templates.html#TemplatesSubcommand.list_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.templates.TemplatesSubcommand.list_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli.up">
+<span id="mcapi-cli-up-module"></span><h2><a class="toc-backref" href="#id16">mcapi.cli.up module</a><a class="headerlink" href="#module-mcapi.cli.up" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mcapi.cli.up.up_subcommand">
+<code class="descclassname">mcapi.cli.up.</code><code class="descname">up_subcommand</code><span class="sig-paren">(</span><em>argv=[‘/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/sphinx/__main__.py’, ‘-b’, ‘html’, ‘-d’, ‘_build/doctrees’, ‘.’, ‘_build/html’]</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/up.html#up_subcommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.up.up_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>upload files to Materials Commons</p>
+<p>mc up [-r] [&lt;pathspec&gt; …]</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mcapi.cli">
+<span id="module-contents"></span><h2><a class="toc-backref" href="#id17">Module contents</a><a class="headerlink" href="#module-mcapi.cli" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
 <dt id="mcapi.cli.CommonsCLIParser">
 <em class="property">class </em><code class="descclassname">mcapi.cli.</code><code class="descname">CommonsCLIParser</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/parser.html#CommonsCLIParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.CommonsCLIParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
@@ -69,6 +359,34 @@
 
 </dd></dl>
 
+<dl class="class">
+<dt id="mcapi.cli.ListObjects">
+<em class="property">class </em><code class="descclassname">mcapi.cli.</code><code class="descname">ListObjects</code><span class="sig-paren">(</span><em>cmdname</em>, <em>typename</em>, <em>typename_plural</em>, <em>desc=None</em>, <em>requires_project=True</em>, <em>proj_member=True</em>, <em>expt_member=True</em>, <em>list_columns=[]</em>, <em>headers=None</em>, <em>deletable=False</em>, <em>has_owner=True</em>, <em>creatable=False</em>, <em>custom_options=False</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#ListObjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.ListObjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base class to create an ‘mc X’ command for listing objects of type X.</p>
+<dl class="docutils">
+<dt>Expects derived class members:</dt>
+<dd>get_all_from_experiment(self, expt)
+get_all_from_project(self, proj)
+list_data(self, obj)</dd>
+<dt>Optional derived class members:</dt>
+<dd>create(self, args)
+add_create_options(self, parser)</dd>
+</dl>
+<p>See ProcSubcommand for an example.</p>
+<dl class="method">
+<dt id="mcapi.cli.ListObjects.get_all_objects">
+<code class="descname">get_all_objects</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#ListObjects.get_all_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.ListObjects.get_all_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mcapi.cli.ListObjects.output">
+<code class="descname">output</code><span class="sig-paren">(</span><em>out</em>, <em>args</em>, <em>objects</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/cli/list_objects.html#ListObjects.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.cli.ListObjects.output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -77,6 +395,29 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Package mcapi.cli</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.clone">mcapi.cli.clone module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.down">mcapi.cli.down module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.expt">mcapi.cli.expt module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.functions">mcapi.cli.functions module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.init">mcapi.cli.init module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.list_objects">mcapi.cli.list_objects module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.ls">mcapi.cli.ls module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.parser">mcapi.cli.parser module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.proc">mcapi.cli.proc module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.proj">mcapi.cli.proj module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.remote">mcapi.cli.remote module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.samp">mcapi.cli.samp module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.templates">mcapi.cli.templates module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli.up">mcapi.cli.up module</a></li>
+<li><a class="reference internal" href="#module-mcapi.cli">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Documentation for Python API</a></p>
