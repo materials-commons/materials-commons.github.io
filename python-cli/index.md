@@ -10,5 +10,5 @@ Materials Commons CASM Tools and CLI
 
 (In Preparation...)
 
-This page will provide an overview to the Materials Commons CASM Tools and CLI
+This page will provide an overview to the Materials Commons Command Line Interface (CLI)
 and link to detailed usage and documentation information.
