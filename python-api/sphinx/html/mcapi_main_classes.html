@@ -76,7 +76,7 @@
 <h2><a class="toc-backref" href="#id2">Project</a><a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Project">
-<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=”</em>, <em>description=”</em>, <em>remote_url=”</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=’‘</em>, <em>description=’‘</em>, <em>remote_url=’‘</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
 <p>A Materials Commons Project.</p>
 <div class="admonition note">
@@ -975,6 +975,25 @@ determine the objects to be deleted.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="mcapi.Experiment.deleteAllProcessesAndSamples">
+<code class="descname">deleteAllProcessesAndSamples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.deleteAllProcessesAndSamples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.deleteAllProcessesAndSamples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all processes and samples in the experiment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">DeleteTally</span></code> instance, which lists the id’s of the processes and samples deleted</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented - as an alternative delete the Experiment
+and rebuild it; see <a class="reference internal" href="#mcapi.Experiment.delete" title="mcapi.Experiment.delete"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Experiment.delete()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="mcapi.Experiment.get_sample_by_id">
 <code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Experiment.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Experiment.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a Sample value from a sample id value.</p>
@@ -1339,6 +1358,24 @@ see <a class="reference internal" href="#mcapi.Sample" title="mcapi.Sample"><cod
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_name</strong> – new name - string</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the updated <a class="reference internal" href="#mcapi.Process" title="mcapi.Process"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mcapi.Process.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Process.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Process.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete this process. The process is removed from the database leaving only the local copy.
+A process can not be deleted if any of the follwoing are true: (1) it is not a leaf node in
+the workflow, (2) is is in a dataset, (3) it is a create sample (type) process with one or
+more output samples.
+For an alternative: see <a class="reference internal" href="#mcapi.Experiment.deleteAllProcessesAndSamples" title="mcapi.Experiment.deleteAllProcessesAndSamples"><code class="xref py py-func docutils literal"><span class="pre">mcapi.Experiment.deleteAllProcessesAndSamples()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">id - the id of the process deleted or None (if the process was not deleted)</td>
 </tr>
 </tbody>
 </table>
@@ -2032,7 +2069,7 @@ the only way in which Template is used, for now.</p>
 <h2><a class="toc-backref" href="#id7">Directory</a><a class="headerlink" href="#directory" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="mcapi.Directory">
-<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=”</em>, <em>path=”</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Directory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">mcapi.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=’‘</em>, <em>path=’‘</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site-modules/mcapi/mc.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mcapi.Directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mcapi.base.MCObject</span></code></p>
 <p>A Materials Commons Directory.</p>
 <div class="admonition note">

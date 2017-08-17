@@ -954,7 +954,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delete_tally</span> <span class="o">=</span> <span class="n">DeleteTally</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-    <span class="c1"># Experiment - Process-related methods - basic: create, get_by_id, get_all (in context)</span>
+    <span class="c1"># Experiment - Process-related methods</span>
 
 <div class="viewcode-block" id="Experiment.create_process_from_template"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Experiment.create_process_from_template">[docs]</a>    <span class="k">def</span> <span class="nf">create_process_from_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1012,7 +1012,20 @@
             <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">processes</span></div>
 
-    <span class="c1"># Experiment - Process-related methods - basic: create, get_by_id, get_all (in context)</span>
+<div class="viewcode-block" id="Experiment.deleteAllProcessesAndSamples"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Experiment.deleteAllProcessesAndSamples">[docs]</a>    <span class="k">def</span> <span class="nf">deleteAllProcessesAndSamples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete all processes and samples in the experiment.</span>
+
+<span class="sd">        :return: a :class:`DeleteTally` instance, which lists the id&#39;s of the processes and samples deleted</span>
+
+<span class="sd">        .. note:: Currently not implemented - as an alternative delete the Experiment</span>
+<span class="sd">            and rebuild it; see :func:`mcapi.Experiment.delete()`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Experiment.deleteAllProcessesAndSamples()</span>
+        <span class="k">pass</span></div>
+
+    <span class="c1"># Experiment - Sample-related methods</span>
 
 <div class="viewcode-block" id="Experiment.get_sample_by_id"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Experiment.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1248,6 +1261,34 @@
         <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">process</span></div>
+
+<div class="viewcode-block" id="Process.delete"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Process.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete this process. The process is removed from the database leaving only the local copy.</span>
+<span class="sd">        A process can not be deleted if any of the follwoing are true: (1) it is not a leaf node in</span>
+<span class="sd">        the workflow, (2) is is in a dataset, (3) it is a create sample (type) process with one or</span>
+<span class="sd">        more output samples.</span>
+<span class="sd">        For an alternative: see :func:`mcapi.Experiment.deleteAllProcessesAndSamples()`</span>
+
+<span class="sd">        :return: id - the id of the process deleted or None (if the process was not deleted)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">process_with_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decorate_with_output_samples</span><span class="p">()</span>
+        <span class="n">process_create</span> <span class="o">=</span> \
+            <span class="p">(</span><span class="n">process_with_outputs</span><span class="o">.</span><span class="n">process_type</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span>
+             <span class="ow">or</span> <span class="n">process_with_outputs</span><span class="o">.</span><span class="n">template_name</span> <span class="o">==</span> <span class="s1">&#39;Sectioning&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">process_create</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">process_with_outputs</span><span class="o">.</span><span class="n">output_samples</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">delete_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">results</span></div>
 
 <div class="viewcode-block" id="Process.put"><a class="viewcode-back" href="../../mcapi_main_classes.html#mcapi.Process.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2764,17 +2805,18 @@
 <span class="sd">    Or, in the case of dry_run==True, that would be deleted.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;project&#39;</span><span class="p">):</span>
-            <span class="c1"># for delete project</span>
-            <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">,</span> <span class="s1">&#39;processes&#39;</span><span class="p">,</span> <span class="s1">&#39;datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="s1">&#39;experiments&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># for delete experiment</span>
-            <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;best_measure_history&#39;</span><span class="p">,</span> <span class="s1">&#39;processes&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">,</span> <span class="s1">&#39;experiment_notes&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;experiment_task_processes&#39;</span><span class="p">,</span> <span class="s1">&#39;experiment_tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">,</span> <span class="s1">&#39;reviews&#39;</span><span class="p">,</span> <span class="s1">&#39;experiments&#39;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span></div>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;project&#39;</span><span class="p">):</span>
+                <span class="c1"># for delete project</span>
+                <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">,</span> <span class="s1">&#39;processes&#39;</span><span class="p">,</span> <span class="s1">&#39;datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="s1">&#39;experiments&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># for delete experiment</span>
+                <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;best_measure_history&#39;</span><span class="p">,</span> <span class="s1">&#39;processes&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">,</span> <span class="s1">&#39;experiment_notes&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;experiment_task_processes&#39;</span><span class="p">,</span> <span class="s1">&#39;experiment_tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">,</span> <span class="s1">&#39;reviews&#39;</span><span class="p">,</span> <span class="s1">&#39;experiments&#39;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span></div>
 
 
 <span class="c1">#</span>
