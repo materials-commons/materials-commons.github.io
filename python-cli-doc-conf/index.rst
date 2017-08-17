@@ -6,7 +6,6 @@ Documentation for Python API
     :caption: Contents:
 
     mcapi-cli
-    mcapi-casm
 
 Indices and tables
 ==================
