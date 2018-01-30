@@ -1,0 +1,126 @@
+cli package
+===========
+
+Submodules
+----------
+
+cli\.clone module
+-----------------
+
+.. automodule:: cli.clone
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.down module
+----------------
+
+.. automodule:: cli.down
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.expt module
+----------------
+
+.. automodule:: cli.expt
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.functions module
+---------------------
+
+.. automodule:: cli.functions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.init module
+----------------
+
+.. automodule:: cli.init
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.list\_objects module
+-------------------------
+
+.. automodule:: cli.list_objects
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.ls module
+--------------
+
+.. automodule:: cli.ls
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.parser module
+------------------
+
+.. automodule:: cli.parser
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.proc module
+----------------
+
+.. automodule:: cli.proc
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.proj module
+----------------
+
+.. automodule:: cli.proj
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.remote module
+------------------
+
+.. automodule:: cli.remote
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.samp module
+----------------
+
+.. automodule:: cli.samp
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.templates module
+---------------------
+
+.. automodule:: cli.templates
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cli\.up module
+--------------
+
+.. automodule:: cli.up
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: cli
+    :members:
+    :undoc-members:
+    :show-inheritance:
