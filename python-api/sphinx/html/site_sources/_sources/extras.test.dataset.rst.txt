@@ -1,0 +1,18 @@
+extras\.test\.dataset package
+=============================
+
+Submodules
+----------
+
+.. toctree::
+
+   extras.test.dataset.dataset
+   extras.test.dataset.public_connection
+
+Module contents
+---------------
+
+.. automodule:: extras.test.dataset
+    :members:
+    :undoc-members:
+    :show-inheritance:

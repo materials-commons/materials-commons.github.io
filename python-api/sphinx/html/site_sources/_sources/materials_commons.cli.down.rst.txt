@@ -1,0 +1,7 @@
+materials\_commons\.cli\.down module
+====================================
+
+.. automodule:: materials_commons.cli.down
+    :members:
+    :undoc-members:
+    :show-inheritance:

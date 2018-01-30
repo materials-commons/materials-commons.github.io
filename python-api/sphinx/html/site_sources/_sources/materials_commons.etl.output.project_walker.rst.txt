@@ -1,0 +1,7 @@
+materials\_commons\.etl\.output\.project\_walker module
+=======================================================
+
+.. automodule:: materials_commons.etl.output.project_walker
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+materials\_commons\.api\.base module
+====================================
+
+.. automodule:: materials_commons.api.base
+    :members:
+    :undoc-members:
+    :show-inheritance:

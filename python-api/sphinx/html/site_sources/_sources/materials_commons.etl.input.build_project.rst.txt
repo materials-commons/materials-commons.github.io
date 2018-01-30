@@ -1,0 +1,7 @@
+materials\_commons\.etl\.input\.build\_project module
+=====================================================
+
+.. automodule:: materials_commons.etl.input.build_project
+    :members:
+    :undoc-members:
+    :show-inheritance:

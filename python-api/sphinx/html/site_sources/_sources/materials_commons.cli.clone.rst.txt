@@ -1,0 +1,7 @@
+materials\_commons\.cli\.clone module
+=====================================
+
+.. automodule:: materials_commons.cli.clone
+    :members:
+    :undoc-members:
+    :show-inheritance:

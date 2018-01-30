@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_sample\_create module
+=======================================================
+
+.. automodule:: extras.test.mcapi_tests.test_sample_create
+    :members:
+    :undoc-members:
+    :show-inheritance:

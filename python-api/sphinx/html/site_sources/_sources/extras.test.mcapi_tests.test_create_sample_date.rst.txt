@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_create\_sample\_date module
+=============================================================
+
+.. automodule:: extras.test.mcapi_tests.test_create_sample_date
+    :members:
+    :undoc-members:
+    :show-inheritance:

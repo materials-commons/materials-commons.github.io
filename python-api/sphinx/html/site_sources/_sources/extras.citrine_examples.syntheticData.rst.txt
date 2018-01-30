@@ -1,0 +1,7 @@
+extras\.citrine\_examples\.syntheticData module
+===============================================
+
+.. automodule:: extras.citrine_examples.syntheticData
+    :members:
+    :undoc-members:
+    :show-inheritance:

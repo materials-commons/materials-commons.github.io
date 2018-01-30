@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_add\_simple\_measurements module
+==================================================================
+
+.. automodule:: extras.test.mcapi_tests.test_add_simple_measurements
+    :members:
+    :undoc-members:
+    :show-inheritance:

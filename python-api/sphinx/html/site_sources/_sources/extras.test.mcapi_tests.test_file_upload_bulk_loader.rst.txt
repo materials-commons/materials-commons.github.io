@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_file\_upload\_bulk\_loader module
+===================================================================
+
+.. automodule:: extras.test.mcapi_tests.test_file_upload_bulk_loader
+    :members:
+    :undoc-members:
+    :show-inheritance:
