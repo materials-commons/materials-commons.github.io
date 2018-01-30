@@ -1,0 +1,7 @@
+materials\_commons\.etl\.output\.meta\_data\_verify module
+==========================================================
+
+.. automodule:: materials_commons.etl.output.meta_data_verify
+    :members:
+    :undoc-members:
+    :show-inheritance:

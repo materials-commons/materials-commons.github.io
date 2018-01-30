@@ -2,110 +2,392 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Documentation for Python API &#8212; github::materialscommons.org 1.0beta1 documentation</title>
-    
-    <link rel="stylesheet" href="site-static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="site-static/pygments.css" type="text/css" />
-    
+    <title>Material Commons Python API &#8212; Materials Commons Python API 0.7.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0beta1',
+        VERSION:     '0.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
         SOURCELINK_SUFFIX: '.txt'
       };
     </script>
-    <script type="text/javascript" src="site-static/jquery.js"></script>
-    <script type="text/javascript" src="site-static/underscore.js"></script>
-    <script type="text/javascript" src="site-static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Package - mcapi" href="mcapi.html" /> 
+    <link rel="next" title="materials_commons package" href="materials_commons.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
   <body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="mcapi.html" title="Package - mcapi"
-             accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="documentation-for-python-api">
-<h1>Documentation for Python API<a class="headerlink" href="#documentation-for-python-api" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="material-commons-python-api">
+<h1>Material Commons Python API<a class="headerlink" href="#material-commons-python-api" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="mcapi.html">Package - mcapi</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="top_level_functions.html">Package mcapi - Top Level Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="top_level_functions.html#project-functions">Project functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="top_level_functions.html#user-function">User function</a></li>
-<li class="toctree-l3"><a class="reference internal" href="top_level_functions.html#template-funciton">Template funciton</a></li>
-<li class="toctree-l3"><a class="reference internal" href="top_level_functions.html#configure-url-functions">Configure URL Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.html">materials_commons package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.html">materials_commons.api package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.html#module-contents">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="mcapi_main_classes.html">Package mcapi - main classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#project">Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#experiment">Experiment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#sample">Sample</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#process">Process</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#template">Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#directory">Directory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#file">File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#user">User</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#bulkfileuploader">BulkFileUploader</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_main_classes.html#deletetally">DeleteTally</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="mcapi_property.html">Package mcapi - property classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#property">Property</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#measuredproperty">MeasuredProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#numberproperty">NumberProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#stringproperty">StringProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#booleanproperty">BooleanProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#dateproperty">DateProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#selectionproperty">SelectionProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#functionproperty">FunctionProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#compositionproperty">CompositionProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#vectorproperty">VectorProperty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_property.html#matrixproperty">MatrixProperty</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="mcapi_measurement.html">Package mcapi - measurement classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurement">Measurement</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementcomposition">MeasurementComposition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementstring">MeasurementString</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementmatrix">MeasurementMatrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementvector">MeasurementVector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementselection">MeasurementSelection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementfile">MeasurementFile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementinteger">MeasurementInteger</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementboolean">MeasurementBoolean</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mcapi_measurement.html#measurementsample">MeasurementSample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="demo_project.html">Package - demo_project</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="demo_project.html#class-demo-project">Class - Demo_Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.html#module-contents">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.html">materials_commons.api package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.api.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.api.html">materials_commons.api.api module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.base.html">materials_commons.api.base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.bulk_file_uploader.html">materials_commons.api.bulk_file_uploader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.config.html">materials_commons.api.config module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.mc.html">materials_commons.api.mc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.mc_object_utility.html">materials_commons.api.mc_object_utility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.measurement.html">materials_commons.api.measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.property_util.html">materials_commons.api.property_util module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.remote.html">materials_commons.api.remote module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.version.html">materials_commons.api.version module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.api.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.api.html">materials_commons.api.api module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.base.html">materials_commons.api.base module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.bulk_file_uploader.html">materials_commons.api.bulk_file_uploader module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.config.html">materials_commons.api.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.mc.html">materials_commons.api.mc module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.mc_object_utility.html">materials_commons.api.mc_object_utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.measurement.html">materials_commons.api.measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.property_util.html">materials_commons.api.property_util module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.remote.html">materials_commons.api.remote module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.api.version.html">materials_commons.api.version module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.clone.html">materials_commons.cli.clone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.down.html">materials_commons.cli.down module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.expt.html">materials_commons.cli.expt module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.init.html">materials_commons.cli.init module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.ls.html">materials_commons.cli.ls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.proc.html">materials_commons.cli.proc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.proj.html">materials_commons.cli.proj module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.remote.html">materials_commons.cli.remote module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.samp.html">materials_commons.cli.samp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.templates.html">materials_commons.cli.templates module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.up.html">materials_commons.cli.up module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.cli.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.clone.html">materials_commons.cli.clone module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.down.html">materials_commons.cli.down module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.expt.html">materials_commons.cli.expt module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.init.html">materials_commons.cli.init module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.ls.html">materials_commons.cli.ls module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.proc.html">materials_commons.cli.proc module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.proj.html">materials_commons.cli.proj module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.remote.html">materials_commons.cli.remote module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.samp.html">materials_commons.cli.samp module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.templates.html">materials_commons.cli.templates module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.cli.up.html">materials_commons.cli.up module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.html">materials_commons.etl package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.template2xlsx.html">materials_commons.etl.template2xlsx module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.test.html">materials_commons.etl.test module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.xlsxt.html">materials_commons.etl.xlsxt module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.common.html">materials_commons.etl.common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.common.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.common.util.html">materials_commons.etl.common.util module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.common.worksheet_data.html">materials_commons.etl.common.worksheet_data module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.common.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.common.util.html">materials_commons.etl.common.util module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.common.worksheet_data.html">materials_commons.etl.common.worksheet_data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.input.html">materials_commons.etl.input package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.input.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.input.build_project.html">materials_commons.etl.input.build_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.input.main.html">materials_commons.etl.input.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.input.metadata.html">materials_commons.etl.input.metadata module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.input.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.input.build_project.html">materials_commons.etl.input.build_project module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.input.main.html">materials_commons.etl.input.main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.input.metadata.html">materials_commons.etl.input.metadata module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.output.html">materials_commons.etl.output package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.output.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.output.compare_spreadsheets.html">materials_commons.etl.output.compare_spreadsheets module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.output.extract_spreadsheet.html">materials_commons.etl.output.extract_spreadsheet module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.output.meta_data_verify.html">materials_commons.etl.output.meta_data_verify module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.etl.output.project_walker.html">materials_commons.etl.output.project_walker module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="materials_commons.etl.output.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.output.compare_spreadsheets.html">materials_commons.etl.output.compare_spreadsheets module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.output.extract_spreadsheet.html">materials_commons.etl.output.extract_spreadsheet module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.output.meta_data_verify.html">materials_commons.etl.output.meta_data_verify module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.output.project_walker.html">materials_commons.etl.output.project_walker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.template2xlsx.html">materials_commons.etl.template2xlsx module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.test.html">materials_commons.etl.test module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials_commons.etl.xlsxt.html">materials_commons.etl.xlsxt module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.html">extras package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.html">extras.citrine_examples package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.citrine_examples.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.connect.html">extras.citrine_examples.connect module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.experiments_to_pif_list.html">extras.citrine_examples.experiments_to_pif_list module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.get_dataset.html">extras.citrine_examples.get_dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.mcpif.html">extras.citrine_examples.mcpif module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.setup.html">extras.citrine_examples.setup module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.sketch_script.html">extras.citrine_examples.sketch_script module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.syntheticData.html">extras.citrine_examples.syntheticData module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.citrine_examples.utilities.html">extras.citrine_examples.utilities module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.citrine_examples.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.connect.html">extras.citrine_examples.connect module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.experiments_to_pif_list.html">extras.citrine_examples.experiments_to_pif_list module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.get_dataset.html">extras.citrine_examples.get_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.mcpif.html">extras.citrine_examples.mcpif module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.setup.html">extras.citrine_examples.setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.sketch_script.html">extras.citrine_examples.sketch_script module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.syntheticData.html">extras.citrine_examples.syntheticData module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.citrine_examples.utilities.html">extras.citrine_examples.utilities module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.demo_project.html">extras.demo_project package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.demo_project.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.demo_project.demo_project.html">extras.demo_project.demo_project module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.demo_project.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.demo_project.demo_project.html">extras.demo_project.demo_project module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.html">extras.test package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.test_modules.html">extras.test.test_modules module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.test_workflow.html">extras.test.test_workflow module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.html">extras.test.cli_tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.cli_tests.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.cli_test_functions.html">extras.test.cli_tests.cli_test_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_clone.html">extras.test.cli_tests.test_mc_clone module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_down.html">extras.test.cli_tests.test_mc_down module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_expt.html">extras.test.cli_tests.test_mc_expt module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_init.html">extras.test.cli_tests.test_mc_init module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_ls.html">extras.test.cli_tests.test_mc_ls module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_proc.html">extras.test.cli_tests.test_mc_proc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_proj.html">extras.test.cli_tests.test_mc_proj module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_remote.html">extras.test.cli_tests.test_mc_remote module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_samp.html">extras.test.cli_tests.test_mc_samp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_templates.html">extras.test.cli_tests.test_mc_templates module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.cli_tests.test_mc_up.html">extras.test.cli_tests.test_mc_up module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.cli_tests.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.cli_test_functions.html">extras.test.cli_tests.cli_test_functions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_clone.html">extras.test.cli_tests.test_mc_clone module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_down.html">extras.test.cli_tests.test_mc_down module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_expt.html">extras.test.cli_tests.test_mc_expt module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_init.html">extras.test.cli_tests.test_mc_init module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_ls.html">extras.test.cli_tests.test_mc_ls module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_proc.html">extras.test.cli_tests.test_mc_proc module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_proj.html">extras.test.cli_tests.test_mc_proj module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_remote.html">extras.test.cli_tests.test_mc_remote module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_samp.html">extras.test.cli_tests.test_mc_samp module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_templates.html">extras.test.cli_tests.test_mc_templates module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.cli_tests.test_mc_up.html">extras.test.cli_tests.test_mc_up module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.dataset.html">extras.test.dataset package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.dataset.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.dataset.dataset.html">extras.test.dataset.dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.dataset.public_connection.html">extras.test.dataset.public_connection module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.dataset.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.dataset.dataset.html">extras.test.dataset.dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.dataset.public_connection.html">extras.test.dataset.public_connection module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.dataset_tests.html">extras.test.dataset_tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.dataset_tests.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.dataset_tests.test_dataset.html">extras.test.dataset_tests.test_dataset module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.dataset_tests.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.dataset_tests.test_dataset.html">extras.test.dataset_tests.test_dataset module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.end_to_end_tests.html">extras.test.end_to_end_tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.end_to_end_tests.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.end_to_end_tests.test_create_and_measure.html">extras.test.end_to_end_tests.test_create_and_measure module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.end_to_end_tests.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.end_to_end_tests.test_create_and_measure.html">extras.test.end_to_end_tests.test_create_and_measure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.html">extras.test.mcapi_tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.mcapi_tests.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.assert_helper.html">extras.test.mcapi_tests.assert_helper module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_file_measurement.html">extras.test.mcapi_tests.test_add_file_measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_file_to_directory.html">extras.test.mcapi_tests.test_add_file_to_directory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_file_to_process.html">extras.test.mcapi_tests.test_add_file_to_process module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_list_measurement.html">extras.test.mcapi_tests.test_add_list_measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_matrix_measurement.html">extras.test.mcapi_tests.test_add_matrix_measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_selection_measurement.html">extras.test.mcapi_tests.test_add_selection_measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_simple_measurements.html">extras.test.mcapi_tests.test_add_simple_measurements module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_add_vector_measurement.html">extras.test.mcapi_tests.test_add_vector_measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_comment.html">extras.test.mcapi_tests.test_comment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_config.html">extras.test.mcapi_tests.test_config module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_create_sample_date.html">extras.test.mcapi_tests.test_create_sample_date module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_add_paths.html">extras.test.mcapi_tests.test_directory_add_paths module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_create_from_list.html">extras.test.mcapi_tests.test_directory_create_from_list module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_move.html">extras.test.mcapi_tests.test_directory_move module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_path_create.html">extras.test.mcapi_tests.test_directory_path_create module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_rename.html">extras.test.mcapi_tests.test_directory_rename module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_use_paths.html">extras.test.mcapi_tests.test_directory_use_paths module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_doi.html">extras.test.mcapi_tests.test_doi module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_experiment.html">extras.test.mcapi_tests.test_experiment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_experiment_delete.html">extras.test.mcapi_tests.test_experiment_delete module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_directory_upload.html">extras.test.mcapi_tests.test_file_directory_upload module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_download.html">extras.test.mcapi_tests.test_file_download module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_move.html">extras.test.mcapi_tests.test_file_move module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_rename.html">extras.test.mcapi_tests.test_file_rename module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_upload.html">extras.test.mcapi_tests.test_file_upload module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_upload_bulk_loader.html">extras.test.mcapi_tests.test_file_upload_bulk_loader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_file_with_sample.html">extras.test.mcapi_tests.test_file_with_sample module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_composition.html">extras.test.mcapi_tests.test_measurement_composition module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_epma_setup.html">extras.test.mcapi_tests.test_measurement_epma_setup module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_multiple_input.html">extras.test.mcapi_tests.test_measurement_multiple_input module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_primitive_crystal_structure.html">extras.test.mcapi_tests.test_measurement_primitive_crystal_structure module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_setup.html">extras.test.mcapi_tests.test_measurement_setup module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_object_create.html">extras.test.mcapi_tests.test_object_create module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_object_create_input_examples.html">extras.test.mcapi_tests.test_object_create_input_examples module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_process.html">extras.test.mcapi_tests.test_process module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_process_delete.html">extras.test.mcapi_tests.test_process_delete module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_process_setup.html">extras.test.mcapi_tests.test_process_setup module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_project.html">extras.test.mcapi_tests.test_project module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_project_delete.html">extras.test.mcapi_tests.test_project_delete module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_project_rename.html">extras.test.mcapi_tests.test_project_rename module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_remote.html">extras.test.mcapi_tests.test_remote module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_sample_associate.html">extras.test.mcapi_tests.test_sample_associate module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_sample_create.html">extras.test.mcapi_tests.test_sample_create module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_set_measurement.html">extras.test.mcapi_tests.test_set_measurement module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_template_access.html">extras.test.mcapi_tests.test_template_access module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_user.html">extras.test.mcapi_tests.test_user module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_user_profile.html">extras.test.mcapi_tests.test_user_profile module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extras.test.mcapi_tests.test_user_project_access.html">extras.test.mcapi_tests.test_user_project_access module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extras.test.mcapi_tests.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.assert_helper.html">extras.test.mcapi_tests.assert_helper module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_file_measurement.html">extras.test.mcapi_tests.test_add_file_measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_file_to_directory.html">extras.test.mcapi_tests.test_add_file_to_directory module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_file_to_process.html">extras.test.mcapi_tests.test_add_file_to_process module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_list_measurement.html">extras.test.mcapi_tests.test_add_list_measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_matrix_measurement.html">extras.test.mcapi_tests.test_add_matrix_measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_selection_measurement.html">extras.test.mcapi_tests.test_add_selection_measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_simple_measurements.html">extras.test.mcapi_tests.test_add_simple_measurements module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_add_vector_measurement.html">extras.test.mcapi_tests.test_add_vector_measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_comment.html">extras.test.mcapi_tests.test_comment module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_config.html">extras.test.mcapi_tests.test_config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_create_sample_date.html">extras.test.mcapi_tests.test_create_sample_date module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_add_paths.html">extras.test.mcapi_tests.test_directory_add_paths module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_create_from_list.html">extras.test.mcapi_tests.test_directory_create_from_list module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_move.html">extras.test.mcapi_tests.test_directory_move module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_path_create.html">extras.test.mcapi_tests.test_directory_path_create module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_rename.html">extras.test.mcapi_tests.test_directory_rename module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_directory_use_paths.html">extras.test.mcapi_tests.test_directory_use_paths module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_doi.html">extras.test.mcapi_tests.test_doi module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_experiment.html">extras.test.mcapi_tests.test_experiment module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_experiment_delete.html">extras.test.mcapi_tests.test_experiment_delete module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_directory_upload.html">extras.test.mcapi_tests.test_file_directory_upload module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_download.html">extras.test.mcapi_tests.test_file_download module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_move.html">extras.test.mcapi_tests.test_file_move module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_rename.html">extras.test.mcapi_tests.test_file_rename module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_upload.html">extras.test.mcapi_tests.test_file_upload module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_upload_bulk_loader.html">extras.test.mcapi_tests.test_file_upload_bulk_loader module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_file_with_sample.html">extras.test.mcapi_tests.test_file_with_sample module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_composition.html">extras.test.mcapi_tests.test_measurement_composition module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_epma_setup.html">extras.test.mcapi_tests.test_measurement_epma_setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_multiple_input.html">extras.test.mcapi_tests.test_measurement_multiple_input module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_primitive_crystal_structure.html">extras.test.mcapi_tests.test_measurement_primitive_crystal_structure module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_measurement_setup.html">extras.test.mcapi_tests.test_measurement_setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_object_create.html">extras.test.mcapi_tests.test_object_create module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_object_create_input_examples.html">extras.test.mcapi_tests.test_object_create_input_examples module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_process.html">extras.test.mcapi_tests.test_process module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_process_delete.html">extras.test.mcapi_tests.test_process_delete module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_process_setup.html">extras.test.mcapi_tests.test_process_setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_project.html">extras.test.mcapi_tests.test_project module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_project_delete.html">extras.test.mcapi_tests.test_project_delete module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_project_rename.html">extras.test.mcapi_tests.test_project_rename module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_remote.html">extras.test.mcapi_tests.test_remote module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_sample_associate.html">extras.test.mcapi_tests.test_sample_associate module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_sample_create.html">extras.test.mcapi_tests.test_sample_create module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_set_measurement.html">extras.test.mcapi_tests.test_set_measurement module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_template_access.html">extras.test.mcapi_tests.test_template_access module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_user.html">extras.test.mcapi_tests.test_user module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_user_profile.html">extras.test.mcapi_tests.test_user_profile module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.mcapi_tests.test_user_project_access.html">extras.test.mcapi_tests.test_user_project_access module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.test_modules.html">extras.test.test_modules module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras.test.test_workflow.html">extras.test.test_workflow module</a></li>
 </ul>
 </div>
 </div>
@@ -123,23 +405,14 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Documentation for Python API</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="materials_commons.html" title="next chapter">materials_commons package</a></li>
+  </ul></li>
 </ul>
-
-  <h4>Next topic</h4>
-  <p class="topless"><a href="mcapi.html"
-                        title="next chapter">Package - mcapi</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="site-sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+</div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -154,21 +427,20 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="mcapi.html" title="Package - mcapi"
-             >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">github::materialscommons.org 1.0beta1 documentation</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2018, Materials Commons Development Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Materials Commons.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
-    </div>
+
+    
+
+    
   </body>
 </html>

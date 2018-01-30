@@ -1,0 +1,7 @@
+materials\_commons\.cli\.remote module
+======================================
+
+.. automodule:: materials_commons.cli.remote
+    :members:
+    :undoc-members:
+    :show-inheritance:

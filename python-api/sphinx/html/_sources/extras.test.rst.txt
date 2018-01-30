@@ -1,0 +1,18 @@
+extras\.test package
+====================
+
+Submodules
+----------
+
+.. toctree::
+
+   extras.test.test_modules
+   extras.test.test_workflow
+
+Module contents
+---------------
+
+.. automodule:: extras.test
+    :members:
+    :undoc-members:
+    :show-inheritance:

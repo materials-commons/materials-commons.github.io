@@ -1,0 +1,30 @@
+materials\_commons\.cli package
+===============================
+
+Submodules
+----------
+
+.. toctree::
+
+   materials_commons.cli.clone
+   materials_commons.cli.down
+   materials_commons.cli.expt
+   materials_commons.cli.functions
+   materials_commons.cli.init
+   materials_commons.cli.list_objects
+   materials_commons.cli.ls
+   materials_commons.cli.parser
+   materials_commons.cli.proc
+   materials_commons.cli.proj
+   materials_commons.cli.remote
+   materials_commons.cli.samp
+   materials_commons.cli.templates
+   materials_commons.cli.up
+
+Module contents
+---------------
+
+.. automodule:: materials_commons.cli
+    :members:
+    :undoc-members:
+    :show-inheritance:

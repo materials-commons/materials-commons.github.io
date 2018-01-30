@@ -1,0 +1,19 @@
+materials\_commons\.etl\.input package
+======================================
+
+Submodules
+----------
+
+.. toctree::
+
+   materials_commons.etl.input.build_project
+   materials_commons.etl.input.main
+   materials_commons.etl.input.metadata
+
+Module contents
+---------------
+
+.. automodule:: materials_commons.etl.input
+    :members:
+    :undoc-members:
+    :show-inheritance:

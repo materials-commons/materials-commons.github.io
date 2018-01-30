@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_directory\_add\_paths module
+==============================================================
+
+.. automodule:: extras.test.mcapi_tests.test_directory_add_paths
+    :members:
+    :undoc-members:
+    :show-inheritance:

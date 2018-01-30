@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_process\_setup module
+=======================================================
+
+.. automodule:: extras.test.mcapi_tests.test_process_setup
+    :members:
+    :undoc-members:
+    :show-inheritance:

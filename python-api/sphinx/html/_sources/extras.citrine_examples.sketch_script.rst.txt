@@ -1,0 +1,7 @@
+extras\.citrine\_examples\.sketch\_script module
+================================================
+
+.. automodule:: extras.citrine_examples.sketch_script
+    :members:
+    :undoc-members:
+    :show-inheritance:

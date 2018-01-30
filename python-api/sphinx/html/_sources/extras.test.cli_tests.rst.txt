@@ -1,0 +1,28 @@
+extras\.test\.cli\_tests package
+================================
+
+Submodules
+----------
+
+.. toctree::
+
+   extras.test.cli_tests.cli_test_functions
+   extras.test.cli_tests.test_mc_clone
+   extras.test.cli_tests.test_mc_down
+   extras.test.cli_tests.test_mc_expt
+   extras.test.cli_tests.test_mc_init
+   extras.test.cli_tests.test_mc_ls
+   extras.test.cli_tests.test_mc_proc
+   extras.test.cli_tests.test_mc_proj
+   extras.test.cli_tests.test_mc_remote
+   extras.test.cli_tests.test_mc_samp
+   extras.test.cli_tests.test_mc_templates
+   extras.test.cli_tests.test_mc_up
+
+Module contents
+---------------
+
+.. automodule:: extras.test.cli_tests
+    :members:
+    :undoc-members:
+    :show-inheritance:

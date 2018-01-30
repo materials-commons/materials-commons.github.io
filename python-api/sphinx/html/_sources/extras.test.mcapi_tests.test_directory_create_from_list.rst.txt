@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_directory\_create\_from\_list module
+======================================================================
+
+.. automodule:: extras.test.mcapi_tests.test_directory_create_from_list
+    :members:
+    :undoc-members:
+    :show-inheritance:

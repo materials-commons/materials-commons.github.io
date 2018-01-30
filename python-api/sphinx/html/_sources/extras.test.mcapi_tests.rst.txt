@@ -1,0 +1,65 @@
+extras\.test\.mcapi\_tests package
+==================================
+
+Submodules
+----------
+
+.. toctree::
+
+   extras.test.mcapi_tests.assert_helper
+   extras.test.mcapi_tests.test_add_file_measurement
+   extras.test.mcapi_tests.test_add_file_to_directory
+   extras.test.mcapi_tests.test_add_file_to_process
+   extras.test.mcapi_tests.test_add_list_measurement
+   extras.test.mcapi_tests.test_add_matrix_measurement
+   extras.test.mcapi_tests.test_add_selection_measurement
+   extras.test.mcapi_tests.test_add_simple_measurements
+   extras.test.mcapi_tests.test_add_vector_measurement
+   extras.test.mcapi_tests.test_comment
+   extras.test.mcapi_tests.test_config
+   extras.test.mcapi_tests.test_create_sample_date
+   extras.test.mcapi_tests.test_directory_add_paths
+   extras.test.mcapi_tests.test_directory_create_from_list
+   extras.test.mcapi_tests.test_directory_move
+   extras.test.mcapi_tests.test_directory_path_create
+   extras.test.mcapi_tests.test_directory_rename
+   extras.test.mcapi_tests.test_directory_use_paths
+   extras.test.mcapi_tests.test_doi
+   extras.test.mcapi_tests.test_experiment
+   extras.test.mcapi_tests.test_experiment_delete
+   extras.test.mcapi_tests.test_file_directory_upload
+   extras.test.mcapi_tests.test_file_download
+   extras.test.mcapi_tests.test_file_move
+   extras.test.mcapi_tests.test_file_rename
+   extras.test.mcapi_tests.test_file_upload
+   extras.test.mcapi_tests.test_file_upload_bulk_loader
+   extras.test.mcapi_tests.test_file_with_sample
+   extras.test.mcapi_tests.test_measurement_composition
+   extras.test.mcapi_tests.test_measurement_epma_setup
+   extras.test.mcapi_tests.test_measurement_multiple_input
+   extras.test.mcapi_tests.test_measurement_primitive_crystal_structure
+   extras.test.mcapi_tests.test_measurement_setup
+   extras.test.mcapi_tests.test_object_create
+   extras.test.mcapi_tests.test_object_create_input_examples
+   extras.test.mcapi_tests.test_process
+   extras.test.mcapi_tests.test_process_delete
+   extras.test.mcapi_tests.test_process_setup
+   extras.test.mcapi_tests.test_project
+   extras.test.mcapi_tests.test_project_delete
+   extras.test.mcapi_tests.test_project_rename
+   extras.test.mcapi_tests.test_remote
+   extras.test.mcapi_tests.test_sample_associate
+   extras.test.mcapi_tests.test_sample_create
+   extras.test.mcapi_tests.test_set_measurement
+   extras.test.mcapi_tests.test_template_access
+   extras.test.mcapi_tests.test_user
+   extras.test.mcapi_tests.test_user_profile
+   extras.test.mcapi_tests.test_user_project_access
+
+Module contents
+---------------
+
+.. automodule:: extras.test.mcapi_tests
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+extras\.test\.mcapi\_tests\.test\_user\_profile module
+======================================================
+
+.. automodule:: extras.test.mcapi_tests.test_user_profile
+    :members:
+    :undoc-members:
+    :show-inheritance:

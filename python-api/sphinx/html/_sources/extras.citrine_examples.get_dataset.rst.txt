@@ -1,0 +1,7 @@
+extras\.citrine\_examples\.get\_dataset module
+==============================================
+
+.. automodule:: extras.citrine_examples.get_dataset
+    :members:
+    :undoc-members:
+    :show-inheritance:
