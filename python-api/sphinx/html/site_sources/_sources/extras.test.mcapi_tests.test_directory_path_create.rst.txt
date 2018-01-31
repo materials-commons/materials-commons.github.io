@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_directory\_path\_create module
-================================================================
-
-.. automodule:: extras.test.mcapi_tests.test_directory_path_create
-    :members:
-    :undoc-members:
-    :show-inheritance:

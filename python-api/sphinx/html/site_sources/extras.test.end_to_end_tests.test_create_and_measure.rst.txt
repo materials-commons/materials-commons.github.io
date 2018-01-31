@@ -1,7 +1,0 @@
-extras\.test\.end\_to\_end\_tests\.test\_create\_and\_measure module
-====================================================================
-
-.. automodule:: extras.test.end_to_end_tests.test_create_and_measure
-    :members:
-    :undoc-members:
-    :show-inheritance:

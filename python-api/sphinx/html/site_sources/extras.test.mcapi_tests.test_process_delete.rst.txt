@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_process\_delete module
-========================================================
-
-.. automodule:: extras.test.mcapi_tests.test_process_delete
-    :members:
-    :undoc-members:
-    :show-inheritance:

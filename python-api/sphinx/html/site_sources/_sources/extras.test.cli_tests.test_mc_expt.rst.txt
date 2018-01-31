@@ -1,7 +1,0 @@
-extras\.test\.cli\_tests\.test\_mc\_expt module
-===============================================
-
-.. automodule:: extras.test.cli_tests.test_mc_expt
-    :members:
-    :undoc-members:
-    :show-inheritance:

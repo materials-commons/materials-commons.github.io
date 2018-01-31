@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_file\_upload module
-=====================================================
-
-.. automodule:: extras.test.mcapi_tests.test_file_upload
-    :members:
-    :undoc-members:
-    :show-inheritance:

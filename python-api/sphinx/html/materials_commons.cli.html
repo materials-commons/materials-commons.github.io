@@ -23,9 +23,7 @@
     <script type="text/javascript" src="site_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="materials_commons.cli.clone module" href="materials_commons.cli.clone.html" />
-    <link rel="prev" title="materials_commons.api.version module" href="materials_commons.api.version.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,13 +33,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="materials_commons.cli.clone.html" title="materials_commons.cli.clone module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="materials_commons.api.version.html" title="materials_commons.api.version module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="materials_commons.html" accesskey="U">materials_commons package</a> &#187;</li> 
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -73,8 +67,46 @@
 </ul>
 </div>
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-materials_commons.cli">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-materials_commons.cli" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="materials_commons.cli.CommonsCLIParser">
+<em class="property">class </em><code class="descclassname">materials_commons.cli.</code><code class="descname">CommonsCLIParser</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/cli/parser.html#CommonsCLIParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.CommonsCLIParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="materials_commons.cli.CommonsCLIParser.standard_usage">
+<code class="descname">standard_usage</code><em class="property"> = [{'name': 'remote', 'desc': 'List servers', 'subcommand': &lt;function remote_subcommand&gt;}, {'name': 'proj', 'desc': 'List projects', 'subcommand': &lt;materials_commons.cli.proj.ProjSubcommand object&gt;}, {'name': 'expt', 'desc': 'List, create, delete, and modify experiments', 'subcommand': &lt;function expt_subcommand&gt;}, {'name': 'init', 'desc': 'Initialize a new project', 'subcommand': &lt;function init_subcommand&gt;}, {'name': 'clone', 'desc': 'Clone an existing project', 'subcommand': &lt;function clone_subcommand&gt;}, {'name': 'ls', 'desc': 'List local and remote directory contents', 'subcommand': &lt;function ls_subcommand&gt;}, {'name': 'up', 'desc': 'Upload files', 'subcommand': &lt;function up_subcommand&gt;}, {'name': 'down', 'desc': 'Download files', 'subcommand': &lt;function down_subcommand&gt;}, {'name': 'templates', 'desc': 'List process templates', 'subcommand': &lt;materials_commons.cli.templates.TemplatesSubcommand object&gt;}, {'name': 'proc', 'desc': 'List processes', 'subcommand': &lt;materials_commons.cli.proc.ProcSubcommand object&gt;}, {'name': 'samp', 'desc': 'List samples', 'subcommand': &lt;materials_commons.cli.samp.SampSubcommand object&gt;}]</em><a class="headerlink" href="#materials_commons.cli.CommonsCLIParser.standard_usage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="materials_commons.cli.ListObjects">
+<em class="property">class </em><code class="descclassname">materials_commons.cli.</code><code class="descname">ListObjects</code><span class="sig-paren">(</span><em>cmdname</em>, <em>typename</em>, <em>typename_plural</em>, <em>desc=None</em>, <em>requires_project=True</em>, <em>proj_member=True</em>, <em>expt_member=True</em>, <em>list_columns=None</em>, <em>headers=None</em>, <em>deletable=False</em>, <em>has_owner=True</em>, <em>creatable=False</em>, <em>custom_options=False</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/cli/list_objects.html#ListObjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.ListObjects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base class to create an ‘mc X’ command for listing objects of type X.</p>
+<dl class="docutils">
+<dt>Expects derived class members:</dt>
+<dd>get_all_from_experiment(self, expt)
+get_all_from_project(self, proj)
+list_data(self, obj)</dd>
+<dt>Optional derived class members:</dt>
+<dd>create(self, args)
+add_create_options(self, parser)</dd>
+</dl>
+<p>See ProcSubcommand for an example.</p>
+<dl class="method">
+<dt id="materials_commons.cli.ListObjects.get_all_objects">
+<code class="descname">get_all_objects</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/cli/list_objects.html#ListObjects.get_all_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.ListObjects.get_all_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.cli.ListObjects.output">
+<code class="descname">output</code><span class="sig-paren">(</span><em>out</em>, <em>args</em>, <em>objects</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/cli/list_objects.html#ListObjects.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.ListObjects.output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -84,12 +116,6 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="materials_commons.api.version.html"
-                        title="previous chapter">materials_commons.api.version module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="materials_commons.cli.clone.html"
-                        title="next chapter">materials_commons.cli.clone module</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -111,13 +137,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="materials_commons.cli.clone.html" title="materials_commons.cli.clone module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="materials_commons.api.version.html" title="materials_commons.api.version module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="materials_commons.html" >materials_commons package</a> &#187;</li> 
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

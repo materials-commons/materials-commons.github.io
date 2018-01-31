@@ -1,0 +1,142 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.etl.input.main &#8212; Materials Commons Python API 0.7.0 documentation</title>
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.etl.input.main</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">.build_project</span> <span class="k">import</span> <span class="n">BuildProjectExperiment</span>
+<span class="kn">from</span> <span class="nn">materials_commons.etl.common.worksheet_data</span> <span class="k">import</span> <span class="n">read_entire_sheet</span>
+
+<span class="n">local_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/weymouth/Dropbox/MaterialCommons/Tracy_Jake_ETL/etl-input&#39;</span>
+<span class="n">BASE_DIRECTORY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+<span class="n">HOME</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">())</span>
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../materials_commons.etl.input.main.html#materials_commons.etl.input.main.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="nb">input</span><span class="p">)</span>
+    <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">(),</span><span class="n">sheet_name</span><span class="p">)</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">BuildProjectExperiment</span><span class="p">()</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">read_entire_sheet</span><span class="p">(</span><span class="n">ws</span><span class="p">))</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">set_project_description</span><span class="p">(</span><span class="s2">&quot;Project from excel spreadsheet: &quot;</span> <span class="o">+</span> <span class="nb">input</span>
+                            <span class="o">+</span> <span class="s2">&quot;; using data from &quot;</span> <span class="o">+</span> <span class="n">data_dir</span><span class="p">)</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_input_information</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">json_path</span><span class="p">)</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json_path</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">time_stamp</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">default_input_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIRECTORY</span><span class="p">,</span> <span class="s2">&quot;input.xlsx&quot;</span><span class="p">)</span>
+    <span class="n">default_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIRECTORY</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+    <span class="n">default_json_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">HOME</span><span class="p">,</span> <span class="s2">&quot;etl-data/mc_excel_description.json&quot;</span><span class="p">)</span>
+
+    <span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Build a workflow from given (well formatted) Excel spreadsheet&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to input EXCEL file - defaults to &#39;</span> <span class="o">+</span> <span class="n">default_input_path</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dir&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to directory of data files - defaults to &#39;</span> <span class="o">+</span> <span class="n">default_data_path</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--metadata&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to metadata JSON file - defaults to&#39;</span> <span class="o">+</span> <span class="n">default_json_path</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">default_input_path</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">dir</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="n">default_data_path</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">default_json_path</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dir</span><span class="p">)</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to input EXCEL file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to data file directory: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">dir</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to metadata JSON file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dir</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

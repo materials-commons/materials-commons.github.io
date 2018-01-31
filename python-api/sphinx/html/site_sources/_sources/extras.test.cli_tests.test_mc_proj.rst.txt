@@ -1,7 +1,0 @@
-extras\.test\.cli\_tests\.test\_mc\_proj module
-===============================================
-
-.. automodule:: extras.test.cli_tests.test_mc_proj
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-materials\_commons\.etl\.test module
-====================================
-
-.. automodule:: materials_commons.etl.test
-    :members:
-    :undoc-members:
-    :show-inheritance:

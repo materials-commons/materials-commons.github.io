@@ -1,7 +1,0 @@
-extras\.test\.dataset\.dataset module
-=====================================
-
-.. automodule:: extras.test.dataset.dataset
-    :members:
-    :undoc-members:
-    :show-inheritance:

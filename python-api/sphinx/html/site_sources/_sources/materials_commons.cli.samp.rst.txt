@@ -1,7 +1,0 @@
-materials\_commons\.cli\.samp module
-====================================
-
-.. automodule:: materials_commons.cli.samp
-    :members:
-    :undoc-members:
-    :show-inheritance:

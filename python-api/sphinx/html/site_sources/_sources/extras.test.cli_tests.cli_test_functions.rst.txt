@@ -1,7 +1,0 @@
-extras\.test\.cli\_tests\.cli\_test\_functions module
-=====================================================
-
-.. automodule:: extras.test.cli_tests.cli_test_functions
-    :members:
-    :undoc-members:
-    :show-inheritance:

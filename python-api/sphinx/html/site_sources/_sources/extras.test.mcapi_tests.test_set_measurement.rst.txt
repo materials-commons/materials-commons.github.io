@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_set\_measurement module
-=========================================================
-
-.. automodule:: extras.test.mcapi_tests.test_set_measurement
-    :members:
-    :undoc-members:
-    :show-inheritance:

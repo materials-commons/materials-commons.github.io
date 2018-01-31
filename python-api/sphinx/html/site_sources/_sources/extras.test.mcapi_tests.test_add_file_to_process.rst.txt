@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_add\_file\_to\_process module
-===============================================================
-
-.. automodule:: extras.test.mcapi_tests.test_add_file_to_process
-    :members:
-    :undoc-members:
-    :show-inheritance:

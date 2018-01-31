@@ -1,7 +1,0 @@
-extras\.citrine\_examples\.setup module
-=======================================
-
-.. automodule:: extras.citrine_examples.setup
-    :members:
-    :undoc-members:
-    :show-inheritance:

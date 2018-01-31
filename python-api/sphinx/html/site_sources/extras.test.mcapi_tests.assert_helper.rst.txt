@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.assert\_helper module
-=================================================
-
-.. automodule:: extras.test.mcapi_tests.assert_helper
-    :members:
-    :undoc-members:
-    :show-inheritance:

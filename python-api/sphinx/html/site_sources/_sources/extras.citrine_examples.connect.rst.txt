@@ -1,7 +1,0 @@
-extras\.citrine\_examples\.connect module
-=========================================
-
-.. automodule:: extras.citrine_examples.connect
-    :members:
-    :undoc-members:
-    :show-inheritance:

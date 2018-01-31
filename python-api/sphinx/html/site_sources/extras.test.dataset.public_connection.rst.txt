@@ -1,7 +1,0 @@
-extras\.test\.dataset\.public\_connection module
-================================================
-
-.. automodule:: extras.test.dataset.public_connection
-    :members:
-    :undoc-members:
-    :show-inheritance:

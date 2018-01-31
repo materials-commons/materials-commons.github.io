@@ -1,7 +1,0 @@
-extras\.test\.test\_modules module
-==================================
-
-.. automodule:: extras.test.test_modules
-    :members:
-    :undoc-members:
-    :show-inheritance:

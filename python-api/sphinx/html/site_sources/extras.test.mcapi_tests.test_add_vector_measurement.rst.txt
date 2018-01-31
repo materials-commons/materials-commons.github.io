@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_add\_vector\_measurement module
-=================================================================
-
-.. automodule:: extras.test.mcapi_tests.test_add_vector_measurement
-    :members:
-    :undoc-members:
-    :show-inheritance:

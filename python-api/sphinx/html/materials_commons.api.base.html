@@ -23,9 +23,7 @@
     <script type="text/javascript" src="site_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="materials_commons.api.bulk_file_uploader module" href="materials_commons.api.bulk_file_uploader.html" />
-    <link rel="prev" title="materials_commons.api.api module" href="materials_commons.api.api.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,14 +33,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="materials_commons.api.bulk_file_uploader.html" title="materials_commons.api.bulk_file_uploader module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="materials_commons.api.api.html" title="materials_commons.api.api module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="materials_commons.html" >materials_commons package</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="materials_commons.api.html" accesskey="U">materials_commons.api package</a> &#187;</li> 
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -51,8 +44,45 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="materials-commons-api-base-module">
-<h1>materials_commons.api.base module<a class="headerlink" href="#materials-commons-api-base-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-materials_commons.api.base">
+<span id="materials-commons-api-base-module"></span><h1>materials_commons.api.base module<a class="headerlink" href="#module-materials_commons.api.base" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="materials_commons.api.base.MCObject">
+<em class="property">class </em><code class="descclassname">materials_commons.api.base.</code><code class="descname">MCObject</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#MCObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.MCObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="materials_commons.api.base.PrettyPrint">
+<em class="property">class </em><code class="descclassname">materials_commons.api.base.</code><code class="descname">PrettyPrint</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#PrettyPrint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.PrettyPrint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="materials_commons.api.base.PrettyPrint.str">
+<code class="descname">str</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#PrettyPrint.str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.PrettyPrint.str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.base.PrettyPrint.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#PrettyPrint.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.PrettyPrint.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.base.PrettyPrint.write_measurements">
+<code class="descname">write_measurements</code><span class="sig-paren">(</span><em>measurements</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#PrettyPrint.write_measurements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.PrettyPrint.write_measurements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.base.PrettyPrint.write_objects">
+<code class="descname">write_objects</code><span class="sig-paren">(</span><em>title</em>, <em>obj_list</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#PrettyPrint.write_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.PrettyPrint.write_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.base.PrettyPrint.write_pretty_print_objects">
+<code class="descname">write_pretty_print_objects</code><span class="sig-paren">(</span><em>title</em>, <em>object_list</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/base.html#PrettyPrint.write_pretty_print_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.base.PrettyPrint.write_pretty_print_objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -61,12 +91,6 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="materials_commons.api.api.html"
-                        title="previous chapter">materials_commons.api.api module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="materials_commons.api.bulk_file_uploader.html"
-                        title="next chapter">materials_commons.api.bulk_file_uploader module</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -88,14 +112,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="materials_commons.api.bulk_file_uploader.html" title="materials_commons.api.bulk_file_uploader module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="materials_commons.api.api.html" title="materials_commons.api.api module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="materials_commons.html" >materials_commons package</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="materials_commons.api.html" >materials_commons.api package</a> &#187;</li> 
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_measurement\_epma\_setup module
-=================================================================
-
-.. automodule:: extras.test.mcapi_tests.test_measurement_epma_setup
-    :members:
-    :undoc-members:
-    :show-inheritance:

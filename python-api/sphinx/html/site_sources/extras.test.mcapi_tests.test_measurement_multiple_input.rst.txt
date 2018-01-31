@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_measurement\_multiple\_input module
-=====================================================================
-
-.. automodule:: extras.test.mcapi_tests.test_measurement_multiple_input
-    :members:
-    :undoc-members:
-    :show-inheritance:

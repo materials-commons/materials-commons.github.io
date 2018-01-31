@@ -1,7 +1,0 @@
-extras\.test\.cli\_tests\.test\_mc\_remote module
-=================================================
-
-.. automodule:: extras.test.cli_tests.test_mc_remote
-    :members:
-    :undoc-members:
-    :show-inheritance:

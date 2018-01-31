@@ -1,7 +1,0 @@
-extras\.test\.cli\_tests\.test\_mc\_samp module
-===============================================
-
-.. automodule:: extras.test.cli_tests.test_mc_samp
-    :members:
-    :undoc-members:
-    :show-inheritance:

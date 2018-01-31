@@ -1,7 +1,0 @@
-extras\.demo\_project\.demo\_project module
-===========================================
-
-.. automodule:: extras.demo_project.demo_project
-    :members:
-    :undoc-members:
-    :show-inheritance:

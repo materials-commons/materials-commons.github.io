@@ -1,7 +1,0 @@
-materials\_commons\.etl\.input\.main module
-===========================================
-
-.. automodule:: materials_commons.etl.input.main
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-extras\.test\.mcapi\_tests\.test\_add\_file\_measurement module
-===============================================================
-
-.. automodule:: extras.test.mcapi_tests.test_add_file_measurement
-    :members:
-    :undoc-members:
-    :show-inheritance:

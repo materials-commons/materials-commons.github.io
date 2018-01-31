@@ -1,7 +1,0 @@
-extras\.citrine\_examples\.experiments\_to\_pif\_list module
-============================================================
-
-.. automodule:: extras.citrine_examples.experiments_to_pif_list
-    :members:
-    :undoc-members:
-    :show-inheritance:

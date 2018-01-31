@@ -1,7 +1,0 @@
-materials\_commons\.api\.version module
-=======================================
-
-.. automodule:: materials_commons.api.version
-    :members:
-    :undoc-members:
-    :show-inheritance:

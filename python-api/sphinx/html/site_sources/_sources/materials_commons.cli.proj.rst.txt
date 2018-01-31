@@ -1,7 +1,0 @@
-materials\_commons\.cli\.proj module
-====================================
-
-.. automodule:: materials_commons.cli.proj
-    :members:
-    :undoc-members:
-    :show-inheritance:
