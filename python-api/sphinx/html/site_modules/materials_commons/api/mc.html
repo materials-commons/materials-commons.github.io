@@ -64,7 +64,7 @@
 
 
 <span class="c1"># -- top level project functions --</span>
-<div class="viewcode-block" id="create_project"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.create_project">[docs]</a><span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a new Project object in the database and return it.</span>
 
@@ -81,10 +81,10 @@
     <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
     <span class="n">project_id</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
     <span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">project</span></div>
+    <span class="k">return</span> <span class="n">project</span>
 
 
-<div class="viewcode-block" id="get_project_by_id"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.get_project_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch a project from the database and return it/</span>
 
@@ -95,10 +95,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="get_all_projects"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.get_all_projects">[docs]</a><span class="k">def</span> <span class="nf">get_all_projects</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_all_projects</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a list of all the project to which the current user has access.</span>
 
@@ -113,11 +113,11 @@
     <span class="n">projects</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
         <span class="n">projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">r</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">projects</span></div>
+    <span class="k">return</span> <span class="n">projects</span>
 
 
 <span class="c1"># -- top level user function ---</span>
-<div class="viewcode-block" id="get_all_users"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.get_all_users">[docs]</a><span class="k">def</span> <span class="nf">get_all_users</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_all_users</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the list of all users registered on the server.</span>
 
@@ -130,11 +130,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_users</span><span class="p">()</span>
     <span class="n">users</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]]</span>
-    <span class="k">return</span> <span class="n">users</span></div>
+    <span class="k">return</span> <span class="n">users</span>
 
 
 <span class="c1"># -- top level template function ---</span>
-<div class="viewcode-block" id="get_all_templates"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.get_all_templates">[docs]</a><span class="k">def</span> <span class="nf">get_all_templates</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_all_templates</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a list of all the templates known to the system.</span>
 
@@ -147,7 +147,54 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">templates_array</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_templates</span><span class="p">()</span>
     <span class="n">templates</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">templates_array</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">templates</span></div>
+    <span class="k">return</span> <span class="n">templates</span>
+
+
+<span class="c1"># -- top level functions for experiment etl metadata</span>
+<span class="k">def</span> <span class="nf">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a metadata record for Excel-based experiment workflow ETL.</span>
+
+<span class="sd">    :param experiment_id: the id of an existing experiment</span>
+<span class="sd">    :param metadata: the metadata for the experiment; see :class:`materials_commons.etl.input.build_project.BuildProjectExperiment`</span>
+<span class="sd">    :return: a object of :class:`materials_commons.api.EtlMetadata`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="n">results</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch an existing metadata record for Excel-based experiment workflow ETL.</span>
+
+<span class="sd">    :param experiment_id: the id of an existing experiment</span>
+<span class="sd">    :return: a object of :class:`materials_commons.api.EtlMetadata`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="n">results</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_experiment_metadata_by_id</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch an existing metadata record for Excel-based experiment workflow ETL.</span>
+
+<span class="sd">    :param experiment_id: the id of the metadata record</span>
+<span class="sd">    :return: a object of :class:`materials_commons.api.EtlMetadata`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_metadata</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="n">results</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
 
 
 <span class="c1"># -- supporting classes</span>
@@ -514,7 +561,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># TODO: Project.add_directory(path) - refactor this should check for and fail if path does not exist</span>
-        <span class="c1"># TODO: Project.add_directory(path) - refactor add optional flag to create parent path if it does note exist</span>
+        <span class="c1"># TODO: Project.add_directory(path) - refactor add optional flag to create parent path if it does not exist</span>
         <span class="n">directory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_or_get_all_directories_on_path</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">directory</span></div>
@@ -939,12 +986,16 @@
 <span class="sd">        :param description:</span>
 <span class="sd">        :return: this</span>
 
-<span class="sd">        .. note:: Currently not implemented</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Experiment.rename(name)</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Experiment.rename(name) is not implemented&quot;</span><span class="p">)</span>
-        <span class="k">pass</span></div>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">description</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">rename_experiment</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="Experiment.put"><a class="viewcode-back" href="../../../index.html#materials_commons.api.Experiment.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2485,7 +2536,7 @@
     <span class="c1"># File - additional methods</span>
 <div class="viewcode-block" id="File.download_file_content"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.download_file_content">[docs]</a>    <span class="k">def</span> <span class="nf">download_file_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Down a copy of the file from the database into a local file on a local path.</span>
+<span class="sd">        Download a copy of the file from the database into a local file on a local path.</span>
 <span class="sd">        Will overwrite any existing file.</span>
 
 <span class="sd">        :param local_download_file_path: the local path ending in the intended file name.</span>
@@ -2585,7 +2636,43 @@
                     <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Property"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.Property">[docs]</a><span class="k">class</span> <span class="nc">Property</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">EtlMetadata</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Materials commons Excel-based ELT metadata.</span>
+<span class="sd">    Normally created by a call to :func:`materials_commons.api.create_experiment_metadata`</span>
+<span class="sd">    and retrieved by a call to :func:`materials_commons.api.get_experiment_metadata`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="c1"># attr = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EtlMetadata</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;experiment_id&#39;</span><span class="p">,</span> <span class="s1">&#39;json&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_process_special_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># undo the effect of general object processing on the json data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_data</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_metadata</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_experiment_metadata</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: &quot;</span><span class="p">,</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+        <span class="n">updated_metadata_record</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json</span> <span class="o">=</span> <span class="n">updated_metadata_record</span><span class="o">.</span><span class="n">json</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">delete_experiment_metadata</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Property</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Materials Commons Property.</span>
 <span class="sd">    Normally created by calls to :func:`mcapi.Process.set_measurements_for_process_samples`</span>
@@ -2634,10 +2721,10 @@
     <span class="k">def</span> <span class="nf">_set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">value</span>
 
-<div class="viewcode-block" id="Property.abbrev_print"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.Property.abbrev_print">[docs]</a>    <span class="k">def</span> <span class="nf">abbrev_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">abbrev_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Property.pretty_print"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.Property.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints a nice layout of the object and all of it&#39;s values.</span>
 
@@ -2670,9 +2757,9 @@
                 <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
                     <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-                <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">-=</span> <span class="mi">1</span></div>
+                <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">-=</span> <span class="mi">1</span>
 
-<div class="viewcode-block" id="Property.verify_value_type"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.Property.verify_value_type">[docs]</a>    <span class="k">def</span> <span class="nf">verify_value_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">verify_value_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="sd">        :param value:</span>
@@ -2681,10 +2768,10 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># TODO: set verify for all types</span>
         <span class="c1"># raise MCPropertyException(&#39;Attempt to verify value type for generic Property - use appropriate subclass&#39;)</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="MeasuredProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.MeasuredProperty">[docs]</a><span class="k">class</span> <span class="nc">MeasuredProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MeasuredProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A property that is associated with a measurement.</span>
 
@@ -2713,50 +2800,50 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">best_measure</span><span class="p">)):</span>
                 <span class="n">measure_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_measure</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="n">measurement</span> <span class="o">=</span> <span class="n">make_measurement_object</span><span class="p">(</span><span class="n">measure_data</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">best_measure</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">measurement</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">best_measure</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">measurement</span>
 
 
-<div class="viewcode-block" id="MCPropertyException"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.MCPropertyException">[docs]</a><span class="k">class</span> <span class="nc">MCPropertyException</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-    <span class="k">pass</span></div>
+<span class="k">class</span> <span class="nc">MCPropertyException</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+    <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="NumberProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.NumberProperty">[docs]</a><span class="k">class</span> <span class="nc">NumberProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">NumberProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">NumberProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NumberProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="StringProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.StringProperty">[docs]</a><span class="k">class</span> <span class="nc">StringProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">StringProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">StringProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">StringProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="BooleanProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.BooleanProperty">[docs]</a><span class="k">class</span> <span class="nc">BooleanProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">BooleanProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BooleanProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BooleanProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="DateProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.DateProperty">[docs]</a><span class="k">class</span> <span class="nc">DateProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DateProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DateProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DateProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="SelectionProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.SelectionProperty">[docs]</a><span class="k">class</span> <span class="nc">SelectionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SelectionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2764,7 +2851,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SelectionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SelectionProperty.verify_value_type"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.SelectionProperty.verify_value_type">[docs]</a>    <span class="k">def</span> <span class="nf">verify_value_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">verify_value_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">unicode</span><span class="p">))</span> \
                     <span class="ow">and</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="n">unicode</span><span class="p">)):</span>
@@ -2785,7 +2872,7 @@
                 <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choice</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
             <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Choice &#39;&quot;</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s2">&quot;&#39; is not valid for this property; &quot;</span>
             <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot;valid choices are &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">MCPropertyException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">MCPropertyException</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
@@ -2798,46 +2885,47 @@
                 <span class="k">break</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">verify_value_type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">found</span></div>
+            <span class="n">found</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">found</span>
 
 
-<div class="viewcode-block" id="FunctionProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.FunctionProperty">[docs]</a><span class="k">class</span> <span class="nc">FunctionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FunctionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">FunctionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FunctionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="CompositionProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.CompositionProperty">[docs]</a><span class="k">class</span> <span class="nc">CompositionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">CompositionProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CompositionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CompositionProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="VectorProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.VectorProperty">[docs]</a><span class="k">class</span> <span class="nc">VectorProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">VectorProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">VectorProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">VectorProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="MatrixProperty"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.MatrixProperty">[docs]</a><span class="k">class</span> <span class="nc">MatrixProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MatrixProperty</span><span class="p">(</span><span class="n">Property</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    See :class:`mcapi.Property`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatrixProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatrixProperty</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="make_object"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.make_object">[docs]</a><span class="k">def</span> <span class="nf">make_object</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_object</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">_is_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">_make_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -2858,10 +2946,10 @@
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;---</span><span class="se">\n</span><span class="s2">Data:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> \
               <span class="o">+</span> <span class="s2">&quot;---</span><span class="se">\n</span><span class="s2">Failed:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> \
               <span class="o">+</span> <span class="s2">&quot;---</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Failed to make object: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Failed to make object: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="make_base_object_for_type"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.make_base_object_for_type">[docs]</a><span class="k">def</span> <span class="nf">make_base_object_for_type</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_base_object_for_type</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;_type&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>  <span class="c1"># catch, convert legacy objects</span>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;otype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;_type&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">_data_has_type</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -2884,6 +2972,8 @@
             <span class="k">return</span> <span class="n">File</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">object_type</span> <span class="o">==</span> <span class="s1">&#39;template&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Template</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">object_type</span> <span class="o">==</span> <span class="s1">&#39;experiment_etl_metadata&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">EtlMetadata</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">object_type</span> <span class="o">==</span> <span class="s1">&#39;experiment_task&#39;</span><span class="p">:</span>
             <span class="c1"># Experiment task not implemented</span>
             <span class="k">return</span> <span class="n">MCObject</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -2896,10 +2986,10 @@
             <span class="k">return</span> <span class="n">MCObject</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;starred&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">MCObject</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">MCObject</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">MCObject</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="make_property_object"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.make_property_object">[docs]</a><span class="k">def</span> <span class="nf">make_property_object</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_property_object</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">obj</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">MCObject</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">input_data</span>
@@ -2932,13 +3022,13 @@
         <span class="n">holder</span><span class="o">.</span><span class="n">_process_special_objects</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">holder</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No Property Object, otype not defined&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No Property Object, otype not defined&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="make_measured_property"><a class="viewcode-back" href="../../../materials_commons.api.mc.html#materials_commons.api.make_measured_property">[docs]</a><span class="k">def</span> <span class="nf">make_measured_property</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">make_measured_property</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">measurement_property</span> <span class="o">=</span> <span class="n">MeasuredProperty</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">measurement_property</span><span class="o">.</span><span class="n">_process_special_objects</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">measurement_property</span></div>
+    <span class="k">return</span> <span class="n">measurement_property</span>
 
 
 <span class="c1">#</span>
