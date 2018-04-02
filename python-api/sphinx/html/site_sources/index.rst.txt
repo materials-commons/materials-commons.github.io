@@ -33,7 +33,8 @@ service is running at https://materialscommons.org .
 See the docs at (https://materials-commons.github.io/python-api/) for
 an introduction and instructions on how to use this Python API
 
-Documentation for the Python API module: :ref:'materials_commons.api'
+Documentation for the Python API module:
+:ref:'materials_commons.api'
 
 The Command Line Interface (materials_commons.cli)
 --------------------------------------------------
