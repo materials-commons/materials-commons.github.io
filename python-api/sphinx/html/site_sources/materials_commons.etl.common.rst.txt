@@ -6,6 +6,9 @@ Submodules
 
 .. toctree::
 
+   materials_commons.etl.common.meta_data_verify
+   materials_commons.etl.common.metadata
+   materials_commons.etl.common.process_file_util
    materials_commons.etl.common.util
    materials_commons.etl.common.worksheet_data
 

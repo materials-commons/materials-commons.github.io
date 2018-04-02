@@ -6,8 +6,11 @@ Submodules
 
 .. toctree::
 
+   materials_commons.etl.compare_spreadsheets
+   materials_commons.etl.input_spreadsheet
+   materials_commons.etl.output_spreadsheet
+   materials_commons.etl.project_walker
    materials_commons.etl.template2xlsx
-   materials_commons.etl.test
    materials_commons.etl.xlsxt
 
 Module contents

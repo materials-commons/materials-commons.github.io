@@ -1,0 +1,706 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.etl.input_spreadsheet &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.etl.input_spreadsheet</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">create_project</span><span class="p">,</span> <span class="n">get_all_templates</span>
+<span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">File</span> <span class="k">as</span> <span class="n">FileRecord</span>
+<span class="kn">from</span> <span class="nn">.common.util</span> <span class="k">import</span> <span class="n">_normalise_property_name</span>
+<span class="kn">from</span> <span class="nn">.common.worksheet_data</span> <span class="k">import</span> <span class="n">ExcelIO</span>
+<span class="kn">from</span> <span class="nn">.common.metadata</span> <span class="k">import</span> <span class="n">Metadata</span>
+
+
+<div class="viewcode-block" id="BuildProjectExperiment"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment">[docs]</a><span class="k">class</span> <span class="nc">BuildProjectExperiment</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Project from excel spreadsheet&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent_process_list</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_row_key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_parent_process</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">Metadata</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_files</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename_duplicates</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suppress_data_upload</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_template_table</span><span class="p">()</span>
+
+<div class="viewcode-block" id="BuildProjectExperiment.set_data"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.set_data">[docs]</a>    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.set_input_information"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.set_input_information">[docs]</a>    <span class="k">def</span> <span class="nf">set_input_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spread_sheet_path</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_input_information</span><span class="p">(</span><span class="n">spread_sheet_path</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.set_rename_is_ok"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.set_rename_is_ok">[docs]</a>    <span class="k">def</span> <span class="nf">set_rename_is_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rename_duplicates</span> <span class="o">=</span> <span class="n">flag</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.build"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spread_sheet_path</span><span class="p">,</span> <span class="n">data_path</span><span class="p">):</span>
+        <span class="n">excel_io_controller</span> <span class="o">=</span> <span class="n">ExcelIO</span><span class="p">()</span>
+        <span class="n">excel_io_controller</span><span class="o">.</span><span class="n">read_workbook</span><span class="p">(</span><span class="n">spread_sheet_path</span><span class="p">)</span>
+        <span class="n">sheet_name_list</span> <span class="o">=</span> <span class="n">excel_io_controller</span><span class="o">.</span><span class="n">sheet_name_list</span><span class="p">()</span>
+        <span class="n">excel_io_controller</span><span class="o">.</span><span class="n">set_current_worksheet_by_index</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sheet_name</span> <span class="o">=</span> <span class="n">sheet_name_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In Excel file, using sheet &#39;&quot;</span> <span class="o">+</span> <span class="n">sheet_name</span> <span class="o">+</span> <span class="s2">&quot;&#39; from sheets: &quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sheet_name_list</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">excel_io_controller</span><span class="o">.</span><span class="n">read_entire_data_from_current_sheet</span><span class="p">())</span>
+        <span class="n">excel_io_controller</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">suppress_data_upload</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">data_path</span>
+
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Project from excel spreadsheet: &quot;</span> <span class="o">+</span> <span class="n">spread_sheet_path</span> <span class="o">+</span> \
+                      <span class="s2">&quot;; data upload suppressed&quot;</span>
+        <span class="k">if</span> <span class="n">data_path</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Project from excel spreadsheet: &quot;</span> <span class="o">+</span> <span class="n">spread_sheet_path</span> <span class="o">+</span> \
+                <span class="s2">&quot;; using data from &quot;</span> <span class="o">+</span> <span class="n">data_path</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_project_description</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_input_information</span><span class="p">(</span><span class="n">spread_sheet_path</span><span class="p">,</span> <span class="n">data_path</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_project_and_experiment</span><span class="p">():</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">data_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">data_path</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_row_positions</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_col_positions</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_metadata</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Created project: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;With Experiment: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.write_metadata"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.write_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">write_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing metadata for experiment &#39;&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.sweep"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.sweep">[docs]</a>    <span class="k">def</span> <span class="nf">sweep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">process_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scan_for_process_descriptions</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">process_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No complete processes found in project&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent_process_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent_process_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_row_key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_parent_process</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">proc_data</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sweep_process</span><span class="p">(</span><span class="n">proc_data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.sweep_process"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.sweep_process">[docs]</a>    <span class="k">def</span> <span class="nf">sweep_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proc_data</span><span class="p">):</span>
+        <span class="n">start_col_index</span> <span class="o">=</span> <span class="n">proc_data</span><span class="p">[</span><span class="s1">&#39;start_col&#39;</span><span class="p">]</span>
+        <span class="n">end_col_index</span> <span class="o">=</span> <span class="n">proc_data</span><span class="p">[</span><span class="s1">&#39;end_col&#39;</span><span class="p">]</span>
+        <span class="n">template_id</span> <span class="o">=</span> <span class="n">proc_data</span><span class="p">[</span><span class="s1">&#39;template&#39;</span><span class="p">]</span>
+        <span class="n">process_name</span> <span class="o">=</span> <span class="n">proc_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sweep for process: &quot;</span> <span class="o">+</span> <span class="n">process_name</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">template_id</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="n">start_attribute_row_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_start_attribute_row</span><span class="p">(</span><span class="n">start_col_index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_record_header_rows</span><span class="p">()</span>
+        <span class="n">process_record</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">row_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)):</span>
+            <span class="n">row_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row_key</span><span class="p">(</span><span class="n">row_index</span><span class="p">,</span> <span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">row_key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">previous_row_key</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">continue</span>
+            <span class="n">process_index</span> <span class="o">=</span> <span class="n">row_index</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span>
+            <span class="n">parent_process_record</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_process_list</span><span class="p">[</span><span class="n">process_index</span><span class="p">]</span>
+            <span class="n">parent_process</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">parent_process_record</span><span class="p">:</span>
+                <span class="n">parent_process</span> <span class="o">=</span> <span class="n">parent_process_record</span><span class="p">[</span><span class="s1">&#39;process&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_new_process</span><span class="p">(</span><span class="n">row_key</span><span class="p">,</span> <span class="n">parent_process</span><span class="p">):</span>
+                <span class="c1"># print (&quot;Start new process:&quot;, template_id, row_key)</span>
+                <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">create_process_from_template</span><span class="p">(</span><span class="n">template_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">process_name</span><span class="p">:</span>
+                    <span class="n">process</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">process_name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_process_metadata</span><span class="p">(</span>
+                    <span class="n">row_index</span><span class="p">,</span> <span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">,</span> <span class="n">template_id</span><span class="p">,</span> <span class="n">process</span><span class="p">)</span>
+                <span class="n">output_sample</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">process_type</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span><span class="p">:</span>
+                    <span class="n">sample_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_for_sample_name</span><span class="p">(</span>
+                        <span class="n">row_index</span><span class="p">,</span> <span class="n">start_attribute_row_index</span><span class="p">,</span> <span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">sample_name</span><span class="p">:</span>
+                        <span class="n">sample_name</span> <span class="o">=</span> <span class="n">row_key</span>
+                    <span class="n">sample_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample_name</span><span class="p">]</span>
+                    <span class="n">samples</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">create_samples</span><span class="p">(</span><span class="n">sample_names</span><span class="o">=</span><span class="n">sample_names</span><span class="p">)</span>
+                    <span class="n">output_sample</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">process</span><span class="o">.</span><span class="n">process_type</span> <span class="o">==</span> <span class="s1">&#39;transform&#39;</span> <span class="ow">and</span> <span class="n">parent_process_record</span><span class="p">:</span>
+                    <span class="n">input_sample</span> <span class="o">=</span> <span class="n">parent_process_record</span><span class="p">[</span><span class="s1">&#39;output_sample&#39;</span><span class="p">]</span>
+                    <span class="n">process</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">add_input_samples_to_process</span><span class="p">([</span><span class="n">input_sample</span><span class="p">])</span> \
+                        <span class="o">.</span><span class="n">decorate_with_output_samples</span><span class="p">()</span>
+                    <span class="n">output_sample</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">output_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">parent_process_record</span> <span class="ow">and</span> <span class="n">parent_process_record</span><span class="p">[</span><span class="s1">&#39;output_sample&#39;</span><span class="p">]:</span>
+                    <span class="n">input_sample</span> <span class="o">=</span> <span class="n">parent_process_record</span><span class="p">[</span><span class="s1">&#39;output_sample&#39;</span><span class="p">]</span>
+                    <span class="n">process</span><span class="o">.</span><span class="n">add_input_samples_to_process</span><span class="p">([</span><span class="n">input_sample</span><span class="p">])</span>
+                <span class="n">process</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">decorate_with_input_samples</span><span class="p">()</span>
+                <span class="n">process</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">decorate_with_output_samples</span><span class="p">()</span>
+                <span class="n">process_record</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">row_key</span><span class="p">,</span>
+                    <span class="s1">&#39;process&#39;</span><span class="p">:</span> <span class="n">process</span><span class="p">,</span>
+                    <span class="s1">&#39;output_sample&#39;</span><span class="p">:</span> <span class="n">output_sample</span>
+                <span class="p">}</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sweep_for_process_value</span><span class="p">(</span>
+                    <span class="n">row_index</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span>
+                    <span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">,</span>
+                    <span class="n">start_attribute_row_index</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sweep_for_process_files</span><span class="p">(</span>
+                    <span class="n">row_index</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span>
+                    <span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">,</span>
+                    <span class="n">start_attribute_row_index</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update_process_metadata_end_row</span><span class="p">(</span><span class="n">row_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_row_key</span> <span class="o">=</span> <span class="n">row_key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">previous_parent_process</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">parent_process_record</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">previous_parent_process</span> <span class="o">=</span> <span class="n">parent_process_record</span><span class="p">[</span><span class="s1">&#39;process&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent_process_list</span><span class="p">[</span><span class="n">process_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_record</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.sweep_for_process_value"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.sweep_for_process_value">[docs]</a>    <span class="k">def</span> <span class="nf">sweep_for_process_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_row</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">,</span> <span class="n">start_attr_row</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_params_and_measurement</span><span class="p">()</span>
+        <span class="c1"># print(process.name, start_col, end_col)</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+            <span class="n">process_value_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">start_attr_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="n">signature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">start_attr_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="c1"># print(process.name, col, process_value_type, signature)</span>
+            <span class="k">if</span> <span class="n">process_value_type</span> <span class="o">==</span> <span class="s1">&#39;PARAM&#39;</span> <span class="ow">or</span> <span class="n">process_value_type</span> <span class="o">==</span> <span class="s1">&#39;MEAS&#39;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">data_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">collect_params_and_measurement</span><span class="p">(</span><span class="n">process_value_type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_params_and_measurement</span><span class="p">(</span><span class="n">process</span><span class="p">)</span></div>
+        <span class="c1"># print(process.name, self.process_values)</span>
+
+<div class="viewcode-block" id="BuildProjectExperiment.sweep_for_process_files"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.sweep_for_process_files">[docs]</a>    <span class="k">def</span> <span class="nf">sweep_for_process_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_row</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">,</span> <span class="n">start_attr_row</span><span class="p">):</span>
+        <span class="c1"># NOTE: only one FILES entry, per process, first one will dominate</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+            <span class="n">process_value_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">start_attr_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">process_value_type</span> <span class="o">==</span> <span class="s1">&#39;FILES&#39;</span><span class="p">:</span>
+                <span class="n">files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">data_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update_process_files_list</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">suppress_data_upload</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data file upload supressed: &quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot; - &quot;</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_files</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+                <span class="k">break</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.clear_params_and_measurement"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.clear_params_and_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">clear_params_and_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;PARAM&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;MEAS&quot;</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.collect_params_and_measurement"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.collect_params_and_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">collect_params_and_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values_type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">signature</span><span class="p">):</span>
+        <span class="n">unit</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">signature</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">signature</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="n">index</span><span class="p">:</span>
+                <span class="n">unit</span> <span class="o">=</span> <span class="n">signature</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+            <span class="n">signature</span> <span class="o">=</span> <span class="n">signature</span><span class="p">[:</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">signature</span> <span class="o">=</span> <span class="n">signature</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">signature</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span><span class="p">[</span><span class="n">values_type</span><span class="p">]</span>
+        <span class="n">attribute</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">attribute</span> <span class="o">=</span> <span class="n">_normalise_property_name</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">attribute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">entry</span><span class="p">:</span>
+            <span class="n">entry</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="n">unit</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;composition&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">[</span><span class="n">attribute</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]:</span>
+                <span class="n">entry</span><span class="p">[</span><span class="n">attribute</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">value_entry</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="n">attribute</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">el_entry</span> <span class="ow">in</span> <span class="n">value_entry</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">el_entry</span><span class="p">[</span><span class="s2">&quot;element&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">element</span><span class="p">:</span>
+                    <span class="n">target</span> <span class="o">=</span> <span class="n">el_entry</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">target</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;element&quot;</span><span class="p">:</span> <span class="n">element</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+                <span class="n">value_entry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+            <span class="n">target</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_or_stats</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entry</span><span class="p">[</span><span class="n">attribute</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_or_stats</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="n">attribute</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.value_or_stats"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.value_or_stats">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">value_or_stats</span><span class="p">(</span><span class="n">current_entry</span><span class="p">,</span> <span class="n">header_parts</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">header_parts</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># case = collecting stats entry - header_parts[0] == stats or mean or stddev</span>
+            <span class="n">stats_label</span> <span class="o">=</span> <span class="n">header_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">stats_label</span> <span class="o">==</span> <span class="s1">&#39;stats&#39;</span><span class="p">:</span>
+                <span class="n">stats_label</span> <span class="o">=</span> <span class="n">header_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">current_entry</span><span class="p">:</span>
+                <span class="n">current_entry</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">current_entry</span><span class="p">[</span><span class="n">stats_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">return</span> <span class="n">current_entry</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.sweep_for_sample_name"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.sweep_for_sample_name">[docs]</a>    <span class="k">def</span> <span class="nf">sweep_for_sample_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_index</span><span class="p">,</span> <span class="n">start_attr_row</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+        <span class="n">sample_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+            <span class="n">process_value_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">start_attr_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">process_value_type</span> <span class="o">==</span> <span class="s1">&#39;SAMPLES&#39;</span><span class="p">:</span>
+                <span class="n">sample_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">row_index</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+                <span class="c1"># print(&quot;Sample name&quot;, sample_name)</span>
+        <span class="k">return</span> <span class="n">sample_name</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.set_params_and_measurement"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.set_params_and_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">set_params_and_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">):</span>
+        <span class="c1"># parameters</span>
+        <span class="n">known_param_keys</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">unknown_param_entries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span><span class="p">[</span><span class="s2">&quot;PARAM&quot;</span><span class="p">]:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span><span class="p">[</span><span class="s2">&quot;PARAM&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">is_known_setup_property</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+                <span class="c1"># print(&quot;PARMA&quot;, process.name, key, entry, process.is_known_setup_property(key))</span>
+                <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">process</span><span class="o">.</span><span class="n">set_value_of_setup_property</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]:</span>
+                        <span class="c1"># table =</span>
+                        <span class="n">process</span><span class="o">.</span><span class="n">get_setup_properties_as_dictionary</span><span class="p">()</span>
+                        <span class="c1"># print(&quot;unit check&quot;, entry[&#39;unit&#39;], table[key].name, table[key].unit)</span>
+                        <span class="n">process</span><span class="o">.</span><span class="n">set_unit_of_setup_property</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">])</span>
+                    <span class="n">known_param_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;attribute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="c1"># print(&quot;Additional setup parameter:&quot;, entry)</span>
+                <span class="n">unknown_param_entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">known_param_keys</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">update_setup_properties</span><span class="p">(</span><span class="n">known_param_keys</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">unknown_param_entries</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">update_additional_setup_properties</span><span class="p">(</span><span class="n">unknown_param_entries</span><span class="p">)</span>
+        <span class="c1"># for elem in process.setup:</span>
+        <span class="c1">#     attribute = elem.input_data[&#39;attribute&#39;]</span>
+        <span class="c1">#     for prop in elem.properties:</span>
+        <span class="c1">#         if prop.value:</span>
+        <span class="c1">#             print(&quot;Setup Results: &quot;, attribute, prop.name, prop.value, prop.unit)</span>
+        <span class="c1"># measurements</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span><span class="p">[</span><span class="s2">&quot;MEAS&quot;</span><span class="p">]:</span>
+            <span class="c1"># print(&quot;MEAS&quot;, process.name, key)</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_values</span><span class="p">[</span><span class="s2">&quot;MEAS&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">_name_for_attribute</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+                    <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+                    <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="n">_otype_for_attribute</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+                    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span>
+                    <span class="s2">&quot;is_best_measure&quot;</span><span class="p">:</span> <span class="kc">True</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]:</span>
+                    <span class="n">measurement_data</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">measurement_data</span><span class="p">[</span><span class="s1">&#39;unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="n">measurement</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">create_measurement</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">measurement_data</span><span class="p">)</span>
+                <span class="c1"># print(&quot; ++ measurement&quot;, measurement.id, measurement.attribute, measurement.value, measurement.unit)</span>
+                <span class="n">measurement_property</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">_name_for_attribute</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+                    <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="n">key</span>
+                <span class="p">}</span>
+                <span class="n">process</span><span class="o">.</span><span class="n">set_measurements_for_process_samples</span><span class="p">(</span><span class="n">measurement_property</span><span class="p">,</span> <span class="p">[</span><span class="n">measurement</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.add_files"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.add_files">[docs]</a>    <span class="k">def</span> <span class="nf">add_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">files_from_sheet</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files_from_sheet</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">file_or_dir_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">files_from_sheet</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
+        <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dir_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">process_files</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">file_or_dir_list</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span> <span class="o">/</span> <span class="n">entry</span>
+            <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+                <span class="n">dir_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">absolute</span><span class="p">()))</span>
+            <span class="k">elif</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">absolute</span><span class="p">()))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Requested path for data not in user data directory, ignoring:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+            <span class="n">process_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">add_file_by_local_path</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">dir_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">add_directory_tree_by_local_path</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">directory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get_by_local_path</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+            <span class="n">file_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_all_files_in_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+            <span class="n">process_files</span> <span class="o">+=</span> <span class="n">file_list</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">add_files</span><span class="p">(</span><span class="n">process_files</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BuildProjectExperiment.set_project_description"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.BuildProjectExperiment.set_project_description">[docs]</a>    <span class="k">def</span> <span class="nf">set_project_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span></div>
+
+    <span class="c1"># helper methods</span>
+
+    <span class="k">def</span> <span class="nf">_set_project_and_experiment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_name</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project name: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No project name found; check format. Quiting.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Experiment name: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No experiment name found; check format. Quiting.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">create_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+
+        <span class="n">experiment_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get_all_experiments</span><span class="p">()</span>
+        <span class="n">existing_experiment</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">experiment_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">:</span>
+                <span class="n">existing_experiment</span> <span class="o">=</span> <span class="n">exp</span>
+        <span class="k">if</span> <span class="n">existing_experiment</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rename_duplicates</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">_unique_shadow_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">,</span> <span class="n">experiment_list</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Existing experiment with duplicate name. Renamed: &quot;</span> <span class="o">+</span>
+                      <span class="n">existing_experiment</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; --&gt; &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+                <span class="n">existing_experiment</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;An experiment already exists with this name, &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;And the --rename flag was not specified.&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You can delete or rename the existing experiment.&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Or specify the --rename flag in the command line arguments.&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quiting.&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">create_experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_project_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_experiment_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_scan_for_process_descriptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># print(&quot;_scan_for_process_descriptions&quot;, self.start_sweep_col, self.end_sweep_col)</span>
+        <span class="n">name_row</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">row_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">row_index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">row_index</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;BEING_DATA&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">row_index</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;NAME&quot;</span><span class="p">:</span>
+                <span class="n">name_row</span> <span class="o">=</span> <span class="n">row_index</span>
+                <span class="k">break</span>
+            <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">col_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_sweep_col</span>
+        <span class="n">process_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">previous_process</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="n">col_index</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_sweep_col</span><span class="p">:</span>
+            <span class="n">process_entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">col_index</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">process_entry</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="n">process_entry</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;PROC:&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">previous_process</span><span class="p">:</span>
+                    <span class="n">previous_process</span><span class="p">[</span><span class="s1">&#39;end_col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">col_index</span>
+                    <span class="n">process_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">previous_process</span><span class="p">)</span>
+                    <span class="n">previous_process</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">process_entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prune_entry</span><span class="p">(</span><span class="n">process_entry</span><span class="p">,</span> <span class="s2">&quot;PROC:&quot;</span><span class="p">)</span>
+                <span class="n">process_name</span> <span class="o">=</span> <span class="n">process_entry</span>
+                <span class="k">if</span> <span class="n">name_row</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">name_row</span><span class="p">][</span><span class="n">col_index</span><span class="p">]:</span>
+                    <span class="n">process_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">name_row</span><span class="p">][</span><span class="n">col_index</span><span class="p">]</span>
+                <span class="n">template_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_template_id_for</span><span class="p">(</span><span class="n">process_entry</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">template_id</span><span class="p">:</span>
+                    <span class="n">previous_process</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">process_name</span><span class="p">,</span>
+                        <span class="s1">&#39;start_col&#39;</span><span class="p">:</span> <span class="n">col_index</span><span class="p">,</span>
+                        <span class="s1">&#39;template&#39;</span><span class="p">:</span> <span class="n">template_id</span>
+                    <span class="p">}</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;process entry has no corresponding template:&quot;</span><span class="p">,</span> <span class="n">process_entry</span><span class="p">)</span>
+            <span class="n">col_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">previous_process</span><span class="p">:</span>
+            <span class="n">previous_process</span><span class="p">[</span><span class="s1">&#39;end_col&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">col_index</span>
+            <span class="n">process_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">previous_process</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">process_list</span>
+
+    <span class="k">def</span> <span class="nf">_determine_start_attribute_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_col_index</span><span class="p">):</span>
+        <span class="n">start_attribute_row_index</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_end_row</span><span class="p">):</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">start_col_index</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">entry</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;DUPLICATES_ARE_IDENTICAL&#39;</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="c1">#     print(&quot;Encountered &#39;DUPLICATES_ARE_IDENTICAL&#39; - ignored as this is the default behaivor&quot;)</span>
+            <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ATTR_&#39;</span><span class="p">):</span>
+                <span class="k">pass</span>
+            <span class="c1">#     print(&quot;Encountered &#39;&quot; + entry + &quot;&#39; - ignored, not implemented&quot;)</span>
+            <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;NOTE&quot;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;NO_UPLOAD&quot;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;MEAS&quot;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;PARAM&quot;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;PROBLEM&quot;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;SAMPLES&quot;</span><span class="p">)</span> \
+                    <span class="ow">or</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;FILES&quot;</span><span class="p">):</span>
+                <span class="n">start_attribute_row_index</span> <span class="o">=</span> <span class="n">row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_start_attribute_row</span><span class="p">(</span><span class="n">start_attribute_row_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">start_attribute_row_index</span>
+
+    <span class="k">def</span> <span class="nf">_start_new_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_key</span><span class="p">,</span> <span class="n">parent_process</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">parent_process</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_parent_process</span> \
+                <span class="ow">and</span> <span class="n">parent_process</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_parent_process</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">row_key</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">previous_row_key</span>
+
+    <span class="k">def</span> <span class="nf">_get_all_files_in_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
+        <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">child_list</span> <span class="o">=</span> <span class="n">directory</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">child_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="ow">is</span> <span class="n">FileRecord</span><span class="p">:</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">file_list</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_all_files_in_directory</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">file_list</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_prune_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">entry</span>
+
+    <span class="k">def</span> <span class="nf">_set_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prune_entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;PROJ:&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prune_entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;EXP:&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_row_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header_end_row</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;BEGIN_DATA&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span> <span class="o">=</span> <span class="n">index</span>
+                <span class="k">break</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> \
+                    <span class="ow">and</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;BEGIN_DATA&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;COL_LABEL&quot;</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">header_end_row</span> <span class="o">=</span> <span class="n">index</span>
+                <span class="k">break</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_header_row_end</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">header_end_row</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_data_row_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_data_row_end</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_set_col_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_sweep_col</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_sweep_col</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">first_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">missing_end</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">first_row</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;END&quot;</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found END marker at column &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                      <span class="o">+</span> <span class="s2">&quot;, updating data end to this location&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">end_sweep_col</span> <span class="o">=</span> <span class="n">index</span>
+                <span class="n">missing_end</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">missing_end</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end_sweep_col</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_data_col_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_sweep_col</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">set_data_col_end</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_sweep_col</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_record_header_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_start_row</span><span class="p">):</span>
+            <span class="n">header_row</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_sweep_col</span><span class="p">):</span>
+                <span class="n">header_row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span>
+            <span class="n">header</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">header_row</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">record_header</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_row_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_index</span><span class="p">,</span> <span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">):</span>
+        <span class="n">row_key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_col_index</span><span class="p">,</span> <span class="n">end_col_index</span><span class="p">):</span>
+            <span class="n">probe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">[</span><span class="n">row_index</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="c1"># Note: what to except 0.0 as true, hence (probe == None)</span>
+            <span class="n">empty_probe</span> <span class="o">=</span> <span class="p">(</span><span class="n">probe</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">empty_probe</span> <span class="ow">and</span> <span class="n">row_key</span><span class="p">:</span>
+                <span class="n">row_key</span> <span class="o">+=</span> <span class="s2">&quot; -- &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">probe</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">empty_probe</span><span class="p">:</span>
+                <span class="n">row_key</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">probe</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">row_key</span>
+
+    <span class="k">def</span> <span class="nf">_make_template_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">template_list</span> <span class="o">=</span> <span class="n">get_all_templates</span><span class="p">()</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">template_list</span><span class="p">:</span>
+            <span class="n">table</span><span class="p">[</span><span class="n">template</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">template</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_table</span> <span class="o">=</span> <span class="n">table</span>
+
+    <span class="k">def</span> <span class="nf">_get_template_id_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+        <span class="n">found_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_table</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">found_id</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="n">found_id</span></div>
+
+
+<span class="k">def</span> <span class="nf">_unique_shadow_name</span><span class="p">(</span><span class="n">original_name</span><span class="p">,</span> <span class="n">experiment_list</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">trial_name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">trial_name</span><span class="p">:</span>
+        <span class="n">trial_name</span> <span class="o">=</span> <span class="n">original_name</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">experiment_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">trial_name</span> <span class="o">==</span> <span class="n">exp</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                <span class="n">trial_name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">trial_name</span>
+
+
+<span class="k">def</span> <span class="nf">_name_for_attribute</span><span class="p">(</span><span class="n">attribute</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;composition&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Composition&quot;</span>
+    <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;thickness&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Thickness&quot;</span>
+    <span class="c1"># print(&quot;XXXXX __name_for_attribute&quot;, attribute, &quot;defaults to&quot;, attribute)</span>
+    <span class="k">return</span> <span class="n">attribute</span>
+
+
+<span class="k">def</span> <span class="nf">_otype_for_attribute</span><span class="p">(</span><span class="n">attribute</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;composition&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;composition&quot;</span>
+    <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;thickness&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;number&quot;</span>
+    <span class="k">if</span> <span class="n">attribute</span> <span class="o">==</span> <span class="s2">&quot;Condition Name&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+    <span class="c1"># print(&quot;XXXXX __otype_for_attribute&quot;, attribute, &quot;defaluts to string&quot;)</span>
+    <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">_verify_data_dir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ok</span>
+
+
+<span class="k">def</span> <span class="nf">_verify_input_path</span><span class="p">(</span><span class="n">input_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ok</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../materials_commons.etl.input_spreadsheet.html#materials_commons.etl.input_spreadsheet.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">spread_sheet_path</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">rename_flag</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">data_dir</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">_verify_data_dir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Path to data file directory does not point to a user directory; exiting.&quot;</span><span class="p">)</span>
+        <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_verify_input_path</span><span class="p">(</span><span class="n">spread_sheet_path</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Path to the input Excel spreadsheet does not point to a file; exiting.&quot;</span><span class="p">)</span>
+        <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">BuildProjectExperiment</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">rename_flag</span><span class="p">:</span>
+        <span class="n">builder</span><span class="o">.</span><span class="n">set_rename_is_ok</span><span class="p">(</span><span class="n">rename_flag</span><span class="p">)</span>
+    <span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">spread_sheet_path</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">time_stamp</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+    <span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Build a workflow from given (well formatted) Excel spreadsheet&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to input EXCEL file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--upload&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to directory of data files to upload - optional&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--rename&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;A flag that indicates that the experiment should be renamed when a name collision occurs&#39;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="n">args</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to input EXCEL file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">upload</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">upload</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">upload</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to directory as sources of file upload: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">upload</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path to directory as sources of file upload, not specified. File upload suppressed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Flag indicating if there is a previous experiment with same name, it should be renamed: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">rename</span><span class="p">))</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">upload</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">rename</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

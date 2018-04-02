@@ -6,15 +6,26 @@ Submodules
 
 .. toctree::
 
+   materials_commons.api.Directory
+   materials_commons.api.EtlMetadata
+   materials_commons.api.Experiment
+   materials_commons.api.File
+   materials_commons.api.Process
+   materials_commons.api.Project
+   materials_commons.api.Sample
+   materials_commons.api.Template
+   materials_commons.api.User
    materials_commons.api.api
    materials_commons.api.base
    materials_commons.api.bulk_file_uploader
    materials_commons.api.config
-   materials_commons.api.mc
+   materials_commons.api.for_testing_backend
+   materials_commons.api.make_objects
    materials_commons.api.mc_object_utility
    materials_commons.api.measurement
-   materials_commons.api.property_util
+   materials_commons.api.property
    materials_commons.api.remote
+   materials_commons.api.top_level_api_functions
    materials_commons.api.version
 
 Module contents

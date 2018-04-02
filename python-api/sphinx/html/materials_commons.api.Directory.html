@@ -6,8 +6,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>materials_commons.api.Directory module &#8212; Materials Commons Python API 0.7.5 documentation</title>
-    <link rel="stylesheet" href="sitesite_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="sitesite_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -18,9 +18,9 @@
         SOURCELINK_SUFFIX: '.txt'
       };
     </script>
-    <script type="text/javascript" src="sitesite_static/jquery.js"></script>
-    <script type="text/javascript" src="sitesite_static/underscore.js"></script>
-    <script type="text/javascript" src="sitesite_static/doctools.js"></script>
+    <script type="text/javascript" src="site_static/jquery.js"></script>
+    <script type="text/javascript" src="site_static/underscore.js"></script>
+    <script type="text/javascript" src="site_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -48,8 +48,8 @@
 <span id="materials-commons-api-directory-module"></span><h1>materials_commons.api.Directory module<a class="headerlink" href="#module-materials_commons.api.Directory" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="materials_commons.api.Directory.Directory">
-<em class="property">class </em><code class="descclassname">materials_commons.api.Directory.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=''</em>, <em>path=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
+<em class="property">class </em><code class="descclassname">materials_commons.api.Directory.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=''</em>, <em>path=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="materials_commons.api.base.html#materials_commons.api.base.MCObject" title="materials_commons.api.base.MCObject"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></a></p>
 <p>A Materials Commons Directory.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -58,7 +58,7 @@ any of the project methods that create directories on a given path</p>
 </div>
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.add_directory_tree">
-<code class="descname">add_directory_tree</code><span class="sig-paren">(</span><em>dir_name</em>, <em>input_dir_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.add_directory_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_directory_tree" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_directory_tree</code><span class="sig-paren">(</span><em>dir_name</em>, <em>input_dir_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.add_directory_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_directory_tree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given the path to a local directory, create that directory path in the database,
 loading all the files in the tree.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -82,7 +82,7 @@ loading all the files in the tree.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.add_file">
-<code class="descname">add_file</code><span class="sig-paren">(</span><em>file_name</em>, <em>local_input_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_file</code><span class="sig-paren">(</span><em>file_name</em>, <em>local_input_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload local file, and attach it to an new file in this directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -105,7 +105,7 @@ loading all the files in the tree.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.create_descendant_list_by_path">
-<code class="descname">create_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.create_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.create_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.create_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.create_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create any directories missing on the given path, relative to this directory, and return all the
 directories on the path.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -122,7 +122,7 @@ directories on the path.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.delete">
-<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.delete" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete this directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -140,12 +140,12 @@ directories on the path.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.get_children">
-<code class="descname">get_children</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.get_children"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_children" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_children</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.get_children"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_children" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.get_descendant_list_by_path">
-<code class="descname">get_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.get_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.get_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all the directories on the given path, relative to this directory; if any are missing
 and error is generated.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -168,7 +168,7 @@ and error is generated.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>new_parent_directory</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.move" title="Permalink to this definition">¶</a></dt>
+<code class="descname">move</code><span class="sig-paren">(</span><em>new_parent_directory</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move this directory into another directory. Changes the path of this
 directory and the contents of the new parent directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -197,7 +197,7 @@ directory and the contents of the new parent directory.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.put">
-<code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.put" title="Permalink to this definition">¶</a></dt>
+<code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.put" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy local values to database.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -215,7 +215,7 @@ directory and the contents of the new parent directory.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.rename">
-<code class="descname">rename</code><span class="sig-paren">(</span><em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Directory.html#Directory.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.rename" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rename</code><span class="sig-paren">(</span><em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.rename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rename this directory. Top level directory, can not be renamed, rename project instead.
 :param new_name: string
 :return: updated directory</p>

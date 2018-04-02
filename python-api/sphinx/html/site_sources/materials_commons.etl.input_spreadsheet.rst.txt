@@ -1,0 +1,7 @@
+materials\_commons\.etl\.input\_spreadsheet module
+==================================================
+
+.. automodule:: materials_commons.etl.input_spreadsheet
+    :members:
+    :undoc-members:
+    :show-inheritance:
