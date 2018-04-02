@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.api.File &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.api.File</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">os_path</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">api</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MCObject</span>
+<span class="kn">from</span> <span class="nn">.mc_object_utility</span> <span class="k">import</span> <span class="n">make_object</span>
+
+
+<div class="viewcode-block" id="File"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File">[docs]</a><span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Materials Commons File.</span>
+
+<span class="sd">    .. note:: normally created from the database by a call to :func:`mcapi.Project.add_file_using_directory`</span>
+<span class="sd">        or any of the other project functions that uploading a file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># normally, from the data base</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: file id - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: file name - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: file description - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: file owner - string</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: file path - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">#: file size - long</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uploaded</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checksum</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: file checksum - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1">#: file version flag - boolean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mediatype</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: - directory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: - array of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: - array of string</span>
+
+        <span class="c1"># from database, not inserted now, additional code needed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># additional fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_directory_id</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># attr = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;uploaded&#39;</span><span class="p">,</span> <span class="s1">&#39;checksum&#39;</span><span class="p">,</span> <span class="s1">&#39;current&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;usesid&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[]))</span>
+
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mediatype&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">dict</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">_process_special_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># File - basic methods: rename, move, put, delete</span>
+
+<div class="viewcode-block" id="File.rename"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rename this file.</span>
+
+<span class="sd">        :param new_file_name: string</span>
+<span class="sd">        :return: the updated file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">file_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_rename</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">)</span>
+        <span class="n">updated_file</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">updated_file</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
+        <span class="k">return</span> <span class="n">updated_file</span></div>
+
+<div class="viewcode-block" id="File.move"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_directory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move this file to another directory.</span>
+
+<span class="sd">        :param new_directory: the :class:`mcapi.Directory` instance of the new location</span>
+<span class="sd">        :return: the updated file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">old_directory_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_directory_id</span>
+        <span class="n">new_directory_id</span> <span class="o">=</span> <span class="n">new_directory</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">old_directory_id</span><span class="p">,</span> <span class="n">new_directory</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">updated_file</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">updated_file</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
+        <span class="n">updated_file</span><span class="o">.</span><span class="n">_directory_id</span> <span class="o">=</span> <span class="n">new_directory_id</span>
+        <span class="k">return</span> <span class="n">updated_file</span></div>
+
+<div class="viewcode-block" id="File.put"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copy local values to database.</span>
+
+<span class="sd">        :return: this</span>
+
+<span class="sd">        .. note:: Currently not implemented</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO File.put()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;File.put() is not implemented&quot;</span><span class="p">)</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="File.delete"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete this file from the database.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        .. note:: Currently not implemented</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO File.delete()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;File.delete() is not implemented&quot;</span><span class="p">)</span>
+        <span class="k">pass</span></div>
+
+    <span class="c1"># File - additional methods</span>
+<div class="viewcode-block" id="File.download_file_content"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.download_file_content">[docs]</a>    <span class="k">def</span> <span class="nf">download_file_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Download a copy of the file from the database into a local file on a local path.</span>
+<span class="sd">        Will overwrite any existing file.</span>
+
+<span class="sd">        :param local_download_file_path: the local path ending in the intended file name.</span>
+<span class="sd">        :return: the output file path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">file_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_download</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_file_path</span></div>
+
+<div class="viewcode-block" id="File.get_parent"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.get_parent">[docs]</a>    <span class="k">def</span> <span class="nf">get_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: the parent :class:`mcapi.Directory` instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO File.get_parent()</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;File.get_parent() is not implemented - previous implemation was incorrect&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+        <span class="c1"># Note: this was discovered to be working incorrectly - Terry - March 2018</span>
+        <span class="c1"># return self._project.get_directory_by_id(self._directory_id)</span>
+
+<div class="viewcode-block" id="File.local_path"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.local_path">[docs]</a>    <span class="k">def</span> <span class="nf">local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the context of the project for this file, assuming that project.local_path is set for that project,</span>
+<span class="sd">        get the local_path indicated by this files database path and name.</span>
+
+<span class="sd">        :return: the full local path of this file including the filename.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">get_directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_directory_id</span><span class="p">)</span>
+        <span class="c1"># NOTE: there may be problems with the above - only works in the context of using local_path</span>
+        <span class="c1"># -- that is self._directory_id is set when the file is created using local_path, but</span>
+        <span class="c1"># -- not in other contexts</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">_project</span>
+        <span class="n">proj_dirname</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">proj_dirname</span><span class="p">,</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>
