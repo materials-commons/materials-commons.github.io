@@ -67,28 +67,6 @@
 <div class="section" id="module-materials_commons.api.top_level_api_functions">
 <span id="top-level-functions"></span><h2><a class="toc-backref" href="#id2">Top Level Functions</a><a class="headerlink" href="#module-materials_commons.api.top_level_api_functions" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="materials_commons.api.top_level_api_functions.create_experiment_metadata">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_experiment_metadata</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>metadata</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_experiment_metadata" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a metadata record for Excel-based experiment workflow ETL.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>experiment_id</strong> – the id of an existing experiment</li>
-<li><strong>metadata</strong> – the metadata for the experiment;
-see <code class="xref py py-class docutils literal"><span class="pre">materials_commons.etl.input.build_project.BuildProjectExperiment</span></code></li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.create_project">
 <code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_project</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new Project object in the database and return it.</p>
@@ -177,38 +155,6 @@ see <code class="xref py py-class docutils literal"><span class="pre">materials_
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">fullname</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="function">
-<dt id="materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_experiment_id</code><span class="sig-paren">(</span><em>experiment_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetch an existing metadata record for Excel-based experiment workflow ETL.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>experiment_id</strong> – the id of an existing experiment</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_id</code><span class="sig-paren">(</span><em>metadata_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetch an existing metadata record for Excel-based experiment workflow ETL.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metadata_id</strong> – the id of the metadata record</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 <dl class="function">

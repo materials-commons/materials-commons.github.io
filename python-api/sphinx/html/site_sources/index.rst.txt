@@ -8,6 +8,7 @@ Top Level Functions
 
 .. automodule:: materials_commons.api.top_level_api_functions
     :members:
+    :exclude-members: create_experiment_metadata, get_experiment_metadata_by_experiment_id, get_experiment_metadata_by_id
 
 Project
 -------
