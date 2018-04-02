@@ -12,6 +12,7 @@ To Install
 ----------
 
 The Materials Commons package is available as a PyPI package, and therefore can easily be installed::
+
 pip install materials_commons
 
 This package relates to the original Materials Commons service running at MaterialsCommons.org,
