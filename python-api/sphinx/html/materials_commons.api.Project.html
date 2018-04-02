@@ -6,8 +6,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>materials_commons.api.Project module &#8212; Materials Commons Python API 0.7.5 documentation</title>
-    <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="sitesite_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="sitesite_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -18,9 +18,9 @@
         SOURCELINK_SUFFIX: '.txt'
       };
     </script>
-    <script type="text/javascript" src="site_static/jquery.js"></script>
-    <script type="text/javascript" src="site_static/underscore.js"></script>
-    <script type="text/javascript" src="site_static/doctools.js"></script>
+    <script type="text/javascript" src="sitesite_static/jquery.js"></script>
+    <script type="text/javascript" src="sitesite_static/underscore.js"></script>
+    <script type="text/javascript" src="sitesite_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -48,7 +48,7 @@
 <span id="materials-commons-api-project-module"></span><h1>materials_commons.api.Project module<a class="headerlink" href="#module-materials_commons.api.Project" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="materials_commons.api.Project.Project">
-<em class="property">class </em><code class="descclassname">materials_commons.api.Project.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=''</em>, <em>description=''</em>, <em>remote_url=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.Project.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=''</em>, <em>description=''</em>, <em>remote_url=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="materials_commons.api.base.html#materials_commons.api.base.MCObject" title="materials_commons.api.base.MCObject"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></a></p>
 <p>A Materials Commons Project.</p>
 <div class="admonition note">
@@ -57,7 +57,7 @@
 </div>
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.add_directory">
-<code class="descname">add_directory</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_directory</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.add_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory path, returns the last directory on the path.
 If a directory is missing, in the path, it is created.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -81,7 +81,7 @@ If a directory is missing, in the path, it is created.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.add_directory_list">
-<code class="descname">add_directory_list</code><span class="sig-paren">(</span><em>path_list</em>, <em>top=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_directory_list</code><span class="sig-paren">(</span><em>path_list</em>, <em>top=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.add_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a list of directory paths, create all the directories in the path; this is be most efficient
 if the paths in the list are all leaf directories in the desired tree. The intent of this
 method is to support rapid upload of multiple files by pre-creating the needed directories.</p>
@@ -119,7 +119,7 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proje
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.add_directory_tree_by_local_path">
-<code class="descname">add_directory_tree_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_directory_tree_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory_tree_by_local_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_directory_tree_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.add_directory_tree_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory_tree_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload a directory, specified by local_path, and all its contents
 creating intermediate directories as necessary; the directory name,
 in project (remote), is the same as the local directory name.</p>
@@ -153,7 +153,7 @@ in project (remote), is the same as the local directory name.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.add_file_by_local_path">
-<code class="descname">add_file_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_file_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_file_by_local_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_file_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.add_file_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_file_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload a file, specified by local_path, creating intermediate
 directories as necessary; the file name on the directory of the project (remote) is the
 file name from the local path. See <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_file_using_directory()</span></code>.</p>
@@ -187,7 +187,7 @@ file name from the local path. See <code class="xref py py-func docutils literal
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.add_file_using_directory">
-<code class="descname">add_file_using_directory</code><span class="sig-paren">(</span><em>directory</em>, <em>file_name</em>, <em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_file_using_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_file_using_directory" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_file_using_directory</code><span class="sig-paren">(</span><em>directory</em>, <em>file_name</em>, <em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.add_file_using_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_file_using_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory, a file_name, a local directory path to the file -
 uploads the file, creates a file descriptor in the database, and returns file descriptor.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -220,7 +220,7 @@ uploads the file, creates a file descriptor in the database, and returns file de
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.add_user_to_access_list">
-<code class="descname">add_user_to_access_list</code><span class="sig-paren">(</span><em>new_user</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_user_to_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_user_to_access_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_user_to_access_list</code><span class="sig-paren">(</span><em>new_user</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.add_user_to_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_user_to_access_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a user, by user id, to the access list of this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -236,7 +236,7 @@ uploads the file, creates a file descriptor in the database, and returns file de
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.create_directory">
-<code class="descname">create_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_directory" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_directory" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Currently not implemented; use <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code></p>
@@ -245,7 +245,7 @@ uploads the file, creates a file descriptor in the database, and returns file de
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.create_experiment">
-<code class="descname">create_experiment</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.create_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_experiment" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_experiment</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.create_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create and return an Experiment in this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -272,7 +272,7 @@ uploads the file, creates a file descriptor in the database, and returns file de
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.create_or_get_all_directories_on_path">
-<code class="descname">create_or_get_all_directories_on_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.create_or_get_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_or_get_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_or_get_all_directories_on_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.create_or_get_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_or_get_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory path, returns a list of all the directories on the path.
 If a directory is missing, in the path, it is created and returned in the list.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -304,7 +304,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.delete">
-<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.delete" title="Permalink to this definition">¶</a></dt>
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete this project from the database.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -324,7 +324,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.fetch_sample_by_id">
-<code class="descname">fetch_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.fetch_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.fetch_sample_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fetch_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.fetch_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.fetch_sample_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the sample in question.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -347,7 +347,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.file_exists_by_local_path">
-<code class="descname">file_exists_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>checksum=False</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.file_exists_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.file_exists_by_local_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">file_exists_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>checksum=False</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.file_exists_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.file_exists_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if files exists locally and remotely. Optionally compares md5 hash.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -384,7 +384,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_access_list">
-<code class="descname">get_access_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_access_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_access_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_access_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the list of users with access to this project (actually their id’s; which are their e-mail addresses)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -404,7 +404,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_all_directories">
-<code class="descname">get_all_directories</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_directories" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_all_directories</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_all_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_directories" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all the directories in this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -426,7 +426,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_all_experiments">
-<code class="descname">get_all_experiments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_experiments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_experiments" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_all_experiments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_all_experiments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_experiments" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all the experiments in this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -448,7 +448,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_all_processes">
-<code class="descname">get_all_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_processes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_all_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_all_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_processes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all processes in this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -470,7 +470,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_all_samples">
-<code class="descname">get_all_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_samples" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_all_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_all_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all samples in this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -492,7 +492,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_by_local_path">
-<code class="descname">get_by_local_path</code><span class="sig-paren">(</span><em>local_path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_by_local_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_by_local_path</code><span class="sig-paren">(</span><em>local_path</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_by_local_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uses path on local machine to get a the matching File or Directory in the project.
 Return None if the local file or directory does not match one in the project.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -519,7 +519,7 @@ Return None if the local file or directory does not match one in the project.</p
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_directory">
-<code class="descname">get_directory</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_directory</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the indicated directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -545,7 +545,7 @@ Return None if the local file or directory does not match one in the project.</p
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_directory_by_id">
-<code class="descname">get_directory_by_id</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_directory_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_directory_by_id</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_directory_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the indicated directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -568,7 +568,7 @@ Return None if the local file or directory does not match one in the project.</p
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_directory_list">
-<code class="descname">get_directory_list</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_directory_list</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a directory path, returns a list of all the directories on the path.
 Can fail if the path does not exist.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -599,7 +599,7 @@ Can fail if the path does not exist.</p>
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_experiment_by_id">
-<code class="descname">get_experiment_by_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_experiment_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_experiment_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_experiment_by_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_experiment_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_experiment_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Currently not implemented. Instead use <a class="reference internal" href="index.html#materials_commons.api.Project.get_all_experiments" title="materials_commons.api.Project.get_all_experiments"><code class="xref py py-func docutils literal"><span class="pre">get_all_experiments()</span></code></a> to get
@@ -609,7 +609,7 @@ the experiments and from that list, compare id values to find the experiment req
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_process_by_id">
-<code class="descname">get_process_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_process_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_process_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_process_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a project sample by process id.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -631,7 +631,7 @@ the experiments and from that list, compare id values to find the experiment req
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_sample_by_id">
-<code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the sample in question.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -654,7 +654,7 @@ the experiments and from that list, compare id values to find the experiment req
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.get_top_directory">
-<code class="descname">get_top_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_top_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_top_directory" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_top_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.get_top_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_top_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the top level directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -686,7 +686,7 @@ the experiments and from that list, compare id values to find the experiment req
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.pretty_print">
-<code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.pretty_print" title="Permalink to this definition">¶</a></dt>
+<code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.pretty_print" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints a nice layout of the object and all of it’s values.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -708,7 +708,7 @@ the experiments and from that list, compare id values to find the experiment req
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.put">
-<code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.put" title="Permalink to this definition">¶</a></dt>
+<code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.put" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy local values to database.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -719,7 +719,7 @@ the object in the database; for example, <code class="xref py py-func docutils l
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.remove_user_from_access_list">
-<code class="descname">remove_user_from_access_list</code><span class="sig-paren">(</span><em>user_to_remote</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.remove_user_from_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.remove_user_from_access_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">remove_user_from_access_list</code><span class="sig-paren">(</span><em>user_to_remote</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.remove_user_from_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.remove_user_from_access_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove a user, by user id, form the access list of this project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -735,7 +735,7 @@ the object in the database; for example, <code class="xref py py-func docutils l
 
 <dl class="method">
 <dt id="materials_commons.api.Project.Project.rename">
-<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.rename" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesite_modules/materials_commons/api/Project.html#Project.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.rename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Change the name and (optionally) description of a project.
 Returns the new project from the database.</p>
 <table class="docutils field-list" frame="void" rules="none">
