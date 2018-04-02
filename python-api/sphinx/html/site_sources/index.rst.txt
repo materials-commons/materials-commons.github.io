@@ -4,7 +4,17 @@ Package materials_commons
 The package **materials_commons** consists of three parts. The Python AIP, **materials_commons.api**,
 the Command Line Interface, **materials_commons.cli**, and a newly developend set of scripts for
 Extraction Transformation and Loading (ETL) of experiment workflows from well formatted Excel
-spreadsheets, **materials_commons.etl**.
+spreadsheets, **materials_commons.etl**. The ETL segment, **materials_commons.etl**, is in pre-alpha
+development and (therefore) excluded from this documentation. Contact the developers if you are interested
+in details.
+
+To Install
+----------
+
+The Materials Commons package is available as a PyPI package, and therefore can easily be installed
+```bash
+pip install materials_commons
+```
 
 The Python API
 --------------
