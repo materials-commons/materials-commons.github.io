@@ -15,7 +15,7 @@ The Materials Commons package is available as a PyPI package, and therefore can 
 
 .. code-block:: sh
 
-pip install materials_commons
+    pip install materials_commons
 
 This package relates to the original Materials Commons service running at MaterialsCommons.org,
 that is https://materialscommons.org. The server code is available on
