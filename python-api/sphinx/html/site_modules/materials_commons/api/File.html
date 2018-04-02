@@ -52,7 +52,7 @@
 <span class="kn">from</span> <span class="nn">.mc_object_utility</span> <span class="k">import</span> <span class="n">make_object</span>
 
 
-<div class="viewcode-block" id="File"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File">[docs]</a><span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+<div class="viewcode-block" id="File"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File">[docs]</a><span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Materials Commons File.</span>
 
@@ -107,7 +107,7 @@
 
     <span class="c1"># File - basic methods: rename, move, put, delete</span>
 
-<div class="viewcode-block" id="File.rename"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">):</span>
+<div class="viewcode-block" id="File.rename"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rename this file.</span>
 
@@ -121,7 +121,7 @@
         <span class="n">updated_file</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
         <span class="k">return</span> <span class="n">updated_file</span></div>
 
-<div class="viewcode-block" id="File.move"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_directory</span><span class="p">):</span>
+<div class="viewcode-block" id="File.move"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_directory</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move this file to another directory.</span>
 
@@ -137,7 +137,7 @@
         <span class="n">updated_file</span><span class="o">.</span><span class="n">_directory_id</span> <span class="o">=</span> <span class="n">new_directory_id</span>
         <span class="k">return</span> <span class="n">updated_file</span></div>
 
-<div class="viewcode-block" id="File.put"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="File.put"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Copy local values to database.</span>
 
@@ -150,7 +150,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;File.put() is not implemented&quot;</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="File.delete"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="File.delete"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete this file from the database.</span>
 
@@ -164,7 +164,7 @@
         <span class="k">pass</span></div>
 
     <span class="c1"># File - additional methods</span>
-<div class="viewcode-block" id="File.download_file_content"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.download_file_content">[docs]</a>    <span class="k">def</span> <span class="nf">download_file_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">):</span>
+<div class="viewcode-block" id="File.download_file_content"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.download_file_content">[docs]</a>    <span class="k">def</span> <span class="nf">download_file_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Download a copy of the file from the database into a local file on a local path.</span>
 <span class="sd">        Will overwrite any existing file.</span>
@@ -177,7 +177,7 @@
         <span class="n">output_file_path</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_download</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">local_download_file_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output_file_path</span></div>
 
-<div class="viewcode-block" id="File.get_parent"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.get_parent">[docs]</a>    <span class="k">def</span> <span class="nf">get_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="File.get_parent"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.get_parent">[docs]</a>    <span class="k">def</span> <span class="nf">get_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return: the parent :class:`mcapi.Directory` instance</span>
@@ -188,7 +188,7 @@
         <span class="c1"># Note: this was discovered to be working incorrectly - Terry - March 2018</span>
         <span class="c1"># return self._project.get_directory_by_id(self._directory_id)</span>
 
-<div class="viewcode-block" id="File.local_path"><a class="viewcode-back" href="../../../materials_commons.api.File.html#materials_commons.api.File.local_path">[docs]</a>    <span class="k">def</span> <span class="nf">local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="File.local_path"><a class="viewcode-back" href="../../../index.html#materials_commons.api.File.local_path">[docs]</a>    <span class="k">def</span> <span class="nf">local_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        In the context of the project for this file, assuming that project.local_path is set for that project,</span>
 <span class="sd">        get the local_path indicated by this files database path and name.</span>

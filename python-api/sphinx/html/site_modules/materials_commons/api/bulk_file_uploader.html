@@ -52,7 +52,7 @@
 <span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">walk</span>
 
 
-<div class="viewcode-block" id="BulkFileUploader"><a class="viewcode-back" href="../../../materials_commons.api.bulk_file_uploader.html#materials_commons.api.BulkFileUploader">[docs]</a><span class="k">class</span> <span class="nc">BulkFileUploader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BulkFileUploader"><a class="viewcode-back" href="../../../index.html#materials_commons.api.BulkFileUploader">[docs]</a><span class="k">class</span> <span class="nc">BulkFileUploader</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    A utility for uploading entire directory trees.</span>
 
@@ -67,7 +67,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_failed_list</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="BulkFileUploader.bulk_upload"><a class="viewcode-back" href="../../../materials_commons.api.bulk_file_uploader.html#materials_commons.api.BulkFileUploader.bulk_upload">[docs]</a>    <span class="k">def</span> <span class="nf">bulk_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">local_directory</span><span class="p">):</span>
+<div class="viewcode-block" id="BulkFileUploader.bulk_upload"><a class="viewcode-back" href="../../../index.html#materials_commons.api.BulkFileUploader.bulk_upload">[docs]</a>    <span class="k">def</span> <span class="nf">bulk_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">local_directory</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Upload the entire content of a local_directory using the **projects.local_path** to the base directory;</span>
 <span class="sd">        that is **project.local_path** is the directory that contains the directory to be uploaded, see example.</span>
@@ -199,8 +199,8 @@
         <span class="n">q</span><span class="o">.</span><span class="n">join</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="BulkFileUploaderSizeException"><a class="viewcode-back" href="../../../materials_commons.api.bulk_file_uploader.html#materials_commons.api.BulkFileUploaderSizeException">[docs]</a><span class="k">class</span> <span class="nc">BulkFileUploaderSizeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">pass</span></div>
+<span class="k">class</span> <span class="nc">BulkFileUploaderSizeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 
           </div>

@@ -16,10 +16,3 @@ The Command Line Interface
 
 here
 
-EXCEL Spreadsheet ETL
----------------------
-
-here
-
-
-
