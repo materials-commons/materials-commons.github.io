@@ -1,0 +1,805 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.api.Project module &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="site_static/jquery.js"></script>
+    <script type="text/javascript" src="site_static/underscore.js"></script>
+    <script type="text/javascript" src="site_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-materials_commons.api.Project">
+<span id="materials-commons-api-project-module"></span><h1>materials_commons.api.Project module<a class="headerlink" href="#module-materials_commons.api.Project" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="materials_commons.api.Project.Project">
+<em class="property">class </em><code class="descclassname">materials_commons.api.Project.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=''</em>, <em>description=''</em>, <em>remote_url=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
+<p>A Materials Commons Project.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">normally created from the database by call to the top level function <code class="xref py py-func docutils literal"><span class="pre">mcapi.create_project()</span></code>.</p>
+</div>
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.add_directory">
+<code class="descname">add_directory</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a directory path, returns the last directory on the path.
+If a directory is missing, in the path, it is created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the path, within the project, of the directory - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.add_directory_list">
+<code class="descname">add_directory_list</code><span class="sig-paren">(</span><em>path_list</em>, <em>top=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of directory paths, create all the directories in the path; this is be most efficient
+if the paths in the list are all leaf directories in the desired tree. The intent of this
+method is to support rapid upload of multiple files by pre-creating the needed directories.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path_list</strong> – a list of project directory paths, limit 100;
+see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code> for more information</li>
+<li><strong>top</strong> – (optional) an instance of <a class="reference internal" href="materials_commons.api.Directory.html#module-materials_commons.api.Directory" title="materials_commons.api.Directory"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.Directory</span></code></a> - if given will be use
+as the top level directory for the request; otherwise the project’s root directory
+is used</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a dictionary, indexed by path of the ids of the created directories,
+see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.get_directory()</span></code> to get a directory by it’s id.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_path_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;/a/b/c&#39;</span><span class="p">,</span> <span class="s1">&#39;/a/b/e&#39;</span><span class="p">,</span> <span class="s1">&#39;/a/f/g&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_id_table</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_list</span><span class="p">(</span><span class="n">directory_path_list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">directory_path_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">directory_id</span> <span class="o">=</span> <span class="n">directory_id_table</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory</span><span class="p">(</span><span class="n">directory_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.add_directory_tree_by_local_path">
+<code class="descname">add_directory_tree_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_directory_tree_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_directory_tree_by_local_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload a directory, specified by local_path, and all its contents
+creating intermediate directories as necessary; the directory name,
+in project (remote), is the same as the local directory name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>local_path</strong> – the local path to the directory</li>
+<li><strong>verbose</strong> – (optional) a Flag; if true print()out a trace of the actions</li>
+<li><strong>limit</strong> – (optional) the maximum number of MB to be uploaded for any file in the path</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instance representing the uploaded directory</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads dir_A and all of it&#39;s contents</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># returns Directory object representing project directory /test_dir/dir_a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory_tree_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.add_file_by_local_path">
+<code class="descname">add_file_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_file_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_file_by_local_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload a file, specified by local_path, creating intermediate
+directories as necessary; the file name on the directory of the project (remote) is the
+file name from the local path. See <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_file_using_directory()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>local_path</strong> – the local path to the file</li>
+<li><strong>verbose</strong> – (optional) a Flag; if true print()out a trace of the actions</li>
+<li><strong>limit</strong> – (optional) the maximum number of MB to be uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instance representing the uploaded file</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># uploads file_A.txt from the local path /path/to/Proj/test_dir/file_A.txt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># returns File object representing file_A.txt at project directory /test_dir</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/file_A.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_file_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.add_file_using_directory">
+<code class="descname">add_file_using_directory</code><span class="sig-paren">(</span><em>directory</em>, <em>file_name</em>, <em>local_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_file_using_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_file_using_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a directory, a file_name, a local directory path to the file -
+uploads the file, creates a file descriptor in the database, and returns file descriptor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>directory</strong> – a class:<cite>mcapi.Directory</cite> instance, a directory in the project</li>
+<li><strong>file_name</strong> – the name that file is to take within the project directory</li>
+<li><strong>local_path</strong> – the local path to the file</li>
+<li><strong>verbose</strong> – (optional) a Flag; if true print()out a trace of the actions</li>
+<li><strong>limit</strong> – (optional) the maximum number of MB to be uploaded</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instance representing the uploaded file</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_directory</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">add_file_using_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span><span class="s2">&quot;Test-Results&quot;</span><span class="p">,</span><span class="s2">&quot;/tmp/results.txt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.add_user_to_access_list">
+<code class="descname">add_user_to_access_list</code><span class="sig-paren">(</span><em>new_user</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.add_user_to_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.add_user_to_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a user, by user id, to the access list of this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_user</strong> – the user_id of the user to add</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string - the user_id, if added; otherwise error message</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.create_directory">
+<code class="descname">create_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_directory" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented; use <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.create_experiment">
+<code class="descname">create_experiment</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.create_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return an Experiment in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – name for the Experiment</li>
+<li><strong>description</strong> – description for the Experiment</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Experiment</span></code> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">experiment</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">create_experiment</span><span class="p">(</span><span class="s2">&quot;Experiment 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Test Procedures&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.create_or_get_all_directories_on_path">
+<code class="descname">create_or_get_all_directories_on_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.create_or_get_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.create_or_get_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a directory path, returns a list of all the directories on the path.
+If a directory is missing, in the path, it is created and returned in the list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the path, within the project, of the directory - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># In this example, the list would consist of three directories, where</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># any missing directory would be have been created:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   the Root directory (or &#39;top&#39; directory)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;B&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory_list</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">directory_list</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directory_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete this project from the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a the id the deleted project or None if the delete failed.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Project.Project.description">
+<code class="descname">description</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Project.Project.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>project description - string (from database)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.fetch_sample_by_id">
+<code class="descname">fetch_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.fetch_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.fetch_sample_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sample in question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – the sample id value - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a class:<cite>mcapi.Sample</cite> - the intended sample</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_sample_by_id</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>..todo:: determine and document the difference between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.file_exists_by_local_path">
+<code class="descname">file_exists_by_local_path</code><span class="sig-paren">(</span><em>local_path</em>, <em>checksum=False</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.file_exists_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.file_exists_by_local_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if files exists locally and remotely. Optionally compares md5 hash.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>local_path</strong> – file or directory local path equivalent.</li>
+<li><strong>checksum</strong> – (optional) a flag (True) to compare local and remote checksums</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">file_exists [, checksums_are_equal] - both Boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Return Values:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">file_exists</span><span class="o">**</span> <span class="ow">is</span> <span class="kc">True</span> <span class="n">file</span> <span class="n">exists</span> <span class="n">locally</span> <span class="ow">and</span> <span class="n">remotely</span>
+<span class="o">**</span><span class="n">checksums_are_equal</span><span class="o">**</span> <span class="p">(</span><span class="n">when</span> <span class="n">requested</span> <span class="n">by</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="ow">is</span> <span class="kc">True</span> <span class="n">when</span> <span class="n">both</span> <span class="n">files</span> <span class="n">exist</span> <span class="ow">and</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="n">checksum</span> <span class="n">value</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files_ok</span><span class="p">,</span> <span class="n">checksums_ok</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">file_exists_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">checksum</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">files_ok</span> <span class="ow">and</span> <span class="n">checksums_ok</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot; found on on remote site.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_access_list">
+<code class="descname">get_access_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of users with access to this project (actually their id’s; which are their e-mail addresses)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of string - the id/email of each user with access</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user_id_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_access_list</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_all_directories">
+<code class="descname">get_all_directories</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_directories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all the directories in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_directories</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directory_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_all_experiments">
+<code class="descname">get_all_experiments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_experiments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_experiments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all the experiments in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Experiment</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">experiment_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_experiments</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">experiment_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_all_processes">
+<code class="descname">get_all_processes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_processes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_processes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all processes in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code> - the processes for the Project</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">process_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_processes</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_all_samples">
+<code class="descname">get_all_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_all_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_all_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all samples in this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> - the samples for the Project</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">sample_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_by_local_path">
+<code class="descname">get_by_local_path</code><span class="sig-paren">(</span><em>local_path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_by_local_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_by_local_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses path on local machine to get a the matching File or Directory in the project.
+Return None if the local file or directory does not match one in the project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>local_path</strong> – file or directory local path equivalent.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">one of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code>, :class:’mcapi.Directory`, or None.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/Proj&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">local_path</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">+</span> <span class="s2">&quot;/test_dir/dir_A&quot;</span> <span class="c1"># a local directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_by_local_path</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">directory</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_directory">
+<code class="descname">get_directory</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the indicated directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory_id</strong> – <ul class="simple">
+<li>the id of the intended directory - string</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory</span><span class="p">(</span><span class="s2">&quot;352eb9b1-8553-4be5-8c08-cbb496ef60ea&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_directory_by_id">
+<code class="descname">get_directory_by_id</code><span class="sig-paren">(</span><em>directory_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_directory_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the indicated directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>directory_id</strong> (<em>str.</em>) – The id of the directory to fetch.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory_by_id</span><span class="p">(</span><span class="s1">&#39;876655a2-c31b-4895-8766-40a168ea1a87&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_directory_list">
+<code class="descname">get_directory_list</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_directory_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_directory_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a directory path, returns a list of all the directories on the path.
+Can fail if the path does not exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the path, within the project, of the directory - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># In this example, the list would consist of three directories, assuming that they exist:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   the Root directory (or &#39;top&#39; directory)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#   directory &#39;B&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_directory_list</span><span class="p">(</span><span class="s2">&quot;/A/B&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">directory_list</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">directory_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">directory</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_experiment_by_id">
+<code class="descname">get_experiment_by_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_experiment_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_experiment_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented. Instead use <a class="reference internal" href="index.html#materials_commons.api.Project.get_all_experiments" title="materials_commons.api.Project.get_all_experiments"><code class="xref py py-func docutils literal"><span class="pre">get_all_experiments()</span></code></a> to get
+the experiments and from that list, compare id values to find the experiment required.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_process_by_id">
+<code class="descname">get_process_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_process_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a project sample by process id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_id</strong> – the process id value - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a class:<cite>mcapi.Process</cite>  - the intended process</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">process</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_sample_by_id">
+<code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sample in question.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – the sample id value - string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a class:<cite>mcapi.Sample</cite> - the intended sample</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sample</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">fetch_sample_by_id</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>..todo:: determine and document the difference between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.get_top_directory">
+<code class="descname">get_top_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.get_top_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.get_top_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the top level directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instance</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">directory</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_top_directory</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Project.Project.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Project.Project.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>project id - string (from database)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Project.Project.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Project.Project.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>project name - string (from database)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.pretty_print">
+<code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a nice layout of the object and all of it’s values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shift</strong> – the offset from the start of the line, in increments of indent</li>
+<li><strong>indent</strong> – the indent used for layout, in characters</li>
+<li><strong>out</strong> – the stream to which the object in printed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.put">
+<code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy local values to database.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Not currently implemented. All functions that change the object also update
+the object in the database; for example, <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.rename()</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.remove_user_from_access_list">
+<code class="descname">remove_user_from_access_list</code><span class="sig-paren">(</span><em>user_to_remote</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.remove_user_from_access_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.remove_user_from_access_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a user, by user id, form the access list of this project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user_to_remote</strong> – the user_id of the user to the user to remove</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string - the user_id (in any case)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Project.Project.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name</em>, <em>description=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the name and (optionally) description of a project.
+Returns the new project from the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – new name for project</li>
+<li><strong>description</strong> – (optional) new description for project; if not given, descriptions is unchanged,</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an instance of :class: <cite>mcapi.Project</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Project.Project.source">
+<code class="descname">source</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Project.Project.source" title="Permalink to this definition">¶</a></dt>
+<dd><p>remote URL for this project - string (local only - not in database)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

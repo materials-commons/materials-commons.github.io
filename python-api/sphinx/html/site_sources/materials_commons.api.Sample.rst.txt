@@ -1,0 +1,7 @@
+materials\_commons\.api\.Sample module
+======================================
+
+.. automodule:: materials_commons.api.Sample
+    :members:
+    :undoc-members:
+    :show-inheritance:

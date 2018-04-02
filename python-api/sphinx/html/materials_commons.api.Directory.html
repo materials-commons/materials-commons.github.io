@@ -1,0 +1,265 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.api.Directory module &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="site_static/jquery.js"></script>
+    <script type="text/javascript" src="site_static/underscore.js"></script>
+    <script type="text/javascript" src="site_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-materials_commons.api.Directory">
+<span id="materials-commons-api-directory-module"></span><h1>materials_commons.api.Directory module<a class="headerlink" href="#module-materials_commons.api.Directory" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="materials_commons.api.Directory.Directory">
+<em class="property">class </em><code class="descclassname">materials_commons.api.Directory.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=''</em>, <em>path=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
+<p>A Materials Commons Directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">normally created from the database by call to <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code> or
+any of the project methods that create directories on a given path</p>
+</div>
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.add_directory_tree">
+<code class="descname">add_directory_tree</code><span class="sig-paren">(</span><em>dir_name</em>, <em>input_dir_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.add_directory_tree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_directory_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the path to a local directory, create that directory path in the database,
+loading all the files in the tree.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dir_name</strong> – </li>
+<li><strong>input_dir_path</strong> – </li>
+<li><strong>verbose</strong> – </li>
+<li><strong>limit</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.add_file">
+<code class="descname">add_file</code><span class="sig-paren">(</span><em>file_name</em>, <em>local_input_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload local file, and attach it to an new file in this directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_name</strong> – name of the new file - string</li>
+<li><strong>local_input_path</strong> – path to the local file - string</li>
+<li><strong>verbose</strong> – (optional) flag to print()trace of all actions - True or False</li>
+<li><strong>limit</strong> – (optional) the limit in MB of the size of the file to upload</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an instance of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> - the new file</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.create_descendant_list_by_path">
+<code class="descname">create_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.create_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.create_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create any directories missing on the given path, relative to this directory, and return all the
+directories on the path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete this directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.get_children">
+<code class="descname">get_children</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.get_children"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_children" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.get_descendant_list_by_path">
+<code class="descname">get_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.get_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the directories on the given path, relative to this directory; if any are missing
+and error is generated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Directory.Directory.id">
+<code class="descname">id</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Directory.Directory.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory id</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>new_parent_directory</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move this directory into another directory. Changes the path of this
+directory and the contents of the new parent directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parent_directory</strong> – an instance of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Directory.Directory.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Directory.Directory.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Directory.Directory.path">
+<code class="descname">path</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Directory.Directory.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>directory path within project</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.put">
+<code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy local values to database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently not implemented</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="materials_commons.api.Directory.Directory.rename">
+<code class="descname">rename</code><span class="sig-paren">(</span><em>new_name</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename this directory. Top level directory, can not be renamed, rename project instead.
+:param new_name: string
+:return: updated directory</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

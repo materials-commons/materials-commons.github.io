@@ -1,0 +1,253 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.api.top_level_api_functions module &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="site_static/jquery.js"></script>
+    <script type="text/javascript" src="site_static/underscore.js"></script>
+    <script type="text/javascript" src="site_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-materials_commons.api.top_level_api_functions">
+<span id="materials-commons-api-top-level-api-functions-module"></span><h1>materials_commons.api.top_level_api_functions module<a class="headerlink" href="#module-materials_commons.api.top_level_api_functions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.create_experiment_metadata">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_experiment_metadata</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>metadata</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_experiment_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a metadata record for Excel-based experiment workflow ETL.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>experiment_id</strong> – the id of an existing experiment</li>
+<li><strong>metadata</strong> – the metadata for the experiment;
+see <code class="xref py py-class docutils literal"><span class="pre">materials_commons.etl.input.build_project.BuildProjectExperiment</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.create_project">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_project</code><span class="sig-paren">(</span><em>name</em>, <em>description</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new Project object in the database and return it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – <ul>
+<li>the name of the project</li>
+</ul>
+</li>
+<li><strong>description</strong> – <ul>
+<li>a description for the project</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">create_project</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;A Project&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This is a project for me&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.get_all_projects">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_projects</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_projects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all the project to which the current user has access.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">project_list</span> <span class="o">=</span> <span class="n">get_all_projects</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">project</span> <span class="ow">in</span> <span class="n">project_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.get_all_templates">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all the templates known to the system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Template</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">template_list</span> <span class="o">=</span> <span class="n">get_all_templates</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">template_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">template</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.get_all_users">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_users</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of all users registered on the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.User</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">user_list</span> <span class="o">=</span> <span class="n">get_all_users</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">user_list</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">fullname</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_experiment_id</code><span class="sig-paren">(</span><em>experiment_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch an existing metadata record for Excel-based experiment workflow ETL.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>experiment_id</strong> – the id of an existing experiment</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_id</code><span class="sig-paren">(</span><em>metadata_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch an existing metadata record for Excel-based experiment workflow ETL.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metadata_id</strong> – the id of the metadata record</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.top_level_api_functions.get_project_by_id">
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_project_by_id</code><span class="sig-paren">(</span><em>project_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_project_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_project_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch a project from the database and return it/</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_id</strong> – the id value for the project</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="s2">&quot;e4fd5c88-2fb7-40af-b3fc-2711d786e5f6&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>
