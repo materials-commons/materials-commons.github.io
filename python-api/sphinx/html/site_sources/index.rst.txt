@@ -39,5 +39,13 @@ Documentation for the Python API module:
 The Command Line Interface (materials_commons.cli)
 --------------------------------------------------
 
-here
+The Materials Commons CLI program "mc" makes use of the CLI module to
+enable project and experiment creation, file upload/download, and searching
+for and querying information about samples and processes from the command line.
+Developers can also use the CLI module to customize the "mc"
+program via plugins that create samples and processes for specific applications.
+A tutorial on how to customize the CLI is currently under development.
+
+Documentation for the CLI module:
+:doc:`materials_commons.cli`
 
