@@ -1,85 +1,18 @@
-Package materials_commons.api
-=============================
+Package materials_commons
+=========================
 
-.. contents::
+The package **materials_commons** consists of three parts. The Python AIP, **materials_commons.api**,
+the Command Line Interface, **materials_commons.cli**, and a newly developend set of scripts for
+Extraction Transformation and Loading (ETL) of experiment workflows from well formatted Excel
+spreadsheets, **materials_commons.etl**.
 
-Top Level Functions
--------------------
+The Python API
+--------------
 
-.. automodule:: materials_commons.api.top_level_api_functions
-    :members:
-    :exclude-members: create_experiment_metadata, get_experiment_metadata_by_experiment_id, get_experiment_metadata_by_id
+here
 
-Project
--------
+The Command Line Interface
+--------------------------
 
-.. autoclass:: materials_commons.api.Project
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Experiment
-----------
-
-.. autoclass:: materials_commons.api.Experiment
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Sample
-------
-
-.. autoclass:: materials_commons.api.Sample
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Process
--------
-
-.. autoclass:: materials_commons.api.Process
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Template
---------
-
-.. autoclass:: materials_commons.api.Template
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Directory
----------
-
-.. autoclass:: materials_commons.api.Directory
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-File
-----
-
-.. autoclass:: materials_commons.api.File
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-User
-----
-
-.. autoclass:: materials_commons.api.User
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-BulkFileUploader
-----------------
-
-.. autoclass:: materials_commons.api.BulkFileUploader
-    :members:
-    :undoc-members:
-    :show-inheritance:
+here
 
