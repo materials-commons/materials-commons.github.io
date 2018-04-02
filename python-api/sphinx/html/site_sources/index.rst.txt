@@ -22,8 +22,8 @@ that is https://materialscommons.org. The server code is available on
 GitHub at https://github.com/materials-commons/materialscommons.org.
 Full documentation is also available: https://materials-commons.github.io/ .
 
-The Python API
---------------
+The Python API (materials_commons.api)
+--------------------------------------
 
 The Materials Commons Python API (https://materials-commons.github.io/python-api/) is an
 interface to the REST server on an host running the
@@ -32,8 +32,8 @@ service is running at https://materialscommons.org .
 See the docs at (https://materials-commons.github.io/python-api/) for
 an introduction and instructions on how to use this Python API
 
-The Command Line Interface
---------------------------
+The Command Line Interface (materials_commons.cli)
+--------------------------------------------------
 
 here
 
