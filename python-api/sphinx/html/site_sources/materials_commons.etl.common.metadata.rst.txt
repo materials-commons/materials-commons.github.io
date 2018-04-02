@@ -1,0 +1,7 @@
+materials\_commons\.etl\.common\.metadata module
+================================================
+
+.. automodule:: materials_commons.etl.common.metadata
+    :members:
+    :undoc-members:
+    :show-inheritance:

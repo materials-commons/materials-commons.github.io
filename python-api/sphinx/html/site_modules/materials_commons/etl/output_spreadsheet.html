@@ -1,0 +1,450 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.etl.output_spreadsheet &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.etl.output_spreadsheet</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">string_types</span>
+
+<span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_all_projects</span>
+<span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">File</span> <span class="k">as</span> <span class="n">MC_File</span>
+<span class="kn">from</span> <span class="nn">materials_commons.etl.common.util</span> <span class="k">import</span> <span class="n">_normalise_property_name</span>
+<span class="kn">from</span> <span class="nn">materials_commons.etl.common.metadata</span> <span class="k">import</span> <span class="n">Metadata</span>
+<span class="kn">from</span> <span class="nn">materials_commons.etl.common.process_file_util</span> <span class="k">import</span> <span class="n">make_project_file_id_path_table</span>
+<span class="kn">from</span> <span class="nn">materials_commons.etl.common.worksheet_data</span> <span class="k">import</span> <span class="n">ExcelIO</span>
+<span class="kn">from</span> <span class="nn">materials_commons.etl.common.meta_data_verify</span> <span class="k">import</span> <span class="n">MetadataVerification</span>
+
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet">[docs]</a><span class="k">class</span> <span class="nc">ExtractExperimentSpreadsheet</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">Metadata</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span> <span class="o">=</span> <span class="n">output_file_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worksheet</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.get_project"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.get_project">[docs]</a>    <span class="k">def</span> <span class="nf">get_project</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.get_experiment"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.get_experiment">[docs]</a>    <span class="k">def</span> <span class="nf">get_experiment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.set_up_project_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.set_up_project_experiment_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">set_up_project_experiment_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">):</span>
+        <span class="n">project_list</span> <span class="o">=</span> <span class="n">get_all_projects</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="n">project_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">proj</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">project_name</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">proj</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Can not find project with name = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">project_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. Quiting.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">experiment_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get_all_experiments</span><span class="p">()</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">experiment_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">exp</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">experiment_name</span><span class="p">:</span>
+                <span class="n">found</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Can not find Experiment with name = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;. Quiting.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">found</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found more the one Experiment with name = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;;&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rename experiment so that &#39;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39; is unique.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quiting.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">found</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was no ETL metadata for the experiment &#39;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_name</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;;&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This experiment does not appear to have been created using ETL input.&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Quiting.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetadataVerification</span><span class="p">()</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>  <span class="c1"># Adds metadata.process_table !</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">metadata</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metadata verification failed.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.build_experiment_array"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.build_experiment_array">[docs]</a>    <span class="k">def</span> <span class="nf">build_experiment_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_headers_from_metadata</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_data_from_metadata</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.set_headers_from_metadata"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.set_headers_from_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">set_headers_from_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    ... setting headers...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">sheet_headers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.set_data_from_metadata"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.set_data_from_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">set_data_from_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialize_empty_data</span><span class="p">()</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">[</span><span class="n">metadata</span><span class="o">.</span><span class="n">data_row_start</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;BEGIN_DATA&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    ... setting data...&quot;</span><span class="p">)</span>
+        <span class="n">process_record_list</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">process_metadata</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">process_table</span>  <span class="c1"># Note: added by metadata verify</span>
+        <span class="n">type_list</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">sheet_headers</span><span class="p">[</span><span class="n">metadata</span><span class="o">.</span><span class="n">start_attribute_row</span><span class="p">]</span>
+        <span class="n">attribute_list</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">sheet_headers</span><span class="p">[</span><span class="n">metadata</span><span class="o">.</span><span class="n">start_attribute_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">attribute_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_units_spec_from_attributes</span><span class="p">(</span><span class="n">attribute_list</span><span class="p">)</span>
+        <span class="n">attribute_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_dotted_attributes</span><span class="p">(</span><span class="n">attribute_list</span><span class="p">)</span>
+        <span class="n">attribute_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_normalized_attribute_names</span><span class="p">(</span><span class="n">attribute_list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">process_record</span> <span class="ow">in</span> <span class="n">process_record_list</span><span class="p">:</span>
+            <span class="n">start_row</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;start_row&quot;</span><span class="p">]</span>
+            <span class="n">end_row</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;end_row&quot;</span><span class="p">]</span>
+            <span class="n">start_col</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;start_col&quot;</span><span class="p">]</span>
+            <span class="n">end_col</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;end_col&quot;</span><span class="p">]</span>
+            <span class="n">process</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">process_record</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_first_data_row_for_process</span><span class="p">(</span>
+                <span class="n">start_row</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">,</span> <span class="n">type_list</span><span class="p">,</span> <span class="n">attribute_list</span><span class="p">,</span> <span class="n">process</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_file_entry_for_process</span><span class="p">(</span>
+                <span class="n">start_row</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">,</span> <span class="n">type_list</span><span class="p">,</span> <span class="n">process_record</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">end_row</span> <span class="o">-</span> <span class="n">start_row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">copy_duplicate_rows_for_process</span><span class="p">(</span>
+                    <span class="n">start_row</span><span class="p">,</span> <span class="n">end_row</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.initialize_empty_data"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.initialize_empty_data">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_empty_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">row_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">data_row_end</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">data_col_end</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.write_first_data_row_for_process"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.write_first_data_row_for_process">[docs]</a>    <span class="k">def</span> <span class="nf">write_first_data_row_for_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">process</span><span class="p">):</span>
+        <span class="n">measurements</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">measurements</span>
+        <span class="n">setup_parameter_list</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">setup</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+            <span class="n">value_type</span> <span class="o">=</span> <span class="n">types</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+            <span class="n">attribute</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;MEAS&quot;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_measurement_for</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">measurements</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;PARAM&quot;</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_parameter_for</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">setup_parameter_list</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;SAMPLES&quot;</span> <span class="ow">and</span> <span class="n">process</span><span class="o">.</span><span class="n">output_samples</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">output_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.set_file_entry_for_process"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.set_file_entry_for_process">[docs]</a>    <span class="k">def</span> <span class="nf">set_file_entry_for_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">entry</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+            <span class="n">value_type</span> <span class="o">=</span> <span class="n">types</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value_type</span> <span class="o">==</span> <span class="s2">&quot;FILES&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span>
+                <span class="k">break</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.extract_measurement_for"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.extract_measurement_for">[docs]</a>    <span class="k">def</span> <span class="nf">extract_measurement_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">measurement</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_measurement_for_attribute</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">measurements</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">measurement</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_measurement_value_for_attribute</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">measurement</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.find_measurement_for_attribute"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.find_measurement_for_attribute">[docs]</a>    <span class="k">def</span> <span class="nf">find_measurement_for_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+        <span class="n">found_measurement</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">attribute</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">attribute</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">measurements</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="n">m</span><span class="o">.</span><span class="n">attribute</span><span class="p">:</span>
+                <span class="n">found_measurement</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="k">return</span> <span class="n">found_measurement</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.get_measurement_value_for_attribute"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.get_measurement_value_for_attribute">[docs]</a>    <span class="k">def</span> <span class="nf">get_measurement_value_for_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurement</span><span class="p">):</span>
+        <span class="c1"># print(&#39;get_measurement_value_for_attribute&#39;, attribute, measurement.value)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measurement</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">measurement</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">recursive_value_extraction</span><span class="p">(</span><span class="n">attribute</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">attribute</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">measurement</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.recursive_value_extraction"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.recursive_value_extraction">[docs]</a>    <span class="k">def</span> <span class="nf">recursive_value_extraction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">name_list</span><span class="p">,</span> <span class="n">probe</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key_for_category</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name_list</span><span class="p">)</span>
+        <span class="c1"># print(&#39;recursive_value_extraction&#39;, name, name_list, key, probe)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">probe</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">probe</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">probe</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">part_name</span> <span class="o">=</span> <span class="n">name_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">probe</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">m</span> <span class="ow">and</span> <span class="n">m</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="n">part_name</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recursive_value_extraction</span><span class="p">(</span><span class="n">name_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">name_list</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">value</span><span class="p">)</span>
+        <span class="c1"># print(&#39;recursive_value_extraction - value&#39;, value)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.download_process_files"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.download_process_files">[docs]</a>    <span class="k">def</span> <span class="nf">download_process_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">download_dir_path</span><span class="p">):</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_project</span><span class="p">()</span>
+        <span class="n">top_dir</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_top_directory</span><span class="p">()</span>
+        <span class="n">top_directory_name</span> <span class="o">=</span> <span class="n">top_dir</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">file_id_path_table</span> <span class="o">=</span> <span class="n">make_project_file_id_path_table</span><span class="p">(</span><span class="n">project</span><span class="p">)</span>
+        <span class="n">path_table</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">file_id_path_table</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">file_id_path_table</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+            <span class="n">path_table</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="n">project</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">download_dir_path</span>
+        <span class="n">process_record_list</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">process_metadata</span>
+        <span class="n">type_list</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">sheet_headers</span><span class="p">[</span><span class="n">metadata</span><span class="o">.</span><span class="n">start_attribute_row</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">process_record</span> <span class="ow">in</span> <span class="n">process_record_list</span><span class="p">:</span>
+            <span class="n">start_row</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;start_row&quot;</span><span class="p">]</span>
+            <span class="n">start_col</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;start_col&quot;</span><span class="p">]</span>
+            <span class="n">end_col</span> <span class="o">=</span> <span class="n">process_record</span><span class="p">[</span><span class="s2">&quot;end_col&quot;</span><span class="p">]</span>
+            <span class="n">files_entry</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">type_list</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;FILES&quot;</span><span class="p">:</span>
+                    <span class="n">files_entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">[</span><span class="n">start_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">files_entry</span><span class="p">:</span>
+                <span class="n">file_or_dir_path_list</span> <span class="o">=</span> <span class="n">files_entry</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">file_or_dir_path_list</span><span class="p">:</span>
+                    <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span> <span class="o">/</span> <span class="n">entry</span>
+                    <span class="n">local_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                    <span class="n">remote_path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">top_directory_name</span><span class="p">)</span> <span class="o">/</span> <span class="n">entry</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  : &quot;</span> <span class="o">+</span> <span class="n">remote_path</span> <span class="o">+</span> <span class="s2">&quot; --&gt; &quot;</span> <span class="o">+</span> <span class="n">local_path</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote_path</span> <span class="ow">in</span> <span class="n">path_table</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  :     file from spreadsheet not in project, skipping&quot;</span> <span class="o">+</span> <span class="n">entry</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                    <span class="n">record</span> <span class="o">=</span> <span class="n">path_table</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">remote_path</span><span class="p">)]</span>
+                    <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;is_file&#39;</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">downloadLocalFileContent</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">downloadLocalDirContent</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s1">&#39;dir&#39;</span><span class="p">],</span> <span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.downloadLocalFileContent"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.downloadLocalFileContent">[docs]</a>    <span class="k">def</span> <span class="nf">downloadLocalFileContent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  :     skipping dublicate: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">parts</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="nb">dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">download_file_content</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.downloadLocalDirContent"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.downloadLocalDirContent">[docs]</a>    <span class="k">def</span> <span class="nf">downloadLocalDirContent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">dir</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="c1">#        print(&quot;download dir&quot;, dir.name, path)</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">dir</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+            <span class="n">child_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="c1">#            print(&quot;child_path&quot;, str(child_path))</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">==</span> <span class="n">MC_File</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">downloadLocalFileContent</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">child_path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">downloadLocalDirContent</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">child_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.key_for_category"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.key_for_category">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">key_for_category</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name_list</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;composition&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;element&#39;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;stats&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">name_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">key</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.extract_parameter_for"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.extract_parameter_for">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">extract_parameter_for</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">setup_list</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">setup_list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">attribute</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">attribute</span><span class="p">):</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">prop</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.copy_duplicate_rows_for_process"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.copy_duplicate_rows_for_process">[docs]</a>    <span class="k">def</span> <span class="nf">copy_duplicate_rows_for_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_row</span><span class="p">,</span> <span class="n">end_row</span><span class="p">,</span> <span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end_row</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_col</span><span class="p">,</span> <span class="n">end_col</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">[</span><span class="n">start_row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.write_spreadsheet"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.write_spreadsheet">[docs]</a>    <span class="k">def</span> <span class="nf">write_spreadsheet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing spreadsheet: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">)</span>
+        <span class="n">excel_interface</span> <span class="o">=</span> <span class="n">ExcelIO</span><span class="p">()</span>
+        <span class="n">excel_interface</span><span class="o">.</span><span class="n">write_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_row_list</span><span class="p">)</span>
+        <span class="n">excel_interface</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.remove_units_spec_from_attributes"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.remove_units_spec_from_attributes">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">remove_units_spec_from_attributes</span><span class="p">(</span><span class="n">attributes</span><span class="p">):</span>
+        <span class="n">update</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">and</span> <span class="s1">&#39;(&#39;</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">attr</span> <span class="o">=</span> <span class="n">attr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">update</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">update</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.parse_dotted_attributes"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.parse_dotted_attributes">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">parse_dotted_attributes</span><span class="p">(</span><span class="n">attributes</span><span class="p">):</span>
+        <span class="n">update</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">and</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+                <span class="n">attr</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+            <span class="n">update</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">update</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.make_normalized_attribute_names"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.make_normalized_attribute_names">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">make_normalized_attribute_names</span><span class="p">(</span><span class="n">attributes</span><span class="p">):</span>
+        <span class="n">update</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
+                    <span class="n">attr</span> <span class="o">=</span> <span class="n">_normalise_property_name</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="n">parts</span><span class="p">:</span>
+                            <span class="c1"># only normalize the leading term</span>
+                            <span class="n">part</span> <span class="o">=</span> <span class="n">_normalise_property_name</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+                        <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+                    <span class="n">attr</span> <span class="o">=</span> <span class="n">parts</span>
+            <span class="n">update</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">update</span></div>
+
+<div class="viewcode-block" id="ExtractExperimentSpreadsheet.make_process_filenames"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.ExtractExperimentSpreadsheet.make_process_filenames">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">make_process_filenames</span><span class="p">(</span><span class="n">process</span><span class="p">):</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_all_files</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_verify_data_dir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ok</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../materials_commons.etl.output_spreadsheet.html#materials_commons.etl.output_spreadsheet.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">project_name</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">download</span><span class="p">):</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">ExtractExperimentSpreadsheet</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">set_up_project_experiment_metadata</span><span class="p">(</span><span class="n">project_name</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid configuration of metadata or experiment/metadata mismatch. Quiting&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing experiment &#39;&quot;</span> <span class="o">+</span> <span class="n">builder</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">name</span>
+              <span class="o">+</span> <span class="s2">&quot;&#39; in project, &#39;&quot;</span> <span class="o">+</span> <span class="n">builder</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;, to&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spreadsheet at &quot;</span> <span class="o">+</span> <span class="n">builder</span><span class="o">.</span><span class="n">output_path</span><span class="p">)</span>
+        <span class="n">builder</span><span class="o">.</span><span class="n">build_experiment_array</span><span class="p">()</span>
+        <span class="n">builder</span><span class="o">.</span><span class="n">write_spreadsheet</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">download</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Downloading process files to &quot;</span> <span class="o">+</span> <span class="n">download</span><span class="p">)</span>
+            <span class="n">builder</span><span class="o">.</span><span class="n">download_process_files</span><span class="p">(</span><span class="n">download</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">time_stamp</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+
+    <span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Dump a project-experiment to a spreadsheet&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;proj&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Project Name&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;exp&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Experiment Name&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to output file&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--download&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to dir for downloading files; if none, files are not downloaded&quot;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="n">args</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.xlsx&quot;</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span> <span class="o">+</span> <span class="s2">&quot;.xlsx&quot;</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">:</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">download</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_verify_data_dir</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path for file download directory does not exist, ignoring: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">)</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output excel spreadsheet for experiment &#39;&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">exp</span> <span class="o">+</span> <span class="s2">&quot;&#39; of project &#39;&quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">proj</span> <span class="o">+</span> <span class="s2">&quot;&#39;...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  to spreadsheet at &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  with downloaded data going to &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">)</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">proj</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">exp</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">download</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

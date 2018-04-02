@@ -1,0 +1,977 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.api.api &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.api.api</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">.remote</span> <span class="k">import</span> <span class="n">Remote</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="k">import</span> <span class="n">Config</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">magic</span>
+<span class="c1"># import json</span>
+
+<span class="c1"># Defaults</span>
+<span class="n">_mcorg</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">()</span>
+<span class="n">_current_remote</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="use_remote"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.use_remote">[docs]</a><span class="k">def</span> <span class="nf">use_remote</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">_current_remote</span>
+    <span class="k">if</span> <span class="n">_current_remote</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_current_remote</span>
+    <span class="k">return</span> <span class="n">mcorg</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="set_remote"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.set_remote">[docs]</a><span class="k">def</span> <span class="nf">set_remote</span><span class="p">(</span><span class="n">remote</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">_current_remote</span>
+    <span class="n">_current_remote</span> <span class="o">=</span> <span class="n">remote</span></div>
+
+
+<div class="viewcode-block" id="unset_remote"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.unset_remote">[docs]</a><span class="k">def</span> <span class="nf">unset_remote</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">_current_remote</span>
+    <span class="n">_current_remote</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="mcorg"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.mcorg">[docs]</a><span class="k">def</span> <span class="nf">mcorg</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">_mcorg</span></div>
+
+
+<div class="viewcode-block" id="get"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get">[docs]</a><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="post"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.post">[docs]</a><span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="put"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.put">[docs]</a><span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+        <span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="delete"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete">[docs]</a><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="delete_expect_empty"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_expect_empty">[docs]</a><span class="k">def</span> <span class="nf">delete_expect_empty</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="disable_warnings"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.disable_warnings">[docs]</a><span class="k">def</span> <span class="nf">disable_warnings</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Temporary fix to disable requests&#39; InsecureRequestWarning&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">urllib3</span>
+    <span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">InsecureRequestWarning</span><span class="p">)</span></div>
+
+
+<span class="n">disable_warnings</span><span class="p">()</span>
+
+
+<span class="c1"># Set Config url</span>
+
+<div class="viewcode-block" id="set_remote_config_url"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.set_remote_config_url">[docs]</a><span class="k">def</span> <span class="nf">set_remote_config_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set the base url for the REST query layer, normally taken from</span>
+<span class="sd">    the user configuration file at ~/.materialscommons/config.json</span>
+
+<span class="sd">    :param url: the URL as a string</span>
+<span class="sd">    :return: None</span>
+
+<span class="sd">    &gt;&gt;&gt; mcapi.set_remote_config_url(&quot;http://mcdev.localhost/api&quot;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">set_remote</span><span class="p">(</span><span class="n">Remote</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">Config</span><span class="p">(</span><span class="n">override_config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;mcurl&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">})))</span></div>
+
+
+<div class="viewcode-block" id="get_remote_config_url"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_remote_config_url">[docs]</a><span class="k">def</span> <span class="nf">get_remote_config_url</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The current setting of the url for the REST query layer.</span>
+
+<span class="sd">    :return: the URL as a string</span>
+
+<span class="sd">    &gt;&gt;&gt; url = mcapi.get_remote_config_url()</span>
+<span class="sd">    &gt;&gt;&gt; print(url)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">use_remote</span><span class="p">()</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">mcurl</span></div>
+
+
+<span class="c1"># Project</span>
+
+<div class="viewcode-block" id="projects"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.projects">[docs]</a><span class="k">def</span> <span class="nf">projects</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    get data for all projects</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">      results: List[dict()]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="s1">&#39;projects&#39;</span><span class="p">),</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_project">[docs]</a><span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    create a project</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">      results: dict of &#39;project_id&#39; and &#39;datadir_id&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="s2">&quot;projects&quot;</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_project_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_project_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="update_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.update_project">[docs]</a><span class="k">def</span> <span class="nf">update_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_project_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_project_sample_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_project_sample_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples/&quot;</span> <span class="o">+</span> <span class="n">sample_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="delete_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_project">[docs]</a><span class="k">def</span> <span class="nf">delete_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_project_processes"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_project_processes">[docs]</a><span class="k">def</span> <span class="nf">get_project_processes</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_project_samples"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_project_samples">[docs]</a><span class="k">def</span> <span class="nf">get_project_samples</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="users_with_access_to_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.users_with_access_to_project">[docs]</a><span class="k">def</span> <span class="nf">users_with_access_to_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/access&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="add_user_access_to_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.add_user_access_to_project">[docs]</a><span class="k">def</span> <span class="nf">add_user_access_to_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;add&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/access&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="remove_user_access_to_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.remove_user_access_to_project">[docs]</a><span class="k">def</span> <span class="nf">remove_user_access_to_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/access&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="c1"># Experiment</span>
+<div class="viewcode-block" id="create_experiment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_experiment">[docs]</a><span class="k">def</span> <span class="nf">create_experiment</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create a project</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ----------</span>
+<span class="sd">          results: id of new experiment</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;project_id&quot;</span><span class="p">:</span> <span class="n">project_id</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments&quot;</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="rename_experiment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.rename_experiment">[docs]</a><span class="k">def</span> <span class="nf">rename_experiment</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">api_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_experiments"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.fetch_experiments">[docs]</a><span class="k">def</span> <span class="nf">fetch_experiments</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="fetch_experiment_samples"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.fetch_experiment_samples">[docs]</a><span class="k">def</span> <span class="nf">fetch_experiment_samples</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> <span class="s2">&quot;/samples&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="fetch_experiment_processes"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.fetch_experiment_processes">[docs]</a><span class="k">def</span> <span class="nf">fetch_experiment_processes</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> <span class="s2">&quot;/processes&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="delete_experiment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_experiment">[docs]</a><span class="k">def</span> <span class="nf">delete_experiment</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="delete_experiment_fully"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_experiment_fully">[docs]</a><span class="k">def</span> <span class="nf">delete_experiment_fully</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> <span class="s2">&quot;/delete/fully&quot;</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="delete_experiment_dry_run"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_experiment_dry_run">[docs]</a><span class="k">def</span> <span class="nf">delete_experiment_dry_run</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> <span class="s2">&quot;/delete/dryrun&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<span class="c1"># Process</span>
+
+<div class="viewcode-block" id="create_process_from_template"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_process_from_template">[docs]</a><span class="k">def</span> <span class="nf">create_process_from_template</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">template_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">template_id</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes/templates/&quot;</span> <span class="o">+</span> <span class="n">template_id</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="push_name_for_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.push_name_for_process">[docs]</a><span class="k">def</span> <span class="nf">push_name_for_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="delete_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_process">[docs]</a><span class="k">def</span> <span class="nf">delete_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="set_notes_for_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.set_notes_for_process">[docs]</a><span class="k">def</span> <span class="nf">set_notes_for_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">value</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_process_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_process_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_process_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_experiment_process_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_experiment_process_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_process_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="delete_sample_created_by_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_sample_created_by_process">[docs]</a><span class="k">def</span> <span class="nf">delete_sample_created_by_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">property_set_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">command_list</span> <span class="o">=</span> <span class="p">[{</span>
+        <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">sample_id</span><span class="p">,</span>
+        <span class="s2">&quot;property_set_id&quot;</span><span class="p">:</span> <span class="n">property_set_id</span>
+    <span class="p">}]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;samples&quot;</span><span class="p">:</span> <span class="n">command_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_all_files_for_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_all_files_for_process">[docs]</a><span class="k">def</span> <span class="nf">get_all_files_for_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/files&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<span class="c1"># Sample</span>
+
+<div class="viewcode-block" id="get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_sample_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_experiment_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_experiment_sample_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_sample_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> \
+              <span class="o">+</span> <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_samples_in_project"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_samples_in_project">[docs]</a><span class="k">def</span> <span class="nf">create_samples_in_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">sample_names_data</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sample_names</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;process_id&quot;</span><span class="p">:</span> <span class="n">process_id</span><span class="p">,</span>
+        <span class="s2">&quot;samples&quot;</span><span class="p">:</span> <span class="n">sample_names_data</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_samples_to_experiment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.add_samples_to_experiment">[docs]</a><span class="k">def</span> <span class="nf">add_samples_to_experiment</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">sample_id_list</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;samples&quot;</span><span class="p">:</span> <span class="n">sample_id_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> <span class="s2">&quot;/samples&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="link_files_to_sample"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.link_files_to_sample">[docs]</a><span class="k">def</span> <span class="nf">link_files_to_sample</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">file_id_list</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">command_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">file_id_list</span><span class="p">:</span>
+        <span class="n">command_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;add&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">id</span>
+        <span class="p">})</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="n">command_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples/&quot;</span> <span class="o">+</span> <span class="n">sample_id</span> <span class="o">+</span> <span class="s2">&quot;/files&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="fetch_sample_details"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.fetch_sample_details">[docs]</a><span class="k">def</span> <span class="nf">fetch_sample_details</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/samples/&quot;</span> <span class="o">+</span> <span class="n">sample_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<span class="c1"># Create sample process</span>
+
+<div class="viewcode-block" id="add_samples_to_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.add_samples_to_process">[docs]</a><span class="k">def</span> <span class="nf">add_samples_to_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">samples_data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;property_set_id&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">property_set_id</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;template_id&quot;</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">template_id</span><span class="p">,</span>
+        <span class="s2">&quot;process_id&quot;</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">&quot;samples&quot;</span><span class="p">:</span> <span class="n">samples_data</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="c1"># add/update measurements on process samples</span>
+
+<div class="viewcode-block" id="set_measurement_for_process_samples"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.set_measurement_for_process_samples">[docs]</a><span class="k">def</span> <span class="nf">set_measurement_for_process_samples</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span>
+                                        <span class="n">samples</span><span class="p">,</span> <span class="n">measurement_property</span><span class="p">,</span> <span class="n">measurements</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">request_properties</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;property&#39;</span><span class="p">:</span> <span class="n">measurement_property</span><span class="p">,</span>
+        <span class="s1">&#39;add_as&#39;</span><span class="p">:</span> <span class="s1">&#39;separate&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;samples&#39;</span><span class="p">:</span> <span class="n">samples</span><span class="p">,</span>
+        <span class="s1">&#39;measurements&#39;</span><span class="p">:</span> <span class="n">measurements</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;process_id&#39;</span><span class="p">:</span> <span class="n">process_id</span><span class="p">,</span>
+        <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">request_properties</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/samples/measurements&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="c1"># update process setup values</span>
+
+<div class="viewcode-block" id="update_process_setup_properties"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.update_process_setup_properties">[docs]</a><span class="k">def</span> <span class="nf">update_process_setup_properties</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">properties_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
+        <span class="n">properties_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">update_process_setup_properties_make_data</span><span class="p">(</span><span class="n">prop</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;template_id&quot;</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">template_id</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="n">properties_data</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;required&quot;</span><span class="p">]:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;required&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="update_process_setup_properties_make_data"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.update_process_setup_properties_make_data">[docs]</a><span class="k">def</span> <span class="nf">update_process_setup_properties_make_data</span><span class="p">(</span><span class="n">setup_property</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">setup_property</span><span class="o">.</span><span class="n">required</span><span class="p">:</span>
+        <span class="n">setup_property</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">slot_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;attribute&quot;</span><span class="p">,</span> <span class="s2">&quot;choices&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;required&quot;</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;setup_id&quot;</span><span class="p">,</span> <span class="s2">&quot;setup_attribute&quot;</span><span class="p">,</span> <span class="s2">&quot;otype&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">slot</span> <span class="ow">in</span> <span class="n">slot_list</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">setup_property</span><span class="p">,</span> <span class="n">slot</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="update_additional_properties_in_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.update_additional_properties_in_process">[docs]</a><span class="k">def</span> <span class="nf">update_additional_properties_in_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="n">properties</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/addparameters&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+<span class="c1"># experiment etl metadata</span>
+
+<div class="viewcode-block" id="create_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_experiment_metadata">[docs]</a><span class="k">def</span> <span class="nf">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;json&#39;</span><span class="p">:</span> <span class="n">json</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;etl/create/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_experiment_metadata">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_metadata</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;etl/metadata/&quot;</span> <span class="o">+</span> <span class="n">metadata_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_experiment_metadata_by_experiment_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_experiment_metadata_by_experiment_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;etl/experiment/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/metadata&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="update_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.update_experiment_metadata">[docs]</a><span class="k">def</span> <span class="nf">update_experiment_metadata</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">json</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;json&#39;</span><span class="p">:</span> <span class="n">json</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;etl/metadata/&quot;</span> <span class="o">+</span> <span class="n">metadata_id</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="delete_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_experiment_metadata">[docs]</a><span class="k">def</span> <span class="nf">delete_experiment_metadata</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;etl/metadata/&quot;</span> <span class="o">+</span> <span class="n">metadata_id</span>
+    <span class="c1"># throws on error</span>
+    <span class="n">delete_expect_empty</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">True</span></div>
+
+<span class="c1"># templates</span>
+
+<div class="viewcode-block" id="get_all_templates"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_all_templates">[docs]</a><span class="k">def</span> <span class="nf">get_all_templates</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;templates&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<span class="c1"># users</span>
+<div class="viewcode-block" id="get_all_users"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_all_users">[docs]</a><span class="k">def</span> <span class="nf">get_all_users</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<span class="c1"># directory</span>
+<div class="viewcode-block" id="directory_by_id"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.directory_by_id">[docs]</a><span class="k">def</span> <span class="nf">directory_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_fetch_all_directories_on_path"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_fetch_all_directories_on_path">[docs]</a><span class="k">def</span> <span class="nf">create_fetch_all_directories_on_path</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;from_dir&quot;</span><span class="p">:</span> <span class="n">directory_id</span><span class="p">,</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">path</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/directories/&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="directory_rename"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.directory_rename">[docs]</a><span class="k">def</span> <span class="nf">directory_rename</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;rename&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;new_name&#39;</span><span class="p">:</span> <span class="n">new_name</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="directory_move"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.directory_move">[docs]</a><span class="k">def</span> <span class="nf">directory_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">new_directory_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;move&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;new_directory_id&#39;</span><span class="p">:</span> <span class="n">new_directory_id</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="directory_create_subdirectories_from_path_list"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.directory_create_subdirectories_from_path_list">[docs]</a><span class="k">def</span> <span class="nf">directory_create_subdirectories_from_path_list</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">path_list</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;paths&#39;</span><span class="p">:</span> <span class="n">path_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="c1"># file</span>
+
+<div class="viewcode-block" id="file_upload"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.file_upload">[docs]</a><span class="k">def</span> <span class="nf">file_upload</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">input_path</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/directories/&quot;</span> <span class="o">+</span> <span class="n">directory_id</span> <span class="o">+</span> <span class="s2">&quot;/fileupload&quot;</span>
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">magic</span><span class="o">.</span><span class="n">Magic</span><span class="p">(</span><span class="n">mime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)}</span>
+        <span class="n">restpath</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="file_download"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.file_download">[docs]</a><span class="k">def</span> <span class="nf">file_download</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">output_file_path</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> <span class="s2">&quot;/files/&quot;</span> <span class="o">+</span> <span class="n">file_id</span> <span class="o">+</span> <span class="s2">&quot;/download&quot;</span>
+        <span class="n">restpath</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">restpath</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">remote</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="mi">1024</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">output_file_path</span></div>
+
+
+<div class="viewcode-block" id="add_files_to_process"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.add_files_to_process">[docs]</a><span class="k">def</span> <span class="nf">add_files_to_process</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">file_id_list</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">id</span><span class="p">}</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;template_id&quot;</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">template_id</span><span class="p">,</span>
+        <span class="s2">&quot;process_id&quot;</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="n">file_id_list</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes/&quot;</span> <span class="o">+</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="file_rename"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.file_rename">[docs]</a><span class="k">def</span> <span class="nf">file_rename</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">new_file_name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">new_file_name</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/files/&quot;</span> <span class="o">+</span> <span class="n">file_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="file_move"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.file_move">[docs]</a><span class="k">def</span> <span class="nf">file_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">old_directory_id</span><span class="p">,</span> <span class="n">new_directory_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;move&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;old_directory_id&#39;</span><span class="p">:</span> <span class="n">old_directory_id</span><span class="p">,</span>
+            <span class="s1">&#39;new_directory_id&#39;</span><span class="p">:</span> <span class="n">new_directory_id</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/files/&quot;</span> <span class="o">+</span> <span class="n">file_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="c1"># for testing only - datasets</span>
+<div class="viewcode-block" id="create_dataset"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_dataset">[docs]</a><span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="publish_dataset"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.publish_dataset">[docs]</a><span class="k">def</span> <span class="nf">publish_dataset</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/publish&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_process_to_dataset"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.add_process_to_dataset">[docs]</a><span class="k">def</span> <span class="nf">add_process_to_dataset</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span>
+                           <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;processes&#39;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">process_id</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/processes&quot;</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<span class="c1"># for testing only - comments</span>
+<div class="viewcode-block" id="add_comment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.add_comment">[docs]</a><span class="k">def</span> <span class="nf">add_comment</span><span class="p">(</span><span class="n">item_type</span><span class="p">,</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;item_type&#39;</span><span class="p">:</span> <span class="n">item_type</span><span class="p">,</span>
+        <span class="s1">&#39;item_id&#39;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span>
+        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">text</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;comments&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="update_comment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.update_comment">[docs]</a><span class="k">def</span> <span class="nf">update_comment</span><span class="p">(</span><span class="n">comment_id</span><span class="p">,</span> <span class="n">updated_text</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">updated_text</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;comments/&quot;</span> <span class="o">+</span> <span class="n">comment_id</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="delete_comment"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.delete_comment">[docs]</a><span class="k">def</span> <span class="nf">delete_comment</span><span class="p">(</span><span class="n">comment_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;comments/&quot;</span> <span class="o">+</span> <span class="n">comment_id</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+<span class="c1"># for testing only - doi</span>
+<div class="viewcode-block" id="check_statue_of_doi_server"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.check_statue_of_doi_server">[docs]</a><span class="k">def</span> <span class="nf">check_statue_of_doi_server</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span>
+                               <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/doiserverstatus&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_doi"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.create_doi">[docs]</a><span class="k">def</span> <span class="nf">create_doi</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span>
+               <span class="n">description</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+        <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">author</span><span class="p">,</span>
+        <span class="s1">&#39;publication_year&#39;</span><span class="p">:</span> <span class="n">year</span>
+    <span class="p">}</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/doi&quot;</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_doi_metadata"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_doi_metadata">[docs]</a><span class="k">def</span> <span class="nf">get_doi_metadata</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/doi&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="get_doi_link"><a class="viewcode-back" href="../../../materials_commons.api.api.html#materials_commons.api.api.get_doi_link">[docs]</a><span class="k">def</span> <span class="nf">get_doi_link</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;projects/&quot;</span> <span class="o">+</span> <span class="n">project_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/experiments/&quot;</span> <span class="o">+</span> <span class="n">experiment_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/datasets/&quot;</span> <span class="o">+</span> <span class="n">dataset_id</span> <span class="o">+</span> \
+              <span class="s2">&quot;/doi/link&quot;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span></div>
+
+
+<span class="k">def</span> <span class="nf">_create_new_template</span><span class="p">(</span><span class="n">template_data</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;templates/&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">template_data</span>
+    <span class="k">return</span> <span class="n">post</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_update_template</span><span class="p">(</span><span class="n">template_id</span><span class="p">,</span> <span class="n">template_data</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;templates/&quot;</span> <span class="o">+</span> <span class="n">template_id</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">template_data</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="c1">#</span>
+<span class="c1"># ---</span>
+<span class="c1">#   testing user profile backend</span>
+<span class="c1"># ---</span>
+<span class="k">def</span> <span class="nf">_store_in_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users/&quot;</span> <span class="o">+</span> <span class="n">user_id</span> <span class="o">+</span> <span class="s2">&quot;/profiles/&quot;</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">value</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">put</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_get_from_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users/&quot;</span> <span class="o">+</span> <span class="n">user_id</span> <span class="o">+</span> <span class="s2">&quot;/profiles/&quot;</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_clear_from_user_profile</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">remote</span><span class="p">:</span>
+        <span class="n">remote</span> <span class="o">=</span> <span class="n">use_remote</span><span class="p">()</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;users/&quot;</span> <span class="o">+</span> <span class="n">user_id</span> <span class="o">+</span> <span class="s2">&quot;/profiles/&quot;</span> <span class="o">+</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">delete</span><span class="p">(</span><span class="n">remote</span><span class="o">.</span><span class="n">make_url_v2</span><span class="p">(</span><span class="n">api_url</span><span class="p">))</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

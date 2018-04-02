@@ -1,0 +1,7 @@
+materials\_commons\.etl\.xlsxt module
+=====================================
+
+.. automodule:: materials_commons.etl.xlsxt
+    :members:
+    :undoc-members:
+    :show-inheritance:
