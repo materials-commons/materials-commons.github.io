@@ -8,8 +8,6 @@ Top Level Functions
 
 .. automodule:: materials_commons.api.top_level_api_functions
     :members:
-    :undoc-members:
-    :show-inheritance:
 
 Project
 -------
