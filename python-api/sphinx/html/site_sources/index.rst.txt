@@ -17,10 +17,19 @@ The Materials Commons package is available as a PyPI package, and therefore can 
 pip install materials_commons
 ``
 
+This package relates to the original Materials Commons service running at MaterialsCommons.org
+(https://materialscommons.org). The server code is available on
+[GitHub](https://github.com/materials-commons/materialscommons.org).
+Full documentation is also
+[available](https://materials-commons.github.io/).
+
 The Python API
 --------------
 
-here
+The [Materials Commons Python API](https://materials-commons.github.io/python-api/) is an interface to the REST server on an host running the
+Materials Commons service. As above, the original Materials Commons service is (https://materialscommons.org).
+See (https://materials-commons.github.io/python-api/) for a full introduction and instructions
+on how to use this Python API
 
 The Command Line Interface
 --------------------------
