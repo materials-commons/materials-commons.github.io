@@ -1,3 +1,10 @@
+Package materials_commons.api - top level functions
+===================================================
+
+.. contents::
+
+.. automodule:: materials_commons.api.top_level_api_functions
+
 Package materials_commons.api - main classes
 ============================================
 
