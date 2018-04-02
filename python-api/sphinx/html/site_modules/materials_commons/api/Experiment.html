@@ -55,7 +55,7 @@
 <span class="kn">from</span> <span class="nn">.top_level_api_functions</span> <span class="k">import</span> <span class="n">get_all_templates</span>
 
 
-<div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Materials Commons Experiment.</span>
 
@@ -123,7 +123,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">input_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">processes</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Experiment.pretty_print"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.pretty_print"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints a nice layout of the object and all of it&#39;s values.</span>
 
@@ -141,7 +141,7 @@
 
     <span class="c1"># Experiment - basic methods: rename, put, delete</span>
 
-<div class="viewcode-block" id="Experiment.rename"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.rename"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        rename this experiment</span>
 
@@ -160,7 +160,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Experiment.put"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.put"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Copy local values to database.</span>
 
@@ -173,7 +173,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Experiment.put() is not implemented&quot;</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Experiment.delete"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.delete"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete this Experiment from the database or (when dry_run is True)</span>
 <span class="sd">        determine the objects to be deleted.</span>
@@ -186,7 +186,7 @@
 
     <span class="c1"># Experiment - Process-related methods</span>
 
-<div class="viewcode-block" id="Experiment.create_process_from_template"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.create_process_from_template">[docs]</a>    <span class="k">def</span> <span class="nf">create_process_from_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_id</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.create_process_from_template"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.create_process_from_template">[docs]</a>    <span class="k">def</span> <span class="nf">create_process_from_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a process from a template</span>
 
@@ -211,7 +211,7 @@
         <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">process</span></div>
 
-<div class="viewcode-block" id="Experiment.get_process_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.get_process_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_id</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.get_process_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_process_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a process for a given process id value.</span>
 
@@ -227,7 +227,7 @@
         <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">process</span></div>
 
-<div class="viewcode-block" id="Experiment.get_all_processes"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.get_all_processes">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.get_all_processes"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_all_processes">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all the processes in this Experiment.</span>
 
@@ -244,7 +244,7 @@
 
     <span class="c1"># Experiment - Sample-related methods</span>
 
-<div class="viewcode-block" id="Experiment.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a Sample value from a sample id value.</span>
 
@@ -260,7 +260,7 @@
         <span class="n">sample</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
         <span class="k">return</span> <span class="n">sample</span></div>
 
-<div class="viewcode-block" id="Experiment.get_all_samples"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.get_all_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.get_all_samples"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_all_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all samples in this Experiment.</span>
 
@@ -274,7 +274,7 @@
         <span class="k">return</span> <span class="n">samples</span></div>
 
     <span class="c1"># Experiment - additional method</span>
-<div class="viewcode-block" id="Experiment.decorate_with_samples"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.decorate_with_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.decorate_with_samples"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.decorate_with_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add all the Experiment&#39;s samples (from the database) into the local copy</span>
 
@@ -288,7 +288,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Experiment.decorate_with_processes"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.Experiment.decorate_with_processes">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Experiment.decorate_with_processes"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.decorate_with_processes">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add all the Experiment&#39;s processes (from the database) into the local copy</span>
 

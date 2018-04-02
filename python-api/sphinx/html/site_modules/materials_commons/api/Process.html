@@ -56,7 +56,7 @@
 <span class="kn">from</span> <span class="nn">.property</span> <span class="k">import</span> <span class="n">_normalise_property_name</span><span class="p">,</span> <span class="n">_convert_for_json_if_datetime</span>
 
 
-<div class="viewcode-block" id="Process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process">[docs]</a><span class="k">class</span> <span class="nc">Process</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process">[docs]</a><span class="k">class</span> <span class="nc">Process</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Materials Commons Process.</span>
 
@@ -125,7 +125,7 @@
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[]))</span>
 
-<div class="viewcode-block" id="Process.pretty_print"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.pretty_print"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prints a nice layout of the object and all of it&#39;s values.</span>
 
@@ -215,7 +215,7 @@
 
     <span class="c1"># Process - basic methods: rename, put, delete</span>
 
-<div class="viewcode-block" id="Process.rename"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.rename"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rename this process.</span>
 
@@ -230,7 +230,7 @@
         <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">process</span></div>
 
-<div class="viewcode-block" id="Process.delete"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.delete"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete this process. The process is removed from the database leaving only the local copy.</span>
 <span class="sd">        A process can not be deleted if any of the following are true: (1) it is not a leaf node in</span>
@@ -259,7 +259,7 @@
 
         <span class="k">return</span> <span class="n">results</span></div>
 
-<div class="viewcode-block" id="Process.put"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.put"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Copy local values to database.</span>
 
@@ -273,7 +273,7 @@
         <span class="k">pass</span></div>
 
     <span class="c1"># Process - additional basic methods</span>
-<div class="viewcode-block" id="Process.set_notes"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.set_notes">[docs]</a>    <span class="k">def</span> <span class="nf">set_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_text</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.set_notes"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_notes">[docs]</a>    <span class="k">def</span> <span class="nf">set_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_text</span><span class="p">):</span>
         <span class="n">note_text</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;&quot;</span> <span class="o">+</span> <span class="n">note_text</span> <span class="o">+</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_notes_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note_text</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
@@ -283,7 +283,7 @@
         <span class="n">process</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">description</span>
         <span class="k">return</span> <span class="n">process</span></div>
 
-<div class="viewcode-block" id="Process.add_to_notes"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_to_notes">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_text</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_to_notes"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_to_notes">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_text</span><span class="p">):</span>
         <span class="n">note_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&lt;p&gt;&quot;</span> <span class="o">+</span> <span class="n">note_text</span> <span class="o">+</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_notes_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note_text</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
@@ -294,7 +294,7 @@
         <span class="k">return</span> <span class="n">process</span></div>
 
     <span class="c1"># Process - Sample-related methods - create, get_by_id, get_all</span>
-<div class="viewcode-block" id="Process.create_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.create_samples">[docs]</a>    <span class="k">def</span> <span class="nf">create_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.create_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.create_samples">[docs]</a>    <span class="k">def</span> <span class="nf">create_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create output samples for this process.</span>
 
@@ -322,7 +322,7 @@
                     <span class="n">ret_samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">probe</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret_samples</span></div>
 
-<div class="viewcode-block" id="Process.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_id</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get indicated Sample.</span>
 
@@ -336,7 +336,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Process.get_sample_by_id(id) is not implemented&quot;</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Process.get_all_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.get_all_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.get_all_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_all_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all samples for the process.</span>
 
@@ -347,7 +347,7 @@
         <span class="n">output_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_samples</span>
         <span class="k">return</span> <span class="n">input_samples</span> <span class="o">+</span> <span class="n">output_samples</span></div>
 
-<div class="viewcode-block" id="Process.add_input_samples_to_process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_input_samples_to_process">[docs]</a>    <span class="k">def</span> <span class="nf">add_input_samples_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_input_samples_to_process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_input_samples_to_process">[docs]</a>    <span class="k">def</span> <span class="nf">add_input_samples_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add input samples to this process.</span>
 
@@ -359,7 +359,7 @@
 
     <span class="c1"># Process - File-related methods - truncated?</span>
     <span class="c1"># TODO: should Process have File-related create, get_by_id, get_all?</span>
-<div class="viewcode-block" id="Process.get_all_files"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.get_all_files">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.get_all_files"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_all_files">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the list of files for this process.</span>
 
@@ -373,7 +373,7 @@
         <span class="n">file_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">file_list</span></div>
 
-<div class="viewcode-block" id="Process.add_files"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_files">[docs]</a>    <span class="k">def</span> <span class="nf">add_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files_list</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_files"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_files">[docs]</a>    <span class="k">def</span> <span class="nf">add_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files_list</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add files to this process.</span>
 
@@ -384,7 +384,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_files_to_process</span><span class="p">(</span><span class="n">files_list</span><span class="p">)</span></div>
 
     <span class="c1"># Process - SetupProperties-related methods - special methods</span>
-<div class="viewcode-block" id="Process.get_setup_properties_as_dictionary"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.get_setup_properties_as_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">get_setup_properties_as_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.get_setup_properties_as_dictionary"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_setup_properties_as_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">get_setup_properties_as_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a &#39;helper&#39; dictionary of the properties of this Process.</span>
 <span class="sd">        See :class:`mcapi.Property`</span>
@@ -403,7 +403,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">properties_dictionary</span> <span class="o">=</span> <span class="n">ret</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="Process.is_known_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.is_known_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">is_known_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.is_known_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.is_known_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">is_known_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determine if the attribute is a, template-supported, known property of this process.</span>
 
@@ -412,7 +412,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_setup_properties_as_dictionary</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Process.set_value_of_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.set_value_of_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">set_value_of_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.set_value_of_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_value_of_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">set_value_of_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Populate, locally, the template-supported set-up property indicated by *name*, with a value for that property.</span>
 
@@ -427,7 +427,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MCPropertyException</span><span class="p">(</span><span class="s2">&quot;Property &#39;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;&#39; is not defined for this process template&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.set_unit_of_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.set_unit_of_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">set_unit_of_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.set_unit_of_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_unit_of_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">set_unit_of_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Augment, locally, the template-supported set-up property indicated by *name*, with a unit type for that property.</span>
 
@@ -452,7 +452,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MCPropertyException</span><span class="p">(</span><span class="s2">&quot;Property &#39;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;&#39; is not defined for this process template&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.update_setup_properties"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.update_setup_properties">[docs]</a>    <span class="k">def</span> <span class="nf">update_setup_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_list</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.update_setup_properties"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.update_setup_properties">[docs]</a>    <span class="k">def</span> <span class="nf">update_setup_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_list</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        For local template-supported set-up properties indicated by *name_list*,</span>
 <span class="sd">        push (to the database) those properties as set-up properties,</span>
@@ -470,7 +470,7 @@
                 <span class="n">prop_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_process_setup_properties</span><span class="p">(</span><span class="n">prop_list</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.update_additional_setup_properties"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.update_additional_setup_properties">[docs]</a>    <span class="k">def</span> <span class="nf">update_additional_setup_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_list</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.update_additional_setup_properties"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.update_additional_setup_properties">[docs]</a>    <span class="k">def</span> <span class="nf">update_additional_setup_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_list</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Use parameters in entry_list to add parameter values to this process (in the database).</span>
 <span class="sd">        Intended for parameter values that are not in the template for this process.</span>
@@ -514,7 +514,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="n">updated</span><span class="o">.</span><span class="n">setup</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Process.make_list_of_samples_for_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.make_list_of_samples_for_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">make_list_of_samples_for_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.make_list_of_samples_for_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.make_list_of_samples_for_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">make_list_of_samples_for_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Augment samples with setup properties from this process; the samples must have been created by the process;</span>
 <span class="sd">        see :func:`mcapi.Process.create_sample`</span>
@@ -554,7 +554,7 @@
 
     <span class="c1"># Process - Measurement-related methods - special treatment</span>
 
-<div class="viewcode-block" id="Process.create_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.create_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">create_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.create_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.create_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">create_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param data: dictionary - measurement data, see example</span>
@@ -564,7 +564,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">make_measurement_object</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.set_measurements_for_process_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.set_measurements_for_process_samples">[docs]</a>    <span class="k">def</span> <span class="nf">set_measurements_for_process_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measurement_property</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.set_measurements_for_process_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_measurements_for_process_samples">[docs]</a>    <span class="k">def</span> <span class="nf">set_measurements_for_process_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measurement_property</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set a measurement for the indicated *measurement_property*.</span>
 
@@ -598,7 +598,7 @@
             <span class="n">measurements</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.set_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.set_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">set_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.set_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">set_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A low-level function for adding a measurement to the output samples of this process.</span>
 
@@ -630,7 +630,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurements_for_process_samples</span><span class="p">(</span>
             <span class="n">measurement_property</span><span class="p">,</span> <span class="p">[</span><span class="n">measurement</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="Process.add_integer_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_integer_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_integer_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_integer_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_integer_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_integer_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A helper function to add integer measurements to the output samples of this process.</span>
 
@@ -651,7 +651,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_number_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_number_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_number_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_number_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_number_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_number_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -667,7 +667,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_boolean_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_boolean_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_boolean_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_boolean_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_boolean_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_boolean_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -683,7 +683,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_string_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_string_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_string_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_string_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_string_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_string_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -699,7 +699,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_file_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_file_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_file_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_file_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_file_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_file_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -720,7 +720,7 @@
 
     <span class="c1"># NOTE: no covering test or example for this function - probably works - Terry, Jan 20, 2016</span>
     <span class="c1"># TODO: add covering test for add_sample_measurement</span>
-<div class="viewcode-block" id="Process.add_sample_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_sample_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_sample_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_sample_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_sample_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_sample_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -740,7 +740,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_list_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_list_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_list_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">value_type</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_list_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_list_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_list_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">value_type</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -761,7 +761,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_numpy_matrix_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_numpy_matrix_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_numpy_matrix_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_numpy_matrix_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_numpy_matrix_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_numpy_matrix_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -781,7 +781,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_selection_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_selection_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_selection_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_selection_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_selection_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_selection_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -797,7 +797,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Process.add_vector_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.add_vector_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_vector_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_vector_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_vector_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">add_vector_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param attrname: - string</span>
@@ -818,7 +818,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_measurement</span><span class="p">(</span><span class="n">attrname</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
     <span class="c1"># Process - additional methods</span>
-<div class="viewcode-block" id="Process.decorate_with_output_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.decorate_with_output_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_output_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.decorate_with_output_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.decorate_with_output_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_output_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make sure that known output samples are set in the this.</span>
 
@@ -828,7 +828,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">output_samples</span> <span class="o">=</span> <span class="n">detailed_process</span><span class="o">.</span><span class="n">output_samples</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Process.decorate_with_input_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.Process.decorate_with_input_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_input_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.decorate_with_input_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.decorate_with_input_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_input_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make sure that known input samples are set in this.</span>
 
