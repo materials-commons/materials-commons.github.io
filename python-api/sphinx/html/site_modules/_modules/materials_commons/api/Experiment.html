@@ -1,0 +1,343 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.api.Experiment &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.api.Experiment</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">api</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MCObject</span><span class="p">,</span> <span class="n">PrettyPrint</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">_decorate_object_with</span>
+<span class="kn">from</span> <span class="nn">.make_objects</span> <span class="k">import</span> <span class="n">make_object</span>
+<span class="kn">from</span> <span class="nn">.top_level_api_functions</span> <span class="k">import</span> <span class="n">get_all_templates</span>
+
+
+<div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Materials Commons Experiment.</span>
+
+<span class="sd">    .. note:: normally created from database by by a call to :func:`mcapi.Project.create_experiment`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: experiment id - string (from database)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: experiment name - string (from database)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: experiment description - string (from database)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: the :class:`mcapi.Project` instance of the project that contains this experiment</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: the status of the experiment - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">funding</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: funding description - string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">note</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: any notes - string</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">publications</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collaborators</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">citations</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aims</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: list of string</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: string</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Sample` instances</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1">#: set of :class:`mcapi.Process` instances</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># attr = [&#39;id&#39;, &#39;name&#39;, &#39;description&#39;, &#39;birthtime&#39;, &#39;mtime&#39;, &#39;otype&#39;, &#39;owner&#39;]</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Experiment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;project_id&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;funding&#39;</span><span class="p">,</span> <span class="s1">&#39;publications&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;notes&#39;</span><span class="p">,</span> <span class="s1">&#39;papers&#39;</span><span class="p">,</span> <span class="s1">&#39;collaborators&#39;</span><span class="p">,</span> <span class="s1">&#39;note&#39;</span><span class="p">,</span> <span class="s1">&#39;citations&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;goals&#39;</span><span class="p">,</span> <span class="s1">&#39;aims&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">description</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span>
+        <span class="k">if</span> <span class="n">project_id</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">project_id</span>
+
+        <span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tasks&#39;</span><span class="p">,</span> <span class="s1">&#39;publications&#39;</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">,</span> <span class="s1">&#39;collaborators&#39;</span><span class="p">,</span> <span class="s1">&#39;citations&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;goals&#39;</span><span class="p">,</span> <span class="s1">&#39;aims&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attr</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">array</span><span class="p">:</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">array</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_process_special_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">input_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">input_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">processes</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Experiment.pretty_print"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints a nice layout of the object and all of it&#39;s values.</span>
+
+<span class="sd">        :param shift: the offset from the start of the line, in increments of indent</span>
+<span class="sd">        :param indent: the indent used for layout, in characters</span>
+<span class="sd">        :param out: the stream to which the object in printed</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pp</span> <span class="o">=</span> <span class="n">PrettyPrint</span><span class="p">(</span><span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;name: &quot;</span> <span class="o">+</span> <span class="n">pp</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">n_indent</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;description: &quot;</span> <span class="o">+</span> <span class="n">pp</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">))</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;id: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">pp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;owner: &quot;</span> <span class="o">+</span> <span class="n">pp</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">owner</span><span class="p">))</span></div>
+
+    <span class="c1"># Experiment - basic methods: rename, put, delete</span>
+
+<div class="viewcode-block" id="Experiment.rename"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        rename this experiment</span>
+
+<span class="sd">        :param name:</span>
+<span class="sd">        :param description:</span>
+<span class="sd">        :return: this</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">description</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">rename_experiment</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="Experiment.put"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copy local values to database.</span>
+
+<span class="sd">        :return: this</span>
+
+<span class="sd">        .. note:: Currently not implemented</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: Experiment.put()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Experiment.put() is not implemented&quot;</span><span class="p">)</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Experiment.delete"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete this Experiment from the database or (when dry_run is True)</span>
+<span class="sd">        determine the objects to be deleted.</span>
+
+<span class="sd">        :return: the id of the deleted experiment</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">delete_experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span></div>
+
+    <span class="c1"># Experiment - Process-related methods</span>
+
+<div class="viewcode-block" id="Experiment.create_process_from_template"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.create_process_from_template">[docs]</a>    <span class="k">def</span> <span class="nf">create_process_from_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a process from a template</span>
+
+<span class="sd">        :param template_id:</span>
+<span class="sd">        :return: the :class:`mcapi.Process` instance</span>
+
+<span class="sd">        &gt;&gt;&gt; templates = get_all_templates()</span>
+<span class="sd">        &gt;&gt;&gt; template = None</span>
+<span class="sd">        &gt;&gt;&gt; for t in templates:</span>
+<span class="sd">        &gt;&gt;&gt;     if t.name == &#39;Create Samples&#39;:</span>
+<span class="sd">        &gt;&gt;&gt;         template = t</span>
+<span class="sd">        &gt;&gt;&gt; if template:</span>
+<span class="sd">        &gt;&gt;&gt;     create_sample_process = experiment.create_process_from_template(template.id)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_process_from_template</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">template_id</span><span class="p">)</span>
+        <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">process</span></div>
+
+<div class="viewcode-block" id="Experiment.get_process_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_process_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a process for a given process id value.</span>
+
+<span class="sd">        :param process_id:</span>
+<span class="sd">        :return: the :class:`mcapi.Process` instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_process_by_id</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">)</span>
+        <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">process</span></div>
+
+<div class="viewcode-block" id="Experiment.get_all_processes"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_all_processes">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the processes in this Experiment.</span>
+
+<span class="sd">        :return: the list of :class:`mcapi.Process` instances</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">process_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">fetch_experiment_processes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">]</span>
+        <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">]</span>
+        <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;experiment&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">processes</span></div>
+
+    <span class="c1"># Experiment - Sample-related methods</span>
+
+<div class="viewcode-block" id="Experiment.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a Sample value from a sample id value.</span>
+
+<span class="sd">        :param sample_id:</span>
+<span class="sd">        :return: the :class:`mcapi.Sample` instance</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_sample_by_id</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">sample</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="n">sample</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
+        <span class="k">return</span> <span class="n">sample</span></div>
+
+<div class="viewcode-block" id="Experiment.get_all_samples"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.get_all_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all samples in this Experiment.</span>
+
+<span class="sd">        :return: the list of :class:`mcapi.Sample` instances</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">samples_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">fetch_experiment_samples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">samples_list</span><span class="p">]</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;experiment&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">samples</span></div>
+
+    <span class="c1"># Experiment - additional method</span>
+<div class="viewcode-block" id="Experiment.decorate_with_samples"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.decorate_with_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add all the Experiment&#39;s samples (from the database) into the local copy</span>
+
+<span class="sd">        :return: this experiment with the instances of :class:mcapi.Sample added as the samples attribute</span>
+
+<span class="sd">        &gt;&gt;&gt; experiment = experiment.decorate_with_samples()</span>
+<span class="sd">        &gt;&gt;&gt; for sample in experiment.samples:</span>
+<span class="sd">        &gt;&gt;&gt;     print(sample.name)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="Experiment.decorate_with_processes"><a class="viewcode-back" href="../../../materials_commons.api.Experiment.html#materials_commons.api.Experiment.decorate_with_processes">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add all the Experiment&#39;s processes (from the database) into the local copy</span>
+
+<span class="sd">        :return: this experiment with the instances of :class:mcapi.Process added as the processes attribute</span>
+
+<span class="sd">        &gt;&gt;&gt; experiment = experiment.decorate_with_processes()</span>
+<span class="sd">        &gt;&gt;&gt; for process in experiment.processes:</span>
+<span class="sd">        &gt;&gt;&gt;     print(process.name)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_processes</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

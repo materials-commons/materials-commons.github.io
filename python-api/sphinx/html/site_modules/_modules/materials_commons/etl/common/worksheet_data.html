@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.etl.common.worksheet_data &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.etl.common.worksheet_data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">openpyxl</span>
+
+
+<div class="viewcode-block" id="ExcelIO"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO">[docs]</a><span class="k">class</span> <span class="nc">ExcelIO</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># used for testing</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_force_project_name_on_read</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_force_experiment_name_on_read</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ExcelIO.read_entire_data_from_current_sheet"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.read_entire_data_from_current_sheet">[docs]</a>    <span class="k">def</span> <span class="nf">read_entire_data_from_current_sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sheet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">max_last_data_col</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">():</span>
+            <span class="n">empty_row</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                <span class="n">empty_row</span> <span class="o">=</span> <span class="n">empty_row</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">cell</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">empty_row</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;encountered empty row at row_index = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;.  &quot;</span> <span class="o">+</span>
+                      <span class="s2">&quot;Assuming end of data at this location&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">value</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;n/a&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()):</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">except</span> <span class="ne">UnicodeEncodeError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_last_data_col</span><span class="p">:</span>
+                    <span class="n">max_last_data_col</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">max_last_data_col</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;encountered empty col at col_index = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_last_data_col</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.  &quot;</span> <span class="o">+</span>
+                  <span class="s2">&quot;Assuming end of data at this location&quot;</span><span class="p">)</span>
+            <span class="n">remake_data</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">data_row</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_last_data_col</span><span class="p">):</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">data_row</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+                    <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">remake_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">remake_data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_force_project_name_on_read</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;PROJ: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_force_project_name_on_read</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_force_experiment_name_on_read</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;EXP: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_force_experiment_name_on_read</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="ExcelIO.write_data"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.write_data">[docs]</a>    <span class="k">def</span> <span class="nf">write_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">data_row_list</span><span class="p">,</span> <span class="n">worksheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span><span class="o">.</span><span class="n">worksheets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">worksheet_name</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">worksheet_name</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_row_list</span><span class="p">)):</span>
+            <span class="n">data_row</span> <span class="o">=</span> <span class="n">data_row_list</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_row</span><span class="p">)):</span>
+                <span class="n">data_item</span> <span class="o">=</span> <span class="n">data_row</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">data_item</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExcelIO.read_workbook"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.read_workbook">[docs]</a>    <span class="k">def</span> <span class="nf">read_workbook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExcelIO.sheet_name_list"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.sheet_name_list">[docs]</a>    <span class="k">def</span> <span class="nf">sheet_name_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span><span class="o">.</span><span class="n">sheetnames</span></div>
+
+<div class="viewcode-block" id="ExcelIO.set_current_worksheet_by_index"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.set_current_worksheet_by_index">[docs]</a>    <span class="k">def</span> <span class="nf">set_current_worksheet_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">sheet_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span><span class="o">.</span><span class="n">sheetnames</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_worksheet</span></div>
+
+<div class="viewcode-block" id="ExcelIO.close"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workbook</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+    <span class="c1"># these methods used for testing</span>
+<div class="viewcode-block" id="ExcelIO.force_project_name_for_testing"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.force_project_name_for_testing">[docs]</a>    <span class="k">def</span> <span class="nf">force_project_name_for_testing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_force_project_name_on_read</span> <span class="o">=</span> <span class="n">project_name</span></div>
+
+    <span class="c1"># these methods used for testing</span>
+<div class="viewcode-block" id="ExcelIO.force_experiment_name_for_testing"><a class="viewcode-back" href="../../../../materials_commons.etl.common.worksheet_data.html#materials_commons.etl.common.worksheet_data.ExcelIO.force_experiment_name_for_testing">[docs]</a>    <span class="k">def</span> <span class="nf">force_experiment_name_for_testing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experiment_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_force_experiment_name_on_read</span> <span class="o">=</span> <span class="n">experiment_name</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

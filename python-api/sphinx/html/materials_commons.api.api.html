@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>materials_commons.api.api module &#8212; Materials Commons Python API 0.7.0 documentation</title>
+    <title>materials_commons.api.api module &#8212; Materials Commons Python API 0.7.5 documentation</title>
     <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.7.0',
+        VERSION:     '0.7.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -97,6 +97,11 @@
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="materials_commons.api.api.create_experiment_metadata">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">create_experiment_metadata</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>json</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#create_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.create_experiment_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="materials_commons.api.api.create_fetch_all_directories_on_path">
 <code class="descclassname">materials_commons.api.api.</code><code class="descname">create_fetch_all_directories_on_path</code><span class="sig-paren">(</span><em>project_id</em>, <em>directory_id</em>, <em>path</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#create_fetch_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.create_fetch_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -127,6 +132,11 @@
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="materials_commons.api.api.delete_expect_empty">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">delete_expect_empty</code><span class="sig-paren">(</span><em>restpath</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#delete_expect_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.delete_expect_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="materials_commons.api.api.delete_experiment">
 <code class="descclassname">materials_commons.api.api.</code><code class="descname">delete_experiment</code><span class="sig-paren">(</span><em>project_id</em>, <em>experiment_id</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#delete_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.delete_experiment" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -139,6 +149,11 @@
 <dl class="function">
 <dt id="materials_commons.api.api.delete_experiment_fully">
 <code class="descclassname">materials_commons.api.api.</code><code class="descname">delete_experiment_fully</code><span class="sig-paren">(</span><em>project_id</em>, <em>experiment_id</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#delete_experiment_fully"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.delete_experiment_fully" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.api.delete_experiment_metadata">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">delete_experiment_metadata</code><span class="sig-paren">(</span><em>metadata_id</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#delete_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.delete_experiment_metadata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -253,6 +268,16 @@
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="materials_commons.api.api.get_experiment_metadata">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">get_experiment_metadata</code><span class="sig-paren">(</span><em>metadata_id</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#get_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.get_experiment_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.api.get_experiment_metadata_by_experiment_id">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">get_experiment_metadata_by_experiment_id</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#get_experiment_metadata_by_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.get_experiment_metadata_by_experiment_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="materials_commons.api.api.get_experiment_process_by_id">
 <code class="descclassname">materials_commons.api.api.</code><code class="descname">get_experiment_process_by_id</code><span class="sig-paren">(</span><em>project_id</em>, <em>experiment_id</em>, <em>process_id</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#get_experiment_process_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.get_experiment_process_by_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -351,6 +376,11 @@
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="materials_commons.api.api.rename_experiment">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">rename_experiment</code><span class="sig-paren">(</span><em>project_id</em>, <em>experiment_id</em>, <em>name</em>, <em>description</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#rename_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.rename_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="materials_commons.api.api.set_measurement_for_process_samples">
 <code class="descclassname">materials_commons.api.api.</code><code class="descname">set_measurement_for_process_samples</code><span class="sig-paren">(</span><em>project_id</em>, <em>experiment_id</em>, <em>process_id</em>, <em>samples</em>, <em>measurement_property</em>, <em>measurements</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#set_measurement_for_process_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.set_measurement_for_process_samples" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -398,6 +428,11 @@ the user configuration file at ~/.materialscommons/config.json</p>
 <dl class="function">
 <dt id="materials_commons.api.api.update_comment">
 <code class="descclassname">materials_commons.api.api.</code><code class="descname">update_comment</code><span class="sig-paren">(</span><em>comment_id</em>, <em>updated_text</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#update_comment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.update_comment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="materials_commons.api.api.update_experiment_metadata">
+<code class="descclassname">materials_commons.api.api.</code><code class="descname">update_experiment_metadata</code><span class="sig-paren">(</span><em>metadata_id</em>, <em>json</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/api.html#update_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.api.update_experiment_metadata" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -456,7 +491,7 @@ the user configuration file at ~/.materialscommons/config.json</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

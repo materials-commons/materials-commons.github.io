@@ -1,0 +1,287 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>materials_commons.cli.ls &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.7.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for materials_commons.cli.ls</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">.functions</span> <span class="k">import</span> <span class="n">make_local_project</span>
+<span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">File</span><span class="p">,</span> <span class="n">Directory</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="k">import</span> <span class="n">tabulate</span>
+<span class="kn">from</span> <span class="nn">sortedcontainers</span> <span class="k">import</span> <span class="n">SortedSet</span>
+
+
+<span class="c1">#  Want to print() something like:</span>
+<span class="c1">#</span>
+<span class="c1">#  warning! file0 is a local file and remote dir!</span>
+<span class="c1">#  warning! file1 is a local directory and remote file!</span>
+<span class="c1">#</span>
+<span class="c1">#  remote_owner local_mtime local_size remote_mtime remote_size file0</span>
+<span class="c1">#             - local_mtime local_size            -           - file1</span>
+<span class="c1">#  remote_owner           -          - remote_mtime remote_size file2</span>
+<span class="c1">#</span>
+<span class="c1">#  dir1:</span>
+<span class="c1">#  remote_owner local_mtime local_size remote_mtime remote_size file0</span>
+<span class="c1">#             - local_mtime local_size            -           - file1</span>
+<span class="c1">#  remote_owner           -          - remote_mtime remote_size file2</span>
+<span class="c1">#</span>
+<span class="c1">#  dir2:</span>
+<span class="c1">#  remote_owner local_mtime local_size remote_mtime remote_size file0</span>
+<span class="c1">#             - local_mtime local_size            -           - file1</span>
+<span class="c1">#  remote_owner           -          - remote_mtime remote_size file2</span>
+<span class="c1">#</span>
+
+
+<span class="k">def</span> <span class="nf">_ls_group</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Construct DataFrame with &#39;mc ls&#39; results for paths. Also outputs</span>
+<span class="sd">    the sets of paths that are files or directories (either local or remote).</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        files_only: If True, only include files in output DataFrame</span>
+<span class="sd">        checksum: If True, calculate MD5 checksum of local files and compared to remote</span>
+
+<span class="sd">    Results:</span>
+<span class="sd">        (df, files, dirs, remotes):</span>
+
+<span class="sd">        df: pandas.DataFrame containing:</span>
+<span class="sd">            &#39;l_mtime&#39;, &#39;l_size&#39;, &#39;l_type&#39;, &#39;r_mtime&#39;, &#39;r_size&#39;, &#39;r_type&#39;, &#39;eq&#39;, &#39;name&#39;</span>
+<span class="sd">        files: set of local and remote paths that are files</span>
+<span class="sd">        dirs: set of local and remote paths that are directories</span>
+<span class="sd">        remotes: set of remote File and Directory objects</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;l_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;l_size&#39;</span><span class="p">,</span> <span class="s1">&#39;l_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;r_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;r_size&#39;</span><span class="p">,</span> <span class="s1">&#39;r_type&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="n">data_init</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">SortedSet</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">_name_key</span><span class="p">)</span>
+    <span class="n">dirs</span> <span class="o">=</span> <span class="n">SortedSet</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">_name_key</span><span class="p">)</span>
+    <span class="n">remotes</span> <span class="o">=</span> <span class="n">SortedSet</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">_name_key</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">data_init</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+        <span class="n">l_checksum</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># locals</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%b %Y </span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;l_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_humanize</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;file&#39;</span>
+                <span class="k">if</span> <span class="n">checksum</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">l_checksum</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+                <span class="n">files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;dir&#39;</span>
+                <span class="n">dirs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="c1"># remotes</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">get_by_local_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;r_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_humanize</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">File</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">mtime</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;r_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">mtime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%b %Y </span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;file&#39;</span>
+                <span class="k">if</span> <span class="n">checksum</span> <span class="ow">and</span> <span class="n">l_checksum</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;eq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">checksum</span> <span class="o">==</span> <span class="n">l_checksum</span><span class="p">)</span>
+                <span class="n">files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="n">remotes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Directory</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">mtime</span><span class="p">:</span>
+                    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;r_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%b %Y </span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;dir&#39;</span>
+                <span class="n">dirs</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">files_only</span><span class="p">:</span>
+                    <span class="n">remotes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files_only</span> <span class="ow">or</span> <span class="p">(</span><span class="s1">&#39;file&#39;</span> <span class="ow">in</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]]):</span>
+            <span class="n">path_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">path_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">files</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">remotes</span>
+
+
+<span class="k">def</span> <span class="nf">_humanize</span><span class="p">(</span><span class="n">file_size_bytes</span><span class="p">):</span>
+    <span class="n">abbrev</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">abbrev</span><span class="p">:</span>
+        <span class="n">_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">file_size_bytes</span> <span class="o">&gt;&gt;</span> <span class="n">val</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_size</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;T&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">_size</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span>
+
+
+<div class="viewcode-block" id="ls_subcommand"><a class="viewcode-back" href="../../../materials_commons.cli.ls.html#materials_commons.cli.ls.ls_subcommand">[docs]</a><span class="k">def</span> <span class="nf">ls_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &#39;ls&#39; a project directory to see local and remote files and directories.</span>
+
+<span class="sd">    mc ls [&lt;pathspec&gt; ...]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List local &amp; remote directory contents&#39;</span><span class="p">,</span>
+        <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;mc ls&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;paths&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Files or directories&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--checksum&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Calculate MD5 checksum for local files&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--json&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print() JSON exactly&#39;</span><span class="p">)</span>
+
+    <span class="c1"># ignore &#39;mc ls&#39;</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+
+    <span class="n">local_abspaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">]</span>
+
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">make_local_project</span><span class="p">()</span>
+
+    <span class="c1"># act on local paths</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">remotes</span><span class="p">)</span> <span class="o">=</span> <span class="n">_ls_group</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspaths</span><span class="p">,</span>
+                                           <span class="n">files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">checksum</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+
+    <span class="c1"># print() warnings for type mismatches</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">dirs</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;warning!&quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="s2">&quot;is a local file and remote directory!&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">dirs</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;warning!&quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="s2">&quot;is a local directory and remote file!&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">remotes</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+
+        <span class="n">_locals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+            <span class="n">_locals</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">:</span>
+            <span class="n">remote_dir</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">get_top_directory</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">remote_dir</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">get_by_local_path</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="n">_remotes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">remote_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_remotes</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">remote_dir</span><span class="o">.</span><span class="n">get_children</span><span class="p">()]</span>
+
+        <span class="n">_local_abspaths</span> <span class="o">=</span> <span class="n">SortedSet</span><span class="p">(</span><span class="n">_locals</span> <span class="o">+</span> <span class="n">_remotes</span><span class="p">)</span>
+
+        <span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">remotes</span><span class="p">)</span> <span class="o">=</span> <span class="n">_ls_group</span><span class="p">(</span>
+            <span class="n">proj</span><span class="p">,</span> <span class="n">_local_abspaths</span><span class="p">,</span>
+            <span class="n">files_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">checksum</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">json</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">remotes</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">input_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+                <span class="c1"># print(df.to_string(index=False)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;plain&quot;</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span></div>
+
+
+<span class="k">def</span> <span class="nf">_name_key</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Materials Commons Development Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+  </body>
+</html>

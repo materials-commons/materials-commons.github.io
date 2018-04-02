@@ -1,0 +1,7 @@
+materials\_commons\.etl\.template2xlsx module
+=============================================
+
+.. automodule:: materials_commons.etl.template2xlsx
+    :members:
+    :undoc-members:
+    :show-inheritance:

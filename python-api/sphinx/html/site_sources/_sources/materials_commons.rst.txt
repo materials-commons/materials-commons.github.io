@@ -1,0 +1,19 @@
+materials\_commons package
+==========================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    materials_commons.api
+    materials_commons.cli
+    materials_commons.etl
+
+Module contents
+---------------
+
+.. automodule:: materials_commons
+    :members:
+    :undoc-members:
+    :show-inheritance:
