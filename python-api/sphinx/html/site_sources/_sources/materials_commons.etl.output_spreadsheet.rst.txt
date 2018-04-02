@@ -1,7 +1,0 @@
-materials\_commons\.etl\.output\_spreadsheet module
-===================================================
-
-.. automodule:: materials_commons.etl.output_spreadsheet
-    :members:
-    :undoc-members:
-    :show-inheritance:

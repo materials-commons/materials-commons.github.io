@@ -1,7 +1,0 @@
-materials\_commons\.cli\.templates module
-=========================================
-
-.. automodule:: materials_commons.cli.templates
-    :members:
-    :undoc-members:
-    :show-inheritance:

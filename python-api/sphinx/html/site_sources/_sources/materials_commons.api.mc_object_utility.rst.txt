@@ -1,7 +1,0 @@
-materials\_commons\.api\.mc\_object\_utility module
-===================================================
-
-.. automodule:: materials_commons.api.mc_object_utility
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-materials\_commons\.etl\.output\.extract\_spreadsheet module
-============================================================
-
-.. automodule:: materials_commons.etl.output.extract_spreadsheet
-    :members:
-    :undoc-members:
-    :show-inheritance:

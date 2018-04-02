@@ -1,7 +1,0 @@
-materials\_commons\.etl\.input\.metadata module
-===============================================
-
-.. automodule:: materials_commons.etl.input.metadata
-    :members:
-    :undoc-members:
-    :show-inheritance:

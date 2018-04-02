@@ -1,7 +1,0 @@
-materials\_commons\.api\.Directory module
-=========================================
-
-.. automodule:: materials_commons.api.Directory
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-materials\_commons\.cli\.expt module
-====================================
-
-.. automodule:: materials_commons.cli.expt
-    :members:
-    :undoc-members:
-    :show-inheritance:

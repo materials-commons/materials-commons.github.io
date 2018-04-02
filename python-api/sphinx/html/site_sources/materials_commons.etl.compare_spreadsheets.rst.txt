@@ -1,7 +1,0 @@
-materials\_commons\.etl\.compare\_spreadsheets module
-=====================================================
-
-.. automodule:: materials_commons.etl.compare_spreadsheets
-    :members:
-    :undoc-members:
-    :show-inheritance:

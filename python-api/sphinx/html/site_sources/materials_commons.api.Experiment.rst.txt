@@ -1,7 +1,0 @@
-materials\_commons\.api\.Experiment module
-==========================================
-
-.. automodule:: materials_commons.api.Experiment
-    :members:
-    :undoc-members:
-    :show-inheritance:

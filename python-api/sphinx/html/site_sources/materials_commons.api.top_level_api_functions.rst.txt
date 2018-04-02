@@ -1,7 +1,0 @@
-materials\_commons\.api\.top\_level\_api\_functions module
-==========================================================
-
-.. automodule:: materials_commons.api.top_level_api_functions
-    :members:
-    :undoc-members:
-    :show-inheritance:

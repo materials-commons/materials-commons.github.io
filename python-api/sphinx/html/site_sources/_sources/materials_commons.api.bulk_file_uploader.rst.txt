@@ -1,7 +1,0 @@
-materials\_commons\.api\.bulk\_file\_uploader module
-====================================================
-
-.. automodule:: materials_commons.api.bulk_file_uploader
-    :members:
-    :undoc-members:
-    :show-inheritance:

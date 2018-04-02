@@ -1,7 +1,0 @@
-materials\_commons\.api\.Project module
-=======================================
-
-.. automodule:: materials_commons.api.Project
-    :members:
-    :undoc-members:
-    :show-inheritance:

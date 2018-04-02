@@ -1,7 +1,0 @@
-materials\_commons\.etl\.common\.util module
-============================================
-
-.. automodule:: materials_commons.etl.common.util
-    :members:
-    :undoc-members:
-    :show-inheritance:
