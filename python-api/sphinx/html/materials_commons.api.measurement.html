@@ -6,8 +6,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>materials_commons.api.measurement module &#8212; Materials Commons Python API 0.7.5 documentation</title>
-    <link rel="stylesheet" href="sitesitesite_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="sitesitesite_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -18,9 +18,9 @@
         SOURCELINK_SUFFIX: '.txt'
       };
     </script>
-    <script type="text/javascript" src="sitesitesite_static/jquery.js"></script>
-    <script type="text/javascript" src="sitesitesite_static/underscore.js"></script>
-    <script type="text/javascript" src="sitesitesite_static/doctools.js"></script>
+    <script type="text/javascript" src="site_static/jquery.js"></script>
+    <script type="text/javascript" src="site_static/underscore.js"></script>
+    <script type="text/javascript" src="site_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -48,13 +48,13 @@
 <span id="materials-commons-api-measurement-module"></span><h1>materials_commons.api.measurement module<a class="headerlink" href="#module-materials_commons.api.measurement" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="materials_commons.api.measurement.Measurement">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">Measurement</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#Measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.Measurement" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">Measurement</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#Measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.Measurement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="materials_commons.api.base.html#materials_commons.api.base.MCObject" title="materials_commons.api.base.MCObject"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></a></p>
 <p>A Materials Commons measurement.</p>
 <p>Normally set by <code class="xref py py-func docutils literal"><span class="pre">mcapi.Process.set_measurements_for_process_samples()</span></code>.</p>
 <dl class="method">
 <dt id="materials_commons.api.measurement.Measurement.abbrev_print">
-<code class="descname">abbrev_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#Measurement.abbrev_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.Measurement.abbrev_print" title="Permalink to this definition">¶</a></dt>
+<code class="descname">abbrev_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#Measurement.abbrev_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.Measurement.abbrev_print" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -95,7 +95,7 @@
 
 <dl class="method">
 <dt id="materials_commons.api.measurement.Measurement.pretty_print">
-<code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#Measurement.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.Measurement.pretty_print" title="Permalink to this definition">¶</a></dt>
+<code class="descname">pretty_print</code><span class="sig-paren">(</span><em>shift=0</em>, <em>indent=2</em>, <em>out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#Measurement.pretty_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.Measurement.pretty_print" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints a nice layout of the object and all of it’s values.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -139,77 +139,77 @@
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementBoolean">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementBoolean</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementBoolean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementBoolean" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementBoolean</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementBoolean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementBoolean" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementComposition">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementComposition</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementComposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementComposition" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementComposition</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementComposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementComposition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementFile">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementFile</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementFile</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementInteger">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementInteger</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementInteger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementInteger" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementInteger</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementInteger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementInteger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementMatrix">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementMatrix</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementMatrix" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementMatrix</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementMatrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementNumber">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementNumber</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementNumber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementNumber" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementNumber</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementNumber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementNumber" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementSample">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementSample</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementSample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementSample" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementSample</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementSample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementSample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementSelection">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementSelection</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementSelection" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementSelection</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementSelection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementString">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementString</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementString" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementString</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementString" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="class">
 <dt id="materials_commons.api.measurement.MeasurementVector">
-<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementVector</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#MeasurementVector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementVector" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.measurement.</code><code class="descname">MeasurementVector</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#MeasurementVector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.MeasurementVector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.measurement.Measurement" title="materials_commons.api.measurement.Measurement"><code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.measurement.Measurement</span></code></a></p>
 <p>See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></p>
 </dd></dl>
 
 <dl class="function">
 <dt id="materials_commons.api.measurement.make_measurement_object">
-<code class="descclassname">materials_commons.api.measurement.</code><code class="descname">make_measurement_object</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="sitesitesite_modules/materials_commons/api/measurement.html#make_measurement_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.make_measurement_object" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.measurement.</code><code class="descname">make_measurement_object</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/measurement.html#make_measurement_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.measurement.make_measurement_object" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

@@ -3,6 +3,14 @@ Package materials_commons.api - main classes
 
 .. contents::
 
+Materials Commons API - top level functions
+---------------------------------------
+
+.. autoclass:: materials_commons.api.top_level_api_functions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Project
 -------
 
