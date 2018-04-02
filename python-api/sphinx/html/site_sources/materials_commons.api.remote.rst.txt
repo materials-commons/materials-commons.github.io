@@ -1,7 +1,0 @@
-materials\_commons\.api\.remote module
-======================================
-
-.. automodule:: materials_commons.api.remote
-    :members:
-    :undoc-members:
-    :show-inheritance:
