@@ -1,14 +1,15 @@
-Package materials_commons.api - top level functions
-===================================================
+Package materials_commons.api
+=============================
 
 .. contents::
+
+Top Level Functions
+-------------------
 
 .. automodule:: materials_commons.api.top_level_api_functions
-
-Package materials_commons.api - main classes
-============================================
-
-.. contents::
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Project
 -------
