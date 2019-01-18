@@ -1,5 +1,5 @@
-materials\_commons\.api\.EtlMetadata module
-===========================================
+materials\_commons.api.EtlMetadata module
+=========================================
 
 .. automodule:: materials_commons.api.EtlMetadata
     :members:

@@ -1,5 +1,5 @@
-materials\_commons\.cli\.ls module
-==================================
+materials\_commons.cli.ls module
+================================
 
 .. automodule:: materials_commons.cli.ls
     :members:

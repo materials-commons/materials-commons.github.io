@@ -1,5 +1,5 @@
-materials\_commons\.api\.Experiment module
-==========================================
+materials\_commons.api.Experiment module
+========================================
 
 .. automodule:: materials_commons.api.Experiment
     :members:

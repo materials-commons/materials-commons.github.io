@@ -1,0 +1,7 @@
+materials\_commons.version module
+=================================
+
+.. automodule:: materials_commons.version
+    :members:
+    :undoc-members:
+    :show-inheritance:

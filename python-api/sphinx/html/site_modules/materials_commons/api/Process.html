@@ -4,28 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>materials_commons.api.Process &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <title>materials_commons.api.Process &#8212; Materials Commons Python API 0.8.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,7 +28,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
@@ -54,6 +47,7 @@
 <span class="kn">from</span> <span class="nn">.make_objects</span> <span class="k">import</span> <span class="n">make_object</span><span class="p">,</span> <span class="n">make_property_object</span>
 <span class="kn">from</span> <span class="nn">.measurement</span> <span class="k">import</span> <span class="n">make_measurement_object</span>
 <span class="kn">from</span> <span class="nn">.property</span> <span class="k">import</span> <span class="n">_normalise_property_name</span><span class="p">,</span> <span class="n">_convert_for_json_if_datetime</span>
+<span class="kn">from</span> <span class="nn">.property</span> <span class="k">import</span> <span class="n">MCPropertyException</span>
 
 
 <div class="viewcode-block" id="Process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process">[docs]</a><span class="k">class</span> <span class="nc">Process</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
@@ -70,14 +64,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">output_files</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.File` instance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_samples</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Sample` instance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_samples</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Sample` instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformed_samples</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Sample` instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measurements</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Measurement` instance</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">measurements</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Measurement` instance</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">transformed_samples</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1">#: list of :class:`mcapi.Sample` instance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">what</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">why</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: the :class:`mcapi.Experiment` containing this process</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#: the :class:`mcapi.Project` containing this process</span>
@@ -92,6 +90,8 @@
         <span class="c1">#: &#39;in&#39; or &#39;out&#39; - filled in when process is in Sample.processes; see :class:`mcapi.Sample`</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string - filled in when process is initialized`</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string - filled in when process is initialized`</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">process_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string - filled in when process is in Sample.processes; see :class:`mcapi.Sample`</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sample_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string - filled in when process is in Sample.processes; see :class:`mcapi.Sample`</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">property_set_id</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1">#: string - filled in when process is in Sample.processes; see :class:`mcapi.Sample`</span>
@@ -105,6 +105,8 @@
 
         <span class="c1">#: extra field for convenience; equivalent to description</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_files</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -209,7 +211,8 @@
         <span class="n">setup_element</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_transform_property</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">setup_element</span><span class="o">.</span><span class="n">properties</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">setup_element</span>
 
-    <span class="k">def</span> <span class="nf">_transform_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_property</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_transform_property</span><span class="p">(</span><span class="n">process_property</span><span class="p">):</span>
         <span class="n">prop</span> <span class="o">=</span> <span class="n">make_property_object</span><span class="p">(</span><span class="n">process_property</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">prop</span>
 
@@ -223,7 +226,7 @@
 <span class="sd">        :return: the updated :class:`mcapi.Process`</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">push_name_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process_name</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">push_name_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process_name</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
@@ -249,12 +252,12 @@
 
         <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">delete_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">delete_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
             <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
                 <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
             <span class="k">pass</span>
 
         <span class="k">return</span> <span class="n">results</span></div>
@@ -275,7 +278,7 @@
     <span class="c1"># Process - additional basic methods</span>
 <div class="viewcode-block" id="Process.set_notes"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_notes">[docs]</a>    <span class="k">def</span> <span class="nf">set_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_text</span><span class="p">):</span>
         <span class="n">note_text</span> <span class="o">=</span> <span class="s2">&quot;&lt;p&gt;&quot;</span> <span class="o">+</span> <span class="n">note_text</span> <span class="o">+</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_notes_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note_text</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_notes_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note_text</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
@@ -285,7 +288,7 @@
 
 <div class="viewcode-block" id="Process.add_to_notes"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_to_notes">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">note_text</span><span class="p">):</span>
         <span class="n">note_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notes</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&lt;p&gt;&quot;</span> <span class="o">+</span> <span class="n">note_text</span> <span class="o">+</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_notes_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note_text</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_notes_for_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note_text</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
@@ -322,18 +325,19 @@
                     <span class="n">ret_samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">probe</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret_samples</span></div>
 
-<div class="viewcode-block" id="Process.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_id</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.get_sample_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_sample_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get indicated Sample.</span>
 
-<span class="sd">        :param process_id: sample if - string</span>
+<span class="sd">        :param sample_id: the id of the sample - string</span>
 <span class="sd">        :return: a :class:`mcapi.Sample` instance</span>
 
 <span class="sd">        .. note:: Currently not implemented</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Process.get_sample_by_id(id)</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Process.get_sample_by_id(id) is not implemented&quot;</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Process.get_sample_by_id(</span><span class="si">{}</span><span class="s2">) is not implemented&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">process_id</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Process.get_all_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_all_samples">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -347,15 +351,19 @@
         <span class="n">output_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_samples</span>
         <span class="k">return</span> <span class="n">input_samples</span> <span class="o">+</span> <span class="n">output_samples</span></div>
 
-<div class="viewcode-block" id="Process.add_input_samples_to_process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_input_samples_to_process">[docs]</a>    <span class="k">def</span> <span class="nf">add_input_samples_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_input_samples_to_process"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_input_samples_to_process">[docs]</a>    <span class="k">def</span> <span class="nf">add_input_samples_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add input samples to this process.</span>
 
 <span class="sd">        :param samples: a list of :class:`mcapi.Sample` instances</span>
+<span class="sd">        :param transform: (optional, default = None), a True/False flag to indicate that</span>
+<span class="sd">            the output samples should be (automaticially) generated for transform-type</span>
+<span class="sd">            processes. The normal behavior, without the flag, is for the output samples</span>
+<span class="sd">            to be generate.</span>
 <span class="sd">        :return: the updated process</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_input_samples_to_process</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_input_samples_to_process</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span></div>
 
     <span class="c1"># Process - File-related methods - truncated?</span>
     <span class="c1"># TODO: should Process have File-related create, get_by_id, get_all?</span>
@@ -369,19 +377,21 @@
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_files_for_process</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_files_for_process</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">file_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">file_list</span></div>
 
-<div class="viewcode-block" id="Process.add_files"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_files">[docs]</a>    <span class="k">def</span> <span class="nf">add_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files_list</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.add_files"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.add_files">[docs]</a>    <span class="k">def</span> <span class="nf">add_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">files_list</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add files to this process.</span>
 
 <span class="sd">        :param files_list: a list of :class:`mcapi.File` instances</span>
+<span class="sd">        :param direction: (optional - default unset) &#39;in&#39; or &#39;out&#39; -</span>
+<span class="sd">            set the indicated direction of the file with respect to the process</span>
 <span class="sd">        :return: the updated process</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_files_to_process</span><span class="p">(</span><span class="n">files_list</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_files_to_process</span><span class="p">(</span><span class="n">files_list</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span></div>
 
     <span class="c1"># Process - SetupProperties-related methods - special methods</span>
 <div class="viewcode-block" id="Process.get_setup_properties_as_dictionary"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.get_setup_properties_as_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">get_setup_properties_as_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -429,7 +439,8 @@
 
 <div class="viewcode-block" id="Process.set_unit_of_setup_property"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.set_unit_of_setup_property">[docs]</a>    <span class="k">def</span> <span class="nf">set_unit_of_setup_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Augment, locally, the template-supported set-up property indicated by *name*, with a unit type for that property.</span>
+<span class="sd">        Augment, locally, the template-supported set-up property indicated</span>
+<span class="sd">        by *name*, with a unit type for that property.</span>
 
 <span class="sd">        :param name: - string</span>
 <span class="sd">        :param unit: - unit type - string</span>
@@ -468,6 +479,7 @@
             <span class="n">prop</span> <span class="o">=</span> <span class="n">prop_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">prop</span><span class="p">:</span>
                 <span class="n">prop_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+        <span class="n">probe</span> <span class="o">=</span> <span class="n">prop_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_process_setup_properties</span><span class="p">(</span><span class="n">prop_list</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Process.update_additional_setup_properties"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.update_additional_setup_properties">[docs]</a>    <span class="k">def</span> <span class="nf">update_additional_setup_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entry_list</span><span class="p">):</span>
@@ -477,7 +489,8 @@
 <span class="sd">        (Currently, the object types supported are: &#39;string&#39; and &#39;number&#39;. The &#39;otype&#39; is not</span>
 <span class="sd">        required, The default will be based on the type of value.)</span>
 
-<span class="sd">        :param entry_list: a list of objects: [{name: name, attribute: attribute, value: value, unit: unit, otype: object-type}, ...]</span>
+<span class="sd">        :param entry_list: a list of objects: [{name: name,</span>
+<span class="sd">            attribute: attribute, value: value, unit: unit, otype: object-type}, ...]</span>
 <span class="sd">        :return: the updated process</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
@@ -509,25 +522,28 @@
                 <span class="n">e</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
             <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_additional_properties_in_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_additional_properties_in_process</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
             <span class="n">updated</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">ret</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setup</span> <span class="o">=</span> <span class="n">updated</span><span class="o">.</span><span class="n">setup</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="Process.make_list_of_samples_for_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.make_list_of_samples_for_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">make_list_of_samples_for_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Augment samples with setup properties from this process; the samples must have been created by the process;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Augment samples with setup properties from this process;</span>
+<span class="sd">        the samples must have been created by the process;</span>
 <span class="sd">        see :func:`mcapi.Process.create_sample`</span>
 
 <span class="sd">        :param samples: list of :class:`mcapi.Sample` instances</span>
-<span class="sd">        :return: list of :class:`mcapi.Sample` instances with their property_set id values set</span>
+<span class="sd">        :return: list of :class:`mcapi.Sample` instances with their</span>
+<span class="sd">            property_set id values set</span>
 
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">process_measurement_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span>
-        <span class="nb">filter</span> <span class="o">=</span> <span class="s2">&quot;in&quot;</span>
+        <span class="n">direction_filter</span> <span class="o">=</span> <span class="s2">&quot;in&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_type</span> <span class="o">==</span> <span class="s1">&#39;transform&#39;</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_type</span> <span class="o">==</span> <span class="s1">&#39;create&#39;</span><span class="p">:</span>
-            <span class="nb">filter</span> <span class="o">=</span> <span class="s2">&quot;out&quot;</span>
-        <span class="n">process_measurement_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">process_measurement_samples</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="nb">filter</span><span class="p">]</span>
+            <span class="n">direction_filter</span> <span class="o">=</span> <span class="s2">&quot;out&quot;</span>
+        <span class="n">process_measurement_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">process_measurement_samples</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">direction</span> <span class="o">==</span> <span class="n">direction_filter</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">process_measurement_samples</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
 
@@ -553,8 +569,8 @@
         <span class="k">return</span> <span class="n">results</span></div>
 
     <span class="c1"># Process - Measurement-related methods - special treatment</span>
-
-<div class="viewcode-block" id="Process.create_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.create_measurement">[docs]</a>    <span class="k">def</span> <span class="nf">create_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Process.create_measurement"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.create_measurement">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_measurement</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param data: dictionary - measurement data, see example</span>
@@ -820,9 +836,9 @@
     <span class="c1"># Process - additional methods</span>
 <div class="viewcode-block" id="Process.decorate_with_output_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.decorate_with_output_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_output_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Make sure that known output samples are set in the this.</span>
+<span class="sd">        Make sure that known output samples are set in the this Process.</span>
 
-<span class="sd">        :return: a new copy of the Process (this) with the addition of output samples from the database</span>
+<span class="sd">        :return: the Process (this) with the addition of output samples from the database</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">detailed_process</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_samples</span> <span class="o">=</span> <span class="n">detailed_process</span><span class="o">.</span><span class="n">output_samples</span>
@@ -830,9 +846,9 @@
 
 <div class="viewcode-block" id="Process.decorate_with_input_samples"><a class="viewcode-back" href="../../../materials_commons.api.Process.html#materials_commons.api.Process.decorate_with_input_samples">[docs]</a>    <span class="k">def</span> <span class="nf">decorate_with_input_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Make sure that known input samples are set in this.</span>
+<span class="sd">        Make sure that known input samples are set in this Process.</span>
 
-<span class="sd">        :return: a new copy of the Process (this) with the addition of input samples from the database</span>
+<span class="sd">        :return: the Process (this) with the addition of input samples from the database</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">detailed_process</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_samples</span> <span class="o">=</span> <span class="n">detailed_process</span><span class="o">.</span><span class="n">input_samples</span>
@@ -861,17 +877,23 @@
             <span class="p">})</span>
         <span class="n">success_flag</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">set_measurement_for_process_samples</span><span class="p">(</span>
             <span class="n">project_id</span><span class="p">,</span> <span class="n">experiment_id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span>
-            <span class="n">samples_parameter</span><span class="p">,</span> <span class="n">measurement_property</span><span class="p">,</span> <span class="n">measurement_parameter</span><span class="p">)</span>
+            <span class="n">samples_parameter</span><span class="p">,</span> <span class="n">measurement_property</span><span class="p">,</span> <span class="n">measurement_parameter</span><span class="p">,</span>
+            <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">success_flag</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mcapi.mc._set_measurement_for_process_samples - unexpectedly failed&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="n">process_id</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_input_samples_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_input_samples_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_samples_to_process</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+        <span class="n">arg_list</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;sample_id&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;property_set_id&#39;</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">property_set_id</span><span class="p">}</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">transform</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ap</span> <span class="ow">in</span> <span class="n">arg_list</span><span class="p">:</span>
+                <span class="n">ap</span><span class="p">[</span><span class="s1">&#39;transform&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transform</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_samples_to_process</span><span class="p">(</span>
+            <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">template_id</span><span class="p">,</span> <span class="n">arg_list</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">new_process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">new_process</span><span class="o">.</span><span class="n">input_samples</span><span class="p">:</span>
             <span class="n">sample</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
@@ -887,11 +909,14 @@
         <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">process</span>
 
-    <span class="k">def</span> <span class="nf">_add_files_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_list</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_files_to_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_list</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_files_to_process</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">file_list</span><span class="p">)</span>
+        <span class="n">file_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_files_to_process</span><span class="p">(</span>
+            <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">template_id</span><span class="p">,</span>
+            <span class="n">file_ids</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">project</span>
         <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
@@ -903,7 +928,7 @@
         <span class="n">experiment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment</span>
         <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_process_setup_properties</span><span class="p">(</span>
-            <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">prop_list</span><span class="p">)</span>
+            <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">prop_list</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">project</span>
         <span class="n">process</span><span class="o">.</span><span class="n">experiment</span> <span class="o">=</span> <span class="n">experiment</span>
@@ -913,7 +938,8 @@
     <span class="k">def</span> <span class="nf">_create_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">):</span>
         <span class="n">project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span>
         <span class="n">process</span> <span class="o">=</span> <span class="bp">self</span>
-        <span class="n">samples_array_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_samples_in_project</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">)</span>
+        <span class="n">samples_array_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_samples_in_project</span><span class="p">(</span>
+            <span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_names</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">samples_array</span> <span class="o">=</span> <span class="n">samples_array_dict</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">]</span>
         <span class="c1"># NOTE: in this case, for this version of API, for the call implemented, the</span>
         <span class="c1"># returned object is very sparse; hence the samples need to be re-fetched...</span>
@@ -935,9 +961,8 @@
                     <span class="n">sample_in_experiment</span> <span class="o">=</span> <span class="n">s</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">sample_in_experiment</span><span class="p">:</span>
                 <span class="n">process</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
-        <span class="n">api</span><span class="o">.</span><span class="n">add_samples_to_experiment</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">samples_id_list</span><span class="p">)</span>
+        <span class="n">api</span><span class="o">.</span><span class="n">add_samples_to_experiment</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">samples_id_list</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">samples</span></div>
-
 </pre></div>
 
           </div>
@@ -947,12 +972,14 @@
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -968,13 +995,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Materials Commons Development Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
     </div>
   </body>
 </html>

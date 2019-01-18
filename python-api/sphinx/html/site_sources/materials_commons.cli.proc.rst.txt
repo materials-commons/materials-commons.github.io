@@ -1,5 +1,5 @@
-materials\_commons\.cli\.proc module
-====================================
+materials\_commons.cli.proc module
+==================================
 
 .. automodule:: materials_commons.cli.proc
     :members:

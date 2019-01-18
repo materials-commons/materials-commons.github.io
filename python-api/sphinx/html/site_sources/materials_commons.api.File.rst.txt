@@ -1,5 +1,5 @@
-materials\_commons\.api\.File module
-====================================
+materials\_commons.api.File module
+==================================
 
 .. automodule:: materials_commons.api.File
     :members:

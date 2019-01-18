@@ -4,28 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>materials_commons.api.Directory &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <title>materials_commons.api.Directory &#8212; Materials Commons Python API 0.8.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,7 +28,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
@@ -60,7 +53,7 @@
 <span class="sd">    A Materials Commons Directory.</span>
 
 <span class="sd">    .. note:: normally created from the database by call to :func:`mcapi.Project.add_directory` or</span>
-<span class="sd">        any of the project methods that create directories on a given path</span>
+<span class="sd">        any of the other project methods that create or fetch directories on a given path</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -109,7 +102,7 @@
 <span class="sd">        :param new_name: string</span>
 <span class="sd">        :return: updated directory</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">dir_data</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="n">dir_data</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_rename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">updated_directory</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">dir_data</span><span class="p">)</span>
         <span class="n">updated_directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
         <span class="k">return</span> <span class="n">updated_directory</span></div>
@@ -124,7 +117,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span>
         <span class="n">new_directory_id</span> <span class="o">=</span> <span class="n">new_parent_directory</span><span class="o">.</span><span class="n">id</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_parent_directory</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_move</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_parent_directory</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">updated_directory</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">updated_directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">updated_directory</span><span class="o">.</span><span class="n">_parent_id</span><span class="p">:</span>
@@ -141,6 +134,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO Directory.put()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Directory.put() is not implemented&quot;</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Directory.delete"><a class="viewcode-back" href="../../../materials_commons.api.Directory.html#materials_commons.api.Directory.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -157,14 +151,14 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Directory.get_children"><a class="viewcode-back" href="../../../materials_commons.api.Directory.html#materials_commons.api.Directory.get_children">[docs]</a>    <span class="k">def</span> <span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">.File</span> <span class="k">import</span> <span class="n">File</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the contents of this directory.</span>
 
 <span class="sd">        :return: a list of :class:`mcapi.Directory` and/or :class:`mcapi.File` instances</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">.File</span> <span class="k">import</span> <span class="n">File</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">dir_or_file</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;children&#39;</span><span class="p">]:</span>
             <span class="n">its_type</span> <span class="o">=</span> <span class="n">dir_or_file</span><span class="p">[</span><span class="s1">&#39;otype&#39;</span><span class="p">]</span>
@@ -181,12 +175,13 @@
 <div class="viewcode-block" id="Directory.create_descendant_list_by_path"><a class="viewcode-back" href="../../../materials_commons.api.Directory.html#materials_commons.api.Directory.create_descendant_list_by_path">[docs]</a>    <span class="k">def</span> <span class="nf">create_descendant_list_by_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create any directories missing on the given path, relative to this directory, and return all the</span>
-<span class="sd">        directories on the path.</span>
+<span class="sd">        directories on the path, the base directory first, the leaf directory last.</span>
 
 <span class="sd">        :param path: string</span>
 <span class="sd">        :return: a list of :class:`mcapi.Directory` instances</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_fetch_all_directories_on_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_fetch_all_directories_on_path</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">dir_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">for</span> <span class="n">dir_data</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;dirs&#39;</span><span class="p">]:</span>
@@ -201,7 +196,7 @@
 <div class="viewcode-block" id="Directory.get_descendant_list_by_path"><a class="viewcode-back" href="../../../materials_commons.api.Directory.html#materials_commons.api.Directory.get_descendant_list_by_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_descendant_list_by_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return all the directories on the given path, relative to this directory; if any are missing</span>
-<span class="sd">        and error is generated.</span>
+<span class="sd">        an error is generated. See also :func:`mcapi.Directory.create_descendant_list_by_path`</span>
 
 <span class="sd">        :param path: string</span>
 <span class="sd">        :return: a list of :class:`mcapi.Directory` instances</span>
@@ -222,7 +217,7 @@
 
 <div class="viewcode-block" id="Directory.add_file"><a class="viewcode-back" href="../../../materials_commons.api.Directory.html#materials_commons.api.Directory.add_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">local_input_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Upload local file, and attach it to an new file in this directory.</span>
+<span class="sd">        Upload local file, and attach it this directory as a new file in this directory.</span>
 
 <span class="sd">        :param file_name: name of the new file - string</span>
 <span class="sd">        :param local_input_path: path to the local file - string</span>
@@ -293,12 +288,14 @@
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -314,13 +311,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Materials Commons Development Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
     </div>
   </body>
 </html>

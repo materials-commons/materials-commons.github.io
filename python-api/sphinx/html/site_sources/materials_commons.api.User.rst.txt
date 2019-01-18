@@ -1,5 +1,5 @@
-materials\_commons\.api\.User module
-====================================
+materials\_commons.api.User module
+==================================
 
 .. automodule:: materials_commons.api.User
     :members:

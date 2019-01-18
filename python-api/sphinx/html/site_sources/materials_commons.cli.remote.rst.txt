@@ -1,5 +1,5 @@
-materials\_commons\.cli\.remote module
-======================================
+materials\_commons.cli.remote module
+====================================
 
 .. automodule:: materials_commons.cli.remote
     :members:

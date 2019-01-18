@@ -1,5 +1,5 @@
-materials\_commons\.cli\.samp module
-====================================
+materials\_commons.cli.samp module
+==================================
 
 .. automodule:: materials_commons.cli.samp
     :members:

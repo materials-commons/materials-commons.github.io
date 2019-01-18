@@ -4,28 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>materials_commons.api.Project &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <title>materials_commons.api.Project &#8212; Materials Commons Python API 0.8.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '0.7.5',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,7 +28,7 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
@@ -56,6 +49,9 @@
 <span class="kn">from</span> <span class="nn">.File</span> <span class="k">import</span> <span class="n">File</span>
 <span class="kn">from</span> <span class="nn">.base</span> <span class="k">import</span> <span class="n">MCObject</span><span class="p">,</span> <span class="n">PrettyPrint</span><span class="p">,</span> <span class="n">_decorate_object_with</span><span class="p">,</span> <span class="n">MCGenericException</span>
 <span class="kn">from</span> <span class="nn">.mc_object_utility</span> <span class="k">import</span> <span class="n">make_object</span>
+<span class="kn">from</span> <span class="nn">.GlobusUploadRequest</span> <span class="k">import</span> <span class="n">GlobusUploadRequest</span>
+<span class="kn">from</span> <span class="nn">.GlobusUploadStatus</span> <span class="k">import</span> <span class="n">GlobusUploadStatus</span>
+<span class="kn">from</span> <span class="nn">.GlobusDownloadRequest</span> <span class="k">import</span> <span class="n">GlobusDownloadRequest</span>
 
 
 <div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">MCObject</span><span class="p">):</span>
@@ -66,7 +62,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">remote_url</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">remote_url</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># normally, from the data base</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: project id - string (from database)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1">#: project name - string (from database)</span>
@@ -79,6 +75,7 @@
 
         <span class="c1"># additional fields</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span> <span class="o">=</span> <span class="n">apikey</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">remote_url</span>  <span class="c1">#: remote URL for this project - string (local only - not in database)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
@@ -136,6 +133,7 @@
 <div class="viewcode-block" id="Project.rename"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Change the name and (optionally) description of a project.</span>
+<span class="sd">        Default description is the current description.</span>
 <span class="sd">        Returns the new project from the database.</span>
 
 <span class="sd">        :param name: new name for project</span>
@@ -145,10 +143,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">description</span><span class="p">:</span>
             <span class="n">description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="kn">from</span> <span class="nn">.top_level_api_functions</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
-        <span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
+        <span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">project</span></div>
 
 <div class="viewcode-block" id="Project.put"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -161,7 +159,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Project.put()</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Project.put() is not implemented&quot;</span><span class="p">)</span>
-
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Project.delete"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -173,7 +170,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">delete_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">delete_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
             <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;project_id&#39;</span><span class="p">]</span>
         <span class="k">except</span> <span class="n">MCGenericException</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete of project failed: &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
@@ -196,12 +193,12 @@
 <span class="sd">        &gt;&gt;&gt; experiment = project.create_experiment(&quot;Experiment 1&quot;, &quot;Test Procedures&quot;)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">experiment_json_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="n">experiment_json_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">experiment</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">experiment_json_dict</span><span class="p">)</span>
         <span class="n">experiment</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">experiment</span></div>
 
-<div class="viewcode-block" id="Project.get_experiment_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.get_experiment_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_experiment_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># , experiment_id):</span>
+<div class="viewcode-block" id="Project.get_experiment_by_id"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.get_experiment_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_experiment_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>  <span class="c1"># , experiment_id):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        .. note:: Currently not implemented. Instead use :func:`get_all_experiments` to get</span>
@@ -209,7 +206,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Project.get_experiment_by_id(id)</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Project.get_experiment_by_id(id) not implemented&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Project.get_experiment_by_id(id) not implemented: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)))</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Project.get_all_experiments"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.get_all_experiments">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_experiments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -226,7 +223,7 @@
 <span class="sd">        &gt;&gt;&gt;     print(experiment.id, experiment.name)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">list_results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">fetch_experiments</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">list_results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">fetch_experiments</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">experiments</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">list_results</span><span class="p">]</span>
         <span class="n">experiments</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">experiments</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">experiments</span></div>
@@ -258,7 +255,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">directory</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">directory</span><span class="o">.</span><span class="n">shallow</span> <span class="o">=</span> <span class="kc">False</span>
@@ -279,7 +276,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">directories</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
             <span class="n">item</span><span class="p">[</span><span class="s1">&#39;otype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;directory&#39;</span>
@@ -305,7 +302,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_top</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;top&quot;</span><span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
             <span class="n">directory</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
             <span class="n">directory</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_top_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
@@ -442,7 +439,7 @@
                 <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">path</span>
             <span class="n">new_path_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">directory_create_subdirectories_from_path_list</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">base_directory</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_path_list</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">base_directory</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_path_list</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span>
         <span class="n">table</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">project_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
@@ -479,7 +476,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;uploading:&quot;</span><span class="p">,</span> <span class="n">os_path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">getcwd</span><span class="p">()),</span> <span class="s2">&quot; as:&quot;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
         <span class="n">project_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
         <span class="n">directory_id</span> <span class="o">=</span> <span class="n">directory</span><span class="o">.</span><span class="n">id</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_upload</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">local_path</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">file_upload</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">local_path</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">uploaded_file</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">uploaded_file</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">uploaded_file</span><span class="o">.</span><span class="n">_directory</span> <span class="o">=</span> <span class="n">directory</span>
@@ -539,7 +536,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_local_path_to_path</span><span class="p">(</span><span class="n">os_path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
         <span class="n">directory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_or_get_all_directories_on_path</span><span class="p">(</span><span class="n">path</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">directory</span><span class="o">.</span>\
+        <span class="k">return</span> <span class="n">directory</span><span class="o">.</span> \
             <span class="n">add_directory_tree</span><span class="p">(</span><span class="n">os_path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">local_path</span><span class="p">),</span>
                                <span class="n">os_path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">local_path</span><span class="p">),</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span></div>
 
@@ -634,7 +631,7 @@
 <span class="sd">        &gt;&gt;&gt;     print(process.name)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">process_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_processes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span>
+        <span class="n">process_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_processes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">process_list</span><span class="p">]</span>
         <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">processes</span></div>
@@ -652,7 +649,7 @@
 <span class="sd">        &gt;&gt;&gt; process = project.get_process_by_id(process.id)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_process_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">process_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">process</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="n">process</span><span class="o">.</span><span class="n">_update_project_experiment</span><span class="p">()</span>
@@ -674,7 +671,7 @@
 <span class="sd">        &gt;&gt;&gt;     print(sample.name)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">samples_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_samples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span>
+        <span class="n">samples_list</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_samples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">samples_list</span><span class="p">]</span>
         <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">_decorate_object_with</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;project&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">samples</span></div>
@@ -690,12 +687,12 @@
 <span class="sd">        &gt;&gt;&gt; from materials_commons.api import get_project_by_id</span>
 <span class="sd">        &gt;&gt;&gt; project_id = &quot;somthing here&quot;</span>
 <span class="sd">        &gt;&gt;&gt; project = get_project_by_id(project_id)</span>
-<span class="sd">        &gt;&gt;&gt; sample = project.get_sample_by_id(sample.id)</span>
+<span class="sd">        &gt;&gt;&gt; sample = project.fetch_sample_by_id(sample.id)</span>
 
 <span class="sd">        ..todo:: determine and document the difference between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sample_json_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">)</span>
+        <span class="n">sample_json_dict</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">sample</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">sample_json_dict</span><span class="p">)</span>
         <span class="n">sample</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">sample</span></div>
@@ -711,12 +708,12 @@
 <span class="sd">        &gt;&gt;&gt; from materials_commons.api import get_project_by_id</span>
 <span class="sd">        &gt;&gt;&gt; project_id = &quot;somthing here&quot;</span>
 <span class="sd">        &gt;&gt;&gt; project = get_project_by_id(project_id)</span>
-<span class="sd">        &gt;&gt;&gt; sample = project.fetch_sample_by_id(sample.id)</span>
+<span class="sd">        &gt;&gt;&gt; sample = project.get_sample_by_id(sample.id)</span>
 
 <span class="sd">        ..todo:: determine and document the difference between mcapi.fetch_sample_by_id and mcapi.get_sample_by_id</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_sample_by_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sample_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">sample</span> <span class="o">=</span> <span class="n">make_object</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
         <span class="n">sample</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="k">return</span> <span class="n">sample</span></div>
@@ -734,7 +731,7 @@
 <span class="sd">        &gt;&gt;&gt; user_id_list = project.get_access_list()</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">users_with_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">users_with_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="n">user_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]:</span>
             <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]:</span>
@@ -749,7 +746,7 @@
 <span class="sd">        :param new_user: the user_id of the user to add</span>
 <span class="sd">        :return: string - the user_id, if added; otherwise error message</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_user_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_user</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">add_user_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_user</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span></div>
@@ -762,10 +759,28 @@
 <span class="sd">        :param user_to_remote: the user_id of the user to the user to remove</span>
 <span class="sd">        :return: string - the user_id (in any case)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">remove_user_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user_to_remote</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">remove_user_access_to_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user_to_remote</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;error&#39;</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span></div></div>
+        <span class="k">return</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span></div>
+
+    <span class="c1"># Project - globus</span>
+<div class="viewcode-block" id="Project.create_globus_upload_request"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.create_globus_upload_request">[docs]</a>    <span class="k">def</span> <span class="nf">create_globus_upload_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_globus_upload_request</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">GlobusUploadRequest</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="Project.get_globus_upload_status_list"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.get_globus_upload_status_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_globus_upload_status_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_globus_upload_status_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
+        <span class="n">status_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]:</span>
+            <span class="n">status_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">GlobusUploadStatus</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="n">status_list</span></div>
+
+<div class="viewcode-block" id="Project.create_globus_download_request"><a class="viewcode-back" href="../../../materials_commons.api.Project.html#materials_commons.api.Project.create_globus_download_request">[docs]</a>    <span class="k">def</span> <span class="nf">create_globus_download_request</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_globus_download_request</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_apikey</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">GlobusDownloadRequest</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
 </pre></div>
 
           </div>
@@ -775,12 +790,14 @@
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -796,13 +813,13 @@
         <li class="right" >
           <a href="../../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Materials Commons Development Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
     </div>
   </body>
 </html>

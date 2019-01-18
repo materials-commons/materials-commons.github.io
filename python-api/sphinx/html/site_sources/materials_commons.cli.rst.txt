@@ -1,5 +1,5 @@
-materials\_commons\.cli package
-===============================
+materials\_commons.cli package
+==============================
 
 Submodules
 ----------

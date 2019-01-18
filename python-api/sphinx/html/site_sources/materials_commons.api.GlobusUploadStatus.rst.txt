@@ -1,0 +1,7 @@
+materials\_commons.api.GlobusUploadStatus module
+================================================
+
+.. automodule:: materials_commons.api.GlobusUploadStatus
+    :members:
+    :undoc-members:
+    :show-inheritance:

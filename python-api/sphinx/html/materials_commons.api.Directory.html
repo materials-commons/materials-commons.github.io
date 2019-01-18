@@ -4,28 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>materials_commons.api.Directory module &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <title>materials_commons.api.Directory module &#8212; Materials Commons Python API 0.8.0 documentation</title>
     <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.7.5',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="site_static/documentation_options.js"></script>
     <script type="text/javascript" src="site_static/jquery.js"></script>
     <script type="text/javascript" src="site_static/underscore.js"></script>
     <script type="text/javascript" src="site_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="site_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,7 +28,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,12 +42,12 @@
 <dl class="class">
 <dt id="materials_commons.api.Directory.Directory">
 <em class="property">class </em><code class="descclassname">materials_commons.api.Directory.</code><code class="descname">Directory</code><span class="sig-paren">(</span><em>name=''</em>, <em>path=''</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
 <p>A Materials Commons Directory.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">normally created from the database by call to <code class="xref py py-func docutils literal"><span class="pre">mcapi.Project.add_directory()</span></code> or
-any of the project methods that create directories on a given path</p>
+<p class="last">normally created from the database by call to <code class="xref py py-func docutils literal notranslate"><span class="pre">mcapi.Project.add_directory()</span></code> or
+any of the other project methods that create or fetch directories on a given path</p>
 </div>
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.add_directory_tree">
@@ -83,7 +76,7 @@ loading all the files in the tree.</p>
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.add_file">
 <code class="descname">add_file</code><span class="sig-paren">(</span><em>file_name</em>, <em>local_input_path</em>, <em>verbose=False</em>, <em>limit=50</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.add_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Upload local file, and attach it to an new file in this directory.</p>
+<dd><p>Upload local file, and attach it this directory as a new file in this directory.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -96,7 +89,7 @@ loading all the files in the tree.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an instance of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> - the new file</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> - the new file</p>
 </td>
 </tr>
 </tbody>
@@ -107,14 +100,14 @@ loading all the files in the tree.</p>
 <dt id="materials_commons.api.Directory.Directory.create_descendant_list_by_path">
 <code class="descname">create_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.create_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.create_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create any directories missing on the given path, relative to this directory, and return all the
-directories on the path.</p>
+directories on the path, the base directory first, the leaf directory last.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – string</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Directory</span></code> instances</td>
 </tr>
 </tbody>
 </table>
@@ -141,20 +134,29 @@ directories on the path.</p>
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.get_children">
 <code class="descname">get_children</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.get_children"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_children" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the contents of this directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Directory</span></code> and/or <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> instances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="materials_commons.api.Directory.Directory.get_descendant_list_by_path">
 <code class="descname">get_descendant_list_by_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Directory.html#Directory.get_descendant_list_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Directory.Directory.get_descendant_list_by_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all the directories on the given path, relative to this directory; if any are missing
-and error is generated.</p>
+an error is generated. See also <code class="xref py py-func docutils literal notranslate"><span class="pre">mcapi.Directory.create_descendant_list_by_path()</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – string</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code> instances</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Directory</span></code> instances</td>
 </tr>
 </tbody>
 </table>
@@ -175,7 +177,7 @@ directory and the contents of the new parent directory.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parent_directory</strong> – an instance of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Directory</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>new_parent_directory</strong> – an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Directory</span></code></td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -240,12 +242,14 @@ directory and the contents of the new parent directory.</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -261,12 +265,12 @@ directory and the contents of the new parent directory.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Materials Commons Development Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
     </div>
   </body>
 </html>

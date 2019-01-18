@@ -1,5 +1,5 @@
-materials\_commons\.cli\.up module
-==================================
+materials\_commons.cli.up module
+================================
 
 .. automodule:: materials_commons.cli.up
     :members:

@@ -4,28 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>materials_commons.api.Process module &#8212; Materials Commons Python API 0.7.5 documentation</title>
+    <title>materials_commons.api.Process module &#8212; Materials Commons Python API 0.8.0 documentation</title>
     <link rel="stylesheet" href="site_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="site_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.7.5',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="site_static/documentation_options.js"></script>
     <script type="text/javascript" src="site_static/jquery.js"></script>
     <script type="text/javascript" src="site_static/underscore.js"></script>
     <script type="text/javascript" src="site_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="site_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,7 +28,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,11 +42,11 @@
 <dl class="class">
 <dt id="materials_commons.api.Process.Process">
 <em class="property">class </em><code class="descclassname">materials_commons.api.Process.</code><code class="descname">Process</code><span class="sig-paren">(</span><em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
 <p>A Materials Commons Process.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Normally created from the database by a call to <code class="xref py py-func docutils literal"><span class="pre">mcapi.Experiment.create_process_from_template()</span></code></p>
+<p class="last">Normally created from the database by a call to <code class="xref py py-func docutils literal notranslate"><span class="pre">mcapi.Experiment.create_process_from_template()</span></code></p>
 </div>
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.add_boolean_measurement">
@@ -97,7 +90,7 @@
 <li>string</li>
 </ul>
 </li>
-<li><strong>file</strong> – a <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instance</li>
+<li><strong>file</strong> – a <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> instance</li>
 <li><strong>name</strong> – <ul>
 <li>(optional) string - if not given the name=attribute</li>
 </ul>
@@ -114,15 +107,21 @@
 
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.add_files">
-<code class="descname">add_files</code><span class="sig-paren">(</span><em>files_list</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.add_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.add_files" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_files</code><span class="sig-paren">(</span><em>files_list</em>, <em>direction=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.add_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.add_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add files to this process.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>files_list</strong> – a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instances</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>files_list</strong> – a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> instances</li>
+<li><strong>direction</strong> – (optional - default unset) ‘in’ or ‘out’ -
+set the indicated direction of the file with respect to the process</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the updated process</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -130,15 +129,23 @@
 
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.add_input_samples_to_process">
-<code class="descname">add_input_samples_to_process</code><span class="sig-paren">(</span><em>samples</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.add_input_samples_to_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.add_input_samples_to_process" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_input_samples_to_process</code><span class="sig-paren">(</span><em>samples</em>, <em>transform=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.add_input_samples_to_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.add_input_samples_to_process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add input samples to this process.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>samples</strong> – a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instances</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>samples</strong> – a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instances</li>
+<li><strong>transform</strong> – (optional, default = None), a True/False flag to indicate that
+the output samples should be (automaticially) generated for transform-type
+processes. The normal behavior, without the flag, is for the output samples
+to be generate.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the updated process</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the updated process</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -278,7 +285,7 @@
 <li>string</li>
 </ul>
 </li>
-<li><strong>sample</strong> – a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instance</li>
+<li><strong>sample</strong> – a <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instance</li>
 <li><strong>name</strong> – <ul>
 <li>(optional) string - if not given the name=attribute</li>
 </ul>
@@ -391,17 +398,17 @@
 <dd><p>string</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="staticmethod">
 <dt id="materials_commons.api.Process.Process.create_measurement">
-<code class="descname">create_measurement</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.create_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.create_measurement" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">create_measurement</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.create_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.create_measurement" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> – dictionary - measurement data, see example
-below at <code class="xref py py-func docutils literal"><span class="pre">mcapi.Process.set_measurements_for_process_samples()</span></code></td>
+below at <code class="xref py py-func docutils literal notranslate"><span class="pre">mcapi.Process.set_measurements_for_process_samples()</span></code></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the appropriate <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code> subclass</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the appropriate <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Measurement</span></code> subclass</td>
 </tr>
 </tbody>
 </table>
@@ -422,7 +429,7 @@ the ‘sectioning’ process (that is template_name == ‘sectioning’).</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_names</strong> – a list of string</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -431,12 +438,12 @@ the ‘sectioning’ process (that is template_name == ‘sectioning’).</p>
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.decorate_with_input_samples">
 <code class="descname">decorate_with_input_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.decorate_with_input_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.decorate_with_input_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make sure that known input samples are set in this.</p>
+<dd><p>Make sure that known input samples are set in this Process.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a new copy of the Process (this) with the addition of input samples from the database</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the Process (this) with the addition of input samples from the database</td>
 </tr>
 </tbody>
 </table>
@@ -445,12 +452,12 @@ the ‘sectioning’ process (that is template_name == ‘sectioning’).</p>
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.decorate_with_output_samples">
 <code class="descname">decorate_with_output_samples</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.decorate_with_output_samples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.decorate_with_output_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make sure that known output samples are set in the this.</p>
+<dd><p>Make sure that known output samples are set in the this Process.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a new copy of the Process (this) with the addition of output samples from the database</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the Process (this) with the addition of output samples from the database</td>
 </tr>
 </tbody>
 </table>
@@ -476,20 +483,20 @@ more output samples.</p>
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.direction">
 <code class="descname">direction</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>‘in’ or ‘out’ - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></p>
+<dd><p>‘in’ or ‘out’ - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.experiment">
 <code class="descname">experiment</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.experiment" title="Permalink to this definition">¶</a></dt>
-<dd><p>the <code class="xref py py-class docutils literal"><span class="pre">mcapi.Experiment</span></code> containing this process</p>
+<dd><p>the <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Experiment</span></code> containing this process</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.experiments">
 <code class="descname">experiments</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.experiments" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Experiment</span></code> instances - filled in when process is in Sample.processes;
-see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Experiment</span></code> instances - filled in when process is in Sample.processes;
+see <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code></p>
 </dd></dl>
 
 <dl class="method">
@@ -500,7 +507,7 @@ see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Samp
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">files_list: a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instances</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">files_list: a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> instances</td>
 </tr>
 </tbody>
 </table>
@@ -514,7 +521,7 @@ see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Samp
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instances</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instances</td>
 </tr>
 </tbody>
 </table>
@@ -522,15 +529,15 @@ see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Samp
 
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.get_sample_by_id">
-<code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>process_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_sample_by_id</code><span class="sig-paren">(</span><em>sample_id</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.get_sample_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.get_sample_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get indicated Sample.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_id</strong> – sample if - string</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_id</strong> – the id of the sample - string</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instance</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instance</td>
 </tr>
 </tbody>
 </table>
@@ -544,7 +551,7 @@ see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Samp
 <dt id="materials_commons.api.Process.Process.get_setup_properties_as_dictionary">
 <code class="descname">get_setup_properties_as_dictionary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.get_setup_properties_as_dictionary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.get_setup_properties_as_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a ‘helper’ dictionary of the properties of this Process.
-See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code></p>
+See <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Property</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -558,13 +565,13 @@ See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Prop
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.input_files">
 <code class="descname">input_files</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.input_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instance</p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> instance</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.input_samples">
 <code class="descname">input_samples</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.input_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instance</p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instance</p>
 </dd></dl>
 
 <dl class="method">
@@ -586,15 +593,17 @@ See <code class="xref py py-class docutils literal"><span class="pre">mcapi.Prop
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.make_list_of_samples_for_measurement">
 <code class="descname">make_list_of_samples_for_measurement</code><span class="sig-paren">(</span><em>samples</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.make_list_of_samples_for_measurement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.make_list_of_samples_for_measurement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Augment samples with setup properties from this process; the samples must have been created by the process;
-see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Process.create_sample()</span></code></p>
+<dd><p>Augment samples with setup properties from this process;
+the samples must have been created by the process;
+see <code class="xref py py-func docutils literal notranslate"><span class="pre">mcapi.Process.create_sample()</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>samples</strong> – list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instances</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>samples</strong> – list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instances</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instances with their property_set id values set</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instances with their
+property_set id values set</td>
 </tr>
 </tbody>
 </table>
@@ -603,7 +612,7 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.measurements">
 <code class="descname">measurements</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.measurements" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code> instances - filled in when measurements are attached</p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Measurement</span></code> instances - filled in when measurements are attached</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -615,13 +624,13 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.output_files">
 <code class="descname">output_files</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.output_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.File</span></code> instance</p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.File</span></code> instance</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.output_samples">
 <code class="descname">output_samples</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.output_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instance</p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instance</p>
 </dd></dl>
 
 <dl class="method">
@@ -649,27 +658,27 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.process_id">
 <code class="descname">process_id</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.process_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>string - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></p>
+<dd><p>string - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.project">
 <code class="descname">project</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.project" title="Permalink to this definition">¶</a></dt>
-<dd><p>the <code class="xref py py-class docutils literal"><span class="pre">mcapi.Project</span></code> containing this process</p>
+<dd><p>the <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Project</span></code> containing this process</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.properties_dictionary">
 <code class="descname">properties_dictionary</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.properties_dictionary" title="Permalink to this definition">¶</a></dt>
 <dd><p>a derived dictionary of the setup properties of this process;
-a dictionary of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Property</span></code> with <em>key</em> = property.attribute;
-see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Process.get_setup_properties_as_dictionary()</span></code></p>
+a dictionary of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Property</span></code> with <em>key</em> = property.attribute;
+see <code class="xref py py-func docutils literal notranslate"><span class="pre">mcapi.Process.get_setup_properties_as_dictionary()</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.property_set_id">
 <code class="descname">property_set_id</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.property_set_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>string - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></p>
+<dd><p>string - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code></p>
 </dd></dl>
 
 <dl class="method">
@@ -700,7 +709,7 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_name</strong> – new name - string</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the updated <code class="xref py py-class docutils literal"><span class="pre">mcapi.Process</span></code></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the updated <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Process</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -709,7 +718,7 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <dl class="attribute">
 <dt id="materials_commons.api.Process.Process.sample_id">
 <code class="descname">sample_id</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.sample_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>string - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code></p>
+<dd><p>string - filled in when process is in Sample.processes; see <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code></p>
 </dd></dl>
 
 <dl class="method">
@@ -747,7 +756,7 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>measurement_property</strong> – dictionary - the property, see example below</li>
-<li><strong>measurements</strong> – <code class="xref py py-class docutils literal"><span class="pre">mcapi.Measurement</span></code></li>
+<li><strong>measurements</strong> – <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Measurement</span></code></li>
 </ul>
 </td>
 </tr>
@@ -756,7 +765,7 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 </tr>
 </tbody>
 </table>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">measurement_data</span> <span class="o">=</span> <span class="p">{</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Composition&quot;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;attribute&quot;</span><span class="p">:</span> <span class="s2">&quot;composition&quot;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;otype&quot;</span><span class="p">:</span> <span class="s2">&quot;composition&quot;</span><span class="p">,</span>
@@ -786,7 +795,8 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 <dl class="method">
 <dt id="materials_commons.api.Process.Process.set_unit_of_setup_property">
 <code class="descname">set_unit_of_setup_property</code><span class="sig-paren">(</span><em>name</em>, <em>unit</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Process.html#Process.set_unit_of_setup_property"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Process.Process.set_unit_of_setup_property" title="Permalink to this definition">¶</a></dt>
-<dd><p>Augment, locally, the template-supported set-up property indicated by <em>name</em>, with a unit type for that property.</p>
+<dd><p>Augment, locally, the template-supported set-up property indicated
+by <em>name</em>, with a unit type for that property.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -832,9 +842,21 @@ see <code class="xref py py-func docutils literal"><span class="pre">mcapi.Proce
 </dd></dl>
 
 <dl class="attribute">
+<dt id="materials_commons.api.Process.Process.template_id">
+<code class="descname">template_id</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.template_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>string - filled in when process is initialized`</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="materials_commons.api.Process.Process.template_name">
+<code class="descname">template_name</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.template_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>string - filled in when process is initialized`</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="materials_commons.api.Process.Process.transformed_samples">
 <code class="descname">transformed_samples</code><em class="property"> = None</em><a class="headerlink" href="#materials_commons.api.Process.Process.transformed_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of <code class="xref py py-class docutils literal"><span class="pre">mcapi.Sample</span></code> instance</p>
+<dd><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Sample</span></code> instance</p>
 </dd></dl>
 
 <dl class="method">
@@ -848,7 +870,8 @@ required, The default will be based on the type of value.)</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry_list</strong> – a list of objects: [{name: name, attribute: attribute, value: value, unit: unit, otype: object-type}, …]</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entry_list</strong> – a list of objects: [{name: name,
+attribute: attribute, value: value, unit: unit, otype: object-type}, …]</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the updated process</td>
 </tr>
@@ -905,12 +928,14 @@ ppreciously augmented locally for this process.</p>
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -926,12 +951,12 @@ ppreciously augmented locally for this process.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.7.5 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Materials Commons Python API 0.8.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Materials Commons Development Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.
     </div>
   </body>
 </html>

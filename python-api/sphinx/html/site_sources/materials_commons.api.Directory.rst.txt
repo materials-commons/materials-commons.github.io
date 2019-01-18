@@ -1,5 +1,5 @@
-materials\_commons\.api\.Directory module
-=========================================
+materials\_commons.api.Directory module
+=======================================
 
 .. automodule:: materials_commons.api.Directory
     :members:
