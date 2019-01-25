@@ -41,7 +41,7 @@
 <span id="materials-commons-api-project-module"></span><h1>materials_commons.api.Project module<a class="headerlink" href="#module-materials_commons.api.Project" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="materials_commons.api.Project.Project">
-<em class="property">class </em><code class="descclassname">materials_commons.api.Project.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=''</em>, <em>description=''</em>, <em>remote_url=''</em>, <em>data=None</em>, <em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">materials_commons.api.Project.</code><code class="descname">Project</code><span class="sig-paren">(</span><em>name=''</em>, <em>description=''</em>, <em>remote_url=''</em>, <em>data=None</em>, <em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/Project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.Project.Project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.base.MCObject</span></code></p>
 <p>A Materials Commons Project.</p>
 <div class="admonition note">
@@ -398,7 +398,7 @@ If a directory is missing, in the path, it is created and returned in the list.<
 </tbody>
 </table>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">materials_commons.api</span> <span class="k">import</span> <span class="n">get_project_by_id</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;somthing here&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;something here&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">user_id_list</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">get_access_list</span><span class="p">()</span>
 </pre></div>

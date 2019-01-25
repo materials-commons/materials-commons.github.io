@@ -46,10 +46,12 @@
 
 
 <span class="c1"># -- top level project functions --</span>
-<div class="viewcode-block" id="create_project"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.create_project">[docs]</a><span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="create_project"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.create_project">[docs]</a><span class="k">def</span> <span class="nf">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a new Project object in the database and return it.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :param name: - the name of the project</span>
 <span class="sd">    :param description: - a description for the project</span>
 <span class="sd">    :return: :class:`mcapi.Project`</span>
@@ -61,16 +63,18 @@
 <span class="sd">    &gt;&gt;&gt; print(project.name, project.description)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="n">project_id</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-    <span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">project</span></div>
 
 
-<div class="viewcode-block" id="get_project_by_id"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_project_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_project_by_id"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_project_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch a project from the database and return it/</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :param project_id: the id value for the project</span>
 <span class="sd">    :return: :class:`mcapi.Project`</span>
 
@@ -78,14 +82,16 @@
 <span class="sd">    &gt;&gt;&gt; project = get_project_by_id(&quot;e4fd5c88-2fb7-40af-b3fc-2711d786e5f6&quot;)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span></div>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_project_by_id</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_all_projects"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_all_projects">[docs]</a><span class="k">def</span> <span class="nf">get_all_projects</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_all_projects"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_all_projects">[docs]</a><span class="k">def</span> <span class="nf">get_all_projects</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a list of all the project to which the current user has access.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :return: a list of :class:`mcapi.Project`</span>
 
 <span class="sd">    &gt;&gt;&gt; project_list = get_all_projects()</span>
@@ -93,18 +99,20 @@
 <span class="sd">    &gt;&gt;&gt;     print(project.name)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">projects</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">projects</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="n">projects</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-        <span class="n">projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">))</span>
+        <span class="n">projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Project</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">r</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">projects</span></div>
 
 
 <span class="c1"># -- top level user function ---</span>
-<div class="viewcode-block" id="get_all_users"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_all_users">[docs]</a><span class="k">def</span> <span class="nf">get_all_users</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_all_users"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_all_users">[docs]</a><span class="k">def</span> <span class="nf">get_all_users</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the list of all users registered on the server.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :return: a list of :class:`mcapi.User`</span>
 
 <span class="sd">    &gt;&gt;&gt; user_list = get_all_users()</span>
@@ -112,16 +120,18 @@
 <span class="sd">    &gt;&gt;&gt;     print(user.fullname, user.email)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_users</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_users</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="n">users</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]]</span>
     <span class="k">return</span> <span class="n">users</span></div>
 
 
 <span class="c1"># -- top level template function ---</span>
-<div class="viewcode-block" id="get_all_templates"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_all_templates">[docs]</a><span class="k">def</span> <span class="nf">get_all_templates</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_all_templates"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_all_templates">[docs]</a><span class="k">def</span> <span class="nf">get_all_templates</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a list of all the templates known to the system.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :return: a list of :class:`mcapi.Template`</span>
 
 <span class="sd">    &gt;&gt;&gt; template_list = get_all_templates()</span>
@@ -129,22 +139,24 @@
 <span class="sd">    &gt;&gt;&gt;     print(template.name, template.id)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">templates_array</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_templates</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">templates_array</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_all_templates</span><span class="p">(</span><span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="n">templates</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_object</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">templates_array</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">templates</span></div>
 
 
 <span class="c1"># -- top level functions for experiment etl metadata</span>
-<div class="viewcode-block" id="create_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.create_experiment_metadata">[docs]</a><span class="k">def</span> <span class="nf">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="create_experiment_metadata"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.create_experiment_metadata">[docs]</a><span class="k">def</span> <span class="nf">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a metadata record for Excel-based experiment workflow ETL.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :param experiment_id: the id of an existing experiment</span>
 <span class="sd">    :param metadata: the metadata for the experiment;</span>
 <span class="sd">        see :class:`materials_commons.etl.input.build_project.BuildProjectExperiment`</span>
 <span class="sd">    :return: a object of :class:`materials_commons.api.EtlMetadata`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">create_experiment_metadata</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
         <span class="c1"># print(&quot;Error: &quot;, results[&#39;error&#39;])</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -153,14 +165,16 @@
     <span class="k">return</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_experiment_metadata_by_experiment_id"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_experiment_metadata_by_experiment_id"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch an existing metadata record for Excel-based experiment workflow ETL.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :param experiment_id: the id of an existing experiment</span>
 <span class="sd">    :return: a object of :class:`materials_commons.api.EtlMetadata`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_metadata_by_experiment_id</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
         <span class="c1"># print(&quot;Error: &quot;, results[&#39;error&#39;])</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -169,14 +183,16 @@
     <span class="k">return</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_experiment_metadata_by_id"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_metadata_by_id</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="get_experiment_metadata_by_id"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id">[docs]</a><span class="k">def</span> <span class="nf">get_experiment_metadata_by_id</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch an existing metadata record for Excel-based experiment workflow ETL.</span>
 
+<span class="sd">    :param remote: API server to use, if none then use default</span>
+<span class="sd">    :param apikey: apikey to use in calls, if none then use default</span>
 <span class="sd">    :param metadata_id: the id of the metadata record</span>
 <span class="sd">    :return: a object of :class:`materials_commons.api.EtlMetadata`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_metadata</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_experiment_metadata</span><span class="p">(</span><span class="n">metadata_id</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">_has_key</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
         <span class="c1"># print(&quot;Error: &quot;, results[&#39;error&#39;])</span>
         <span class="k">return</span> <span class="kc">None</span>
@@ -185,15 +201,16 @@
     <span class="k">return</span> <span class="n">make_object</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_apikey"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_apikey">[docs]</a><span class="k">def</span> <span class="nf">get_apikey</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<div class="viewcode-block" id="get_apikey"><a class="viewcode-back" href="../../../materials_commons.api.top_level_api_functions.html#materials_commons.api.top_level_api_functions.get_apikey">[docs]</a><span class="k">def</span> <span class="nf">get_apikey</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch the apikey for the given user</span>
 
+<span class="sd">    :param remote: API Server to use, if none then use default</span>
 <span class="sd">    :param email: user email address</span>
 <span class="sd">    :param password: user password</span>
 <span class="sd">    :return: the users apikey string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">get_apikey</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">get_apikey</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">remote</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

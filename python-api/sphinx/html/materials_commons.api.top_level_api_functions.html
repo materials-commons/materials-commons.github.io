@@ -41,13 +41,15 @@
 <span id="materials-commons-api-top-level-api-functions-module"></span><h1>materials_commons.api.top_level_api_functions module<a class="headerlink" href="#module-materials_commons.api.top_level_api_functions" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.create_experiment_metadata">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_experiment_metadata</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>metadata</em>, <em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_experiment_metadata" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_experiment_metadata</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>metadata</em>, <em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_experiment_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_experiment_metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a metadata record for Excel-based experiment workflow ETL.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
 <li><strong>experiment_id</strong> – the id of an existing experiment</li>
 <li><strong>metadata</strong> – the metadata for the experiment;
 see <code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.etl.input.build_project.BuildProjectExperiment</span></code></li>
@@ -63,13 +65,15 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.create_project">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_project</code><span class="sig-paren">(</span><em>name</em>, <em>description</em>, <em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_project" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">create_project</code><span class="sig-paren">(</span><em>name</em>, <em>description</em>, <em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#create_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.create_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new Project object in the database and return it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
 <li><strong>name</strong> – <ul>
 <li>the name of the project</li>
 </ul>
@@ -97,13 +101,20 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_all_projects">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_projects</code><span class="sig-paren">(</span><em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_projects" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_projects</code><span class="sig-paren">(</span><em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_projects" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of all the project to which the current user has access.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Project</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Project</span></code></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -116,13 +127,20 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_all_templates">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_templates</code><span class="sig-paren">(</span><em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_templates" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_templates</code><span class="sig-paren">(</span><em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_templates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of all the templates known to the system.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Template</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Template</span></code></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -135,13 +153,20 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_all_users">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_users</code><span class="sig-paren">(</span><em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_users" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_all_users</code><span class="sig-paren">(</span><em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_all_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_all_users" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of all users registered on the server.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.User</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.User</span></code></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -154,13 +179,14 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_apikey">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_apikey</code><span class="sig-paren">(</span><em>email</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_apikey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_apikey" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_apikey</code><span class="sig-paren">(</span><em>email</em>, <em>password</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_apikey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_apikey" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch the apikey for the given user</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API Server to use, if none then use default</li>
 <li><strong>email</strong> – user email address</li>
 <li><strong>password</strong> – user password</li>
 </ul>
@@ -175,15 +201,21 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_experiment_id</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_experiment_id</code><span class="sig-paren">(</span><em>experiment_id</em>, <em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_experiment_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_experiment_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch an existing metadata record for Excel-based experiment workflow ETL.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>experiment_id</strong> – the id of an existing experiment</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
+<li><strong>experiment_id</strong> – the id of an existing experiment</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -191,15 +223,21 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_id</code><span class="sig-paren">(</span><em>metadata_id</em>, <em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_experiment_metadata_by_id</code><span class="sig-paren">(</span><em>metadata_id</em>, <em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_experiment_metadata_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_experiment_metadata_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch an existing metadata record for Excel-based experiment workflow ETL.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metadata_id</strong> – the id of the metadata record</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
+<li><strong>metadata_id</strong> – the id of the metadata record</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a object of <a class="reference internal" href="materials_commons.api.EtlMetadata.html#module-materials_commons.api.EtlMetadata" title="materials_commons.api.EtlMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.EtlMetadata</span></code></a></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -207,15 +245,21 @@ see <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <dl class="function">
 <dt id="materials_commons.api.top_level_api_functions.get_project_by_id">
-<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_project_by_id</code><span class="sig-paren">(</span><em>project_id</em>, <em>apikey=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_project_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_project_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">materials_commons.api.top_level_api_functions.</code><code class="descname">get_project_by_id</code><span class="sig-paren">(</span><em>project_id</em>, <em>apikey=None</em>, <em>remote=None</em><span class="sig-paren">)</span><a class="reference internal" href="site_modules/materials_commons/api/top_level_api_functions.html#get_project_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.top_level_api_functions.get_project_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetch a project from the database and return it/</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>project_id</strong> – the id value for the project</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>remote</strong> – API server to use, if none then use default</li>
+<li><strong>apikey</strong> – apikey to use in calls, if none then use default</li>
+<li><strong>project_id</strong> – the id value for the project</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Project</span></code></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><code class="xref py py-class docutils literal notranslate"><span class="pre">mcapi.Project</span></code></p>
+</td>
 </tr>
 </tbody>
 </table>
