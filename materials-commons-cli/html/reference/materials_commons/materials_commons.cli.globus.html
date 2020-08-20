@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.cli.globus module &mdash; materials_commons.cli 2.0b3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+        <script src="../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="materials_commons.cli.list_objects module" href="materials_commons.cli.list_objects.html" />
+    <link rel="prev" title="materials_commons.cli.functions module" href="materials_commons.cli.functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.globus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">materials_commons</a> &raquo;</li>
+        
+          <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
+        
+      <li>materials_commons.cli.globus module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../site-sources/reference/materials_commons/materials_commons.cli.globus.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-materials_commons.cli.globus">
+<span id="materials-commons-cli-globus-module"></span><h1>materials_commons.cli.globus module<a class="headerlink" href="#module-materials_commons.cli.globus" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="materials_commons.cli.globus.GlobusOperations">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">GlobusOperations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">local_endpoint_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transfer_client</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to perform Globus operations</p>
+<dl class="simple">
+<dt>local_endpoint_id: str or None</dt><dd><p>ID of local endpoint. If None provided, will attempt to get from local Globus connect
+personal, or user config file. If not found, will exit with message.</p>
+</dd>
+<dt>transfer_client: globus_sdk.TransferClient or None</dt><dd><p>Globus TransferClient instance. If None provided, will attempt to construct from user
+config or will prompt user to login to obtain a refresh token which will then be saved into
+the user’s config file.</p>
+</dd>
+<dt>verbose: bool (optional, default=True)</dt><dd><p>Print messages detailing individual steps.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="materials_commons.cli.globus.GlobusOperations.create_all_directories_on_path">
+<code class="sig-name descname">create_all_directories_on_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">endpoint_id</span></em>, <em class="sig-param"><span class="n">endpoint_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.create_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.create_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create all directories on path at upload endpoint</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str, Relative path inside project to a directory (excludes project directory)</p></li>
+<li><p><strong>endpoint_id</strong> – str, Endpoint ID</p></li>
+<li><p><strong>endpoint_path</strong> – str, Path to project directory on endpoint. Will create all directories on endpoint for <cite>endpoint_path/path</cite></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.globus.GlobusOperations.download_v0">
+<code class="sig-name descname">download_v0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">download</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.download_v0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.download_v0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download files and directories from project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj</strong> – Project</p></li>
+<li><p><strong>paths</strong> – list of str, Materials Commons paths (absolute path, not including project name
+directory)</p></li>
+<li><p><strong>download</strong> – mcapi.GlobusDownload, Globus download request</p></li>
+<li><p><strong>recursive</strong> – bool, If True, download directories recursively</p></li>
+<li><p><strong>label</strong> – str, Globus transfer label to make finding tasks simpler</p></li>
+<li><p><strong>force</strong> – bool, If True force download even if local file exists</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>None or task_id</em> – str, transfer task id. Returns nothing to transfer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.globus.GlobusOperations.upload_v0">
+<code class="sig-name descname">upload_v0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">upload</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.upload_v0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.upload_v0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload files and directories to project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj</strong> – Project</p></li>
+<li><p><strong>paths</strong> – list of str, Materials Commons paths (include project directory)</p></li>
+<li><p><strong>upload</strong> – mcapi.GlobusUpload, Globus upload request</p></li>
+<li><p><strong>recursive</strong> – bool, If True, upload directories recursively</p></li>
+<li><p><strong>label</strong> – str, Globus transfer label to make finding tasks simpler</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>None or task_id</em> – str, transfer task id. Returns nothing to transfer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.globus.check_transfer_types">
+<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">check_transfer_types</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_type</span></em>, <em class="sig-param"><span class="n">target_type</span></em>, <em class="sig-param"><span class="n">recursive</span></em>, <em class="sig-param"><span class="n">verbose</span></em>, <em class="sig-param"><span class="n">printpath</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#check_transfer_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.check_transfer_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if source and target types are valid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_type</strong> – ‘file’, ‘directory’, or None</p></li>
+<li><p><strong>target_type</strong> – ‘file’, ‘directory’, or None</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em>) – If True, upload directories recursively</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If True, print error messages</p></li>
+<li><p><strong>printpath</strong> (<em>str</em>) – If verbose==True, print error messages referring using this path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if transfer may proceed, False if transfer may not proceed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.globus.get_local_endpoint_id">
+<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">get_local_endpoint_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_local_endpoint_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.get_local_endpoint_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the local endpoint id</p>
+<p>Checks for a local Globus connect personal, if not found checks user config for globus.endpoint_id.</p>
+<blockquote>
+<div><p>local_endpoint_id: str or None if not found</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.globus.get_local_endpoint_id_or_exit">
+<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">get_local_endpoint_id_or_exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_local_endpoint_id_or_exit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.get_local_endpoint_id_or_exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the local endpoint id</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.globus.get_transfer_rt_or_login">
+<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">get_transfer_rt_or_login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_transfer_rt_or_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.get_transfer_rt_or_login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Globus transfer refresh token, prompting for login if necessary</p>
+<p>If not yet configured, will prompt user to login and enter a code used to obtain the refresh
+token. Once obtained the token will be saved into the user’s config file so future login is
+unnecessary.</p>
+<p>transfer_rt: str, Globus transfer refresh token for authentication</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.globus.make_transfer_client">
+<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">make_transfer_client</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transfer_rt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#make_transfer_client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.make_transfer_client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a Globus TransferClient</p>
+<dl class="simple">
+<dt>transfer_rt: str</dt><dd><p>Globus transfer authentication refresh token. Can be obtained from user’s globus
+configuration via <cite>Config().globus.transfer_rt</cite>, and will be None if not configured. To
+obtain from configuration or prompt user to login, use <cite>get_transfer_rt_or_login</cite>.</p>
+</dd>
+</dl>
+<p>transfer_client: globus_sdk.TransferClient</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="materials_commons.cli.list_objects.html" class="btn btn-neutral float-right" title="materials_commons.cli.list_objects module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="materials_commons.cli.functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

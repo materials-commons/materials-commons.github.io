@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
 gems:
   - jekyll-sitemap
-title: Materials Commons Documentation
-description: A general index of Documentation of Materials Commons
+title: Materials Commons
+description: A general index of Materials Commons resources
 show_downloads: false

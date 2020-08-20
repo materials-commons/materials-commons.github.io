@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.cli.user_config module &mdash; materials_commons.cli 2.0b3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+        <script src="../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting help" href="../../help.html" />
+    <link rel="prev" title="materials_commons.cli.treedb module" href="materials_commons.cli.treedb.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.user_config module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">materials_commons</a> &raquo;</li>
+        
+          <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
+        
+      <li>materials_commons.cli.user_config module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../site-sources/reference/materials_commons/materials_commons.cli.user_config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-materials_commons.cli.user_config">
+<span id="materials-commons-cli-user-config-module"></span><h1>materials_commons.cli.user_config module<a class="headerlink" href="#module-materials_commons.cli.user_config" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="materials_commons.cli.user_config.Config">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.user_config.</code><code class="sig-name descname">Config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_dir_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_file_name</span><span class="o">=</span><span class="default_value">'config.json'</span></em>, <em class="sig-param"><span class="n">override_config</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Configuration variables</p>
+<dl>
+<dt>Order of precedence:</dt><dd><ol class="arabic simple">
+<li><p>override_config, variables set at runtime</p></li>
+<li><p>environment variables (both MC_API_URL and MC_API_KEY must be set)</p></li>
+<li><p>configuration file</p></li>
+<li><p>default configuration</p></li>
+</ol>
+</dd>
+<dt>Format:</dt><dd><dl>
+<dt>{</dt><dd><dl class="simple">
+<dt>“default_remote”: {</dt><dd><p>“mcurl”: &lt;url&gt;,
+“email”: &lt;email&gt;,
+“apikey”: &lt;apikey&gt;</p>
+</dd>
+</dl>
+<p>},
+“remotes”: [</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“mcurl”: &lt;url&gt;,
+“email”: &lt;email&gt;,
+“apikey”: &lt;apikey&gt;</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>],
+“interfaces”: [</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{   ‘name’: ‘casm’,</dt><dd><p>‘desc’:’Create CASM samples, processes, measurements, etc.’,
+‘subcommand’:’casm_subcommand’,
+‘module’:’casm_mcapi’</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>],
+“globus”: {</p>
+<blockquote>
+<div><p>“transfer_rt”: &lt;token&gt;</p>
+</div></blockquote>
+<p>},
+“developer_mode”: False,
+“REST_logging”: False,
+“mcurl”: &lt;url&gt;, # (deprecated) use if no ‘default_remote’
+“apikey”: &lt;apikey&gt; # (deprecated) use if no ‘default_remote’</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="materials_commons.cli.user_config.Config.remotes">
+<code class="sig-name descname">remotes</code><a class="headerlink" href="#materials_commons.cli.user_config.Config.remotes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dict of RemoteConfig, mapping of remote name to RemoteConfig instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="materials_commons.cli.user_config.Config.default_remote">
+<code class="sig-name descname">default_remote</code><a class="headerlink" href="#materials_commons.cli.user_config.Config.default_remote" title="Permalink to this definition">¶</a></dt>
+<dd><p>RemoteConfig, configuration for default Remote</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="materials_commons.cli.user_config.Config.interfaces">
+<code class="sig-name descname">interfaces</code><a class="headerlink" href="#materials_commons.cli.user_config.Config.interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of InterfaceConfig, settings for software interfaces for the <cite>mc</cite> CLI program</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="materials_commons.cli.user_config.Config.globus">
+<code class="sig-name descname">globus</code><a class="headerlink" href="#materials_commons.cli.user_config.Config.globus" title="Permalink to this definition">¶</a></dt>
+<dd><p>GlobusConfig, globus configuration settings</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config_dir_path</strong> – str, path to config directory. Defaults to ~/.materialscommons.</p></li>
+<li><p><strong>config_file_name</strong> – str, name of config file. Defaults to “config.json”.</p></li>
+<li><p><strong>override_config</strong> – dict, config file-like dict, with settings to use instead of those in
+environment variables or the config file. Defaults to {}.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="materials_commons.cli.user_config.Config.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#Config.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.Config.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="materials_commons.cli.user_config.GlobusConfig">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.user_config.</code><code class="sig-name descname">GlobusConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transfer_rt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">endpoint_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#GlobusConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.GlobusConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="materials_commons.cli.user_config.InterfaceConfig">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.user_config.</code><code class="sig-name descname">InterfaceConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">module</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">subcommand</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">desc</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#InterfaceConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.InterfaceConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="materials_commons.cli.user_config.RemoteConfig">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.user_config.</code><code class="sig-name descname">RemoteConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mcurl</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">email</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mcapikey</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#RemoteConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.RemoteConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="materials_commons.cli.user_config.RemoteConfig.__eq__">
+<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#RemoteConfig.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.RemoteConfig.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equal if mcurl and email are equal, does not check mcapikey</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.user_config.RemoteConfig.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#RemoteConfig.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.RemoteConfig.get_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.user_config.RemoteConfig.make_client">
+<code class="sig-name descname">make_client</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/user_config.html#RemoteConfig.make_client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.user_config.RemoteConfig.make_client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../help.html" class="btn btn-neutral float-right" title="Getting help" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="materials_commons.cli.treedb.html" class="btn btn-neutral float-left" title="materials_commons.cli.treedb module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

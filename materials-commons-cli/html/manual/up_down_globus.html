@@ -1,0 +1,632 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Upload / Download &mdash; materials_commons.cli 2.0b3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../site-static/documentation_options.js"></script>
+        <script src="../site-static/jquery.js"></script>
+        <script src="../site-static/underscore.js"></script>
+        <script src="../site-static/doctools.js"></script>
+        <script src="../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="materials_commons" href="../reference/materials_commons/modules.html" />
+    <link rel="prev" title="File operations" href="ls_mkdir_rm_mv.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="remote.html">Configuring remotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj_init_clone.html">Project operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ls_mkdir_rm_mv.html">File operations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Upload / Download</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standard-upload-and-download">Standard upload and download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#globus-file-transfer">Globus file transfer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation-and-configuration">Installation and configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#globus-file-transfer-overview">Globus file transfer overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initiating-transfers-using-globus">Initiating transfers using Globus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#managing-globus-transfers">Managing Globus transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#help-documentation"><code class="docutils literal notranslate"><span class="pre">--help</span></code> documentation:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">User Manual</a> &raquo;</li>
+        
+      <li>Upload / Download</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../site-sources/manual/up_down_globus.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="upload-download">
+<h1>Upload / Download<a class="headerlink" href="#upload-download" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="standard-upload-and-download">
+<h2>Standard upload and download<a class="headerlink" href="#standard-upload-and-download" title="Permalink to this headline">¶</a></h2>
+<p>When a local project directory exists (created using <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span></code> or <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span></code>), files can be transferred between the local project and the remote project.</p>
+<p>File uploading and downloading is performed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">up</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">down</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">-r</span></code> option to upload and download directory contents recursively. For <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code>, any files given as “path” arguments existing in the local project directory will be uploaded to the corresponding directory in the remote project. Similarly, for <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code> any files given as “path” arguments existing in the remote project directory will be downloaded to the corrsponding directory in the local project. Any intermediate directories that do not exist will be created automatically.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code>/<code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code> will check MD5 checksums and not transfer files that already exist. This can be skipped with the <code class="docutils literal notranslate"><span class="pre">--no-compare</span></code> option.</p>
+<p>There is a limit to the size of files that can be uploaded using the standard file upload process. that depends on the configuration of the particular instance of Materials Commons. The <code class="docutils literal notranslate"><span class="pre">mc</span></code> program will skip (with a warning message) uploading any file larger than the size given by the <code class="docutils literal notranslate"><span class="pre">--limit</span></code> option (given in MB). The default limit is 50MB.</p>
+<p>When uploading a file results in “overwriting” an existing file at the same location, Materials Commons saves the previously existing file as a “version”. Access to previous file versions will be enabled in a subsequent release, along with details about how <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">rm</span></code> and <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mv</span></code> effect versions.</p>
+</div>
+<div class="section" id="globus-file-transfer">
+<h2>Globus file transfer<a class="headerlink" href="#globus-file-transfer" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://www.globus.org/">Globus</a> transfer service can be used when transfering larger or more files.</p>
+<div class="section" id="installation-and-configuration">
+<h3>Installation and configuration<a class="headerlink" href="#installation-and-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The Globus client should already be installed as part of the <code class="docutils literal notranslate"><span class="pre">materials-commons-cli</span></code> installation process. But, if it is not installed, install with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">globus</span><span class="o">-</span><span class="n">sdk</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">globus</span><span class="o">-</span><span class="n">cli</span>
+</pre></div>
+</div>
+<p>The following assumes you have a valid <a class="reference external" href="https://www.globus.org/">Globus</a> account.</p>
+<p>If you are using Globus Personal Connect, for instance on your personal computer:</p>
+<ul>
+<li><p>Login to Globus:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">globus</span> <span class="n">login</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>If you are using a Globus endpoint managed by someone else, for instance on a shared cluster:</p>
+<ul>
+<li><p>Find the Globus endpoint id for the endpoint you will use. Endpoint UUIDs can be found on the <a class="reference external" href="https://app.globus.org/endpoints">Globus endpoints web interface</a>.</p></li>
+<li><p>Configure <code class="docutils literal notranslate"><span class="pre">mc</span></code> to use the Globus endpoint id:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">globus</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">globus</span><span class="o">-</span><span class="n">endpoint</span><span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="globus-file-transfer-overview">
+<h3>Globus file transfer overview<a class="headerlink" href="#globus-file-transfer-overview" title="Permalink to this headline">¶</a></h3>
+<p>The process for uploading files to a Materials Commons project via Globus is:</p>
+<ol class="arabic simple">
+<li><p>Request that Materials Commons creates a new Globus upload directory for a project on the Materials Commons Globus endpoint. At this point Materials Commons creates a new upload directory and sets access control to allow only you to privately access it via Globus.</p></li>
+<li><p>Initiate one or more Globus transfers from any endpoints you can access to the upload directory on the Materials Commons endpoint.</p></li>
+<li><p>Finish or delete upload:</p></li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Tell Materials Commons that transfers are complete and files at the upload directory should be processed into the Materials Commons project. At this point Materials Commons removes access control so no more files can be uploaded while they are being processed. To upload more files via Globus repeat from (1).</p></li>
+<li><p>Or, tell Materials Commons to discard uploaded files and do not process them into the project.</p></li>
+</ol>
+</div></blockquote>
+<p>The process for downloading files from a Materials Commons project via Globus is:</p>
+<ol class="arabic simple">
+<li><p>Request that Materials Commons creates a new Globus download directory for a project on the Materials Commons Globus endpoint. At this point Materials Commons creates hardlinks in the download directory to the current version of all project files. For large projects this may take some time. Then it sets access control to allow only you to privately access the download directory via Globus. Any file changes in the project that occur after a download directory is created are <em>not</em> reflected in that download directory.</p></li>
+<li><p>Initiate one or more Globus transfers from the download directory on the Materials Commons endpoint to any endpoints you can access.</p></li>
+<li><p>Tell Materials Commons that transfers are complete and the download directory can be deleted. The download directory may be left as long as desired, but it will <em>not</em> reflect any file or directory changes to project.</p></li>
+</ol>
+</div>
+<div class="section" id="initiating-transfers-using-globus">
+<h3>Initiating transfers using Globus<a class="headerlink" href="#initiating-transfers-using-globus" title="Permalink to this headline">¶</a></h3>
+<p>To initiate an upload using Globus, add the <code class="docutils literal notranslate"><span class="pre">-g</span></code>/<code class="docutils literal notranslate"><span class="pre">--globus</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">up</span> <span class="o">-</span><span class="n">g</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Since a user can have multiple existing Globus upload directories, the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program stores, for each local project, the id of a “current” Globus upload indicating which upload directory to transfer files to. If no “current” upload exists when <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code> is called, then <code class="docutils literal notranslate"><span class="pre">mc</span></code> will request a new upload directory with a random name and initiate a Globus transfer to it. The newly created upload directory becomes the “current” upload directory and is used when <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span> <span class="pre">-g</span></code> is called subsequently.</p>
+<p>Globus downloads can be initiated similarly, with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">down</span> <span class="o">-</span><span class="n">g</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="managing-globus-transfers">
+<h3>Managing Globus transfers<a class="headerlink" href="#managing-globus-transfers" title="Permalink to this headline">¶</a></h3>
+<p>The command <code class="docutils literal notranslate"><span class="pre">globus</span> <span class="pre">task</span> <span class="pre">list</span></code> can be used to check the status of all initiated transfers.</p>
+<p>Globus upload and download directories on Materials Commons can be managed with <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code>/<code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">download</span></code>. This provides options to list, create, delete, and go to (in the Globus web UI) upload and download directories, finish an upload, and set or unset the “current” upload/download directory for the local project.</p>
+<p>When Globus upload transfers complete, use the ID of the upload directory to be finished, and begin processing of files into the Materials Commons project with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>``mc globus upload --finish --id &lt;id&gt;``
+</pre></div>
+</div>
+<p>Depending on the number of files, it may take some time to process uploaded files before they appear in the project.</p>
+</div>
+</div>
+<div class="section" id="help-documentation">
+<h2><code class="docutils literal notranslate"><span class="pre">--help</span></code> documentation:<a class="headerlink" href="#help-documentation" title="Permalink to this headline">¶</a></h2>
+<p><p>upload files</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">up</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">limit</span> <span class="n">LIMIT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">label</span> <span class="n">LABEL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">compare</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="section" id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>paths</kbd></dt>
+<dd><p>Files or directories</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>-r, --recursive</kbd></dt>
+<dd><p>Upload directory contents recursively</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--limit</kbd></dt>
+<dd><p>File size upload limit (MB). Default=50MB. Does not apply to Globus uploads.</p>
+<p>Default: [50]</p>
+</dd>
+<dt><kbd>-g, --globus</kbd></dt>
+<dd><dl class="simple">
+<dt>Use globus to upload files. Uses the current active upload or creates a new upload.</dt><dd><p>Use <cite>globus task list</cite> to monitor transfer tasks. Use <cite>mc globus upload</cite> to manage uploads.</p>
+</dd>
+</dl>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--label</kbd></dt>
+<dd><p>Globus transfer label to make finding tasks simpler. Default is <a href="#id1"><span class="problematic" id="id2">`</span></a>&lt;project name&gt;-&lt;upload name&gt;.</p>
+</dd>
+<dt><kbd>--no-compare</kbd></dt>
+<dd><p>Upload without checking if remote is equivalent.</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+<p><p>download files</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">down</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">label</span> <span class="n">LABEL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">compare</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="section" id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>paths</kbd></dt>
+<dd><p>Files or directories</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>-r, --recursive</kbd></dt>
+<dd><p>Download directory contents recursively</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-f, --force</kbd></dt>
+<dd><p>Force overwrite of existing files</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-p, --print</kbd></dt>
+<dd><p>Print file, do not write</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-o, --output</kbd></dt>
+<dd><p>Download file name</p>
+</dd>
+<dt><kbd>-g, --globus</kbd></dt>
+<dd><p>Use globus to download files.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--label</kbd></dt>
+<dd><p>Globus transfer label to make finding tasks simpler.</p>
+</dd>
+<dt><kbd>--no-compare</kbd></dt>
+<dd><p>Download remote without checking if local is equivalent.</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+<p><p>Manage Globus transfers</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">globus</span> <span class="o">&lt;</span><span class="n">transfertype</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span><span class="p">]</span>
+
+<span class="n">The</span> <span class="n">transfer</span> <span class="n">types</span> <span class="n">are</span><span class="p">:</span>
+  <span class="n">download</span>   <span class="n">Manage</span> <span class="n">Globus</span> <span class="n">downloads</span>                 
+  <span class="n">upload</span>     <span class="n">Manage</span> <span class="n">Globus</span> <span class="n">uploads</span>
+</pre></div>
+</div>
+<div class="section" id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>transfertype</kbd></dt>
+<dd><p>Type of transfer to manage.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>--set-globus-endpoint-id</kbd></dt>
+<dd><p>Set local globus endpoint ID</p>
+</dd>
+<dt><kbd>--clear-globus-endpoint-id</kbd></dt>
+<dd><p>Clear local globus endpoint ID</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+<p><p>List, create, finish, and delete Globus uploads. By default lists current project uploads. With <cite>–all</cite> lists all Globus uploads.</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">globus</span> <span class="n">upload</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">uuid</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">owner</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regxsearch</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">sort</span><span class="o">-</span><span class="n">by</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="o">...</span><span class="p">]]]</span> <span class="p">[</span><span class="o">--</span><span class="n">json</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span>
+                        <span class="p">[</span><span class="o">--</span><span class="nb">all</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">create</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">delete</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">name</span> <span class="n">NAME</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">finish</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">goto</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">set</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">unset</span><span class="p">]</span>
+                        <span class="p">[</span><span class="n">expr</span> <span class="p">[</span><span class="n">expr</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="section" id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>expr</kbd></dt>
+<dd><p>select Uploads that match the given regex (default matches name)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>--id</kbd></dt>
+<dd><p>match id instead of name</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--uuid</kbd></dt>
+<dd><p>match uuid instead of name</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--owner</kbd></dt>
+<dd><p>match owner instead of name</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-d, --details</kbd></dt>
+<dd><p>print detailed information</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--regxsearch</kbd></dt>
+<dd><p>use regular expression search instead of match</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--sort-by</kbd></dt>
+<dd><p>columns to sort by</p>
+<p>Default: [‘name’]</p>
+</dd>
+<dt><kbd>--json</kbd></dt>
+<dd><p>print JSON data</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-o, --output</kbd></dt>
+<dd><p>output to file</p>
+</dd>
+<dt><kbd>-f, --force</kbd></dt>
+<dd><p>force overwrite of existing output file</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--remote</kbd></dt>
+<dd><p>Remote to upload files to</p>
+</dd>
+<dt><kbd>--all</kbd></dt>
+<dd><p>list Uploads from all projects</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--create</kbd></dt>
+<dd><p>create a Upload</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--delete</kbd></dt>
+<dd><p>delete a Upload, specified by uuid</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--name</kbd></dt>
+<dd><p>New upload name, for use with –create. If not given, a random name will be generated.</p>
+<p>Default: “”</p>
+</dd>
+<dt><kbd>--finish</kbd></dt>
+<dd><p>Finish an upload. This closes the upload to new files and adds uploaded files to the project.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--goto</kbd></dt>
+<dd><p>Open the Globus File Manager in a web browser.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--set</kbd></dt>
+<dd><p>Set the Globus upload used by <cite>mc up –globus</cite>.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--unset</kbd></dt>
+<dd><p>Unset the Globus upload used by <cite>mc up –globus</cite>.</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+<p><p>List, create, and delete Globus downloads. By default lists current project downloads. With <cite>–all</cite> lists all Globus downloads.</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">globus</span> <span class="n">download</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">uuid</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">owner</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regxsearch</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">sort</span><span class="o">-</span><span class="n">by</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="o">...</span><span class="p">]]]</span> <span class="p">[</span><span class="o">--</span><span class="n">json</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span>
+                          <span class="p">[</span><span class="o">--</span><span class="nb">all</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">create</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">delete</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">name</span> <span class="n">NAME</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">goto</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">set</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">unset</span><span class="p">]</span>
+                          <span class="p">[</span><span class="n">expr</span> <span class="p">[</span><span class="n">expr</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="section" id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>expr</kbd></dt>
+<dd><p>select Downloads that match the given regex (default matches name)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<dl class="option-list">
+<dt><kbd>--id</kbd></dt>
+<dd><p>match id instead of name</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--uuid</kbd></dt>
+<dd><p>match uuid instead of name</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--owner</kbd></dt>
+<dd><p>match owner instead of name</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-d, --details</kbd></dt>
+<dd><p>print detailed information</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--regxsearch</kbd></dt>
+<dd><p>use regular expression search instead of match</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--sort-by</kbd></dt>
+<dd><p>columns to sort by</p>
+<p>Default: [‘name’]</p>
+</dd>
+<dt><kbd>--json</kbd></dt>
+<dd><p>print JSON data</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-o, --output</kbd></dt>
+<dd><p>output to file</p>
+</dd>
+<dt><kbd>-f, --force</kbd></dt>
+<dd><p>force overwrite of existing output file</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--remote</kbd></dt>
+<dd><p>Remote to download files from</p>
+</dd>
+<dt><kbd>--all</kbd></dt>
+<dd><p>list Downloads from all projects</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--create</kbd></dt>
+<dd><p>create a Download</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--delete</kbd></dt>
+<dd><p>delete a Download, specified by uuid</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--name</kbd></dt>
+<dd><p>New download name, for use with –create. If not given, a random name will be generated.</p>
+<p>Default: “”</p>
+</dd>
+<dt><kbd>--goto</kbd></dt>
+<dd><p>Open the Globus File Manager in a web browser.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--set</kbd></dt>
+<dd><p>Set the Globus download used by <cite>mc down –globus</cite>.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--unset</kbd></dt>
+<dd><p>Unset the Globus download used by <cite>mc down –globus</cite>.</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../reference/materials_commons/modules.html" class="btn btn-neutral float-right" title="materials_commons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ls_mkdir_rm_mv.html" class="btn btn-neutral float-left" title="File operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

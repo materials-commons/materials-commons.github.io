@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.cli.treedb module &mdash; materials_commons.cli 2.0b3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+        <script src="../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="materials_commons.cli.user_config module" href="materials_commons.cli.user_config.html" />
+    <link rel="prev" title="materials_commons.cli.tree_functions module" href="materials_commons.cli.tree_functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.treedb module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">materials_commons</a> &raquo;</li>
+        
+          <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
+        
+      <li>materials_commons.cli.treedb module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../site-sources/reference/materials_commons/materials_commons.cli.treedb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-materials_commons.cli.treedb">
+<span id="materials-commons-cli-treedb-module"></span><h1>materials_commons.cli.treedb module<a class="headerlink" href="#module-materials_commons.cli.treedb" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="materials_commons.cli.treedb.LocalTree">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">LocalTree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.cli.treedb.TreeTable" title="materials_commons.cli.treedb.TreeTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.treedb.TreeTable</span></code></a></p>
+<p>Store information on files and directories in the working tree</p>
+<dl class="simple">
+<dt>Values:</dt><dd><p>id: None, (always None)             # TODO: clean up ‘id’, ‘parent_id’, ‘parent_path’
+parent_id: None, (always None)
+path: str, relative path including project directory (matches Materials Commons ‘path’)
+name: str, file or directory name
+otype: str, ‘file’ or ‘directory’
+mtime: real, file or directory modify time (s since epoch)
+checktime: real, last time the record was updated (s since epoch)
+size: integer, file size
+checksum: str, md5 hash
+parent_path: str, path of parent directory (or none for ‘top’)</p>
+</dd>
+</dl>
+<p>Arguments:
+proj_local_path: str</p>
+<blockquote>
+<div><p>Path to Materials Commons project directory, for storing sqlite db file</p>
+</div></blockquote>
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.LocalTree.default_print_fmt">
+<em class="property">static </em><code class="sig-name descname">default_print_fmt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.default_print_fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.default_print_fmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.LocalTree.insert_non_existent">
+<code class="sig-name descname">insert_non_existent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">checktime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.insert_non_existent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.insert_non_existent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do not insert non-existent</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.LocalTree.needs_update">
+<code class="sig-name descname">needs_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.needs_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.needs_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.LocalTree.tablename">
+<em class="property">static </em><code class="sig-name descname">tablename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.tablename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.tablename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.LocalTree.treename">
+<em class="property">static </em><code class="sig-name descname">treename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.treename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.treename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="materials_commons.cli.treedb.RemoteTree">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">RemoteTree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">updatetime</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.cli.treedb.TreeTable" title="materials_commons.cli.treedb.TreeTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.treedb.TreeTable</span></code></a></p>
+<p>Store information on files and directories in the Materials Commons project</p>
+<dl class="simple">
+<dt>Values:</dt><dd><p>id: str, Materials Commons id string
+parent_id: str, Materials Commons id string
+path: str, path including project directory
+name: str, file or directory name
+otype: str, ‘file’ or ‘directory’
+mtime: real, file or directory modify time (s since epoch)
+checktime: real, last time the record was updated (s since epoch)
+size: integer, file size
+checksum: str, md5 hash
+parent_path: str, path of parent directory (or none for ‘top’)</p>
+</dd>
+</dl>
+<p>Arguments:
+proj_local_path: str</p>
+<blockquote>
+<div><p>Path to Materials Commons project directory, for storing sqlite db file</p>
+</div></blockquote>
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.RemoteTree.default_print_fmt">
+<em class="property">static </em><code class="sig-name descname">default_print_fmt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.default_print_fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.default_print_fmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.RemoteTree.insert_non_existent">
+<code class="sig-name descname">insert_non_existent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">checktime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.insert_non_existent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.insert_non_existent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do insert non-existent</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.RemoteTree.needs_update">
+<code class="sig-name descname">needs_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.needs_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.needs_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.RemoteTree.tablename">
+<em class="property">static </em><code class="sig-name descname">tablename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.tablename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.tablename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.RemoteTree.treename">
+<em class="property">static </em><code class="sig-name descname">treename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.treename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.treename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="materials_commons.cli.treedb.TreeTable">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">TreeTable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable" title="materials_commons.cli.sqltable.SqlTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.sqltable.SqlTable</span></code></a></p>
+<p>Store information on files and directories in a tree</p>
+<p>This is a base class. Derived classes must implement:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>&#64;staticmethod default_print_fmt(): list of tuple, see an example</p></li>
+<li><p>&#64;staticmethod treename(): str, tree label for printing (‘remote’, ‘local’)</p></li>
+<li><p>&#64;staticmethod tablename(): str, tree table name in sqlite database (‘remotetree’, ‘localtree’)</p></li>
+<li><p>needs_update(self, existing): bool, check if record needs updating</p></li>
+<li><p>_check(self, path, get_children=True, parent_path=None): (dir, children), see an example</p></li>
+</ul>
+</div></blockquote>
+<dl>
+<dt>Values:</dt><dd><p>path: str, path including project directory
+name: str, file or directory name
+parent_path: str, path of parent directory (or None for ‘top’)
+otype: str, ‘file’ or ‘directory’
+mtime: real, file or directory modify time (s since epoch)
+checktime: real, last time the record was updated (s since epoch)
+size: integer, file size
+checksum: str, md5 hash
+id: str, ID string, depends on type of tree. For <cite>RemoteTree</cite> this is the Materials Commons</p>
+<blockquote>
+<div><p>id. For <cite>LocalTree</cite> this is None.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>parent_id: str, ID string, depends on type of tree. For <cite>RemoteTree</cite> this is the Materials</dt><dd><p>Commons id. For <cite>LocalTree</cite> this is None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>proj_local_path</strong> – str
+Path to Materials Commons project directory, for storing sqlite db file</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.delete_by_path">
+<code class="sig-name descname">delete_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">recurs</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.delete_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.delete_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete individual entry by path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str
+The Materials Commons path of the file_or_dir to delete.</p></li>
+<li><p><strong>recurs</strong> – bool
+If True, delete children recursively</p></li>
+<li><p><strong>verbose</strong> – bool
+If True, print status.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.select_all">
+<code class="sig-name descname">select_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fetchsize</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select all records</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p>sqlite3.Row or None, if no records left</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.select_by_id">
+<code class="sig-name descname">select_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select record by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>sqlite3.Row or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.select_by_parent_id">
+<code class="sig-name descname">select_by_parent_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_parent_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select records by parent_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of sqlite3.Row</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.select_by_parent_path">
+<code class="sig-name descname">select_by_parent_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_parent_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_parent_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select records by parent_path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of sqlite3.Row</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.select_by_path">
+<code class="sig-name descname">select_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select records by path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of sqlite3.Row</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.tablecolumns">
+<em class="property">static </em><code class="sig-name descname">tablecolumns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.tablecolumns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.tablecolumns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">get_children</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">recurs</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update tree table to accurately reflect a particular directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str
+Materials Commons path to the directory to update (includes project directory).</p></li>
+<li><p><strong>get_children</strong> – bool
+If True, also update children files and directories.</p></li>
+<li><p><strong>recurs</strong> – bool
+If True, updating children is done recursively.</p></li>
+<li><p><strong>verbose</strong> – bool
+If True, print status.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.cli.treedb.TreeTable.walk">
+<code class="sig-name descname">walk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">topdown</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.walk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.walk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yields (parent, dirs, files) records recursively starting from directory at <cite>path</cite></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.treedb.do_with_queue">
+<code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">do_with_queue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">queue</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#do_with_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.do_with_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="materials_commons.cli.user_config.html" class="btn btn-neutral float-right" title="materials_commons.cli.user_config module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="materials_commons.cli.tree_functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.tree_functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
