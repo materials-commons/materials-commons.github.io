@@ -1,7 +1,0 @@
-materials\_commons.api.make\_objects module
-===========================================
-
-.. automodule:: materials_commons.api.make_objects
-    :members:
-    :undoc-members:
-    :show-inheritance:

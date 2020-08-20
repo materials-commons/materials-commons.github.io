@@ -1,7 +1,0 @@
-materials\_commons.api.GlobusUploadRequest module
-=================================================
-
-.. automodule:: materials_commons.api.GlobusUploadRequest
-    :members:
-    :undoc-members:
-    :show-inheritance:

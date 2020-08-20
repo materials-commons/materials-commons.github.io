@@ -1,7 +1,0 @@
-materials\_commons.cli.up module
-================================
-
-.. automodule:: materials_commons.cli.up
-    :members:
-    :undoc-members:
-    :show-inheritance:

@@ -1,7 +1,0 @@
-materials\_commons.cli.init module
-==================================
-
-.. automodule:: materials_commons.cli.init
-    :members:
-    :undoc-members:
-    :show-inheritance:

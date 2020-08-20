@@ -1,7 +1,0 @@
-materials\_commons.api.GlobusDownloadRequest module
-===================================================
-
-.. automodule:: materials_commons.api.GlobusDownloadRequest
-    :members:
-    :undoc-members:
-    :show-inheritance:
