@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>materials_commons.cli.subcommands.ls &mdash; materials_commons.cli 2.0b3 documentation</title>
+  <title>materials_commons.cli.subcommands.ls &mdash; materials_commons.cli 2.0b6 documentation</title>
   
 
   
@@ -342,10 +342,10 @@
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** WARNING: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s2">&quot;local and remote types do not match! **&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">dirpath</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">[</span><span class="n">dirpath</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_child_data_mismatch</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** WARNING: &quot;</span><span class="p">,</span> <span class="n">childpath</span><span class="p">,</span> <span class="s2">&quot;local and remote types do not match! **&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">dirpath</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">[</span><span class="n">dirpath</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_child_data_mismatch</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** WARNING: &quot;</span><span class="p">,</span> <span class="n">childpath</span><span class="p">,</span> <span class="s2">&quot;local and remote types do not match! **&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">pconfig</span><span class="o">.</span><span class="n">remote_updatetime</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** Fetch lock ON at:&quot;</span><span class="p">,</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">pconfig</span><span class="o">.</span><span class="n">remote_updatetime</span><span class="p">),</span> <span class="s2">&quot;**&quot;</span><span class="p">)</span>

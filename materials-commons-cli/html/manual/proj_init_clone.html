@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Project operations &mdash; materials_commons.cli 2.0b3 documentation</title>
+  <title>Project operations &mdash; materials_commons.cli 2.0b6 documentation</title>
   
 
   
@@ -186,15 +186,15 @@
 <h1>Project operations<a class="headerlink" href="#project-operations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>All existing Materials Commons projects can be listed using:</p>
+<p>All existing Materials Commons projects you have access to can be listed using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span>
 </pre></div>
 </div>
-<p>Projects can be filtered by name (default), ID (<code class="docutils literal notranslate"><span class="pre">--id</span></code>), UUID (<code class="docutils literal notranslate"><span class="pre">--uuid</span></code>), or owner (<code class="docutils literal notranslate"><span class="pre">--owner</span></code>) using regex match (default) or regex search (<code class="docutils literal notranslate"><span class="pre">--regexsearch</span></code>). For example, all projects with name beginning with “Mg” can be listed using:</p>
+<p>Projects can be filtered by name (default), ID (<code class="docutils literal notranslate"><span class="pre">--id</span></code>), universally unique ID (UUID) (<code class="docutils literal notranslate"><span class="pre">--uuid</span></code>), or owner (<code class="docutils literal notranslate"><span class="pre">--owner</span></code>) using regex match (default) or regex search (<code class="docutils literal notranslate"><span class="pre">--regexsearch</span></code>). For example, all projects with name beginning with “Mg” can be listed using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span> <span class="n">Mg</span>
 </pre></div>
 </div>
-<p>New Materials Commons projects can be created at the default remote using:</p>
+<p>New Materials Commons projects can be created at the default remote. First, set the current working directory to the directory where you want to store project files locally. It should be given the same name that you want for your Materials Commons project. It may be a new, empty directory or an already existing directory filled with files and directories that you want to be included in the project. Then, create the new project with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">init</span>
 </pre></div>
 </div>
@@ -203,7 +203,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>The initialized or cloned project will contain a hidden directory named <cite>.mc</cite> containing configuration and cache data. Subsequent calls of the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program from within the local project directory will use that information to query that project on the remote instance of Materials Commons.</p>
+<p>The initialized or cloned project will contain a hidden directory named <cite>.mc</cite> containing configuration and cache data. Subsequent calls of the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program from within the local project directory will use that information to interact with the correct project on the correct remote instance of Materials Commons.</p>
 <p>Existing Materials Commons projects can be deleted, for example specifying by ID:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span> <span class="o">--</span><span class="n">delete</span> <span class="o">--</span><span class="nb">id</span> <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span>
 </pre></div>

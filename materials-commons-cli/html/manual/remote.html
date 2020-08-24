@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuring remotes &mdash; materials_commons.cli 2.0b3 documentation</title>
+  <title>Configuring remotes &mdash; materials_commons.cli 2.0b6 documentation</title>
   
 
   
@@ -182,28 +182,28 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">org</span>
 </pre></div>
 </div>
-<p>Organizations may host their own instance of Materials, for example at:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">::</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">other_institution</span><span class="o">.</span><span class="n">org</span>
+<p>Organizations may host their own instance of Materials Commons, for example at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">other_institution</span><span class="o">.</span><span class="n">org</span>
 </pre></div>
 </div>
-<p>In order to access your projects and data on a particular instance of Materials Commons, you must login with your email and password to receive your “apikey”. The <code class="docutils literal notranslate"><span class="pre">mc</span></code> program will store the apikey in your local user directory in a configuration file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~/.materialscommons/config.json``
+<p>In order to access your projects and data on a particular instance of Materials Commons, you must login with your email and password to receive your “apikey”. The <code class="docutils literal notranslate"><span class="pre">mc</span></code> program will store the apikey in a configuration file located in your local user directory at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$HOME/.materialscommons/config.json
 </pre></div>
 </div>
-<p>Keep this file secure because anyone who has the apikeys inside can use them to access and edit the projects and data you have access to at the instance of Materials Commons you logged in to.</p>
-<p>You may store credentials for multiple accounts and multiple instances of Materials Commons locally and set one as the “default remote”. The default remote is the account and instance of Materials Commons which is queried for any calls in which the remote is neither explicitly given (using <code class="docutils literal notranslate"><span class="pre">--remote</span> <span class="pre">&lt;email&gt;</span> <span class="pre">&lt;url&gt;</span></code>) nor implicitly specified because <code class="docutils literal notranslate"><span class="pre">mc</span></code> is called from inside an existing local project directory.</p>
+<p>Keep this file secure. Anyone who knows one of the apikeys found inside it can use them to access, edit, and delete all of your projects and data associated with that account.</p>
+<p>You may store credentials for multiple accounts and multiple instances of Materials Commons locally and set one as the “default remote”. The default remote is the account and instance of Materials Commons which is queried for any calls in which the remote is neither explicitly given (using <code class="docutils literal notranslate"><span class="pre">--remote</span> <span class="pre">&lt;email&gt;</span> <span class="pre">&lt;url&gt;</span></code>) nor implicitly specified (because <code class="docutils literal notranslate"><span class="pre">mc</span></code> is called from within an existing local project directory).</p>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>Assuming you have an account on “materialscommons.org”, login to get and save your apikey:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="n">login</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="n">https</span><span class="p">::</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">/</span><span class="n">api</span>
+<p>Assuming you have an account on “materialscommons.org”, add it as a remote, using the email address used for your account.  Note that “/api” is included at the end of the URL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="n">add</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">api</span>
 </pre></div>
 </div>
-<p>Set that account and instance of Materials Commons as the “default remote”:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">default</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="n">https</span><span class="p">::</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">/</span><span class="n">api</span>
+<p>This will prompt you for your password in order to get and save your apikey locally. Next, set that account and instance of Materials Commons as the “default remote”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">default</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">api</span>
 </pre></div>
 </div>
-<p>List projects you have access to at “materialscommons.org”:</p>
+<p>Once done successfully, you will be able to list projects you have access to at “materialscommons.org” using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span>
 </pre></div>
 </div>
@@ -222,7 +222,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="n">remote</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>List remotes that have been added and show the current default. Optionally print the apikeys.</p>
+<p>List remotes that have been added and show the current default. Optionally, print the apikeys.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="p">[</span><span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">apikey</span><span class="p">]</span>
 </pre></div>
 </div>
