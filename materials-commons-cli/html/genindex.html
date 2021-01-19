@@ -11,8 +11,8 @@
   
 
   
-  <link rel="stylesheet" href="site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 
   
   
@@ -21,17 +21,17 @@
 
   
   <!--[if lt IE 9]>
-    <script src="site-static/js/html5shiv.min.js"></script>
+    <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="site-static/documentation_options.js"></script>
-        <script src="site-static/jquery.js"></script>
-        <script src="site-static/underscore.js"></script>
-        <script src="site-static/doctools.js"></script>
-        <script src="site-static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
-    <script type="text/javascript" src="site-static/js/theme.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="#" />
@@ -85,9 +85,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -217,13 +219,15 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/materials_commons/materials_commons.cli.file_functions.html#materials_commons.cli.file_functions.check_file_selection">check_file_selection() (in module materials_commons.cli.file_functions)</a>
+</li>
       <li><a href="reference/materials_commons/materials_commons.cli.globus.html#materials_commons.cli.globus.check_transfer_types">check_transfer_types() (in module materials_commons.cli.globus)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.checksum">checksum() (in module materials_commons.cli.functions)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.clipaths_to_mcpaths">clipaths_to_mcpaths() (in module materials_commons.cli.tree_functions)</a>
 </li>
-      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone">clone() (materials_commons.cli.subcommands.dataset.DatasetSubcommand method)</a>
+      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone_as">clone_as() (materials_commons.cli.subcommands.dataset.DatasetSubcommand method)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.clone_project">clone_project() (in module materials_commons.cli.functions)</a>
 </li>
@@ -855,6 +859,8 @@
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.print_formatter.html#materials_commons.cli.print_formatter.PrintFormatter.print">print() (materials_commons.cli.print_formatter.PrintFormatter method)</a>
 </li>
+      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.print_dataset_details">print_dataset_details() (in module materials_commons.cli.subcommands.dataset)</a>
+</li>
       <li><a href="reference/materials_commons/materials_commons.cli.print_formatter.html#materials_commons.cli.print_formatter.PrintFormatter.print_detail">print_detail() (materials_commons.cli.print_formatter.PrintFormatter method)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.print_details">print_details() (materials_commons.cli.subcommands.dataset.DatasetSubcommand method)</a>
@@ -877,12 +883,14 @@
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_projects">print_projects() (in module materials_commons.cli.functions)</a>
 </li>
+      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.print_published_dataset_details">print_published_dataset_details() (in module materials_commons.cli.subcommands.dataset)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remote_help">print_remote_help() (in module materials_commons.cli.functions)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remotes">print_remotes() (in module materials_commons.cli.functions)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.print_selection">print_selection() (materials_commons.cli.sqltable.SqlTable method)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.print_selection_detail">print_selection_detail() (materials_commons.cli.sqltable.SqlTable method)</a>
@@ -908,8 +916,6 @@
       <li><a href="reference/materials_commons/materials_commons.cli.subcommands.proj.html#materials_commons.cli.subcommands.proj.ProjSubcommand">ProjSubcommand (class in materials_commons.cli.subcommands.proj)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.publish">publish() (materials_commons.cli.subcommands.dataset.DatasetSubcommand method)</a>
-</li>
-      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.publish_private">publish_private() (materials_commons.cli.subcommands.dataset.DatasetSubcommand method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1056,6 +1062,10 @@
       <li><a href="reference/materials_commons/materials_commons.cli.subcommands.up.html#materials_commons.cli.subcommands.up.up_subcommand">up_subcommand() (in module materials_commons.cli.subcommands.up)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.treedb.html#materials_commons.cli.treedb.TreeTable.update">update() (materials_commons.cli.treedb.TreeTable method)</a>
+</li>
+      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.update_dataset_file_selection">update_dataset_file_selection() (in module materials_commons.cli.subcommands.ls)</a>
+</li>
+      <li><a href="reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.update_file_selection">update_file_selection() (in module materials_commons.cli.subcommands.ls)</a>
 </li>
       <li><a href="reference/materials_commons/materials_commons.cli.globus.html#materials_commons.cli.globus.GlobusOperations.upload_v0">upload_v0() (materials_commons.cli.globus.GlobusOperations method)</a>
 </li>

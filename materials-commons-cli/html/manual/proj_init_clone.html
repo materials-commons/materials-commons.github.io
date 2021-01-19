@@ -11,8 +11,8 @@
   
 
   
-  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
   
@@ -21,17 +21,17 @@
 
   
   <!--[if lt IE 9]>
-    <script src="../site-static/js/html5shiv.min.js"></script>
+    <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../site-static/documentation_options.js"></script>
-        <script src="../site-static/jquery.js"></script>
-        <script src="../site-static/underscore.js"></script>
-        <script src="../site-static/doctools.js"></script>
-        <script src="../site-static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
-    <script type="text/javascript" src="../site-static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
@@ -87,32 +87,24 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="remote.html">Configuring remotes</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Project operations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-proj-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">proj</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-init-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-clone-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#listing-projects">Listing projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-projects">Creating projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cloning-projects">Cloning projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-project-actions">Other project actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ls_mkdir_rm_mv.html">File operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="up_down_globus.html">Upload / Download</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -169,7 +161,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../site-sources/manual/proj_init_clone.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/manual/proj_init_clone.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -184,28 +176,37 @@
             
   <div class="section" id="project-operations">
 <h1>Project operations<a class="headerlink" href="#project-operations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="listing-projects">
+<h2>Listing projects<a class="headerlink" href="#listing-projects" title="Permalink to this headline">¶</a></h2>
 <p>All existing Materials Commons projects you have access to can be listed using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span>
 </pre></div>
 </div>
-<p>Projects can be filtered by name (default), ID (<code class="docutils literal notranslate"><span class="pre">--id</span></code>), universally unique ID (UUID) (<code class="docutils literal notranslate"><span class="pre">--uuid</span></code>), or owner (<code class="docutils literal notranslate"><span class="pre">--owner</span></code>) using regex match (default) or regex search (<code class="docutils literal notranslate"><span class="pre">--regexsearch</span></code>). For example, all projects with name beginning with “Mg” can be listed using:</p>
+<p>Projects can be filtered by name (default), ID (<code class="docutils literal notranslate"><span class="pre">--id</span></code>), or owner (<code class="docutils literal notranslate"><span class="pre">--owner</span></code>) using regex match (default) or regex search (<code class="docutils literal notranslate"><span class="pre">--regexsearch</span></code>). For example, all projects with name beginning with “Mg” can be listed using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span> <span class="n">Mg</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="creating-projects">
+<h2>Creating projects<a class="headerlink" href="#creating-projects" title="Permalink to this headline">¶</a></h2>
 <p>New Materials Commons projects can be created at the default remote. First, set the current working directory to the directory where you want to store project files locally. It should be given the same name that you want for your Materials Commons project. It may be a new, empty directory or an already existing directory filled with files and directories that you want to be included in the project. Then, create the new project with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">init</span>
 </pre></div>
 </div>
 <p>The new project will have the name of the directory from which <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span></code> is called.</p>
-<p>Existing Materials Commons projects at the default remote can be “cloned” (create a local directory for uploading and downloading project files) using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span>
+</div>
+<div class="section" id="cloning-projects">
+<h2>Cloning projects<a class="headerlink" href="#cloning-projects" title="Permalink to this headline">¶</a></h2>
+<p>Existing Materials Commons projects at the default remote can be “cloned”. This creates a local directory for uploading and downloading project files. To clone a project, obtain the project ID from the “id” column printed by <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">proj</span></code>. Then use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="n">project_id</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>The initialized or cloned project will contain a hidden directory named <cite>.mc</cite> containing configuration and cache data. Subsequent calls of the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program from within the local project directory will use that information to interact with the correct project on the correct remote instance of Materials Commons.</p>
-<p>Existing Materials Commons projects can be deleted, for example specifying by ID:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span> <span class="o">--</span><span class="n">delete</span> <span class="o">--</span><span class="nb">id</span> <span class="o">&lt;</span><span class="nb">id</span><span class="o">&gt;</span>
+<p>The cloned project directory will initially look empty. Even if your remote project contains files, no files will be downloaded until you initiate downloads explicitly. The cloned project directory does contain a hidden directory named <cite>.mc</cite> containing configuration and cache data. Subsequent calls of the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program from within the local project directory will use that information to interact with the correct project on the correct remote instance of Materials Commons.</p>
+</div>
+<div class="section" id="other-project-actions">
+<h2>Other project actions<a class="headerlink" href="#other-project-actions" title="Permalink to this headline">¶</a></h2>
+<p>Existing Materials Commons projects can be deleted, for example specifying by project ID:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span> <span class="o">--</span><span class="n">delete</span> <span class="o">--</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">project_id</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>This will prompt for confirmation before deleting, but after confirmation <strong>*the project, and all of its files and data on Materials Commons will be deleted and cannot be recovered*</strong>. Local files will not be deleted.</p>
@@ -215,118 +216,14 @@
 </div>
 <p>You will be prompted to confirm and to login, if necessary.</p>
 </div>
-<div class="section" id="mc-proj-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">proj</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-proj-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>List projects</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">proj</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">uuid</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">owner</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regxsearch</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">sort</span><span class="o">-</span><span class="n">by</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="o">...</span><span class="p">]]]</span> <span class="p">[</span><span class="o">--</span><span class="n">json</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">delete</span><span class="p">]</span>
-               <span class="p">[</span><span class="o">--</span><span class="n">goto</span><span class="p">]</span>
-               <span class="p">[</span><span class="n">expr</span> <span class="p">[</span><span class="n">expr</span> <span class="o">...</span><span class="p">]]</span>
-</pre></div>
-</div>
-<div class="section" id="Positional Arguments">
-<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>expr</kbd></dt>
-<dd><p>select Projects that match the given regex (default matches name)</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>--id</kbd></dt>
-<dd><p>match id instead of name</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--uuid</kbd></dt>
-<dd><p>match uuid instead of name</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--owner</kbd></dt>
-<dd><p>match owner instead of name</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>-d, --details</kbd></dt>
-<dd><p>print detailed information</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--regxsearch</kbd></dt>
-<dd><p>use regular expression search instead of match</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--sort-by</kbd></dt>
-<dd><p>columns to sort by</p>
-<p>Default: [‘name’]</p>
-</dd>
-<dt><kbd>--json</kbd></dt>
-<dd><p>print JSON data</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>-o, --output</kbd></dt>
-<dd><p>output to file</p>
-</dd>
-<dt><kbd>-f, --force</kbd></dt>
-<dd><p>force overwrite of existing output file</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--remote</kbd></dt>
-<dd><p>Remote to get projects from</p>
-</dd>
-<dt><kbd>--delete</kbd></dt>
-<dd><p>delete a Project, specified by uuid</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--goto</kbd></dt>
-<dd><p>Open selected projects in a web browser.</p>
-<p>Default: False</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="mc-init-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-init-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>Initialize current working directory as a new project</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">init</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">desc</span> <span class="n">DESC</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>--remote</kbd></dt>
-<dd><p>Remote to create project at</p>
-</dd>
-<dt><kbd>--desc</kbd></dt>
-<dd><p>Project description</p>
-<p>Default: “”</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="mc-clone-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-clone-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>Clone an existing project</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">clone</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span> <span class="nb">id</span>
-</pre></div>
-</div>
-<div class="section" id="Positional Arguments">
-<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>id</kbd></dt>
-<dd><p>Project id</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>--remote</kbd></dt>
-<dd><p>Remote to clone project from</p>
-</dd>
-</dl>
-</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>For a complete list of options, see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../reference/mc/clone.html">mc clone</a></p></li>
+<li><p><a class="reference external" href="../reference/mc/init.html">mc init</a></p></li>
+<li><p><a class="reference external" href="../reference/mc/proj.html">mc proj</a></p></li>
+</ul>
 </div>
 </div>
 

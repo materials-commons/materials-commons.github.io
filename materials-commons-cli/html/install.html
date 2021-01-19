@@ -11,8 +11,8 @@
   
 
   
-  <link rel="stylesheet" href="site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 
   
   
@@ -21,23 +21,23 @@
 
   
   <!--[if lt IE 9]>
-    <script src="site-static/js/html5shiv.min.js"></script>
+    <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="site-static/documentation_options.js"></script>
-        <script src="site-static/jquery.js"></script>
-        <script src="site-static/underscore.js"></script>
-        <script src="site-static/doctools.js"></script>
-        <script src="site-static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
-    <script type="text/javascript" src="site-static/js/theme.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Manual" href="manual/index.html" />
-    <link rel="prev" title="The Materials Commons CLI (MCCLI)" href="index.html" /> 
+    <link rel="prev" title="Overview" href="overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,13 +87,17 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-using-pip">Install using pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-installation">Checking installation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -148,7 +152,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="site-sources/install.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,6 +167,10 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Installation and use of <code class="docutils literal notranslate"><span class="pre">materials_commons.cli</span></code> requires Python 3.</p>
+</div>
 <div class="section" id="install-using-pip">
 <h2>Install using pip<a class="headerlink" href="#install-using-pip" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">materials</span><span class="o">-</span><span class="n">commons</span><span class="o">-</span><span class="n">cli</span>
@@ -210,6 +218,38 @@ installed scripts. This can be done using:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="checking-installation">
+<h2>Checking installation<a class="headerlink" href="#checking-installation" title="Permalink to this headline">¶</a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">materials_commons.cli</span></code> is installed correctly you should be to run the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program and view the help menu:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ mc --help
+usage: mc &lt;command&gt; [&lt;args&gt;]
+
+The standard mc commands are:
+  remote     List servers                            
+  proj       List projects                           
+  dataset    List datasets                           
+  expt       List, create, delete, and modify experiments
+  init       Initialize a new project                
+  clone      Clone an existing project               
+  ls         List local and remote directory contents
+  mkdir      Make remote directories                 
+  rm         Remove files and directories            
+  mv         Move files                              
+  up         Upload files                            
+  down       Download files                          
+  globus     Manage Globus uploads and downloads     
+  config     Configure `mc`                          
+
+Materials Commons command line interface
+
+positional arguments:
+  command     Subcommand to run
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -223,7 +263,7 @@ installed scripts. This can be done using:</p>
         <a href="manual/index.html" class="btn btn-neutral float-right" title="User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="The Materials Commons CLI (MCCLI)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

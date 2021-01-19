@@ -11,8 +11,8 @@
   
 
   
-  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
   
@@ -21,17 +21,17 @@
 
   
   <!--[if lt IE 9]>
-    <script src="../site-static/js/html5shiv.min.js"></script>
+    <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../site-static/documentation_options.js"></script>
-        <script src="../site-static/jquery.js"></script>
-        <script src="../site-static/underscore.js"></script>
-        <script src="../site-static/doctools.js"></script>
-        <script src="../site-static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
-    <script type="text/javascript" src="../site-static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
@@ -87,38 +87,21 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="remote.html">Configuring remotes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proj_init_clone.html">Project operations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">File operations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-ls-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">ls</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-mkdir-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mkdir</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-rm-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">rm</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-mv-help-documentation"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mv</span> <span class="pre">--help</span></code> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="up_down_globus.html">Upload / Download</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -175,7 +158,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../site-sources/manual/ls_mkdir_rm_mv.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/manual/ls_mkdir_rm_mv.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -211,139 +194,15 @@ l_updated_at          l_size    l_type     r_updated_at          r_size    r_typ
 </pre></div>
 </div>
 </div>
-<div class="section" id="mc-ls-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">ls</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-ls-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>List local &amp; remote directory contents</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">ls</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">checksum</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">json</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">dataset</span> <span class="n">DATASET_ID</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">include</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">exclude</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">clear</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
-</pre></div>
-</div>
-<div class="section" id="Positional Arguments">
-<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>paths</kbd></dt>
-<dd><p>Files or directories</p>
-<p>Default: [‘/Users/bpuchala/Work/codes/mccli’]</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>--checksum</kbd></dt>
-<dd><p>Calculate MD5 checksum for local files</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--json</kbd></dt>
-<dd><p>Print JSON exactly</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--dataset</kbd></dt>
-<dd><p>Specify a dataset to act on.</p>
-<p>Default: “”</p>
-</dd>
-<dt><kbd>--include</kbd></dt>
-<dd><p>Include files and directories in the specified dataset. Including a directory includes all files and sub-directories recursively, unless prevented by –exclude-files.</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--exclude</kbd></dt>
-<dd><p>Exclude file and directories from the specified dataset. Excluding prevents inclusion of files and directories that would otherwise be included due to a higher-level directory being included.</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--clear</kbd></dt>
-<dd><p>Clear files and directories from the include/exclude selection lists of the specified dataset. A file or directory may still be included in or excluded from the dataset afterwards if a higher level directory is included or excluded</p>
-<p>Default: False</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="mc-mkdir-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mkdir</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-mkdir-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>Make remote directories</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">mkdir</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span><span class="o">-</span><span class="n">only</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
-</pre></div>
-</div>
-<div class="section" id="Positional Arguments">
-<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>paths</kbd></dt>
-<dd><p>Directory names</p>
-<p>Default: [‘/Users/bpuchala/Work/codes/mccli’]</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>-p</kbd></dt>
-<dd><p>Create intermediate directories as necessary</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--remote-only</kbd></dt>
-<dd><p>Make remote directories only. Does not compare to local tree.</p>
-<p>Default: False</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="mc-rm-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">rm</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-rm-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>remove files and directories</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">rm</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span><span class="o">-</span><span class="n">only</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">compare</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
-</pre></div>
-</div>
-<div class="section" id="Positional Arguments">
-<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>paths</kbd></dt>
-<dd><p>Files or directories</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>-r, --recursive</kbd></dt>
-<dd><p>Remove recursively</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--remote-only</kbd></dt>
-<dd><p>Remove remote files only. Does not compare to local files.</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--no-compare</kbd></dt>
-<dd><p>Remove even if local and remote files differ.</p>
-<p>Default: False</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="section" id="mc-mv-help-documentation">
-<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mv</span> <span class="pre">--help</span></code> documentation<a class="headerlink" href="#mc-mv-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>Move files. Use <cite>mc mv &lt;src&gt; &lt;target&gt;</cite> to move and/or rename a file or directory. Use <cite>mc mv &lt;src&gt; … &lt;directory&gt;</cite> to move a list of files or directories into an existing directory.</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">mv</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span><span class="o">-</span><span class="n">only</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
-</pre></div>
-</div>
-<div class="section" id="Positional Arguments">
-<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>paths</kbd></dt>
-<dd><p>Sources and target or directory destination</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>--remote-only</kbd></dt>
-<dd><p>Move remote files only. Does not compare to local files.</p>
-<p>Default: False</p>
-</dd>
-</dl>
-</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>For a complete list of options, see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../reference/mc/ls.html">mc ls</a></p></li>
+<li><p><a class="reference external" href="../reference/mc/mkdir.html">mc mkdir</a></p></li>
+<li><p><a class="reference external" href="../reference/mc/mv.html">mc mv</a></p></li>
+<li><p><a class="reference external" href="../reference/mc/rm.html">mc rm</a></p></li>
+</ul>
 </div>
 </div>
 

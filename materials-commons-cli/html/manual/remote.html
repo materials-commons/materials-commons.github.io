@@ -11,8 +11,8 @@
   
 
   
-  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
 
   
   
@@ -21,17 +21,17 @@
 
   
   <!--[if lt IE 9]>
-    <script src="../site-static/js/html5shiv.min.js"></script>
+    <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../site-static/documentation_options.js"></script>
-        <script src="../site-static/jquery.js"></script>
-        <script src="../site-static/underscore.js"></script>
-        <script src="../site-static/doctools.js"></script>
-        <script src="../site-static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
-    <script type="text/javascript" src="../site-static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
@@ -87,16 +87,14 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Configuring remotes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started">Getting started</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#common-commands">Common commands</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mc-remote-help-documentation"><cite>mc remote –help</cite> documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="proj_init_clone.html">Project operations</a></li>
@@ -104,7 +102,8 @@
 <li class="toctree-l2"><a class="reference internal" href="up_down_globus.html">Upload / Download</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
@@ -161,7 +160,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../site-sources/manual/remote.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/manual/remote.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,6 +175,11 @@
             
   <div class="section" id="configuring-remotes">
 <h1>Configuring remotes<a class="headerlink" href="#configuring-remotes" title="Permalink to this headline">¶</a></h1>
+<p>The following notation is used to indicate places in example commands which must be replaced with your specific information:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;email&gt;</span></code>: Replace with the email address used to log in to your Materials Commons account.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;url&gt;</span></code>: Replace with the URL for the API of the instance of Materials Commons you are working with. For the public instance of Materials Commons this is: <code class="docutils literal notranslate"><span class="pre">https://materialscommons.org/api</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">/api</span></code> is included at the end of the URL.</p></li>
+</ul>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>A remote is a version of Materials Commons hosted on the internet or on a network you can access. The primary public instance is at:</p>
@@ -186,24 +190,24 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">other_institution</span><span class="o">.</span><span class="n">org</span>
 </pre></div>
 </div>
-<p>In order to access your projects and data on a particular instance of Materials Commons, you must login with your email and password to receive your “apikey”. The <code class="docutils literal notranslate"><span class="pre">mc</span></code> program will store the apikey in a configuration file located in your local user directory at:</p>
+<p>In order to access your projects and data on a particular instance of Materials Commons, you must login with your email and password to receive your apikey. The <code class="docutils literal notranslate"><span class="pre">mc</span></code> program will store the apikey in a configuration file located in your local user directory at:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$HOME/.materialscommons/config.json
 </pre></div>
 </div>
-<p>Keep this file secure. Anyone who knows one of the apikeys found inside it can use them to access, edit, and delete all of your projects and data associated with that account.</p>
-<p>You may store credentials for multiple accounts and multiple instances of Materials Commons locally and set one as the “default remote”. The default remote is the account and instance of Materials Commons which is queried for any calls in which the remote is neither explicitly given (using <code class="docutils literal notranslate"><span class="pre">--remote</span> <span class="pre">&lt;email&gt;</span> <span class="pre">&lt;url&gt;</span></code>) nor implicitly specified (because <code class="docutils literal notranslate"><span class="pre">mc</span></code> is called from within an existing local project directory).</p>
+<p>Keep this file secure. Anyone who knows one of the apikeys found inside it can use them to access, edit, and delete all of the projects and data associated with that account.</p>
+<p>You may store credentials for multiple accounts and multiple instances of Materials Commons locally and set one as the default remote. The default remote is the account and instance of Materials Commons which is queried for any calls in which the remote is neither explicitly given (using <code class="docutils literal notranslate"><span class="pre">--remote</span> <span class="pre">&lt;email&gt;</span> <span class="pre">&lt;url&gt;</span></code>) nor implicitly specified (because <code class="docutils literal notranslate"><span class="pre">mc</span></code> is called from within an existing local project directory).</p>
 </div>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>Assuming you have an account on “materialscommons.org”, add it as a remote, using the email address used for your account.  Note that “/api” is included at the end of the URL.</p>
+<p>Assuming you have an account on the public instance of Materials Commons, <code class="docutils literal notranslate"><span class="pre">materialscommons.org</span></code>, add it as a remote, using the email address used for your account.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="n">add</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">api</span>
 </pre></div>
 </div>
-<p>This will prompt you for your password in order to get and save your apikey locally. Next, set that account and instance of Materials Commons as the “default remote”:</p>
+<p>This will prompt you for your password in order to get and save your apikey locally. Next, set that account and instance of Materials Commons as the default remote:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">default</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">materialscommons</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">api</span>
 </pre></div>
 </div>
-<p>Once done successfully, you will be able to list projects you have access to at “materialscommons.org” using:</p>
+<p>Once done successfully, you will be able to list projects you have access to at <code class="docutils literal notranslate"><span class="pre">materialscommons.org</span></code> using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">proj</span>
 </pre></div>
 </div>
@@ -214,7 +218,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">-</span><span class="n">l</span>
 </pre></div>
 </div>
-<p>Add a remote, to store your apikey locally. Note that “/api” is included at the end of the URL.</p>
+<p>Add a remote, to store your apikey locally. Note that <cite>“/api”</cite> is included at the end of the URL.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">remote</span> <span class="o">--</span><span class="n">add</span> <span class="o">&lt;</span><span class="n">email</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
 </pre></div>
 </div>
@@ -231,35 +235,12 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="mc-remote-help-documentation">
-<h2><cite>mc remote –help</cite> documentation<a class="headerlink" href="#mc-remote-help-documentation" title="Permalink to this headline">¶</a></h2>
-<p><p>Server settings</p>
-</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">remote</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">apikey</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">add</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remove</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">default</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="section" id="Named Arguments">
-<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
-<dl class="option-list">
-<dt><kbd>-l, --list</kbd></dt>
-<dd><p>List known remote urls.</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--show-apikey</kbd></dt>
-<dd><p>Show apikey.</p>
-<p>Default: False</p>
-</dd>
-<dt><kbd>--add</kbd></dt>
-<dd><p>Add a new remote.</p>
-</dd>
-<dt><kbd>--remove</kbd></dt>
-<dd><p>Remove a remote from the list.</p>
-</dd>
-<dt><kbd>--set-default</kbd></dt>
-<dd><p>Set default remote to be used when not in a project.</p>
-</dd>
-</dl>
-</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>For a complete list of options, see:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../reference/mc/remote.html">mc remote</a></p></li>
+</ul>
 </div>
 </div>
 
