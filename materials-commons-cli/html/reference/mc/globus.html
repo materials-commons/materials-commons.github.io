@@ -94,12 +94,21 @@
 <li class="toctree-l2"><a class="reference internal" href="clone.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="down.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code></a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mc-globus-upload"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mc-globus-download"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">download</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="init.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span></code></a></li>
@@ -184,6 +193,8 @@
             
   <div class="section" id="mc-globus">
 <h1><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span></code><a class="headerlink" href="#mc-globus" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p><p>Manage Globus transfers</p>
 </p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">globus</span> <span class="o">&lt;</span><span class="n">transfertype</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">args</span><span class="o">&gt;</span><span class="p">]</span>
@@ -194,7 +205,7 @@
 </pre></div>
 </div>
 <div class="section" id="Positional Arguments">
-<h2>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h2>
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
 <dl class="option-list">
 <dt><kbd>transfertype</kbd></dt>
 <dd><p>Type of transfer to manage.</p>
@@ -202,7 +213,7 @@
 </dl>
 </div>
 <div class="section" id="Named Arguments">
-<h2>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h2>
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
 <dl class="option-list">
 <dt><kbd>--set-globus-endpoint-id</kbd></dt>
 <dd><p>Set local globus endpoint ID</p>
@@ -213,6 +224,9 @@
 </dd>
 </dl>
 </div>
+</div>
+<div class="section" id="mc-globus-upload">
+<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code><a class="headerlink" href="#mc-globus-upload" title="Permalink to this headline">¶</a></h2>
 <p><p>List, create, finish, and delete Globus uploads. By default lists current project uploads. With <cite>–all</cite> lists all Globus uploads.</p>
 </p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">globus</span> <span class="n">upload</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">owner</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regxsearch</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">sort</span><span class="o">-</span><span class="n">by</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="o">...</span><span class="p">]]]</span> <span class="p">[</span><span class="o">--</span><span class="n">json</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">all</span><span class="p">]</span>
@@ -221,7 +235,7 @@
 </pre></div>
 </div>
 <div class="section" id="Positional Arguments">
-<h2>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h2>
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
 <dl class="option-list">
 <dt><kbd>expr</kbd></dt>
 <dd><p>select Uploads that match the given regex (default matches name)</p>
@@ -229,7 +243,7 @@
 </dl>
 </div>
 <div class="section" id="Named Arguments">
-<h2>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h2>
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
 <dl class="option-list">
 <dt><kbd>--id</kbd></dt>
 <dd><p>match id instead of name</p>
@@ -299,6 +313,9 @@
 </dd>
 </dl>
 </div>
+</div>
+<div class="section" id="mc-globus-download">
+<h2><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">download</span></code><a class="headerlink" href="#mc-globus-download" title="Permalink to this headline">¶</a></h2>
 <p><p>List, create, and delete Globus downloads. By default lists current project downloads. With <cite>–all</cite> lists all Globus downloads.</p>
 </p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">globus</span> <span class="n">download</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">owner</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regxsearch</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">sort</span><span class="o">-</span><span class="n">by</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="p">[</span><span class="n">SORT_BY</span> <span class="o">...</span><span class="p">]]]</span> <span class="p">[</span><span class="o">--</span><span class="n">json</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">remote</span> <span class="n">EMAIL</span> <span class="n">URL</span><span class="p">]</span>
@@ -307,7 +324,7 @@
 </pre></div>
 </div>
 <div class="section" id="Positional Arguments">
-<h2>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h2>
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
 <dl class="option-list">
 <dt><kbd>expr</kbd></dt>
 <dd><p>select Downloads that match the given regex (default matches name)</p>
@@ -315,7 +332,7 @@
 </dl>
 </div>
 <div class="section" id="Named Arguments">
-<h2>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h2>
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
 <dl class="option-list">
 <dt><kbd>--id</kbd></dt>
 <dd><p>match id instead of name</p>
@@ -382,6 +399,7 @@
 </dl>
 </div>
 </div>
+</div>
 
 
            </div>
@@ -404,7 +422,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

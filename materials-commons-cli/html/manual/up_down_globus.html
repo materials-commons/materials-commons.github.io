@@ -96,7 +96,13 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Upload / Download</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#standard-upload-and-download">Standard upload and download</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#globus-installation-and-configuration">Globus installation and configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#uploading-files-with-globus">Uploading files with Globus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uploading-files-with-globus">Uploading files with Globus</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-request-a-globus-upload-directory">Step 1, Request a Globus upload directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-transfer-files">Step 2, Transfer files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-finish-upload">Step 3, Finish upload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#downloading-files-with-globus">Downloading files with Globus</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a></li>
 </ul>
@@ -258,23 +264,26 @@
 </pre></div>
 </div>
 </li>
-<li><p>Case 2) If you are using a Globus endpoint managed by someone else, for instance on a shared cluster, <code class="docutils literal notranslate"><span class="pre">mc</span></code> must be configured with the Globus endpoint ID. This can be done using the following steps</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- Find the Globus endpoint ID for the endpoint you will use. Endpoint UUIDs can be found on the `Globus endpoints web interface`_.
-- Configure ``mc`` to use the Globus endpoint ID: ::
+<li><p>Case 2) If you are using a Globus endpoint managed by someone else, for instance on a shared cluster, <code class="docutils literal notranslate"><span class="pre">mc</span></code> must be configured with the Globus endpoint ID. This can be done using the following steps:</p>
+<ul>
+<li><p>Find the Globus endpoint ID for the endpoint you will use. Endpoint UUIDs can be found on the <a class="reference external" href="https://app.globus.org/endpoints">Globus endpoints web interface</a>.</p></li>
+<li><p>Configure <code class="docutils literal notranslate"><span class="pre">mc</span></code> to use the Globus endpoint ID:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">globus</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">globus</span><span class="o">-</span><span class="n">endpoint</span><span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">endpoint_id</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>mc globus –set-globus-endpoint-id &lt;endpoint_id&gt;</p>
-</div></blockquote>
+</li>
+</ul>
 </li>
 </ul>
 </div>
 <div class="section" id="uploading-files-with-globus">
 <h2>Uploading files with Globus<a class="headerlink" href="#uploading-files-with-globus" title="Permalink to this headline">¶</a></h2>
 <p>Globus transfers to Materials Commons take place via a temporary intermediary directory that is created on Materials Commons. The process is as follows:</p>
-<p>Initial state, before uploading:</p>
-<img alt="../_images/up.1.png" src="../_images/up.1.png" />
-<p>Request that Materials Commons creates a new Globus upload for the project. This creates a new, empty, upload directory on Materials Commons. It is possible to have multiple upload directories existing at the same time, for the same project, to help manage multiple transfers. Each upload directory requested from <code class="docutils literal notranslate"><span class="pre">mc</span></code> is given a name made up of three random words along with an ID and UUID. Access control is set to allow only you to privately access the upload directory via Globus.:</p>
+<div class="section" id="step-1-request-a-globus-upload-directory">
+<h3>Step 1, Request a Globus upload directory<a class="headerlink" href="#step-1-request-a-globus-upload-directory" title="Permalink to this headline">¶</a></h3>
+<p>Imagine the initial state of your local and remote projects, before uploading, looks like the following:</p>
+<img alt="../site-images/up.1.png" src="../site-images/up.1.png" />
+<p>Imagine that you want to upload the files named “file_B.txt”. Request that Materials Commons creates a new Globus upload for the project. This creates a new, empty, upload directory on Materials Commons. It is possible to have multiple upload directories existing at the same time, for the same project, to help manage multiple transfers. Each upload directory requested from <code class="docutils literal notranslate"><span class="pre">mc</span></code> is given a name made up of three random words along with an ID and UUID. Access control is set to allow only you to privately access the upload directory via Globus.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mc globus upload --create
 Created Globus upload: 293
     project_name      project_id  type    name                   id  uuid                                  created               status
@@ -282,7 +291,10 @@ Created Globus upload: 293
 *   MyProject                589  upload  rivage-popish-bonze   293  c3474f16-b357-4b6c-92ca-fd93a1e37840  2021 Jan  1 03:52:49  Ready
 </pre></div>
 </div>
-<img alt="../_images/up.2.png" src="../_images/up.2.png" />
+<img alt="../site-images/up.2.png" src="../site-images/up.2.png" />
+</div>
+<div class="section" id="step-2-transfer-files">
+<h3>Step 2, Transfer files<a class="headerlink" href="#step-2-transfer-files" title="Permalink to this headline">¶</a></h3>
 <p>At this point, Globus transfers to the upload directory can be initiated with <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code> by adding the <code class="docutils literal notranslate"><span class="pre">-g</span></code>/<code class="docutils literal notranslate"><span class="pre">--globus</span></code> option. Multi-file and recursive uploads can be initiated for Globus uploads just as with standard uploads. Since a user can have multiple existing Globus upload directories, the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program stores, for each local project, the ID of a “current” Globus upload indicating which upload directory to transfer files to.</p>
 <p>If no “current” upload exists when <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code> is called, then <code class="docutils literal notranslate"><span class="pre">mc</span></code> will request a new upload directory with a random name and initiate a Globus transfer to it. The newly created upload directory becomes the “current” upload directory and is used when <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span> <span class="pre">-g</span></code> is called subsequently.</p>
 <p>The first time a transfer is initiated Globus will generate an authorization token for the <code class="docutils literal notranslate"><span class="pre">mc</span></code> program, specific to the computer making the transfer. A browser should be opened automatically taking you to a page with the authorization code which <code class="docutils literal notranslate"><span class="pre">mc</span></code> will prompt for. Copy and paste the code into the command line and the transfer should begin.</p>
@@ -310,7 +322,7 @@ Task ID                              | Status    | Type     | Source Display Nam
 c127a968-57b1-11eb-87bb-02187389bd35 | SUCCEEDED | TRANSFER | my_MacbookAir       | materials-commons-2-upload | MyProject-rivage-popish-bonze
 </pre></div>
 </div>
-<p>If a task will not complete (Status=`SUCCEEDED`), check that Globus Personal Connect is running, your internet connection is working, or check at address error messages in the <a class="reference external" href="https://app.globus.org/activity">Globus transfer activity page</a>.</p>
+<p>If a task will not complete (Status != <cite>SUCCEEDED</cite>), check that Globus Personal Connect is running, your internet connection is working, or check and address error messages in the <a class="reference external" href="https://app.globus.org/activity">Globus transfer activity page</a>.</p>
 <p>At any point before finishing the upload, you can as a convenience also open the Globus file manager in a web browser with the <code class="docutils literal notranslate"><span class="pre">--goto</span></code> command to transfer files using that interface. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mc globus upload --id 293 --goto
     project_name      project_id  type    name                   id  uuid                                  created               status
@@ -320,13 +332,16 @@ c127a968-57b1-11eb-87bb-02187389bd35 | SUCCEEDED | TRANSFER | my_MacbookAir     
 You want to goto these uploads in a web browser? (&#39;Yes&#39;/&#39;No&#39;): Yes
 </pre></div>
 </div>
+</div>
+<div class="section" id="step-3-finish-upload">
+<h3>Step 3, Finish upload<a class="headerlink" href="#step-3-finish-upload" title="Permalink to this headline">¶</a></h3>
 <p>If all of the “file_B.txt” files are uploaded, the directories will look like the following:</p>
-<img alt="../_images/up.3.png" src="../_images/up.3.png" />
+<img alt="../site-images/up.3.png" src="../site-images/up.3.png" />
 <p>Once all desired transfers are completed, the Materials Commons upload directory can be closed and files processed into your project with the <code class="docutils literal notranslate"><span class="pre">--finish</span></code> option for <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">globus</span> <span class="n">upload</span> <span class="o">--</span><span class="nb">id</span> <span class="mi">293</span> <span class="o">--</span><span class="n">finish</span>
 </pre></div>
 </div>
-<p>Processing time before files appear in your project will depend on the size of the transfer. The status can be checked with <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code>:</p>
+<p>The processing time required before files appear in your project will depend on the size of the transfer. The status can be checked with <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mc globus upload
     project_name      project_id  type    name                   id  uuid                                  created               status
 --  --------------  ------------  ------  -------------------  ----  ------------------------------------  --------------------  ---------
@@ -335,9 +350,18 @@ You want to goto these uploads in a web browser? (&#39;Yes&#39;/&#39;No&#39;): Y
 </div>
 <p>Once processing is finished, the upload directory will no longer appear in <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code> results, and all files should appear in the project directory.</p>
 <p>Then, the final state should be:</p>
-<img alt="../_images/up.4.png" src="../_images/up.4.png" />
+<img alt="../site-images/up.4.png" src="../site-images/up.4.png" />
+</div>
+<div class="section" id="additional-notes">
+<h3>Additional Notes<a class="headerlink" href="#additional-notes" title="Permalink to this headline">¶</a></h3>
 <p>If you wish to delete an upload directory and not process the files that have already been uploaded, use the <code class="docutils literal notranslate"><span class="pre">--delete</span></code> option with <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code>.</p>
 <p>The current Globus upload directory can be managed with the <code class="docutils literal notranslate"><span class="pre">--set</span></code> and <code class="docutils literal notranslate"><span class="pre">--unset</span></code> options for <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">upload</span></code>.</p>
+<p>In the example uploading all the “file_B.txt” files resulted in the remote project matching the local project. This could have also been accomplished by attempting to upload all the local files, recursively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">up</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">r</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>In this case, <code class="docutils literal notranslate"><span class="pre">mc</span></code> will compare the MD5 checksum of the local and remote files and only request that Globus upload the files that are different.</p>
+</div>
 </div>
 <div class="section" id="downloading-files-with-globus">
 <h2>Downloading files with Globus<a class="headerlink" href="#downloading-files-with-globus" title="Permalink to this headline">¶</a></h2>
@@ -400,7 +424,7 @@ Created Globus download: 295
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>
