@@ -167,15 +167,23 @@
 <span class="kn">import</span> <span class="nn">materials_commons.cli.tree_functions</span> <span class="k">as</span> <span class="nn">treefuncs</span>
 <span class="kn">from</span> <span class="nn">materials_commons.cli.treedb</span> <span class="kn">import</span> <span class="n">LocalTree</span><span class="p">,</span> <span class="n">RemoteTree</span>
 
-<span class="n">globus_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Use globus to upload files. Uses the current active upload or creates a new upload.</span>
-<span class="s2"> Use `globus task list` to monitor transfer tasks. Use `mc globus upload` to manage uploads.&quot;&quot;&quot;</span>
-
 <div class="viewcode-block" id="make_parser"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.up.html#materials_commons.cli.subcommands.up.make_parser">[docs]</a><span class="k">def</span> <span class="nf">make_parser</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Make argparse.ArgumentParser for `mc up`&quot;&quot;&quot;</span>
+
+    <span class="n">mc_up_description</span> <span class="o">=</span> <span class="s2">&quot;Upload files to Materials Commons&quot;</span>
+
+    <span class="n">mc_up_usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    mc up [-r] [--no-compare] [--limit] &lt;pathspec&gt; [&lt;pathspec&gt; ...]</span>
+<span class="s2">    mc up -g [-r] [--no-compare] [--label] &lt;pathspec&gt; [&lt;pathspec&gt; ...]&quot;&quot;&quot;</span>
+
+    <span class="n">globus_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Use globus to upload files. Uses the current active upload or creates a new upload.</span>
+<span class="s2">     Use `globus task list` to monitor transfer tasks. Use `mc globus upload` to manage uploads.&quot;&quot;&quot;</span>
+
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;upload files&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">mc_up_description</span><span class="p">,</span>
+        <span class="n">usage</span><span class="o">=</span><span class="n">mc_up_usage</span><span class="p">,</span>
         <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;mc up&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;paths&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Files or directories&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;pathspec&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Files or directories&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--recursive&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Upload directory contents recursively&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--limit&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span>
@@ -192,7 +200,8 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    upload files to Materials Commons</span>
 
-<span class="sd">    mc up [-r] [&lt;pathspec&gt; ...]</span>
+<span class="sd">    mc up [-r] [--no-compare] [--limit] &lt;pathspec&gt; [&lt;pathspec&gt; ...]</span>
+<span class="sd">    mc up -g [-r] [--no-compare] [--label] &lt;pathspec&gt; [&lt;pathspec&gt; ...]</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">make_parser</span><span class="p">()</span>

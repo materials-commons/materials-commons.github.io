@@ -186,11 +186,11 @@
 <h2>Standard upload and download<a class="headerlink" href="#standard-upload-and-download" title="Permalink to this headline">¶</a></h2>
 <p>When a local project directory exists (created using <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span></code> or <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span></code>), files can be transferred between the local project and the remote project.</p>
 <p>File uploading and downloading is performed with the <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code> and <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code> command, respectively. To upload one or more files the basic usage is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">up</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="n">local_file</span> <span class="p">[</span><span class="n">local_file</span> <span class="o">...</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">up</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="n">local_file</span> <span class="p">[</span><span class="n">local_file</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>And to download one or more files the basic usage is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">down</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="n">remote_file</span> <span class="p">[</span><span class="n">remote_file</span> <span class="o">...</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">down</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="n">remote_file</span> <span class="p">[</span><span class="n">remote_file</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">-r</span></code> option is used to upload and download directory contents recursively. For <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code>, any files given as “path” arguments existing in the local project directory will be uploaded to the corresponding directory in the remote project. Similarly, for <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code> any files given as “path” arguments existing in the remote project directory will be downloaded to the corrsponding directory in the local project. Any intermediate directories that do not exist will be created automatically.</p>
@@ -250,16 +250,16 @@
 </div>
 <div class="section" id="globus-installation-and-configuration">
 <h2>Globus installation and configuration<a class="headerlink" href="#globus-installation-and-configuration" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://www.globus.org/">Globus</a> transfer service can be used when transfering larger or more files. The Globus client should already be installed as part of the <code class="docutils literal notranslate"><span class="pre">materials-commons-cli</span></code> installation process. But, if it is not installed, install with:</p>
+<p>The <a class="reference external" href="https://www.globus.org/">Globus</a> transfer service can be used when transferring large files or many files. The Globus client should already be installed as part of the <code class="docutils literal notranslate"><span class="pre">materials-commons-cli</span></code> installation process. But, if it is not installed, install with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">globus</span><span class="o">-</span><span class="n">sdk</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">globus</span><span class="o">-</span><span class="n">cli</span>
 </pre></div>
 </div>
 <p>The following assumes you have a valid <a class="reference external" href="https://www.globus.org/">Globus</a> account.</p>
-<p>First, add your Globus account name in your Materials Commons account <a class="reference external" href="https://materialscommons.org/app/accounts/show">settings</a>. Typically, this is the email address associated with your Globus account.</p>
+<p>First, add your Globus account name in the <a class="reference external" href="https://materialscommons.org/app/accounts/show">Account Settings section</a> on the Materials Commons website. Typically, this is the email address associated with your Globus account.</p>
 <p>Second, configure the client side to use Globus. There are two typical cases:</p>
 <ul>
-<li><p>Case 1) If you are using Globus Personal Connect, for instance on your personal computer, you must have Globus Personal Connect running and log in Globus:</p>
+<li><p>Case 1) If you are using Globus Personal Connect, for instance on your personal computer, you must have Globus Personal Connect running and log in to Globus:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">globus</span> <span class="n">login</span>
 </pre></div>
 </div>
@@ -389,7 +389,7 @@ Created Globus download: 295
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span> <span class="n">globus</span> <span class="n">download</span> <span class="o">--</span><span class="nb">id</span> <span class="mi">295</span> <span class="o">--</span><span class="n">delete</span>
 </pre></div>
 </div>
-<p>The download directory may be left as long as desired, but it will <em>not</em> reflect any file or directory changes to project since the time it was created.</p>
+<p>The download directory may be left as long as desired, but it will <em>not</em> reflect any file or directory changes to the project since the time the download directory was created.</p>
 <p>The current Globus download directory can be managed with the <code class="docutils literal notranslate"><span class="pre">--set</span></code> and <code class="docutils literal notranslate"><span class="pre">--unset</span></code> options for <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span> <span class="pre">download</span></code>.</p>
 </div>
 <div class="section" id="reference">
