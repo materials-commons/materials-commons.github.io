@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.cli.sqltable &mdash; materials_commons.cli 2.0b6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
+        <script src="../../../site-static/jquery.js"></script>
+        <script src="../../../site-static/underscore.js"></script>
+        <script src="../../../site-static/doctools.js"></script>
+        <script src="../../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>materials_commons.cli.sqltable</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for materials_commons.cli.sqltable</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">materials_commons.cli.print_formatter</span> <span class="kn">import</span> <span class="n">PrintFormatter</span>
+
+<div class="viewcode-block" id="dbpath"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.dbpath">[docs]</a><span class="k">def</span> <span class="nf">dbpath</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Location of a sqlite database to cache project data locally&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="s2">&quot;.mc&quot;</span><span class="p">,</span> <span class="s2">&quot;project.db&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="sql_iter"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.sql_iter">[docs]</a><span class="k">def</span> <span class="nf">sql_iter</span><span class="p">(</span><span class="n">curs</span><span class="p">,</span> <span class="n">fetchsize</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Iterate over the results of a SELECT statement &quot;&quot;&quot;</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="n">curs</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="n">fetchsize</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">records</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">r</span></div>
+
+<div class="viewcode-block" id="SqlTable"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable">[docs]</a><span class="k">class</span> <span class="nc">SqlTable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generic code for interacting with one table in a project database</span>
+
+<span class="sd">    This is a base class. Derived classes must implement:</span>
+
+<span class="sd">        - @staticmethod default_print_fmt(): list of tuple, used to format a table</span>
+<span class="sd">        - @staticmethod tablecolumns(): dict, column name as key, list of table creation args for value</span>
+<span class="sd">        - @staticmethod tablename(): str, table name in sqlite database</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Example &#39;tablecolumns&#39;:</span>
+    <span class="c1">#</span>
+    <span class="c1"># @staticmethod</span>
+    <span class="c1"># def tablecolumns():</span>
+    <span class="c1">#     return {</span>
+    <span class="c1">#         &quot;id&quot;: [&quot;text&quot;],</span>
+    <span class="c1">#         &quot;name&quot;: [&quot;text&quot;],</span>
+    <span class="c1">#         &quot;path&quot;: [&quot;text&quot;, &quot;UNIQUE&quot;],</span>
+    <span class="c1">#         &quot;parent_id&quot;: [&quot;text&quot;],</span>
+    <span class="c1">#         &quot;modified_at&quot;: [&quot;real&quot;],</span>
+    <span class="c1">#         &quot;size&quot;: [&quot;integer&quot;],</span>
+    <span class="c1">#         &quot;checksum&quot;: [&quot;text&quot;],</span>
+    <span class="c1">#         &quot;otype&quot;: [&quot;text&quot;],</span>
+    <span class="c1">#         &quot;checktime&quot;: [&quot;real&quot;]</span>
+    <span class="c1">#     }</span>
+
+    <span class="c1"># Example &#39;default_print_fmt&#39;:</span>
+    <span class="c1">#</span>
+    <span class="c1"># @staticmethod</span>
+    <span class="c1"># def default_print_fmt():</span>
+    <span class="c1">#     from materials_commons.cli.functions import as_is, format_time, humanize</span>
+    <span class="c1">#     # (key, header, fmt, size, function)</span>
+    <span class="c1">#     return [</span>
+    <span class="c1">#         (&quot;path&quot;, &quot;path&quot;,&quot;&lt;&quot;, 80, as_is),</span>
+    <span class="c1">#         (&quot;name&quot;, &quot;name&quot;, &quot;&lt;&quot;, 24, as_is),</span>
+    <span class="c1">#         (&quot;otype&quot;, &quot;otype&quot;, &quot;&lt;&quot;, 16, as_is),</span>
+    <span class="c1">#         (&quot;modified_at&quot;, &quot;modified_at&quot;, &quot;&lt;&quot;, 24, format_time),</span>
+    <span class="c1">#         (&quot;checktime&quot;, &quot;checktime&quot;, &quot;&lt;&quot;, 24, format_time),</span>
+    <span class="c1">#         (&quot;size&quot;, &quot;size&quot;, &quot;&lt;&quot;, 8, humanize),</span>
+    <span class="c1">#         (&quot;checksum&quot;, &quot;checksum&quot;, &quot;&lt;&quot;, 36, as_is),</span>
+    <span class="c1">#         (&quot;id&quot;, &quot;id&quot;, &quot;&lt;&quot;, 80, as_is),</span>
+    <span class="c1">#         (&quot;parent_id&quot;, &quot;parent_id&quot;, &quot;&lt;&quot;, 80, as_is)</span>
+    <span class="c1">#     ]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_sql_create_table_str</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a string for CREATE TABLE&quot;&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">key</span><span class="p">]</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_sql_insert_or_replace_str</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a string for INSERT OR REPLACE INTO</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            record: dict</span>
+<span class="sd">                The record to insert or replace into the database.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (colstr, questionstr, valtuple)</span>
+<span class="sd">                These values are appropriate to be used as:</span>
+
+<span class="sd">                    (colstr, questionstr, valtuple) = sql_insert_str(file_or_dir_data)</span>
+<span class="sd">                    insertstr = &quot;INSERT OR REPLACE INTO &lt;table&gt; {0} VALUES {1}&quot;.format(colstr, questionstr)</span>
+<span class="sd">                    self.curs.execute(insertstr, valtuple)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if &quot;id&quot; not in record:</span>
+        <span class="c1">#     raise Exception(&quot;Error constructing INSERT OR REPLACE INTO statement: no &#39;id&#39;&quot;)</span>
+
+        <span class="n">colstr</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span>
+        <span class="n">questionstr</span> <span class="o">=</span> <span class="s2">&quot;(&quot;</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">colstr</span> <span class="o">=</span> <span class="n">colstr</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
+            <span class="n">questionstr</span> <span class="o">=</span> <span class="n">questionstr</span> <span class="o">+</span> <span class="s2">&quot;?, &quot;</span>
+            <span class="n">val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">colstr</span> <span class="o">=</span> <span class="n">colstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="n">questionstr</span> <span class="o">=</span> <span class="n">questionstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="k">return</span> <span class="n">colstr</span><span class="p">,</span> <span class="n">questionstr</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_regexp</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Regexp to bool wrapper&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj_local_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            proj_local_path: str, local project path</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dbpath</span> <span class="o">=</span> <span class="n">dbpath</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SqlTable.connect"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.connect">[docs]</a>    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Connect to sqlite database, creating database and table if necessary&quot;&quot;&quot;</span>
+
+        <span class="c1"># print(&quot;Connect to:&quot;, self.dbpath)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dbpath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">row_factory</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">create_function</span><span class="p">(</span><span class="s2">&quot;REGEXP&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regexp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SqlTable.close"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curs</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">_create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># get list of tables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT name FROM sqlite_master WHERE type=&#39;table&#39;;&quot;</span><span class="p">)</span>
+        <span class="n">tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">():</span>
+                <span class="c1"># check columns</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">())</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablecolumns</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+                        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Column &#39;&quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;&#39; not in &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; table.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="c1"># if table not found, create it</span>
+        <span class="c1"># print(&quot;Creating table:&quot;, &quot;CREATE TABLE &quot; + self.tablename() + &quot; &quot; + self._sql_create_table_str(self.tablecolumns()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sql_create_table_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tablecolumns</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="SqlTable.insert_or_replace"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.insert_or_replace">[docs]</a>    <span class="k">def</span> <span class="nf">insert_or_replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Insert or replace individual entries in the table</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            record: dict</span>
+<span class="sd">                Record to insert or replace in the database.</span>
+<span class="sd">            verbose: bool</span>
+<span class="sd">                If True, print status</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insert or replace &#39;&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="s2">&quot;&#39; ...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="p">(</span><span class="n">colstr</span><span class="p">,</span> <span class="n">questionstr</span><span class="p">,</span> <span class="n">valtuple</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sql_insert_or_replace_str</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="n">insertstr</span> <span class="o">=</span> <span class="s2">&quot;INSERT OR REPLACE INTO </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> VALUES </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">(),</span> <span class="n">colstr</span><span class="p">,</span> <span class="n">questionstr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertstr</span><span class="p">,</span> <span class="n">valtuple</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;DONE&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SqlTable.size"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return table size&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT count(*) FROM &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="SqlTable.print_selection"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.print_selection">[docs]</a>    <span class="k">def</span> <span class="nf">print_selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fmt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_print_fmt</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">pformatter</span> <span class="o">=</span> <span class="n">PrintFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+        <span class="n">pformatter</span><span class="o">.</span><span class="n">if_key_in_record</span> <span class="o">=</span> <span class="n">f</span>
+
+        <span class="n">pformatter</span><span class="o">.</span><span class="n">print_header</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">record</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">pformatter</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SqlTable.print_selection_detail"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable.print_selection_detail">[docs]</a>    <span class="k">def</span> <span class="nf">print_selection_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fmt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_print_fmt</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">pformatter</span> <span class="o">=</span> <span class="n">PrintFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+        <span class="n">pformatter</span><span class="o">.</span><span class="n">if_key_in_record</span> <span class="o">=</span> <span class="n">f</span>
+
+        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">record</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">pformatter</span><span class="o">.</span><span class="n">print_detail</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

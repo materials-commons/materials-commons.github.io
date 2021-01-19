@@ -11,8 +11,8 @@
   
 
   
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
 
   
   
@@ -21,17 +21,17 @@
 
   
   <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
   <![endif]-->
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+        <script src="../../site-static/language_data.js"></script>
     
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -171,7 +171,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/reference/materials_commons/materials_commons.cli.list_objects.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../site-sources/reference/materials_commons/materials_commons.cli.list_objects.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -188,7 +188,7 @@
 <span id="materials-commons-cli-list-objects-module"></span><h1>materials_commons.cli.list_objects module<a class="headerlink" href="#module-materials_commons.cli.list_objects" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="materials_commons.cli.list_objects.ListObjects">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.list_objects.</code><code class="sig-name descname">ListObjects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmdname</span></em>, <em class="sig-param"><span class="n">typename</span></em>, <em class="sig-param"><span class="n">typename_plural</span></em>, <em class="sig-param"><span class="n">desc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">requires_project</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">non_proj_member</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">proj_member</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">expt_member</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dataset_member</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">remote_help</span><span class="o">=</span><span class="default_value">'Select remote'</span></em>, <em class="sig-param"><span class="n">list_columns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">deletable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">dry_runable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">has_owner</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">creatable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">custom_actions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">custom_selection_actions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">request_confirmation_actions</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.list_objects.</code><code class="sig-name descname">ListObjects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmdname</span></em>, <em class="sig-param"><span class="n">typename</span></em>, <em class="sig-param"><span class="n">typename_plural</span></em>, <em class="sig-param"><span class="n">desc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">requires_project</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">non_proj_member</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">proj_member</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">expt_member</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dataset_member</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">remote_help</span><span class="o">=</span><span class="default_value">'Select remote'</span></em>, <em class="sig-param"><span class="n">list_columns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">deletable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">dry_runable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">has_owner</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">creatable</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">custom_actions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">custom_selection_actions</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">request_confirmation_actions</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class to create <code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">X</span></code> CLI program commands that list objects of type X.</p>
 <p>Expected derived class members:</p>
@@ -317,35 +317,35 @@ Delete is always confirmed and is not included here.</p></li>
 </dl>
 <dl class="py method">
 <dt id="materials_commons.cli.list_objects.ListObjects.__call__">
-<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.__call__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute Materials Commons CLI command.</p>
 <p>mc proc [–all] [–expt] [–dataset] [–details | –json] [–id] [&lt;name&gt; …]</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="materials_commons.cli.list_objects.ListObjects.get_all_objects">
-<code class="sig-name descname">get_all_objects</code><span class="sig-paren">(</span><em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects.get_all_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.get_all_objects" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_all_objects</code><span class="sig-paren">(</span><em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.get_all_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.get_all_objects" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="materials_commons.cli.list_objects.ListObjects.get_remote">
-<code class="sig-name descname">get_remote</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects.get_remote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.get_remote" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_remote</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.get_remote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.get_remote" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="materials_commons.cli.list_objects.ListObjects.make_parser">
-<code class="sig-name descname">make_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects.make_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.make_parser" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.make_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.make_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make argparse.ArgumentParser</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="materials_commons.cli.list_objects.ListObjects.output">
-<code class="sig-name descname">output</code><span class="sig-paren">(</span><em class="sig-param">objects</em>, <em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.output" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">output</code><span class="sig-paren">(</span><em class="sig-param">objects</em>, <em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.output" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="materials_commons.cli.list_objects.ListObjects.parse_args">
-<code class="sig-name descname">parse_args</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#ListObjects.parse_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.parse_args" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_args</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.parse_args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.parse_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse CLI arguments, returning result of argparse.ArgumentParser.parse_args(argv)</p>
 </dd></dl>
 
@@ -353,7 +353,7 @@ Delete is always confirmed and is not included here.</p></li>
 
 <dl class="py function">
 <dt id="materials_commons.cli.list_objects.output_method">
-<code class="sig-prename descclassname">materials_commons.cli.list_objects.</code><code class="sig-name descname">output_method</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/materials_commons/cli/list_objects.html#output_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.output_method" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">materials_commons.cli.list_objects.</code><code class="sig-name descname">output_method</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#output_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.output_method" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

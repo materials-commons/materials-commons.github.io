@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.cli.subcommands.ls &mdash; materials_commons.cli 2.0b6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../site-static/documentation_options.js"></script>
+        <script src="../../../../site-static/jquery.js"></script>
+        <script src="../../../../site-static/underscore.js"></script>
+        <script src="../../../../site-static/doctools.js"></script>
+        <script src="../../../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>materials_commons.cli.subcommands.ls</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for materials_commons.cli.subcommands.ls</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.functions</span> <span class="k">as</span> <span class="nn">clifuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.tree_functions</span> <span class="k">as</span> <span class="nn">treefuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.file_functions</span> <span class="k">as</span> <span class="nn">filefuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.tmp_functions</span> <span class="k">as</span> <span class="nn">tmpfuncs</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.treedb</span> <span class="kn">import</span> <span class="n">LocalTree</span><span class="p">,</span> <span class="n">RemoteTree</span>
+
+<span class="c1">#  Want to print() something like:</span>
+<span class="c1">#</span>
+<span class="c1">#  warning! file0 is a local file and remote dir!</span>
+<span class="c1">#  warning! file1 is a local directory and remote file!</span>
+<span class="c1">#</span>
+<span class="c1">#  remote_owner local_mtime local_size remote_mtime remote_size file0</span>
+<span class="c1">#             - local_mtime local_size            -           - file1</span>
+<span class="c1">#  remote_owner           -          - remote_mtime remote_size file2</span>
+<span class="c1">#</span>
+<span class="c1">#  dir1:</span>
+<span class="c1">#  remote_owner local_mtime local_size remote_mtime remote_size file0</span>
+<span class="c1">#             - local_mtime local_size            -           - file1</span>
+<span class="c1">#  remote_owner           -          - remote_mtime remote_size file2</span>
+<span class="c1">#</span>
+<span class="c1">#  dir2:</span>
+<span class="c1">#  remote_owner local_mtime local_size remote_mtime remote_size file0</span>
+<span class="c1">#             - local_mtime local_size            -           - file1</span>
+<span class="c1">#  remote_owner           -          - remote_mtime remote_size file2</span>
+<span class="c1">#</span>
+
+<span class="k">def</span> <span class="nf">_format_path_data</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">refpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Format list of dict for &#39;mc ls&#39;.</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    proj: mcapi.Project</span>
+<span class="sd">        Project instance with proj.local_path indicating local project location</span>
+
+<span class="sd">    data: dict</span>
+<span class="sd">        Output from `materials_commons.cli.tree_functions.ls_data`</span>
+
+<span class="sd">    columns: list of str</span>
+<span class="sd">        Columns to collect. Expects [&#39;l_mtime&#39;, &#39;l_size&#39;, &#39;l_type&#39;, &#39;r_mtime&#39;, &#39;r_size&#39;, &#39;r_type&#39;, &#39;eq&#39; (optionally), &#39;name&#39;, &#39;id&#39;, &#39;selected&#39; (optionally)]</span>
+
+<span class="sd">    refpath: str or None</span>
+<span class="sd">        Local absolute path that names are printed relative to. If None, uses os.getcwd().</span>
+
+<span class="sd">    checksum: bool (optional, default=False)</span>
+<span class="sd">        If True, include &#39;eq&#39; in the output data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    path_data: list of dict, Sorted by name and containing</span>
+<span class="sd">        &#39;l_mtime&#39;, &#39;l_size&#39;, &#39;l_type&#39;, &#39;r_mtime&#39;, &#39;r_size&#39;, &#39;r_type&#39;, &#39;eq&#39; (optionally), &#39;name&#39;, &#39;id&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># import json</span>
+    <span class="c1"># for record in data:</span>
+    <span class="c1">#     print(json.dumps(record, indent=2))</span>
+    <span class="c1">#     print(&quot;-------------------&quot;)</span>
+
+    <span class="n">record_init</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">refpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">refpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_name</span><span class="p">(</span><span class="n">mcpath</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span><span class="p">,</span> <span class="n">relpath</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">mcpath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">refpath</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">record_init</span><span class="p">)</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_size&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;l_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">humanize</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_size&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_mtime&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_mtime&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_size&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">humanize</span><span class="p">(</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_size&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;eq&#39;</span> <span class="ow">in</span> <span class="n">rec</span> <span class="ow">and</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;eq&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;eq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;eq&#39;</span><span class="p">]</span>
+        <span class="n">record</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_get_name</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;id&#39;</span> <span class="ow">in</span> <span class="n">rec</span> <span class="ow">and</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;selected&#39;</span> <span class="ow">in</span> <span class="n">rec</span> <span class="ow">and</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;selected_by&#39;</span> <span class="ow">in</span> <span class="n">rec</span> <span class="ow">and</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">[</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rec</span><span class="p">[</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span>
+
+        <span class="n">path_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">path_data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">_ls_print</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">refpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">printjson</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">checkdset</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print treecompare output for a set of files, or directory children&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">checksum</span><span class="p">:</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;l_size&#39;</span><span class="p">,</span> <span class="s1">&#39;l_type&#39;</span><span class="p">,</span> <span class="s1">&#39;r_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;r_size&#39;</span><span class="p">,</span> <span class="s1">&#39;r_type&#39;</span><span class="p">,</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l_updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;l_size&#39;</span><span class="p">,</span> <span class="s1">&#39;l_type&#39;</span><span class="p">,</span> <span class="s1">&#39;r_updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;r_size&#39;</span><span class="p">,</span> <span class="s1">&#39;r_type&#39;</span><span class="p">,</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;l_size&#39;</span><span class="p">,</span> <span class="s1">&#39;l_type&#39;</span><span class="p">,</span> <span class="s1">&#39;r_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;r_size&#39;</span><span class="p">,</span> <span class="s1">&#39;r_type&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l_updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;l_size&#39;</span><span class="p">,</span> <span class="s1">&#39;l_type&#39;</span><span class="p">,</span> <span class="s1">&#39;r_updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;r_size&#39;</span><span class="p">,</span> <span class="s1">&#39;r_type&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">checkdset</span><span class="p">:</span>
+        <span class="n">columns</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_by&#39;</span><span class="p">]</span>
+        <span class="n">headers</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_by&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">printjson</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_obj&#39;</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_obj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">path_data</span> <span class="o">=</span> <span class="n">_format_path_data</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">refpath</span><span class="o">=</span><span class="n">refpath</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path_data</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">refpath</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+            <span class="n">clifuncs</span><span class="o">.</span><span class="n">print_table</span><span class="p">(</span><span class="n">path_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">refpath</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;: no contents&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="make_parser"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.make_parser">[docs]</a><span class="k">def</span> <span class="nf">make_parser</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Make argparse.ArgumentParser for `mc ls`&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List local &amp; remote directory contents&#39;</span><span class="p">,</span>
+        <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;mc ls&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;paths&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()],</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Files or directories&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--checksum&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Calculate MD5 checksum for local files&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--json&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print JSON exactly&#39;</span><span class="p">)</span>
+
+    <span class="c1"># TODO: re-implement w/datasets</span>
+    <span class="c1"># # --include file_or_dir</span>
+    <span class="c1"># # --exclude file_or_dir</span>
+    <span class="c1"># # --clear file_or_dir</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;DATASET_ID&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Specify a dataset to act on.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--include&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Include files and directories in the specified dataset. Including a directory includes all files and sub-directories recursively, unless prevented by --exclude.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--exclude&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Exclude file and directories from the specified dataset. Excluding prevents inclusion of files and directories that would otherwise be included due to a higher-level directory being included.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--clear&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Clear files and directories from the include/exclude selection lists of the specified dataset. A file or directory may still be included in or excluded from the dataset afterwards if a higher level directory is included or excluded&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
+
+<div class="viewcode-block" id="update_file_selection"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.update_file_selection">[docs]</a><span class="k">def</span> <span class="nf">update_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> \
+    <span class="n">include</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update the file selection dict</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (mcapi.Project): Current project</span>
+<span class="sd">        file_selection (dict): File selection before update</span>
+<span class="sd">        mcpaths (list of str): Materials Commons format file and directory paths</span>
+<span class="sd">        files_data: File comparisons from the `treecompare` function</span>
+<span class="sd">        dirs_data: Directory comparisons from the `treecompare` function</span>
+<span class="sd">        include (bool): If True, include files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        exclude (bool): If True, exclude files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        clear (bool): If True, remove files and directories in &quot;mcpaths&quot; from the file selection so they are not included or excluded</span>
+<span class="sd">        out: Output stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The file selection dict, updated.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: Local and remote types do not match, skipping</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">include</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">exclude</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="c1"># remove duplicates</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+        <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">file_selection</span></div>
+
+<div class="viewcode-block" id="update_dataset_file_selection"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.update_dataset_file_selection">[docs]</a><span class="k">def</span> <span class="nf">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> \
+    <span class="n">include</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update a dataset file selection</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (mcapi.Project): Current project, expected to have &quot;remote&quot; and &quot;local_path&quot; attributes</span>
+<span class="sd">        dataset_id (str): ID of dataset to be updated</span>
+<span class="sd">        mcpaths (list of str): Materials Commons format file and directory paths</span>
+<span class="sd">        files_data: File comparisons from the `treecompare` function</span>
+<span class="sd">        dirs_data: Directory comparisons from the `treecompare` function</span>
+<span class="sd">        include (bool): If True, include files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        exclude (bool): If True, exclude files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        clear (bool): If True, remove files and directories in &quot;mcpaths&quot; from the file selection so they are not included or excluded</span>
+<span class="sd">        out: Output stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The file selection dict, updated.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_selection</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span>
+
+    <span class="c1"># local function</span>
+    <span class="k">def</span> <span class="nf">_do</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="n">action</span><span class="p">:</span> <span class="n">path</span><span class="p">}</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Update: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">update</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: Local and remote types do not match, skipping</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">include</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;include_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_exclude_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;include_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_exclude_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">exclude</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;exclude_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_include_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;exclude_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_include_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ls_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.ls_subcommand">[docs]</a><span class="k">def</span> <span class="nf">ls_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &#39;ls&#39; a project directory to see local and remote files and directories.</span>
+
+<span class="sd">    mc ls [&lt;pathspec&gt; ...]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">make_parser</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">updatetime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+    <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">()</span>
+
+    <span class="c1"># convert cli input to materials commons path convention: /path/to/file_or_dir</span>
+    <span class="n">mcpaths</span> <span class="o">=</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">clipaths_to_mcpaths</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">checksum</span><span class="p">:</span>
+        <span class="n">localtree</span> <span class="o">=</span> <span class="n">LocalTree</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">localtree</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
+        <span class="n">remotetree</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">remotetree</span> <span class="o">=</span> <span class="n">RemoteTree</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">pconfig</span><span class="o">.</span><span class="n">remote_updatetime</span><span class="p">)</span>
+
+    <span class="c1"># compare local and remote tree</span>
+    <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> <span class="n">child_data</span><span class="p">,</span> <span class="n">not_existing</span> <span class="o">=</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">treecompare</span><span class="p">(</span>
+        <span class="n">proj</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">checksum</span><span class="p">,</span>
+        <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** WARNING: &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s2">&quot;local and remote types do not match! **&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">dirpath</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">[</span><span class="n">dirpath</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_child_data_mismatch</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** WARNING: &quot;</span><span class="p">,</span> <span class="n">childpath</span><span class="p">,</span> <span class="s2">&quot;local and remote types do not match! **&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">pconfig</span><span class="o">.</span><span class="n">remote_updatetime</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;** Fetch lock ON at:&quot;</span><span class="p">,</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">pconfig</span><span class="o">.</span><span class="n">remote_updatetime</span><span class="p">),</span> <span class="s2">&quot;**&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">not_existing</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">not_existing</span><span class="p">:</span>
+            <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;: No such file or directory&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">include</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">exclude</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">:</span>
+            <span class="n">file_selection</span> <span class="o">=</span> <span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">exclude</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_selection</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+            <span class="n">selected</span><span class="p">,</span> <span class="n">selected_by</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">check_file_selection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
+            <span class="n">files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected</span>
+            <span class="k">if</span> <span class="n">selected_by</span><span class="p">:</span>
+                <span class="n">files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_by</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">child_files_data</span> <span class="ow">in</span> <span class="n">child_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">child_files_data</span><span class="p">:</span>
+                <span class="n">selected</span><span class="p">,</span> <span class="n">selected_by</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">check_file_selection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
+                <span class="n">child_files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected</span>
+                <span class="k">if</span> <span class="n">selected_by</span><span class="p">:</span>
+                    <span class="n">child_files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_by</span>
+
+    <span class="c1"># print files</span>
+    <span class="n">_ls_print</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">refpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">printjson</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">checksum</span><span class="p">,</span> <span class="n">checkdset</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+
+    <span class="c1"># print directory children</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">:</span>
+        <span class="n">local_dirpath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="n">_ls_print</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">child_data</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">refpath</span><span class="o">=</span><span class="n">local_dirpath</span><span class="p">,</span> <span class="n">printjson</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">checksum</span><span class="p">,</span> <span class="n">checkdset</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+
+
+    <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

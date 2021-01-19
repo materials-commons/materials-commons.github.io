@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.cli.subcommands.dataset &mdash; materials_commons.cli 2.0b6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../site-static/documentation_options.js"></script>
+        <script src="../../../../site-static/jquery.js"></script>
+        <script src="../../../../site-static/underscore.js"></script>
+        <script src="../../../../site-static/doctools.js"></script>
+        <script src="../../../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>materials_commons.cli.subcommands.dataset</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for materials_commons.cli.subcommands.dataset</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.functions</span> <span class="k">as</span> <span class="nn">clifuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.tmp_functions</span> <span class="k">as</span> <span class="nn">tmpfuncs</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.list_objects</span> <span class="kn">import</span> <span class="n">ListObjects</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.exceptions</span> <span class="kn">import</span> <span class="n">MCCLIException</span>
+
+<div class="viewcode-block" id="make_parser"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.make_parser">[docs]</a><span class="k">def</span> <span class="nf">make_parser</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Make argparse.ArgumentParser for `mc dataset`&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">DatasetSubcommand</span><span class="p">()</span><span class="o">.</span><span class="n">make_parser</span><span class="p">()</span></div>
+
+<span class="k">def</span> <span class="nf">_if_attr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attrname</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_print_dataset_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Order dataset data for printing&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">name</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;authors&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)},</span>
+        <span class="p">{</span><span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)},</span>
+        <span class="p">{</span><span class="s2">&quot;license&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)},</span>
+        <span class="p">{</span><span class="s2">&quot;owner.name&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">owner</span><span class="o">.</span><span class="n">name</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;owner.email&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">owner</span><span class="o">.</span><span class="n">email</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;owner.id&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">owner</span><span class="o">.</span><span class="n">id</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)},</span>
+        <span class="p">{</span><span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)},</span>
+        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">uuid</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;doi&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+    <span class="p">]</span>
+
+    <span class="c1"># via --all (is published)</span>
+
+    <span class="k">if</span> <span class="n">project_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;published_at&quot;</span><span class="p">:</span> <span class="n">_if_attr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;published_at&#39;</span><span class="p">,</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s2">&quot;zipfile_size&quot;</span><span class="p">:</span> <span class="n">_if_attr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;zipfile_size&#39;</span><span class="p">,</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">humanize</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s2">&quot;files_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">files_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;activities_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">activities_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;entities_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entities_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;workflows_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">workflows_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;comments_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">comments_count</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="k">elif</span> <span class="n">dataset</span><span class="o">.</span><span class="n">published_at</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># via project, is published</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;published_at&quot;</span><span class="p">:</span> <span class="n">_if_attr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;published_at&#39;</span><span class="p">,</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s2">&quot;zipfile_size&quot;</span><span class="p">:</span> <span class="n">_if_attr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;zipfile_size&#39;</span><span class="p">,</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">humanize</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s2">&quot;files_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">files_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;activities_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">activities_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;entities_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">entities_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;workflows_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">workflows_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;experiments_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">experiments_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;comments_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">comments_count</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="k">elif</span> <span class="n">dataset</span><span class="o">.</span><span class="n">published_at</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># via project, is not published</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;workflows_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">workflows_count</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;experiments_count&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">experiments_count</span><span class="p">}</span>
+        <span class="p">]</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<div class="viewcode-block" id="print_dataset_details"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.print_dataset_details">[docs]</a><span class="k">def</span> <span class="nf">print_dataset_details</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> \
+    <span class="n">file_selection</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">_print_dataset_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">file_selection</span><span class="p">:</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;file_selection&quot;</span><span class="p">:</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="k">if</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">dataset_files</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_dataset_files</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">set_file_paths</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_files</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">dataset_files</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="print_published_dataset_details"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.print_published_dataset_details">[docs]</a><span class="k">def</span> <span class="nf">print_published_dataset_details</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">_print_dataset_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+    <span class="c1"># # TODO: currently no file paths or direct download option</span>
+    <span class="c1"># if files:</span>
+    <span class="c1">#     dataset_files = client.get_published_dataset_files(dataset.id)</span>
+    <span class="c1">#     data.append({</span>
+    <span class="c1">#         &quot;files&quot;: dataset_files</span>
+    <span class="c1">#     })</span>
+
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand">[docs]</a><span class="k">class</span> <span class="nc">DatasetSubcommand</span><span class="p">(</span><span class="n">ListObjects</span><span class="p">):</span>
+
+    <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;List, create, publish, and download datasets. By default lists project datasets. With `--all` lists all public datasets.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DatasetSubcommand</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;dataset&quot;</span><span class="p">],</span> <span class="s2">&quot;Dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;Datasets&quot;</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">desc</span><span class="p">,</span>
+            <span class="n">requires_project</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">non_proj_member</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">proj_member</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">expt_member</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">remote_help</span><span class="o">=</span><span class="s1">&#39;Remote to get datasets from&#39;</span><span class="p">,</span>
+            <span class="n">list_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;zipfile_size&#39;</span><span class="p">,</span> <span class="s1">&#39;published_at&#39;</span><span class="p">],</span>
+            <span class="n">deletable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">creatable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">custom_selection_actions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;down&#39;</span><span class="p">,</span> <span class="s1">&#39;unpublish&#39;</span><span class="p">,</span> <span class="s1">&#39;publish&#39;</span><span class="p">,</span> <span class="s1">&#39;clone_as&#39;</span><span class="p">],</span>
+            <span class="n">request_confirmation_actions</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;publish&#39;</span><span class="p">:</span> <span class="s1">&#39;Are you sure you want to publicly publish these datasets?&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;unpublish&#39;</span><span class="p">:</span> <span class="s1">&#39;Are you sure you want to unpublish these datasets?&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;clone_as&#39;</span><span class="p">:</span> <span class="s1">&#39;Are you sure you want to clone this dataset?&#39;</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="c1"># TODO: double check this is no longer valid</span>
+    <span class="c1"># def get_all_from_experiment(self, expt):</span>
+    <span class="c1">#     # return mcapi.get_all_datasets_from_experiment(expt.project.id, expt.id, expt.project.remote)</span>
+    <span class="c1">#     return []</span>
+
+<div class="viewcode-block" id="DatasetSubcommand.get_all_from_project"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.get_all_from_project">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_from_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
+        <span class="c1"># # basic call, # TODO: return owner email in dataset data</span>
+        <span class="c1"># return proj.remote.get_all_datasets(proj.id)</span>
+
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">get_all_datasets</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">add_owner</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">datasets</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">datasets</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.get_all_from_remote"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.get_all_from_remote">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_from_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">remote</span><span class="p">):</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">get_all_published_datasets</span><span class="p">()</span>
+        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">add_owner</span><span class="p">(</span><span class="n">remote</span><span class="p">,</span> <span class="n">datasets</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">datasets</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.list_data"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.list_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+
+        <span class="n">zipfile_size</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">zipfile_size</span><span class="p">:</span>
+            <span class="n">zipfile_size</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">humanize</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">zipfile_size</span><span class="p">)</span>
+
+        <span class="n">published_at</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">published_at</span><span class="p">:</span>
+            <span class="n">published_at</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">published_at</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">trunc</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">getit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">),</span> <span class="mi">40</span><span class="p">),</span>
+            <span class="s1">&#39;owner&#39;</span><span class="p">:</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">trunc</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">owner</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">trunc</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">getit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">),</span> <span class="mi">40</span><span class="p">),</span>
+            <span class="s1">&#39;updated_at&#39;</span><span class="p">:</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">getit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)),</span>
+            <span class="s1">&#39;zipfile_size&#39;</span><span class="p">:</span> <span class="n">zipfile_size</span><span class="p">,</span>
+            <span class="s1">&#39;published_at&#39;</span><span class="p">:</span> <span class="n">published_at</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.print_details"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.print_details">[docs]</a>    <span class="k">def</span> <span class="nf">print_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="c1"># TODO: fix this</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;** WARNING: `mc dataset --details` is under development, some dataset attributes (for example: authors, license, tags, doi) may appear as &#39;null&#39; even if they do exist. **</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
+            <span class="n">client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_remote</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">file_selection</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;** WARNING: --file-selection: Not available for public datasets **</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+                <span class="c1"># TODO: update this when file paths and download become available</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;** WARNING: --files: Not available for public datasets **</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">print_published_dataset_details</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">files</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">published_at</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># TODO: update this when file paths and download become available</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;** WARNING: --files: Not available for unpublished datasets **</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">print_dataset_details</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> \
+                <span class="n">file_selection</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">file_selection</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">files</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.add_custom_options"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.add_custom_options">[docs]</a>    <span class="k">def</span> <span class="nf">add_custom_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+
+        <span class="c1"># note: add samples via `mc samp`, processes via `mc proc`, files via `mc ls`</span>
+
+        <span class="c1"># for --create and --clone, set new dataset description</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--desc&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Dataset description, for use with --create or --clone.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># for --details, also print dataset file selection</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--file-selection&#39;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;For use with -d,--details: also print dataset file selection.&#39;</span><span class="p">)</span>
+        <span class="c1"># for --details, also print dataset files list</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--files&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;For use with -d,--details: also print dataset files list.&#39;</span><span class="p">)</span>
+
+
+        <span class="c1"># --clone-as</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--clone-as&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Clone the selected dataset, creating a new dataset, with this name, with the selected dataset</span><span class="se">\&#39;</span><span class="s1">s file selection, samples, and processes.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># --down</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--down&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Download dataset zipfile&#39;</span><span class="p">)</span>
+
+        <span class="c1"># --publish, --unpublish</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--unpublish&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Unpublish a dataset&#39;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--publish&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Publish a public dataset. Makes it available for public download.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DatasetSubcommand.down"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.down">[docs]</a>    <span class="k">def</span> <span class="nf">down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Download dataset zipfile, --down</span>
+
+<span class="sd">        .. note:: The downloaded dataset is named dataset.&lt;dataset_uuid&gt;.zip</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">print_details</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Downloading...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">dataset_id</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span>
+            <span class="n">to</span> <span class="o">=</span> <span class="s2">&quot;dataset.&quot;</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">uuid</span> <span class="o">+</span> <span class="s2">&quot;.zip&quot;</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">download_dataset_zipfile</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;DONE</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.create"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create new dataset</span>
+
+<span class="sd">        Using:</span>
+<span class="sd">            mc dataset --create [--desc &lt;dataset description&gt;] &lt;dataset_name&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+
+        <span class="n">in_names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">expr</span><span class="p">:</span>
+            <span class="n">in_names</span> <span class="o">+=</span> <span class="n">args</span><span class="o">.</span><span class="n">expr</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_names</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Creating a dataset requires one name argument</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;example: mc dataset --create --desc &quot;dataset description&quot; &lt;dataset_name&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">resulting_objects</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">in_names</span><span class="p">:</span>
+            <span class="n">dataset_request</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">CreateDatasetRequest</span><span class="p">()</span>
+            <span class="n">dataset_request</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">desc</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dataset_request</span><span class="p">)</span>
+            <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">add_owner</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+            <span class="n">resulting_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">resulting_objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.delete"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete datasets</span>
+
+<span class="sd">        Using:</span>
+<span class="sd">            mc dataset --id &lt;dataset_id&gt; --proj --delete</span>
+<span class="sd">            mc dataset &lt;dataset_name_search&gt; --proj --delete</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Dry-run is not yet possible when deleting datasets.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;--delete and --all may not be used together: Delete datasets via a project.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">published_at</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Published dataset (id=</span><span class="si">{0}</span><span class="s1">) may not be deleted. Skipping.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+                <span class="k">continue</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">delete_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.unpublish"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.unpublish">[docs]</a>    <span class="k">def</span> <span class="nf">unpublish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Unpublish dataset</span>
+
+<span class="sd">        Using:</span>
+<span class="sd">            mc dataset --id &lt;dataset_id&gt; --proj --unpublish</span>
+<span class="sd">            mc dataset &lt;dataset_name_search&gt; --proj --unpublish</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;--unpublish and --all may not be used together: Unpublish datasets via a project.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+
+        <span class="n">resulting_objects</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">published_at</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Dataset (id=</span><span class="si">{0}</span><span class="s1">) is not published. Skipping.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+                <span class="k">continue</span>
+            <span class="n">resulting_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">unpublish_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">add_owner</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">resulting_objects</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">resulting_objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.publish"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.publish">[docs]</a>    <span class="k">def</span> <span class="nf">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Publish public dataset</span>
+
+<span class="sd">        Using:</span>
+<span class="sd">            mc dataset --id &lt;dataset_id&gt; --proj --publish</span>
+<span class="sd">            mc dataset &lt;dataset_name_search&gt; --proj --publish</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;--publish and --all may not be used together: Publish datasets via a project.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">resulting_objects</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">published_at</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Dataset (id=</span><span class="si">{0}</span><span class="s1">) is already published. Skipping.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+                <span class="k">continue</span>
+            <span class="n">resulting_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">publish_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">add_owner</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">resulting_objects</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">resulting_objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="DatasetSubcommand.clone_as"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone_as">[docs]</a>    <span class="k">def</span> <span class="nf">clone_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a new dataset with the selected dataset&#39;s file selection, samples, and processes&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--clone-as requires that 1 and only 1 project dataset be selected.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--clone-as and --all may not be used together: Clone datasets via a project.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+
+        <span class="c1"># get original dataset with as much data as possible</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="c1"># copy original metadata    # TODO update this</span>
+        <span class="n">dataset_request</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">CreateDatasetRequest</span><span class="p">()</span>
+        <span class="n">dataset_request</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">dataset_request</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">dataset_request</span><span class="o">.</span><span class="n">license</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">dataset_request</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">dataset_request</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># update metadata</span>
+        <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">clone_as</span>
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">desc</span><span class="p">:</span>
+            <span class="n">dataset_request</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">desc</span>
+        <span class="n">new_dataset</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dataset_request</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Created dataset: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="c1"># clone file selection</span>
+        <span class="n">file_selection</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Cloning file selection:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;include_file&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;exclude_file&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;include_dir&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;exclude_dir&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+
+        <span class="c1"># clone samples, processes, workflow</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;** WARNING: Cloning samples, processes, workflows not yet implemented **</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Complete</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Cloned dataset: (name=</span><span class="si">{0}</span><span class="s1">, id=</span><span class="si">{1}</span><span class="s1">) -&gt; (name=</span><span class="si">{2}</span><span class="s1">, id=</span><span class="si">{3}</span><span class="s1">)</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+
+        <span class="k">return</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
