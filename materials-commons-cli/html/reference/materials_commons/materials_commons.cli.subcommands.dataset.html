@@ -87,9 +87,11 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.subcommands.html">materials_commons.cli.subcommands package</a></li>
@@ -238,11 +240,9 @@ Delete is always confirmed and is not included here.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone">
-<code class="sig-name descname">clone</code><span class="sig-paren">(</span><em class="sig-param">objects</em>, <em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.clone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a dataset with the selected samples and file selection</p>
-<p>If the –refresh-processes option is included, then the new dataset will be constructed such that the samples in the original dataset determine which processes are included in the new dataset.</p>
-<p>If the –refresh-processes option is not included, then the new dataset will be constructed identically to the original dataset. The current backend does not currently support this option.</p>
+<dt id="materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone_as">
+<code class="sig-name descname">clone_as</code><span class="sig-paren">(</span><em class="sig-param">objects</em>, <em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.clone_as"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.clone_as" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new dataset with the selected dataset’s file selection, samples, and processes</p>
 </dd></dl>
 
 <dl class="py method">
@@ -250,8 +250,7 @@ Delete is always confirmed and is not included here.</p>
 <code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create new dataset</p>
 <dl class="simple">
-<dt>Using:</dt><dd><p>mc dataset &lt;dataset_name&gt; [–desc &lt;dataset description&gt;] –create
-mc dataset –name &lt;dataset_name&gt; [–desc &lt;dataset description&gt;] –create</p>
+<dt>Using:</dt><dd><p>mc dataset –create [–desc &lt;dataset description&gt;] &lt;dataset_name&gt;</p>
 </dd>
 </dl>
 </dd></dl>
@@ -269,7 +268,7 @@ mc dataset &lt;dataset_name_search&gt; –proj –delete</p>
 
 <dl class="py attribute">
 <dt id="materials_commons.cli.subcommands.dataset.DatasetSubcommand.desc">
-<code class="sig-name descname">desc</code><em class="property"> = 'List, create, publish, and download datasets. By default lists all public datasets at remote. With `--proj` lists private and public datasets for the current project.'</em><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.desc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">desc</code><em class="property"> = 'List, create, publish, and download datasets. By default lists project datasets. With `--all` lists all public datasets.'</em><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.desc" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -278,7 +277,7 @@ mc dataset &lt;dataset_name_search&gt; –proj –delete</p>
 <dd><p>Download dataset zipfile, –down</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The downloaded dataset is named &lt;dataset_id&gt;.zip</p>
+<p>The downloaded dataset is named dataset.&lt;dataset_uuid&gt;.zip</p>
 </div>
 </dd></dl>
 
@@ -294,12 +293,12 @@ mc dataset &lt;dataset_name_search&gt; –proj –delete</p>
 
 <dl class="py method">
 <dt id="materials_commons.cli.subcommands.dataset.DatasetSubcommand.list_data">
-<code class="sig-name descname">list_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.list_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.list_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">list_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.list_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.list_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="materials_commons.cli.subcommands.dataset.DatasetSubcommand.print_details">
-<code class="sig-name descname">print_details</code><span class="sig-paren">(</span><em class="sig-param">obj</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.print_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.print_details" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">print_details</code><span class="sig-paren">(</span><em class="sig-param">obj</em>, <em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.print_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.print_details" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -309,17 +308,6 @@ mc dataset &lt;dataset_name_search&gt; –proj –delete</p>
 <dl class="simple">
 <dt>Using:</dt><dd><p>mc dataset –id &lt;dataset_id&gt; –proj –publish
 mc dataset &lt;dataset_name_search&gt; –proj –publish</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="materials_commons.cli.subcommands.dataset.DatasetSubcommand.publish_private">
-<code class="sig-name descname">publish_private</code><span class="sig-paren">(</span><em class="sig-param">objects</em>, <em class="sig-param">args</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#DatasetSubcommand.publish_private"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.DatasetSubcommand.publish_private" title="Permalink to this definition">¶</a></dt>
-<dd><p>Publish private dataset</p>
-<dl class="simple">
-<dt>Using:</dt><dd><p>mc dataset –id &lt;dataset_id&gt; –proj –publish-private
-mc dataset &lt;dataset_name_search&gt; –proj –publish-private</p>
 </dd>
 </dl>
 </dd></dl>
@@ -342,6 +330,16 @@ mc dataset &lt;dataset_name_search&gt; –proj –unpublish</p>
 <code class="sig-prename descclassname">materials_commons.cli.subcommands.dataset.</code><code class="sig-name descname">make_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#make_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.make_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make argparse.ArgumentParser for <cite>mc dataset</cite></p>
 </dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.subcommands.dataset.print_dataset_details">
+<code class="sig-prename descclassname">materials_commons.cli.subcommands.dataset.</code><code class="sig-name descname">print_dataset_details</code><span class="sig-paren">(</span><em class="sig-param">client</em>, <em class="sig-param">project_id</em>, <em class="sig-param">dataset</em>, <em class="sig-param">file_selection=False</em>, <em class="sig-param">files=False</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#print_dataset_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.print_dataset_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.subcommands.dataset.print_published_dataset_details">
+<code class="sig-prename descclassname">materials_commons.cli.subcommands.dataset.</code><code class="sig-name descname">print_published_dataset_details</code><span class="sig-paren">(</span><em class="sig-param">client</em>, <em class="sig-param">dataset</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/dataset.html#print_published_dataset_details"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.dataset.print_published_dataset_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -366,7 +364,7 @@ mc dataset &lt;dataset_name_search&gt; –proj –unpublish</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

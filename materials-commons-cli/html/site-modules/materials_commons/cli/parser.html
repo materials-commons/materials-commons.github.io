@@ -85,9 +85,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
@@ -190,11 +192,11 @@
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;remote&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List servers&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">remote_subcommand</span><span class="p">},</span>
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;proj&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List projects&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">ProjSubcommand</span><span class="p">()},</span>
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List datasets&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">DatasetSubcommand</span><span class="p">()},</span>
-    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;expt&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List, create, delete, and modify experiments&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">ExptSubcommand</span><span class="p">()},</span>
+    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;expt&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List experiments&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">ExptSubcommand</span><span class="p">()},</span>
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;Initialize a new project&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">init_subcommand</span><span class="p">},</span>
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;clone&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;Clone an existing project&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">clone_subcommand</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List local and remote directory contents&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">ls_subcommand</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;mkdir&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;Make remote directories&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">mkdir_subcommand</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;List directory contents&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">ls_subcommand</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;mkdir&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;Make directories&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">mkdir_subcommand</span><span class="p">},</span>
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;rm&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;Remove files and directories&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">rm_subcommand</span><span class="p">},</span>
     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;mv&#39;</span><span class="p">,</span> <span class="s1">&#39;desc&#39;</span><span class="p">:</span> <span class="s1">&#39;Move files&#39;</span><span class="p">,</span> <span class="s1">&#39;subcommand&#39;</span><span class="p">:</span> <span class="n">mv_subcommand</span><span class="p">},</span>
     <span class="c1"># {&#39;name&#39;: &#39;diff&#39;, &#39;desc&#39;: &#39;Compare local and remote files&#39;, &#39;subcommand&#39;: diff_subcommand},</span>
@@ -338,7 +340,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

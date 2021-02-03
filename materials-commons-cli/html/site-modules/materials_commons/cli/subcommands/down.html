@@ -85,9 +85,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
@@ -378,8 +380,17 @@
 
 <div class="viewcode-block" id="make_parser"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.make_parser">[docs]</a><span class="k">def</span> <span class="nf">make_parser</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;Make argparse.ArgumentParser for `mc down`&quot;&quot;&quot;</span>
+
+    <span class="n">mc_down_description</span> <span class="o">=</span> <span class="s2">&quot;Download files from Materials Commons&quot;</span>
+
+    <span class="n">mc_down_usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    mc down [-r] [-p] [-o] [-f] [--no-compare] &lt;pathspec&gt; [&lt;pathspec&gt; ...]</span>
+<span class="s2">    mc down -p &lt;pathspec&gt;</span>
+<span class="s2">    mc down -g [-r] [--no-compare] [--label] &lt;pathspec&gt; [&lt;pathspec&gt; ...]&quot;&quot;&quot;</span>
+
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;download files&#39;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">mc_down_description</span><span class="p">,</span>
+        <span class="n">usage</span><span class="o">=</span><span class="n">mc_down_usage</span><span class="p">,</span>
         <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;mc down&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;paths&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Files or directories&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="s1">&#39;--recursive&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -491,7 +502,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

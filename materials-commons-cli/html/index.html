@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Materials Commons CLI (MCCLI) &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>The Materials Commons CLI &mdash; materials_commons.cli 2.0b6 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="install.html" /> 
+    <link rel="next" title="Overview" href="overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,9 +86,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
@@ -137,7 +139,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>The Materials Commons CLI (MCCLI)</li>
+      <li>The Materials Commons CLI</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,14 +158,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="the-materials-commons-cli-mccli">
-<h1>The Materials Commons CLI (MCCLI)<a class="headerlink" href="#the-materials-commons-cli-mccli" title="Permalink to this headline">¶</a></h1>
-<p>This is the Materials Commons CLI program, <cite>mc</cite>.</p>
+  <div class="section" id="the-materials-commons-cli">
+<h1>The Materials Commons CLI<a class="headerlink" href="#the-materials-commons-cli" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://materialscommons.org">Materials Commons</a> is a site for the materials community to store, share, and publish data. This package, <code class="docutils literal notranslate"><span class="pre">materials_commons.cli</span></code>, provides a command line program, <code class="docutils literal notranslate"><span class="pre">mc</span></code>, for use with Materials Commons.</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#install-using-pip">Install using pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#install-from-source">Install from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#checking-installation">Checking installation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="manual/index.html">User Manual</a><ul>
@@ -173,7 +178,21 @@
 <li class="toctree-l2"><a class="reference internal" href="manual/up_down_globus.html">Upload / Download</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/mc/index.html">``mc`` Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/clone.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/down.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/globus.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/init.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/ls.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">ls</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/mkdir.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mkdir</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/mv.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mv</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/proj.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">proj</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/remote.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">remote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/rm.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">rm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/mc/up.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="reference/materials_commons/materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
@@ -182,7 +201,6 @@
 </ul>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">mccli</span></code> is available on <a class="reference external" href="https://github.com/materials-commons/mccli">GitHub</a>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">mccli</span></code> is developed by the PRISMS Center at the University of Michigan. This work is supported by the U.S. Department of Energy, Office of Basic Energy Sciences, Division of Materials Sciences and Engineering under Award #DE-SC0008637.</p>
 </div>
 
 
@@ -193,7 +211,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -204,7 +222,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

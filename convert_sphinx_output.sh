@@ -4,11 +4,14 @@ cd $1
 mv _static site-static
 mv _modules site-modules
 mv _sources site-sources
+mv _images site-images
 find . -name "*.html" -exec sed -i -- 's/_static/site-static/g' \{\} \;
 find . -name "*.js" -exec sed -i -- 's/_static/site-static/g' \{\} \;
 find . -name "*.html" -exec sed -i -- 's/_modules/site-modules/g' \{\} \;
 find . -name "*.js" -exec sed -i -- 's/_modules/site-modules/g' \{\} \;
 find . -name "*.html" -exec sed -i -- 's/_sources/site-sources/g' \{\} \;
 find . -name "*.js" -exec sed -i -- 's/_sources/site-sources/g' \{\} \;
+find . -name "*.html" -exec sed -i -- 's/_images/site-images/g' \{\} \;
+find . -name "*.js" -exec sed -i -- 's/_images/site-images/g' \{\} \;
 find . -name "*.html--" -exec rm \{\} \;
 find . -name "*.js--" -exec rm \{\} \;

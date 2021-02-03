@@ -87,9 +87,11 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
@@ -192,14 +194,14 @@
 <p>Expected derived class members:</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 51%" />
-<col style="width: 49%" />
+<col style="width: 55%" />
+<col style="width: 45%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p>list_data(self, obj)</p></td>
+<tr class="row-odd"><td><p>list_data(self, args, obj)</p></td>
 <td><p>required</p></td>
 </tr>
-<tr class="row-even"><td><p>print_details(self, obj, out=sys.stdout)</p></td>
+<tr class="row-even"><td><p>print_details(self, obj, args, out=sys.stdout)</p></td>
 <td><p>required</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_all_from_experiment(self, expt)</p></td>
@@ -317,7 +319,7 @@ Delete is always confirmed and is not included here.</p></li>
 <dt id="materials_commons.cli.list_objects.ListObjects.__call__">
 <code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/list_objects.html#ListObjects.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.list_objects.ListObjects.__call__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute Materials Commons CLI command.</p>
-<p>mc proc [–all] [–expt] [–dataset] [–details | –json] [–id] [–uuid] [&lt;name&gt; …]</p>
+<p>mc proc [–all] [–expt] [–dataset] [–details | –json] [–id] [&lt;name&gt; …]</p>
 </dd></dl>
 
 <dl class="py method">
@@ -377,7 +379,7 @@ Delete is always confirmed and is not included here.</p></li>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

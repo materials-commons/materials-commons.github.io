@@ -85,9 +85,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
@@ -353,12 +355,11 @@
             <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">trunc</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
             <span class="s1">&#39;owner&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">owner_id</span><span class="p">,</span>    <span class="c1"># TODO: owner email</span>
             <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s1">&#39;uuid&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">uuid</span><span class="p">,</span>
             <span class="s1">&#39;modified_at&#39;</span><span class="p">:</span> <span class="n">format_time</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">updated_at</span><span class="p">)</span>
         <span class="p">})</span>
 
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="s1">&#39;modified_at&#39;</span><span class="p">]</span>
-    <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="s1">&#39;modified_at&#39;</span><span class="p">]</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;modified_at&#39;</span><span class="p">]</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;modified_at&#39;</span><span class="p">]</span>
     <span class="n">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="print_remote_help"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remote_help">[docs]</a><span class="k">def</span> <span class="nf">print_remote_help</span><span class="p">():</span>
@@ -515,7 +516,6 @@
         <span class="k">return</span> <span class="p">[</span>
             <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">as_is</span><span class="p">),</span>
             <span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="n">as_is</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span> <span class="s2">&quot;uuid&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="n">as_is</span><span class="p">),</span>
             <span class="p">(</span><span class="s2">&quot;checktime&quot;</span><span class="p">,</span> <span class="s2">&quot;checktime&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">format_time</span><span class="p">)</span>
         <span class="p">]</span></div>
 
@@ -828,7 +828,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># get config</span>
     <span class="n">proj_config_path</span> <span class="o">=</span> <span class="n">_proj_config</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">proj_config_path</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">proj_config_path</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">proj_config_path</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">ProjectConfig</span><span class="p">(</span><span class="n">project_path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span></div>
@@ -880,7 +880,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

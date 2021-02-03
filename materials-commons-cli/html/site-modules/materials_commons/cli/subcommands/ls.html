@@ -85,9 +85,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
@@ -164,6 +166,7 @@
 <span class="kn">import</span> <span class="nn">materials_commons.cli.functions</span> <span class="k">as</span> <span class="nn">clifuncs</span>
 <span class="kn">import</span> <span class="nn">materials_commons.cli.tree_functions</span> <span class="k">as</span> <span class="nn">treefuncs</span>
 <span class="kn">import</span> <span class="nn">materials_commons.cli.file_functions</span> <span class="k">as</span> <span class="nn">filefuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.tmp_functions</span> <span class="k">as</span> <span class="nn">tmpfuncs</span>
 <span class="kn">from</span> <span class="nn">materials_commons.cli.treedb</span> <span class="kn">import</span> <span class="n">LocalTree</span><span class="p">,</span> <span class="n">RemoteTree</span>
 
 <span class="c1">#  Want to print() something like:</span>
@@ -272,6 +275,7 @@
 
     <span class="k">if</span> <span class="n">checkdset</span><span class="p">:</span>
         <span class="n">columns</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_by&#39;</span><span class="p">]</span>
+        <span class="n">headers</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_by&#39;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="n">printjson</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -298,14 +302,135 @@
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--json&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print JSON exactly&#39;</span><span class="p">)</span>
 
     <span class="c1"># TODO: re-implement w/datasets</span>
-    <span class="c1"># # --include-files file_or_dir</span>
-    <span class="c1"># # --exclude-files file_or_dir</span>
-    <span class="c1"># # --clear-files file_or_dir</span>
+    <span class="c1"># # --include file_or_dir</span>
+    <span class="c1"># # --exclude file_or_dir</span>
+    <span class="c1"># # --clear file_or_dir</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--dataset&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;DATASET_ID&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Specify a dataset to act on.&#39;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--include&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Include files and directories in the specified dataset. Including a directory includes all files and sub-directories recursively, unless prevented by --exclude-files.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--include&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Include files and directories in the specified dataset. Including a directory includes all files and sub-directories recursively, unless prevented by --exclude.&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--exclude&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Exclude file and directories from the specified dataset. Excluding prevents inclusion of files and directories that would otherwise be included due to a higher-level directory being included.&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--clear&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Clear files and directories from the include/exclude selection lists of the specified dataset. A file or directory may still be included in or excluded from the dataset afterwards if a higher level directory is included or excluded&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span></div>
+
+<div class="viewcode-block" id="update_file_selection"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.update_file_selection">[docs]</a><span class="k">def</span> <span class="nf">update_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> \
+    <span class="n">include</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update the file selection dict</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (mcapi.Project): Current project</span>
+<span class="sd">        file_selection (dict): File selection before update</span>
+<span class="sd">        mcpaths (list of str): Materials Commons format file and directory paths</span>
+<span class="sd">        files_data: File comparisons from the `treecompare` function</span>
+<span class="sd">        dirs_data: Directory comparisons from the `treecompare` function</span>
+<span class="sd">        include (bool): If True, include files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        exclude (bool): If True, exclude files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        clear (bool): If True, remove files and directories in &quot;mcpaths&quot; from the file selection so they are not included or excluded</span>
+<span class="sd">        out: Output stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The file selection dict, updated.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: Local and remote types do not match, skipping</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">include</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">exclude</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                    <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="c1"># remove duplicates</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+        <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">file_selection</span></div>
+
+<div class="viewcode-block" id="update_dataset_file_selection"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.update_dataset_file_selection">[docs]</a><span class="k">def</span> <span class="nf">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> \
+    <span class="n">include</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Update a dataset file selection</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (mcapi.Project): Current project, expected to have &quot;remote&quot; and &quot;local_path&quot; attributes</span>
+<span class="sd">        dataset_id (str): ID of dataset to be updated</span>
+<span class="sd">        mcpaths (list of str): Materials Commons format file and directory paths</span>
+<span class="sd">        files_data: File comparisons from the `treecompare` function</span>
+<span class="sd">        dirs_data: Directory comparisons from the `treecompare` function</span>
+<span class="sd">        include (bool): If True, include files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        exclude (bool): If True, exclude files and directories in &quot;mcpaths&quot; to the file selection</span>
+<span class="sd">        clear (bool): If True, remove files and directories in &quot;mcpaths&quot; from the file selection so they are not included or excluded</span>
+<span class="sd">        out: Output stream</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The file selection dict, updated.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">file_selection</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span>
+
+    <span class="c1"># local function</span>
+    <span class="k">def</span> <span class="nf">_do</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="n">action</span><span class="p">:</span> <span class="n">path</span><span class="p">}</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Update: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">update</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: Local and remote types do not match, skipping</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">include</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;include_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_exclude_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;include_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_exclude_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">exclude</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;exclude_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_include_file&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;exclude_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_include_dir&quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                    <span class="n">_do</span><span class="p">(</span><span class="s2">&quot;remove_&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ls_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.ls.html#materials_commons.cli.subcommands.ls.ls_subcommand">[docs]</a><span class="k">def</span> <span class="nf">ls_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -357,62 +482,20 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;dataset actions are not yet implemented&quot;</span><span class="p">)</span> <span class="c1">#TODO datasets</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span>
-        <span class="n">file_selection</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">input_data</span><span class="p">[</span><span class="s1">&#39;file_selection&#39;</span><span class="p">]</span>
-        <span class="c1"># print(json.dumps(file_selection, indent=2))</span>
-
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">include</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">exclude</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
-
-                <span class="k">if</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="s2">&quot;: Local and remote types do not match, skipping&quot;</span><span class="p">)</span>
-                    <span class="k">continue</span>
-
-                <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">include</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;--include is not yet implemented&quot;</span><span class="p">)</span> <span class="c1">#TODO w/datasets</span>
-                    <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
-                        <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
-                            <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
-                        <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
-                            <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">exclude</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;--exclude is not yet implemented&quot;</span><span class="p">)</span> <span class="c1">#TODO w/datasets</span>
-                    <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
-                        <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
-                            <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                    <span class="k">elif</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dirs_data</span><span class="p">:</span>
-                        <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
-                            <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;--clear is not yet implemented&quot;</span><span class="p">)</span> <span class="c1">#TODO w/datasets</span>
-                    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
-                        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
-                            <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-
-            <span class="c1"># remove duplicates</span>
-            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_files&#39;</span><span class="p">,</span> <span class="s1">&#39;include_dirs&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
-                <span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">file_selection</span><span class="p">[</span><span class="n">name</span><span class="p">]))</span>
-
-            <span class="n">dataset</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
-            <span class="n">file_selection</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">input_data</span><span class="p">[</span><span class="s1">&#39;file_selection&#39;</span><span class="p">]</span>
-            <span class="c1"># print(&quot;Updated dataset file selection:&quot;)</span>
-            <span class="c1"># print(json.dumps(file_selection, indent=2))</span>
+            <span class="n">file_selection</span> <span class="o">=</span> <span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">exclude</span><span class="p">,</span> <span class="n">clear</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_selection</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
-            <span class="n">selected</span><span class="p">,</span> <span class="n">selected_by</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">check_file_selection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
+            <span class="n">selected</span><span class="p">,</span> <span class="n">selected_by</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">check_file_selection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
             <span class="n">files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected</span>
             <span class="k">if</span> <span class="n">selected_by</span><span class="p">:</span>
                 <span class="n">files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_by</span>
 
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">child_files_data</span> <span class="ow">in</span> <span class="n">child_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">child_files_data</span><span class="p">:</span>
-                <span class="n">selected</span><span class="p">,</span> <span class="n">selected_by</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">check_file_selection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
+                <span class="n">selected</span><span class="p">,</span> <span class="n">selected_by</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">check_file_selection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">)</span>
                 <span class="n">child_files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected</span>
                 <span class="k">if</span> <span class="n">selected_by</span><span class="p">:</span>
                     <span class="n">child_files_data</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="s1">&#39;selected_by&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_by</span>
@@ -440,7 +523,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

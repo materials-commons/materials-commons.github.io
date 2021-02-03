@@ -87,9 +87,11 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Reference</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.subcommands.html">materials_commons.cli.subcommands package</a></li>
@@ -189,6 +191,54 @@
 <dd><p>Make argparse.ArgumentParser for <cite>mc ls</cite></p>
 </dd></dl>
 
+<dl class="py function">
+<dt id="materials_commons.cli.subcommands.ls.update_dataset_file_selection">
+<code class="sig-prename descclassname">materials_commons.cli.subcommands.ls.</code><code class="sig-name descname">update_dataset_file_selection</code><span class="sig-paren">(</span><em class="sig-param">proj</em>, <em class="sig-param">dataset_id</em>, <em class="sig-param">mcpaths</em>, <em class="sig-param">files_data</em>, <em class="sig-param">dirs_data</em>, <em class="sig-param">include=False</em>, <em class="sig-param">exclude=False</em>, <em class="sig-param">clear=False</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#update_dataset_file_selection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.update_dataset_file_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a dataset file selection</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj</strong> (<em>mcapi.Project</em>) – Current project, expected to have “remote” and “local_path” attributes</p></li>
+<li><p><strong>dataset_id</strong> (<em>str</em>) – ID of dataset to be updated</p></li>
+<li><p><strong>mcpaths</strong> (<em>list of str</em>) – Materials Commons format file and directory paths</p></li>
+<li><p><strong>files_data</strong> – File comparisons from the <cite>treecompare</cite> function</p></li>
+<li><p><strong>dirs_data</strong> – Directory comparisons from the <cite>treecompare</cite> function</p></li>
+<li><p><strong>include</strong> (<em>bool</em>) – If True, include files and directories in “mcpaths” to the file selection</p></li>
+<li><p><strong>exclude</strong> (<em>bool</em>) – If True, exclude files and directories in “mcpaths” to the file selection</p></li>
+<li><p><strong>clear</strong> (<em>bool</em>) – If True, remove files and directories in “mcpaths” from the file selection so they are not included or excluded</p></li>
+<li><p><strong>out</strong> – Output stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The file selection dict, updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.cli.subcommands.ls.update_file_selection">
+<code class="sig-prename descclassname">materials_commons.cli.subcommands.ls.</code><code class="sig-name descname">update_file_selection</code><span class="sig-paren">(</span><em class="sig-param">proj</em>, <em class="sig-param">file_selection</em>, <em class="sig-param">mcpaths</em>, <em class="sig-param">files_data</em>, <em class="sig-param">dirs_data</em>, <em class="sig-param">include=False</em>, <em class="sig-param">exclude=False</em>, <em class="sig-param">clear=False</em>, <em class="sig-param">out=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='utf-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#update_file_selection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.update_file_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the file selection dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj</strong> (<em>mcapi.Project</em>) – Current project</p></li>
+<li><p><strong>file_selection</strong> (<em>dict</em>) – File selection before update</p></li>
+<li><p><strong>mcpaths</strong> (<em>list of str</em>) – Materials Commons format file and directory paths</p></li>
+<li><p><strong>files_data</strong> – File comparisons from the <cite>treecompare</cite> function</p></li>
+<li><p><strong>dirs_data</strong> – Directory comparisons from the <cite>treecompare</cite> function</p></li>
+<li><p><strong>include</strong> (<em>bool</em>) – If True, include files and directories in “mcpaths” to the file selection</p></li>
+<li><p><strong>exclude</strong> (<em>bool</em>) – If True, exclude files and directories in “mcpaths” to the file selection</p></li>
+<li><p><strong>clear</strong> (<em>bool</em>) – If True, remove files and directories in “mcpaths” from the file selection so they are not included or excluded</p></li>
+<li><p><strong>out</strong> – Output stream</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The file selection dict, updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -212,7 +262,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>

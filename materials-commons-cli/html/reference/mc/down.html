@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mc down &mdash; materials_commons.cli 2.0b6 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+        <script src="../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="mc globus" href="globus.html" />
+    <link rel="prev" title="mc clone" href="clone.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">``mc`` Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clone.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">clone</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="globus.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">globus</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="init.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">init</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ls.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">ls</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mkdir.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mkdir</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mv.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">mv</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">proj</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">remote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="rm.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">rm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="up.html"><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">up</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html"><code class="docutils literal notranslate"><span class="pre">mc</span></code> Reference</a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../site-sources/reference/mc/down.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mc-down">
+<h1><code class="docutils literal notranslate"><span class="pre">mc</span> <span class="pre">down</span></code><a class="headerlink" href="#mc-down" title="Permalink to this headline">¶</a></h1>
+<p><p>download files</p>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">mc</span> <span class="n">down</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">label</span> <span class="n">LABEL</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">compare</span><span class="p">]</span> <span class="p">[</span><span class="n">paths</span> <span class="p">[</span><span class="n">paths</span> <span class="o">...</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="section" id="Positional Arguments">
+<h2>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="option-list">
+<dt><kbd>paths</kbd></dt>
+<dd><p>Files or directories</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="Named Arguments">
+<h2>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="option-list">
+<dt><kbd>-r, --recursive</kbd></dt>
+<dd><p>Download directory contents recursively</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-f, --force</kbd></dt>
+<dd><p>Force overwrite of existing files</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-p, --print</kbd></dt>
+<dd><p>Print file, do not write</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>-o, --output</kbd></dt>
+<dd><p>Download file name</p>
+</dd>
+<dt><kbd>-g, --globus</kbd></dt>
+<dd><p>Use globus to download files.</p>
+<p>Default: False</p>
+</dd>
+<dt><kbd>--label</kbd></dt>
+<dd><p>Globus transfer label to make finding tasks simpler.</p>
+</dd>
+<dt><kbd>--no-compare</kbd></dt>
+<dd><p>Download remote without checking if local is equivalent.</p>
+<p>Default: False</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="globus.html" class="btn btn-neutral float-right" title="mc globus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="clone.html" class="btn btn-neutral float-left" title="mc clone" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

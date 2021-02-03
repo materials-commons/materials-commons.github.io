@@ -85,9 +85,11 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">User Manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../help.html">Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
@@ -186,19 +188,19 @@
 
 <span class="sd">    Expected derived class members:</span>
 
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
-<span class="sd">    |list_data(self, obj)                     |required                               |</span>
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
-<span class="sd">    |print_details(self, obj, out=sys.stdout) |required                               |</span>
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
-<span class="sd">    |get_all_from_experiment(self, expt)      |required if self.expt_member==True     |</span>
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
-<span class="sd">    |get_all_from_dataset(self, dataset)      |required if self.dataset_member==True  |</span>
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
-<span class="sd">    |get_all_from_project(self, proj)         |required if self.proj_member==True     |</span>
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
-<span class="sd">    |get_all(self)                            |required if self.non_proj_member==True |</span>
-<span class="sd">    +-----------------------------------------+---------------------------------------+</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
+<span class="sd">    |list_data(self, args, obj)                     |required                               |</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
+<span class="sd">    |print_details(self, obj, args, out=sys.stdout) |required                               |</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
+<span class="sd">    |get_all_from_experiment(self, expt)            |required if self.expt_member==True     |</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
+<span class="sd">    |get_all_from_dataset(self, dataset)            |required if self.dataset_member==True  |</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
+<span class="sd">    |get_all_from_project(self, proj)               |required if self.proj_member==True     |</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
+<span class="sd">    |get_all(self)                                  |required if self.non_proj_member==True |</span>
+<span class="sd">    +-----------------------------------------------+---------------------------------------+</span>
 
 <span class="sd">    Optional derived class members:</span>
 
@@ -315,7 +317,6 @@
         <span class="sd">&quot;&quot;&quot;Make argparse.ArgumentParser&quot;&quot;&quot;</span>
         <span class="n">expr_help</span> <span class="o">=</span> <span class="s1">&#39;select &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename_plural</span> <span class="o">+</span> <span class="s1">&#39; that match the given regex (default matches name)&#39;</span>
         <span class="n">id_help</span> <span class="o">=</span> <span class="s1">&#39;match id instead of name&#39;</span>
-        <span class="n">uuid_help</span> <span class="o">=</span> <span class="s1">&#39;match uuid instead of name&#39;</span>
         <span class="n">owner_help</span> <span class="o">=</span> <span class="s1">&#39;match owner instead of name&#39;</span>
         <span class="n">details_help</span> <span class="o">=</span> <span class="s1">&#39;print detailed information&#39;</span>
         <span class="n">regxsearch_help</span> <span class="o">=</span> <span class="s1">&#39;use regular expression search instead of match&#39;</span>
@@ -323,11 +324,11 @@
         <span class="n">json_help</span> <span class="o">=</span> <span class="s1">&#39;print JSON data&#39;</span>
         <span class="n">all_help</span> <span class="o">=</span> <span class="s1">&#39;list &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename_plural</span> <span class="o">+</span> <span class="s1">&#39; from all projects&#39;</span>
         <span class="n">expt_help</span> <span class="o">=</span> <span class="s1">&#39;restrict to &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename_plural</span> <span class="o">+</span> <span class="s1">&#39; in the current experiment&#39;</span>
-        <span class="n">dataset_help</span> <span class="o">=</span> <span class="s1">&#39;restrict to &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename_plural</span> <span class="o">+</span> <span class="s1">&#39; in the specified (by uuid) dataset&#39;</span>
+        <span class="n">dataset_help</span> <span class="o">=</span> <span class="s1">&#39;restrict to &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename_plural</span> <span class="o">+</span> <span class="s1">&#39; in the specified (by id) dataset&#39;</span>
         <span class="n">output_help</span> <span class="o">=</span> <span class="s1">&#39;output to file&#39;</span>
         <span class="n">force_help</span> <span class="o">=</span> <span class="s1">&#39;force overwrite of existing output file&#39;</span>
         <span class="n">create_help</span> <span class="o">=</span> <span class="s1">&#39;create a &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename</span>
-        <span class="n">delete_help</span> <span class="o">=</span> <span class="s1">&#39;delete a &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename</span> <span class="o">+</span> <span class="s1">&#39;, specified by uuid&#39;</span>
+        <span class="n">delete_help</span> <span class="o">=</span> <span class="s1">&#39;delete a &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename</span> <span class="o">+</span> <span class="s1">&#39;, specified by id&#39;</span>
         <span class="n">dry_run_help</span> <span class="o">=</span> <span class="s1">&#39;dry run deletion&#39;</span>
 
         <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;mc &quot;</span>
@@ -339,7 +340,6 @@
             <span class="n">prog</span><span class="o">=</span><span class="n">cmd</span><span class="p">)</span>
         <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;expr&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">expr_help</span><span class="p">)</span>
         <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--id&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">id_help</span><span class="p">)</span>
-        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--uuid&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">uuid_help</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_owner</span><span class="p">:</span>
             <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--owner&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">owner_help</span><span class="p">)</span>
         <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--details&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">details_help</span><span class="p">)</span>
@@ -385,7 +385,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Execute Materials Commons CLI command.</span>
 
-<span class="sd">        mc proc [--all] [--expt] [--dataset] [--details | --json] [--id] [--uuid] [&lt;name&gt; ...]</span>
+<span class="sd">        mc proc [--all] [--expt] [--dataset] [--details | --json] [--id] [&lt;name&gt; ...]</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
@@ -418,7 +418,7 @@
                     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Are you sure you want to permanently delete these? (&#39;Yes&#39;/&#39;No&#39;): &quot;</span>
                     <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">input_str</span> <span class="o">!=</span> <span class="s1">&#39;Yes&#39;</span><span class="p">:</span>
-                        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Aborting</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Exiting</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                         <span class="k">return</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">dry_run</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
@@ -447,7 +447,7 @@
                     <span class="k">if</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">request_confirmation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request_confirmation_actions</span><span class="p">[</span><span class="n">name</span><span class="p">]):</span>
                         <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)(</span><span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Aborting</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Exiting</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                         <span class="k">return</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)(</span><span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
@@ -464,7 +464,7 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">requires_project</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">project_exists</span><span class="p">():</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Not in a Materials Commons project directory.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Aborting</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Exiting</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;expt&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">expt</span><span class="p">:</span>
@@ -474,7 +474,9 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
                 <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;No &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">typename_plural</span> <span class="o">+</span> <span class="s2">&quot; found in experiment</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">[]</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">non_proj_member</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj_member</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">non_proj_member</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj_member</span><span class="p">)</span> \
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">non_proj_member</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj_member</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">all</span><span class="p">)</span> \
+            <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">non_proj_member</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj_member</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">project_exists</span><span class="p">()):</span>
             <span class="n">remote</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_remote</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_from_remote</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="n">remote</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -507,8 +509,6 @@
 
             <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
                 <span class="n">attrname</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span>
-            <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">uuid</span><span class="p">:</span>
-                <span class="n">attrname</span> <span class="o">=</span> <span class="s1">&#39;uuid&#39;</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_owner</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">owner</span><span class="p">:</span>
                 <span class="n">attrname</span> <span class="o">=</span> <span class="s1">&#39;owner&#39;</span>
             <span class="k">else</span><span class="p">:</span>
@@ -534,7 +534,7 @@
                 <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;--details not currently possible for this type of object</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">print_details</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">print_details</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
                 <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">json</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
@@ -550,7 +550,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_data</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list_data</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
 
             <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">sort_by</span><span class="p">):</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
@@ -573,7 +573,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, PRISMS Center
+        &copy; Copyright 2021, PRISMS Center
 
     </p>
   </div>
