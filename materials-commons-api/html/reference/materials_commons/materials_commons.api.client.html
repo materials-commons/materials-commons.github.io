@@ -1,0 +1,1350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>materials_commons.api.client module &mdash; materials_commons.api 2.0b3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+        <script src="../../site-static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="materials_commons.api.models module" href="materials_commons.api.models.html" />
+    <link rel="prev" title="materials_commons.api package" href="materials_commons.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.api`` Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.api.html">materials_commons.api package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.api.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.api.client module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.models.html">materials_commons.api.models module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.query_params.html">materials_commons.api.query_params module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.requests.html">materials_commons.api.requests module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.util.html">materials_commons.api.util module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.html#module-materials_commons.api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">materials_commons.api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">materials_commons</a> &raquo;</li>
+        
+          <li><a href="materials_commons.api.html">materials_commons.api package</a> &raquo;</li>
+        
+      <li>materials_commons.api.client module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../site-sources/reference/materials_commons/materials_commons.api.client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-materials_commons.api.client">
+<span id="materials-commons-api-client-module"></span><h1>materials_commons.api.client module<a class="headerlink" href="#module-materials_commons.api.client" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="materials_commons.api.client.Client">
+<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.client.</code><code class="sig-name descname">Client</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">apikey</span></em>, <em class="sig-param"><span class="n">base_url</span><span class="o">=</span><span class="default_value">'https://materialscommons.org/api'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.add_dataset_to_community">
+<code class="sig-name descname">add_dataset_to_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.add_dataset_to_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.add_dataset_to_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a dataset to a community. The dataset must have been published.
+:param int dataset_id:
+:param int community_id:
+:rtype Community
+:return: The community with the dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.add_user_to_project">
+<code class="sig-name descname">add_user_to_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.add_user_to_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.add_user_to_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds user to project
+:param int project_id: Id of project to add user to
+:param int user_id: Id of user to add to project
+:return: The updated project
+:rtype Project
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.assign_doi_to_dataset">
+<code class="sig-name descname">assign_doi_to_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.assign_doi_to_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.assign_doi_to_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign DOI to existing dataset
+:param int project_id: The project to create the dataset in
+:param int dataset_id: The id of the dataset
+:return: The updated dataset with DOI
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.check_file_by_path_in_dataset">
+<code class="sig-name descname">check_file_by_path_in_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.check_file_by_path_in_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.check_file_by_path_in_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if file path is in the dataset selection. Throws an error if the file_path isn’t in the project.
+:param int project_id: project dataset and file_path are in
+:param int dataset_id: data to check file_selection against
+:param str file_path: file_path to check against dataset file_selection
+:return: {‘in_dataset’: True} or {‘in_dataset’: False}
+:exception if file_path doesn’t exist in project
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.check_file_in_dataset">
+<code class="sig-name descname">check_file_in_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.check_file_in_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.check_file_in_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if file is in the dataset selection
+:param int project_id: project dataset and file are in
+:param int dataset_id: dataset to check file_selection against
+:param int file_id: file to check
+:return: {‘in_dataset’: True} or {‘in_dataset’: False}
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.close_globus_transfer">
+<code class="sig-name descname">close_globus_transfer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.close_globus_transfer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.close_globus_transfer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes an existing globus transfer. If there isn’t an open transfer for the user in project then
+does nothing and returns success
+:param int project_id: The id of the project to close globus transfer for the current user
+:return: None
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_activity">
+<code class="sig-name descname">create_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_activity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new activity in the project
+:param project_id: The project to create the activity int
+:param str name: Name of activity
+:param CreateActivityRequest attrs: Attributes on the activity
+:return: The activity to create
+:rtype Activity
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_community">
+<code class="sig-name descname">create_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new community owned by the user.
+:param str name: Name of community
+:param CreateCommunityRequest attrs: (optional) Additional attributes for the create request
+:return: The created community
+:rtype Community
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_dataset">
+<code class="sig-name descname">create_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new dataset in a project
+:param int project_id: The project to create the dataset in
+:param string name: The name of the dataset
+:param CreateDatasetRequest attrs: Attributes of the dataset
+:return: The created dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_directory">
+<code class="sig-name descname">create_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">parent_id</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new directory in project in the given directory
+:param int project_id: The id of the project the directory will be created in
+:param str name: Name of directory
+:param int parent_id: Parent directory id - The directory that this directory will be in
+:param CreateDirectoryRequest attrs: Additional attributes on the directory
+:return: The created directory
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_entity">
+<code class="sig-name descname">create_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new entity in the project
+:param project_id: The id of the project to create entity in
+:param str name: The entity name
+:param CreateEntityRequest attrs: Attributes of the entity
+:return: The created entity
+:rtype Entity
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_experiment">
+<code class="sig-name descname">create_experiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new experiment in a project
+:param int project_id: The id of the project the experiment is in
+:param str name: Name of experiment
+:param CreateExperimentRequest attrs: Additional attributes on the experiment
+:return: The created experiment
+:rtype Experiment
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_globus_download_request">
+<code class="sig-name descname">create_globus_download_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_globus_download_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_globus_download_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a globus download request for a project
+:param int project_id:
+:param str name: The name of the download request
+:return: The globus download
+:rtype GlobusDownload
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_globus_upload_request">
+<code class="sig-name descname">create_globus_upload_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_globus_upload_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_globus_upload_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new globus request in the given project
+:param int project_id: The project id for the upload
+:param name: The name of the request
+:return: The globus request
+:rtype GlobusUpload
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_link_in_community">
+<code class="sig-name descname">create_link_in_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">community_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_link_in_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_link_in_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a link to a community
+:param int community_id: The community to add the link to
+:param str name: name to show for url
+:param str url: url to add
+:param CreateLinkRequest attrs: additional attrs
+:return: The community
+:rtype Community
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.create_project">
+<code class="sig-name descname">create_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.create_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.create_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new project for the authenticated user. Project name must be unique
+:param str name: Name of project
+:param CreateProjectRequest attrs: (optional) Additional attributes for the create request
+:return: The created project
+:rtype Project
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_activity">
+<code class="sig-name descname">delete_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">activity_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_activity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an activity
+:param project_id: The id of the project containing the activity
+:param activity_id: The id of the activity to delete
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_dataset">
+<code class="sig-name descname">delete_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an unpublished dataset
+:param int project_id: The project id containing the dataset
+:param int dataset_id: The id of the dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_directory">
+<code class="sig-name descname">delete_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should not be used yet: Delete a directory only if the directory is empty
+:param int project_id: The project id containing the directory to delete
+:param int directory_id: The id of the directory to delete
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_entity">
+<code class="sig-name descname">delete_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">entity_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an entity
+:param int project_id: The id of the project containing the entity
+:param int entity_id: The entity id
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_experiment">
+<code class="sig-name descname">delete_experiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">experiment_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete experiment in project
+:param int project_id: The id of the project the experiment is in
+:param experiment_id: The experiment id
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_file">
+<code class="sig-name descname">delete_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a file in a project
+:param int project_id: The id of the project containing the file
+:param int file_id: The id of the file to delete
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_file_from_community">
+<code class="sig-name descname">delete_file_from_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_file_from_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_file_from_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes file from the community and deletes the file on the system.
+:param int file_id: The file to delete
+:param int community_id: The community to delete it from
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_globus_download_request">
+<code class="sig-name descname">delete_globus_download_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">globus_download_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_globus_download_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_globus_download_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an existing globus download request
+:param int project_id: The id of the project containing the download request
+:param int globus_download_id: The id of the globus download to delete
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_globus_upload_request">
+<code class="sig-name descname">delete_globus_upload_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">globus_upload_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_globus_upload_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_globus_upload_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an existing globus upload request
+:param int project_id:
+:param int globus_upload_id:
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_link_from_community">
+<code class="sig-name descname">delete_link_from_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_id</span></em>, <em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_link_from_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_link_from_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a link from a community and remove it from the system.
+:param int link_id: The link to remove
+:param int community_id: The community to delete the link from
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_project">
+<code class="sig-name descname">delete_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a project
+:param int project_id: id of project to delete
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.delete_with_value">
+<code class="sig-name descname">delete_with_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.delete_with_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.delete_with_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.download">
+<code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">to</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.download" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.download_dataset_zipfile">
+<code class="sig-name descname">download_dataset_zipfile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">to</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.download_dataset_zipfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.download_dataset_zipfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the zipfile for a published dataset
+:param int dataset_id: The id of the published dataset
+:param str to: The path including the file name to write the download to
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.download_file">
+<code class="sig-name descname">download_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">to</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.download_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.download_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download a file
+:param int project_id: The project id containing the file to download
+:param int file_id: The id of the file to download
+:param str to: path including file name to download file to
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.download_file_by_path">
+<code class="sig-name descname">download_file_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">to</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.download_file_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.download_file_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download a file by path
+:param int project_id: The project id containing the file to download
+:param str path: The path in the project of the file
+:param str to: path including file name to download file to
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.finish_globus_upload_request">
+<code class="sig-name descname">finish_globus_upload_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">globus_upload_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.finish_globus_upload_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.finish_globus_upload_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a globus upload request as finished
+:param int project_id: The project id for the upload
+:param int globus_upload_id: The id of the globus upload
+:return: The globus upload
+:rtype GlobusUpload
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">other_params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_activity">
+<code class="sig-name descname">get_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">activity_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_activity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an activity
+:param int project_id: The id of the project containing the activity
+:param int activity_id: The id of the activity
+:param params:
+:return: The activity
+:rtype Activity
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_activities">
+<code class="sig-name descname">get_all_activities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_activities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_activities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all activities in a project
+:param int project_id: The id of the project
+:param params:
+:return: List of activities
+:rtype Activity[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_datasets">
+<code class="sig-name descname">get_all_datasets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all datasets in a project
+:param int project_id: The project id
+:param params:
+:return: The list of datasets
+:rtype Dataset[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_entities">
+<code class="sig-name descname">get_all_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_entities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all entities in a project
+:param int project_id: The id of the project
+:param params:
+:return: The list of entities
+:rtype Entity[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_experiments">
+<code class="sig-name descname">get_all_experiments</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_experiments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_experiments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all experiments for a given project
+:param int project_id: The project id
+:param params:
+:return: A list of experiments
+:rtype Experiment[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_globus_download_requests">
+<code class="sig-name descname">get_all_globus_download_requests</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_globus_download_requests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_globus_download_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all globus download requests for a project
+:param int project_id: The project
+:return: List of all globus downloads
+:rtype GlobusDownload[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_globus_upload_requests">
+<code class="sig-name descname">get_all_globus_upload_requests</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_globus_upload_requests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_globus_upload_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all globus uploads in a project
+:param int project_id: The project id
+:return: List of globus uploads
+:rtype GlobusUpload[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_my_communities">
+<code class="sig-name descname">get_all_my_communities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_my_communities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_my_communities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all communities owned by user
+:rtype Community[]
+:return: List of communities
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_projects">
+<code class="sig-name descname">get_all_projects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_projects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all the projects a user has access to
+:param params:
+:return: List of projects
+:rtype Project[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_public_communities">
+<code class="sig-name descname">get_all_public_communities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_public_communities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_public_communities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all public communities
+:rtype Community[]
+:return: List of public communities
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_all_published_datasets">
+<code class="sig-name descname">get_all_published_datasets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_all_published_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_all_published_datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all published datasets
+:param params:
+:return: The list of published datasets
+:rtype Dataset[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_apikey">
+<em class="property">static </em><code class="sig-name descname">get_apikey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span></em>, <em class="sig-param"><span class="n">password</span></em>, <em class="sig-param"><span class="n">base_url</span><span class="o">=</span><span class="default_value">'https://materialscommons.org/api'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_apikey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_apikey" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_community">
+<code class="sig-name descname">get_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">community_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a commmunity
+:param int community_id: The id of the community to get
+:param params: Query specific parameters
+:rtype Community
+:return: The Community
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_dataset">
+<code class="sig-name descname">get_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get dataset in a project
+:param int project_id: The project id containing the dataset
+:param int dataset_id: The dataset id
+:param params:
+:return: The dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_dataset_activities">
+<code class="sig-name descname">get_dataset_activities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_dataset_activities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_dataset_activities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get activities for a dataset
+:param int project_id: The project id containing the dataset
+:param int dataset_id: The dataset id
+:param params:
+:rtype: Activity[]
+:return: The activities
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_dataset_entities">
+<code class="sig-name descname">get_dataset_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_dataset_entities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_dataset_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get entities for a dataset
+:param int project_id: The project id containing the dataset
+:param int dataset_id: The dataset id
+:param params:
+:rtype: Entity[]
+:return: The entities
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_dataset_files">
+<code class="sig-name descname">get_dataset_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_dataset_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_dataset_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get files for a dataset
+:param int project_id: The project id containing the dataset
+:param int dataset_id: The dataset id
+:param params:
+:rtype: File[]
+:return: The files
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_directory">
+<code class="sig-name descname">get_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a directory in the project
+:param int project_id: The id of the project the directory is in
+:param int directory_id: The directory id
+:param params:
+:return: The directory
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_entity">
+<code class="sig-name descname">get_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">entity_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an entity
+:param int project_id: The id of the project containing the entity
+:param int entity_id: The id of the entity
+:param params:
+:return: The entity
+:rtype Entity
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_experiment">
+<code class="sig-name descname">get_experiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">experiment_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an experiment
+:param int experiment_id: The experiment id
+:param params:
+:return: The experiment
+:rtype Experiment
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_file">
+<code class="sig-name descname">get_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get file in project
+:param int project_id: The id of the project containing the file
+:param int file_id: The id of the file
+:param params:
+:return: The file
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_file_by_path">
+<code class="sig-name descname">get_file_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_file_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_file_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get file by path in project
+:param int project_id: The id of the project containing the file
+:param file_path: The path to the file
+:return: The file
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_file_versions">
+<code class="sig-name descname">get_file_versions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_file_versions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_file_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get versions for file in project
+:param int project_id: The id of the project containing the file
+:param int file_id: The id of the file
+:param params:
+:return: File versions
+:rtype File[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_globus_download_request">
+<code class="sig-name descname">get_globus_download_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">globus_download_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_globus_download_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_globus_download_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a globus download
+:param int project_id: The id of the project containing the globus download
+:param int globus_download_id: The globus download id
+:return: The globus download
+:rtype GlobusDownload
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_no_value">
+<code class="sig-name descname">get_no_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_no_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_no_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_project">
+<code class="sig-name descname">get_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a project by its id
+:param int project_id: Project id for project
+:param params:
+:return: The project
+:rtype Project
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_published_dataset">
+<code class="sig-name descname">get_published_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_published_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_published_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get published dataset
+:param int dataset_id: The dataset id
+:param params:
+:return: The dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_published_dataset_activities">
+<code class="sig-name descname">get_published_dataset_activities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_published_dataset_activities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_published_dataset_activities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get activities for a published dataset
+:param int dataset_id: The dataset id
+:param params:
+:rtype: Activity[]
+:return: The activities
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_published_dataset_entities">
+<code class="sig-name descname">get_published_dataset_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_published_dataset_entities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_published_dataset_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get entities for a published dataset
+:param int dataset_id: The dataset id
+:param params:
+:rtype: Entity[]
+:return: The entities
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_published_dataset_files">
+<code class="sig-name descname">get_published_dataset_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_published_dataset_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_published_dataset_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get files for a published dataset
+:param int dataset_id: The dataset id
+:param params:
+:rtype: File[]
+:return: The files
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_published_datasets_for_author">
+<code class="sig-name descname">get_published_datasets_for_author</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">author</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_published_datasets_for_author"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_published_datasets_for_author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all published datasets for an author
+:param str author: Author name string
+:return: List of datasets author is on
+:rtype Dataset[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_published_datasets_for_tag">
+<code class="sig-name descname">get_published_datasets_for_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_published_datasets_for_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_published_datasets_for_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all published datasets tagged with tag
+:param str tag: tag to use
+:return: List of datasets tagged with tag
+:rtype Dataset[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_server_info">
+<code class="sig-name descname">get_server_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_server_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_server_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets information about the materials commons server
+:return: server information
+:rtype Server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.get_user_by_email">
+<code class="sig-name descname">get_user_by_email</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.get_user_by_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.get_user_by_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a user by their email
+:param string email: email address of user to lookup
+:return: The user
+:rtype User
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.import_dataset">
+<code class="sig-name descname">import_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.import_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.import_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launches a job to import a dataset into a project. The import will complete at some
+point in the future. There isn’t currently a way to query the import status.
+:param int dataset_id: The dataset id to import
+:param int project_id: A project id the user has access to
+:param string directory_name: The top level directory to import the dataset into (will be created)
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_authors_in_community">
+<code class="sig-name descname">list_authors_in_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_authors_in_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_authors_in_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all unique authors across all the published datasets in a community
+:param int community_id: The community to list the authors for
+:return: The list of authors
+:rtype string[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_directory">
+<code class="sig-name descname">list_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all the files and directories in a given directory
+:param int project_id: The id of the project the directory is in
+:param int directory_id: The directory id
+:param params:
+:return: A list of the files and directories in the given directory
+:rtype File[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_directory_by_path">
+<code class="sig-name descname">list_directory_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_directory_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_directory_by_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all the files and directories at given path
+:param int project_id: The id of the project the path is in
+:param str path:
+:param params:
+:return: A list of th efiles and directories in the given path
+:rtype File[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_published_authors">
+<code class="sig-name descname">list_published_authors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_published_authors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_published_authors" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all published authors
+:return: List of authors
+:rtype User[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_tags_for_published_datasets">
+<code class="sig-name descname">list_tags_for_published_datasets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_tags_for_published_datasets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_tags_for_published_datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all tags used in published datasets
+:return: List of tags
+:rtype Tag[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_tags_in_community">
+<code class="sig-name descname">list_tags_in_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_tags_in_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_tags_in_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all the unique tags across all the published datasets in a community
+:param int community_id: The community to list the tags for
+:return: The list of tags
+:rtype Tag[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.list_users">
+<code class="sig-name descname">list_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.list_users"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.list_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>List users of Materials Commons
+:return: List of users
+:rtype User[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.login">
+<em class="property">static </em><code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span></em>, <em class="sig-param"><span class="n">password</span></em>, <em class="sig-param"><span class="n">base_url</span><span class="o">=</span><span class="default_value">'https://materialscommons.org/api'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.move_directory">
+<code class="sig-name descname">move_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">to_directory_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.move_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.move_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves a directory into another directory
+:param int project_id: The project id that target and destination directories are in
+:param int directory_id: Id of directory to move
+:param int to_directory_id: Id of the destination directory
+:return: The directory that was moved
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.move_file">
+<code class="sig-name descname">move_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">to_directory_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.move_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.move_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move file into a different directory
+:param int project_id: The project id of the file and the destination directory
+:param int file_id: The id of the file to move
+:param int to_directory_id: The id of the destination directory
+:return: The moved file
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.open_globus_transfer">
+<code class="sig-name descname">open_globus_transfer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.open_globus_transfer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.open_globus_transfer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a globus transfer request for current user in project. If one is already
+active then it returns the already active request.
+:param int project_id: The id of the project associated with this globus transfer
+:return: The globus transfer
+:rtype GlobusTransfer
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.publish_dataset">
+<code class="sig-name descname">publish_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.publish_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.publish_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Publish a dataset
+:param int project_id: The id of the project containing the dataset
+:param int dataset_id: The dataset id
+:return: The dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.put">
+<code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.put" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.remove_dataset_from_community">
+<code class="sig-name descname">remove_dataset_from_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.remove_dataset_from_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.remove_dataset_from_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a dataset from a community.
+:param int dataset_id:
+:param int community_id:
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.remove_user_from_project">
+<code class="sig-name descname">remove_user_from_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.remove_user_from_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.remove_user_from_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove user from project
+:param int project_id: Id of project to add user to
+:param int user_id: Id of user to add to project
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.rename_directory">
+<code class="sig-name descname">rename_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.rename_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.rename_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename a given directory
+:param int project_id: The project id that the directory is in
+:param int directory_id: The id of the directory being renamed
+:param name: The new name of the directory
+:return: The directory that was renamed
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.rename_file">
+<code class="sig-name descname">rename_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.rename_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.rename_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename a file
+:param int project_id: The project id of the file to rename
+:param int file_id: The id of the file to rename
+:param str name: The files new name
+:return: The rename file
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.search_published_data">
+<code class="sig-name descname">search_published_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">search_str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.search_published_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.search_published_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search published datasets for matching string
+:param str search_str: string to search on
+:return: List of matches
+:rtype: Searchable[]
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.set_as_active_file">
+<code class="sig-name descname">set_as_active_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.set_as_active_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.set_as_active_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set file as active version, changing current active file version to inactive
+:param int project_id: The id of the project containing the file
+:param int file_id: The id of the file
+:return: File
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.set_debug_off">
+<em class="property">static </em><code class="sig-name descname">set_debug_off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.set_debug_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.set_debug_off" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.set_debug_on">
+<em class="property">static </em><code class="sig-name descname">set_debug_on</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.set_debug_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.set_debug_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.unpublish_dataset">
+<code class="sig-name descname">unpublish_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.unpublish_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.unpublish_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpublish an published dataset
+:param int project_id: The id of the project containing the dataset
+:param int dataset_id: The dataset id
+:return: The dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_dataset">
+<code class="sig-name descname">update_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an existing dataset
+:param int project_id: The project to create the dataset in
+:param int dataset_id: The id of the dataset
+:param str name: The name of the dataset (doesn’t need to be different)
+:param UpdateDatasetRequest attrs: The attributes to update
+:return: The updated dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_dataset_activities">
+<code class="sig-name descname">update_dataset_activities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">activity_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_dataset_activities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_dataset_activities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle whether an activity is in a dataset
+:param int project_id: Project id containing dataset and activity
+:param int dataset_id: Id of dataset
+:param int activity_id: Id of activity
+:return: The updated dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_dataset_entities">
+<code class="sig-name descname">update_dataset_entities</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">entity_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_dataset_entities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_dataset_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle whether an entity is in a dataset
+:param int project_id: Project id containing dataset and entity
+:param int dataset_id: Id of dataset
+:param int entity_id: Id of entity
+:return: The updated dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_dataset_file_selection">
+<code class="sig-name descname">update_dataset_file_selection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">file_selection</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_dataset_file_selection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_dataset_file_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the file selection for a dataset
+:param int project_id: Project id containing dataset
+:param int dataset_id: Id of dataset
+:param file_selection: {</p>
+<blockquote>
+<div><p>“include_file”: str,
+“remove_include_file”: str,
+“exclude_file”: str,
+“remove_exclude_file”: str,
+“include_dir”: str,
+“remove_include_dir”: str,
+“exclude_dir”: str,
+“remove_exclude_dir”: str</p>
+</div></blockquote>
+<p>}
+:return: The updated dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_dataset_workflows">
+<code class="sig-name descname">update_dataset_workflows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">dataset_id</span></em>, <em class="sig-param"><span class="n">workflow_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_dataset_workflows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_dataset_workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle whether an workflow is in a dataset
+:param int project_id: Project id containing dataset and workflow
+:param int dataset_id: Id of dataset
+:param int workflow_id: Id of workflow
+:return: The updated dataset
+:rtype Dataset
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_directory">
+<code class="sig-name descname">update_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">attrs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update attributes on a directory
+:param int project_id: The project id containing the directory
+:param int directory_id: The id of the directory to update
+:param attrs: Attributes to update
+:return: The updated directory
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_experiment">
+<code class="sig-name descname">update_experiment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">experiment_id</span></em>, <em class="sig-param"><span class="n">attrs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update attributes of an experiment
+:param int experiment_id: The experiment id
+:param UpdateExperimentRequest attrs: Attributes to update
+:return: The updated experiment
+:rtype Experiment
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_experiment_workflows">
+<code class="sig-name descname">update_experiment_workflows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">experiment_id</span></em>, <em class="sig-param"><span class="n">workflow_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_experiment_workflows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_experiment_workflows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle whether an workflow is in the experiment
+:param int project_id: Id of project containing the experiment and workflow
+:param experiment_id: Id of experiment
+:param workflow_id: Id of workflow
+:return: The updated experiment
+:rtype Experiment
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_file">
+<code class="sig-name descname">update_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_id</span></em>, <em class="sig-param"><span class="n">attrs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update attributes of a file
+:param project_id:
+:param file_id:
+:param UpdateFileRequest attrs: Attributes to update
+:return: The updated file
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.update_project">
+<code class="sig-name descname">update_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">attrs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.update_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.update_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the given project
+:param int project_id: Id of project to update
+:param UpdateProjectRequest attrs: The attributes to update on the project
+:return: The updated project
+:rtype Project
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.upload">
+<code class="sig-name descname">upload</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.upload_bytes">
+<code class="sig-name descname">upload_bytes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.upload_bytes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.upload_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.upload_file">
+<code class="sig-name descname">upload_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">directory_id</span></em>, <em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.upload_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.upload_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uploads a file to a project
+:param int project_id: The project to upload file to
+:param int directory_id: The directory in the project to upload the file into
+:param str file_path: path of file to upload
+:return: The created file
+:rtype File
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.upload_file_to_community">
+<code class="sig-name descname">upload_file_to_community</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em>, <em class="sig-param"><span class="n">community_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.upload_file_to_community"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.upload_file_to_community" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: A file has other attributes such as description and summary
+Uploads a file to a community
+:param str file_path: path of file to upload
+:param int community_id: The community to upload the file to
+:return: The community
+:rtype Community
+:raises MCAPIError</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="materials_commons.api.client.Client.upload_raw">
+<code class="sig-name descname">upload_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">urlpart</span></em>, <em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#Client.upload_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.Client.upload_raw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt id="materials_commons.api.client.MCAPIError">
+<em class="property">exception </em><code class="sig-prename descclassname">materials_commons.api.client.</code><code class="sig-name descname">MCAPIError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">response</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#MCAPIError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.MCAPIError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="materials_commons.api.client.merge_dicts">
+<code class="sig-prename descclassname">materials_commons.api.client.</code><code class="sig-name descname">merge_dicts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict1</span></em>, <em class="sig-param"><span class="n">dict2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/client.html#merge_dicts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.client.merge_dicts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="materials_commons.api.models.html" class="btn btn-neutral float-right" title="materials_commons.api.models module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="materials_commons.api.html" class="btn btn-neutral float-left" title="materials_commons.api package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, PRISMS Center
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
