@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.subcommands.down &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.subcommands.down &mdash; materials_commons.cli 2.0b7 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../site-static/documentation_options.js"></script>
         <script src="../../../../site-static/jquery.js"></script>
         <script src="../../../../site-static/underscore.js"></script>
         <script src="../../../../site-static/doctools.js"></script>
-        <script src="../../../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../site-static/js/theme.js"></script>
 
@@ -49,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -132,6 +137,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -195,7 +202,8 @@
 
     <span class="k">return</span> <span class="n">download</span>
 
-<span class="k">def</span> <span class="nf">_check_download_file</span><span class="p">(</span><span class="n">proj_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">local_path</span><span class="p">,</span> <span class="n">remote</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_check_download_file</span><span class="p">(</span><span class="n">proj_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">local_path</span><span class="p">,</span> <span class="n">remote</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span>
+                         <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Prompt user for confirmation before overwriting an existing local file</span>
 
 <span class="sd">    Arguments</span>
@@ -204,6 +212,8 @@
 <span class="sd">    file_id: int, ID of file to download</span>
 <span class="sd">    local_path: str, Location to download file. Intermediate directories are created if necessary.</span>
 <span class="sd">    remote: mcapi.Client, Materials Commons Client</span>
+<span class="sd">    working_dir (str): Current working directory, used for finding relative</span>
+<span class="sd">        paths and printing messages.</span>
 <span class="sd">    force: bool (optional, default=False) If True, force overwrite existing file without confirmation.</span>
 
 <span class="sd">    Returns</span>
@@ -217,7 +227,7 @@
         <span class="n">remote</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="n">proj_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">local_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">local_path</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overwrite &#39;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">+</span> <span class="s2">&quot;&#39;?&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overwrite &#39;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_path</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;?&quot;</span><span class="p">)</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">ans</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;y/n: &#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
@@ -230,28 +240,7 @@
                 <span class="k">break</span>
     <span class="k">return</span> <span class="kc">None</span>
 
-
-<span class="c1"># def _check_download_directory(proj, dir, dirpath=None, recursive=False, force=False):</span>
-<span class="c1">#</span>
-<span class="c1">#     if dirpath is None:</span>
-<span class="c1">#         dirpath = dir.path</span>
-<span class="c1">#     results = []</span>
-<span class="c1">#     children = dir.get_children()</span>
-<span class="c1">#     for child in children:</span>
-<span class="c1">#</span>
-<span class="c1">#         if isinstance(child, mcapi.File):</span>
-<span class="c1">#             p = os.path.join(dirpath, child.name)</span>
-<span class="c1">#             result_path = _check_download_file(proj.id, child.id, p, proj.remote, force=force)</span>
-<span class="c1">#             if result_path is not None:</span>
-<span class="c1">#                 print(&quot;downloaded:&quot;, os.path.relpath(result_path, os.getcwd()))</span>
-<span class="c1">#             results.append(result_path)</span>
-<span class="c1">#</span>
-<span class="c1">#         elif isinstance(child, mcapi.Directory) and recursive:</span>
-<span class="c1">#             _check_download_directory(proj, child, dirpath=os.path.join(dirpath, child.name), recursive=recursive, force=force)</span>
-<span class="c1">#</span>
-<span class="c1">#     return results</span>
-
-<div class="viewcode-block" id="standard_download"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.standard_download">[docs]</a><span class="k">def</span> <span class="nf">standard_download</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="standard_download"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.standard_download">[docs]</a><span class="k">def</span> <span class="nf">standard_download</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Download files and directories</span>
 
 <span class="sd">    Arguments</span>
@@ -259,6 +248,9 @@
 <span class="sd">    proj: mcapi.Project, Project to download from</span>
 
 <span class="sd">    path: str, Materials Commons style path of file or directory to download</span>
+
+<span class="sd">    working_dir (str): Current working directory, used for finding relative</span>
+<span class="sd">        paths and printing messages.</span>
 
 <span class="sd">    force: bool (optional, default=False) If True, force overwrite existing files without confirmation.</span>
 
@@ -287,7 +279,7 @@
 <span class="sd">    success: bool, True if download succeeds, False otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">local_abspath</span>
@@ -310,13 +302,17 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">result_path</span> <span class="o">=</span>  <span class="n">_check_download_file</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">files_data</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">)</span>
+                <span class="n">result_path</span> <span class="o">=</span>  <span class="n">_check_download_file</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                                                    <span class="n">files_data</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+                                                    <span class="n">output</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span>
+                                                    <span class="n">working_dir</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; (skipping)&quot;</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="n">result_path</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">output</span> <span class="o">!=</span> <span class="n">local_abspath</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;downloaded:&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;downloaded:&quot;</span><span class="p">,</span> <span class="n">printpath</span><span class="p">,</span> <span class="s2">&quot;as&quot;</span><span class="p">,</span>
+                          <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">))</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;downloaded:&quot;</span><span class="p">,</span> <span class="n">printpath</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">True</span>
@@ -337,7 +333,12 @@
         <span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">childoutput</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">childpath</span><span class="p">))</span>
-            <span class="n">success</span> <span class="o">&amp;=</span> <span class="n">standard_download</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">childoutput</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">recursive</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+            <span class="n">success</span> <span class="o">&amp;=</span> <span class="n">standard_download</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span>
+                                         <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">childoutput</span><span class="p">,</span>
+                                         <span class="n">recursive</span><span class="o">=</span><span class="n">recursive</span><span class="p">,</span>
+                                         <span class="n">no_compare</span><span class="o">=</span><span class="n">no_compare</span><span class="p">,</span>
+                                         <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                                         <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">success</span>
 
     <span class="k">else</span><span class="p">:</span>
@@ -354,7 +355,7 @@
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="print_file"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.print_file">[docs]</a><span class="k">def</span> <span class="nf">print_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="print_file"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.print_file">[docs]</a><span class="k">def</span> <span class="nf">print_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Print a remote file, without writing it locally</span>
 
 <span class="sd">    Arguments</span>
@@ -363,9 +364,12 @@
 
 <span class="sd">    path: str, Materials Commons style path of file to print</span>
 
+<span class="sd">    working_dir (str): Current working directory, used for finding relative</span>
+<span class="sd">        paths and printing messages.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">get_by_path_if_exists</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: No such file or directory on remote&quot;</span><span class="p">)</span>
@@ -408,7 +412,7 @@
                         <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Download remote without checking if local is equivalent.&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span></div>
 
-<div class="viewcode-block" id="down_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.down_subcommand">[docs]</a><span class="k">def</span> <span class="nf">down_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+<div class="viewcode-block" id="down_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.down.html#materials_commons.cli.subcommands.down.down_subcommand">[docs]</a><span class="k">def</span> <span class="nf">down_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    download files from Materials Commons</span>
 
@@ -418,9 +422,10 @@
     <span class="n">parser</span> <span class="o">=</span> <span class="n">make_parser</span><span class="p">()</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
 
-    <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">()</span>
-    <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
-    <span class="n">paths</span> <span class="o">=</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">clipaths_to_mcpaths</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span>
+    <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">treefuncs</span><span class="o">.</span><span class="n">clipaths_to_mcpaths</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">,</span>
+                                          <span class="n">working_dir</span><span class="p">)</span>
 
     <span class="n">localtree</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">no_compare</span><span class="p">:</span>
@@ -433,10 +438,13 @@
     <span class="c1"># validate</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">print</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--print option acts on 1 file, received&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">))</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid download request&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--output option acts on 1 file or directory, received&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">paths</span><span class="p">))</span>
-        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid download request&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">output</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">globus</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--output option is not supported with --globus&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid upload request&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">globus</span><span class="p">:</span>
         <span class="n">download</span> <span class="o">=</span> <span class="n">_get_current_globus_download</span><span class="p">(</span><span class="n">pconfig</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span>
@@ -457,7 +465,7 @@
                 <span class="o">+</span> <span class="s2">&quot; not ready for downloading. Materials Commons is still preparing the project&quot;</span>
                 <span class="o">+</span> <span class="s2">&quot; files for download. For large projects this may take some time.&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Use `mc globus download` to check when it is ready and try again.&quot;</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid download request&quot;</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download is ready.&quot;</span><span class="p">)</span>
 
@@ -466,7 +474,11 @@
             <span class="n">label</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">label</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">globus_ops</span> <span class="o">=</span> <span class="n">cliglobus</span><span class="o">.</span><span class="n">GlobusOperations</span><span class="p">()</span>
-        <span class="n">task_id</span> <span class="o">=</span> <span class="n">globus_ops</span><span class="o">.</span><span class="n">download_v0</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">recursive</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">)</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="n">globus_ops</span><span class="o">.</span><span class="n">download_v0</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">download</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span>
+                                         <span class="n">recursive</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">recursive</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+                                         <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                                         <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span>
+                                         <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">task_id</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Globus transfer task initiated.&quot;</span><span class="p">)</span>
@@ -477,7 +489,7 @@
                 <span class="s2">&quot; --delete` &quot;</span> <span class="o">+</span> <span class="s2">&quot;to close the download.&quot;</span><span class="p">)</span>
 
     <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">print</span><span class="p">:</span>
-        <span class="n">print_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">print_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">working_dir</span><span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
 
@@ -486,7 +498,10 @@
             <span class="n">output</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
-            <span class="n">standard_download</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">recursive</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+            <span class="n">standard_download</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">force</span><span class="p">,</span>
+                              <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">recursive</span><span class="p">,</span>
+                              <span class="n">no_compare</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                              <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
 
     <span class="k">return</span></div>
 </pre></div>
@@ -495,28 +510,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.file_functions &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.file_functions &mdash; materials_commons.cli 2.0b7 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../site-static/documentation_options.js"></script>
         <script src="../../../site-static/jquery.js"></script>
         <script src="../../../site-static/underscore.js"></script>
         <script src="../../../site-static/doctools.js"></script>
-        <script src="../../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
 
@@ -49,7 +54,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -132,6 +137,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -156,7 +163,8 @@
            <div itemprop="articleBody">
             
   <h1>Source code for materials_commons.cli.file_functions</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
@@ -180,12 +188,36 @@
 <div class="viewcode-block" id="make_local_abspath"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.file_functions.html#materials_commons.cli.file_functions.make_local_abspath">[docs]</a><span class="k">def</span> <span class="nf">make_local_abspath</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">mcpath</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">mcpath</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)))</span></div>
 
+<div class="viewcode-block" id="path_in_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.file_functions.html#materials_commons.cli.file_functions.path_in_project">[docs]</a><span class="k">def</span> <span class="nf">path_in_project</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if local path is within the local project directory</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj_local_path (str): Path to project, i.e. &quot;/path/to/project&quot;</span>
+<span class="sd">        local_abspath (str): Path to file in project, i.e. &quot;/path/to/project/</span>
+<span class="sd">            path/to/file&quot;</span>
+
+<span class="sd">    Returns: True, if local_abspath is within the local project directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">commonpath</span><span class="p">([</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">])</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="make_mcpath"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.file_functions.html#materials_commons.cli.file_functions.make_mcpath">[docs]</a><span class="k">def</span> <span class="nf">make_mcpath</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param str proj_local_path: Path to project, i.e. &quot;/path/to/project&quot;</span>
-<span class="sd">        :param str local_abspath: Path to file in project, i.e. &quot;/path/to/project/path/to/file&quot;</span>
-<span class="sd">        :return str mcpath: Returns a Materials Commons style path, i.e. &quot;/path/to/file&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj_local_path (str): Path to project, i.e. &quot;/path/to/project&quot;</span>
+<span class="sd">        local_abspath (str): Path to file in project, i.e. &quot;/path/to/project/</span>
+<span class="sd">            path/to/file&quot;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        mcpath (str): Returns a Materials Commons style path, i.e. &quot;/path/to/</span>
+<span class="sd">            file&quot;</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        MCCLIException, if any path in clipaths is not within the local project</span>
+<span class="sd">        directory.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">path_in_project</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;make_mcpath error: path not in project&quot;</span><span class="p">)</span>
     <span class="n">relpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">proj_local_path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">relpath</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span><span class="p">:</span>
         <span class="n">mcpath</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
@@ -257,34 +289,43 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">_check_file_selection_dirs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file_selection</span><span class="p">,</span> <span class="n">orig_path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="download_file_as_string"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.file_functions.html#materials_commons.cli.file_functions.download_file_as_string">[docs]</a><span class="k">def</span> <span class="nf">download_file_as_string</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">_throttle</span><span class="p">()</span>
+    <span class="n">urlpart</span> <span class="o">=</span> <span class="s2">&quot;/projects/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/files/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/download&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">urlpart</span>
+    <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">_handle</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

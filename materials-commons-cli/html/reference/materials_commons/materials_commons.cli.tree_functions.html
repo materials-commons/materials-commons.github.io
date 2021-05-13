@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.tree_functions module &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.tree_functions module &mdash; materials_commons.cli 2.0b8 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -37,7 +42,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="materials_commons.cli.treedb module" href="materials_commons.cli.treedb.html" />
-    <link rel="prev" title="materials_commons.cli.sqltable module" href="materials_commons.cli.sqltable.html" /> 
+    <link rel="prev" title="materials_commons.cli.tmp_functions module" href="materials_commons.cli.tmp_functions.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -92,23 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.tree_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,6 +158,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
         
       <li>materials_commons.cli.tree_functions module</li>
@@ -170,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.cli.tree_functions.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -187,27 +184,58 @@
   <div class="section" id="module-materials_commons.cli.tree_functions">
 <span id="materials-commons-cli-tree-functions-module"></span><h1>materials_commons.cli.tree_functions module<a class="headerlink" href="#module-materials_commons.cli.tree_functions" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.clipaths_to_mcpaths">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">clipaths_to_mcpaths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em>, <em class="sig-param"><span class="n">clipaths</span></em>, <em class="sig-param"><span class="n">workdir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#clipaths_to_mcpaths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.clipaths_to_mcpaths" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.clipaths_to_local_abspaths">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">clipaths_to_local_abspaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#clipaths_to_local_abspaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.clipaths_to_local_abspaths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert CLI paths input to local absolute paths</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj_local_path</strong> (<em>str</em>) – Path to Materials Commons project</p></li>
+<li><p><strong>clipaths</strong> (<em>List of str</em>) – Indicates files and directories, either
+absolute paths or relative to current working directory</p></li>
+<li><p><strong>working_dir</strong> (<em>str</em>) – Directory cli_paths are relative to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List local absolute paths to upload, excluding the <cite>.mc</cite> directory.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="materials_commons.cli.exceptions.html#materials_commons.cli.exceptions.MCCLIException" title="materials_commons.cli.exceptions.MCCLIException"><strong>MCCLIException</strong></a><strong>, </strong><strong>if any path in clipaths is not within the local project</strong> – </p></li>
+<li><p><strong>directory.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.clipaths_to_mcpaths">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">clipaths_to_mcpaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clipaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#clipaths_to_mcpaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.clipaths_to_mcpaths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert CLI paths input to Materials Commons standardized paths</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>proj_local_path</strong> (<em>str</em>) – Path to Materials Commons project</p></li>
 <li><p><strong>clipaths</strong> (<em>List of str</em>) – Indicates files and directories, either absolute paths or relative to current working directory</p></li>
-<li><p><strong>workdir</strong> (<em>None</em><em> or </em><em>str</em>) – Directory cli_paths are relative to. If None, uses os.getcwd().</p></li>
+<li><p><strong>working_dir</strong> (<em>str</em>) – Directory cli_paths are relative to.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List Materials Commons paths (does not include project top directory, starts with “/”) to
 upload, excluding the <cite>.mc</cite> directory.</p>
 </dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="materials_commons.cli.exceptions.html#materials_commons.cli.exceptions.MCCLIException" title="materials_commons.cli.exceptions.MCCLIException"><strong>MCCLIException</strong></a><strong>, </strong><strong>if any path in clipaths is not within the local project</strong> – </p></li>
+<li><p><strong>directory.</strong> – </p></li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.get_types">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">get_types</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">files_data</span></em>, <em class="sig-param"><span class="n">dirs_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#get_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.get_types" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.get_types">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">get_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirs_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#get_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.get_types" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use treecompare output to get local and remote types</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -224,23 +252,42 @@ upload, excluding the <cite>.mc</cite> directory.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.is_child_data_mismatch">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">is_child_data_mismatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">child_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#is_child_data_mismatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.is_child_data_mismatch" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.is_child_data_mismatch">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">is_child_data_mismatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#is_child_data_mismatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.is_child_data_mismatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check treecompare child_data file comparison for type mismatch</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.is_type_mismatch">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">is_type_mismatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">files_data</span></em>, <em class="sig-param"><span class="n">dirs_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#is_type_mismatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.is_type_mismatch" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.is_type_mismatch">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">is_type_mismatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirs_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#is_type_mismatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.is_type_mismatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check treecompare filds_data and dirs_data output to check for type mismatch</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.make_paths_for_upload">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">make_paths_for_upload</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em>, <em class="sig-param"><span class="n">paths</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#make_paths_for_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.make_paths_for_upload" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.make_local_abspaths_for_upload">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">make_local_abspaths_for_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#make_local_abspaths_for_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.make_local_abspaths_for_upload" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean paths for uploads</p>
-<p>This is written for identifying uploads. If the top directory is included it replaces it with
-all children except <cite>.mc</cite>.</p>
+<p>This is written for identifying uploads. If the top directory is included
+it replaces it with all children except <cite>.mc</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj_local_path</strong> (<em>str</em>) – Path to project</p></li>
+<li><p><strong>paths</strong> (<em>iterable of str</em>) – Local absolute paths to filter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>List of str</em> – Materials Commons paths, filtered as described above.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.make_mcpaths_for_upload">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">make_mcpaths_for_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#make_mcpaths_for_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.make_mcpaths_for_upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean paths for uploads</p>
+<p>This is written for identifying uploads. If the top directory is included
+it replaces it with all children except <cite>.mc</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -255,8 +302,8 @@ all children except <cite>.mc</cite>.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.mkdir">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">mkdir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">remote_only</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">create_intermediates</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#mkdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.mkdir" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.mkdir">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">mkdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_intermediates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#mkdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.mkdir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make directories</p>
 <dl class="simple">
 <dt>proj: mcapi.Project</dt><dd><p>Project instance with proj.local_path indicating local project location</p>
@@ -302,8 +349,8 @@ on Materials Commons and create_intermediates==False.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.move">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">remote_only</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.move" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.move">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localtree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move files and directories</p>
 <dl class="simple">
 <dt>proj: mcapi.Project</dt><dd><p>Project instance with proj.local_path indicating local project location</p>
@@ -323,8 +370,8 @@ data transfer. Will be used and updated if provided.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.remove">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">no_compare</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">remote_only</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.remove" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.remove">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_compare</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localtree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove files and directories</p>
 <dl class="simple">
 <dt>proj: mcapi.Project</dt><dd><p>Project instance with proj.local_path indicating local project location</p>
@@ -349,26 +396,33 @@ data transfer. Will be used and updated if provided.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.standard_upload">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">standard_upload</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">no_compare</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#standard_upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.standard_upload" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.standard_upload">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">standard_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_compare</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localtree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#standard_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.standard_upload" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload files to Materials Commons</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>proj</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.Project</span></code>) – Project instance with proj.local_path
-indicating local project location</p></li>
-<li><p><strong>paths</strong> (<em>List of str</em>) – List of Materials Commons style paths (absolute path, not including project name
-directory) to remove.</p></li>
-<li><p><strong>recursive</strong> (<em>bool</em>) – If True, remove directories recursively. Otherwise, will not remove
-directories.</p></li>
+<li><p><strong>proj</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.Project</span></code>) – Project instance with
+proj.local_path indicating local project location</p></li>
+<li><p><strong>paths</strong> (<em>List of str</em>) – List of paths to upload. Expects local absolute paths, or paths
+relative to working_dir.</p></li>
+<li><p><strong>working_dir</strong> (<em>str</em>) – Current working directory, used for finding relative
+paths and printing messages.</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em>) – If True, remove directories recursively. Otherwise,
+will not remove directories.</p></li>
 <li><p><strong>limit</strong> (<em>int</em>) – The limit in MB on the size of the file allowed to be uploaded.</p></li>
-<li><p><strong>no_compare</strong> (<em>bool</em>) – By default, this function checks local and remote file checksum to avoid
-downloading files that already exist. If no_compare is True, this check is skipped and
-all specified files are downloaded, even if an equivalent file already exists locally.</p></li>
-<li><p><strong>localtree</strong> (<a class="reference internal" href="materials_commons.cli.treedb.html#materials_commons.cli.treedb.LocalTree" title="materials_commons.cli.treedb.LocalTree"><em>LocalTree</em></a>) – A LocalTree object stores local file checksums to avoid unnecessary
-hashing. Optional, will be used and updated if provided and checksum == True.</p></li>
-<li><p><strong>remotetree</strong> (<a class="reference internal" href="materials_commons.cli.treedb.html#materials_commons.cli.treedb.RemoteTree" title="materials_commons.cli.treedb.RemoteTree"><em>RemoteTree</em></a>) – A RemoteTree object stores remote file and directory information
-to minimize API calls and data transfer. Optional, will be used and updated if provided.</p></li>
+<li><p><strong>no_compare</strong> (<em>bool</em>) – By default, this function checks local and remote
+file checksum to avoid downloading files that already exist. If
+no_compare is True, this check is skipped and all specified files
+are downloaded, even if an equivalent file already exists locally.</p></li>
+<li><p><strong>upload_as</strong> (<em>str</em>) – Materials Commons style path specifying where to
+upload. Requires <cite>len(paths) == 1</cite>.</p></li>
+<li><p><strong>localtree</strong> (<a class="reference internal" href="materials_commons.cli.treedb.html#materials_commons.cli.treedb.LocalTree" title="materials_commons.cli.treedb.LocalTree"><em>LocalTree</em></a>) – A LocalTree object stores local file checksums
+to avoid unnecessary hashing. Optional, will be used and updated if
+provided and checksum == True.</p></li>
+<li><p><strong>remotetree</strong> (<a class="reference internal" href="materials_commons.cli.treedb.html#materials_commons.cli.treedb.RemoteTree" title="materials_commons.cli.treedb.RemoteTree"><em>RemoteTree</em></a>) – A RemoteTree object stores remote file and
+directory information to minimize API calls and data transfer.
+Optional, will be used and updated if provided.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -385,8 +439,8 @@ to minimize API calls and data transfer. Optional, will be used and updated if p
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.tree_functions.treecompare">
-<code class="sig-prename descclassname">materials_commons.cli.tree_functions.</code><code class="sig-name descname">treecompare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">checksum</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#treecompare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.treecompare" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.tree_functions.treecompare">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.tree_functions.</span></span><span class="sig-name descname"><span class="pre">treecompare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checksum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localtree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/tree_functions.html#treecompare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.tree_functions.treecompare" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compare files and directories on the local and remote trees.</p>
 <dl class="simple">
 <dt>proj: mcapi.Project</dt><dd><p>Project instance with proj.local_path indicating local project location</p>
@@ -447,37 +501,29 @@ always None.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.cli.treedb.html" class="btn btn-neutral float-right" title="materials_commons.cli.treedb module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.cli.sqltable.html" class="btn btn-neutral float-left" title="materials_commons.cli.sqltable module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.cli.treedb.html" class="btn btn-neutral float-right" title="materials_commons.cli.treedb module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.cli.tmp_functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.tmp_functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

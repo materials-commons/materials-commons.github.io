@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.subcommands.globus &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.subcommands.globus &mdash; materials_commons.cli 2.0b7 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../site-static/documentation_options.js"></script>
         <script src="../../../../site-static/jquery.js"></script>
         <script src="../../../../site-static/underscore.js"></script>
         <script src="../../../../site-static/doctools.js"></script>
-        <script src="../../../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../site-static/js/theme.js"></script>
 
@@ -49,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -117,6 +122,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -244,7 +251,7 @@
 
 <div class="viewcode-block" id="GlobusUploadTaskSubcommand.list_data"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusUploadTaskSubcommand.list_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
         <span class="n">_is_current</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
-        <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">()</span>
+        <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pconfig</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">pconfig</span><span class="o">.</span><span class="n">globus_upload_id</span><span class="p">:</span>
             <span class="n">_is_current</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -295,7 +302,7 @@
 
 <div class="viewcode-block" id="GlobusUploadTaskSubcommand.finish"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusUploadTaskSubcommand.finish">[docs]</a>    <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Finish Globus upload, --finish&quot;&quot;&quot;</span>
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="n">project_config</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
         <span class="n">globus_upload_id</span> <span class="o">=</span> <span class="n">project_config</span><span class="o">.</span><span class="n">globus_upload_id</span>
 
@@ -317,7 +324,7 @@
 <div class="viewcode-block" id="GlobusUploadTaskSubcommand.goto"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusUploadTaskSubcommand.goto">[docs]</a>    <span class="k">def</span> <span class="nf">goto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Open Globus File Manager in a web browser&quot;&quot;&quot;</span>
 
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
 
         <span class="n">origin_id</span> <span class="o">=</span> <span class="n">cliglobus</span><span class="o">.</span><span class="n">get_local_endpoint_id</span><span class="p">()</span>
         <span class="n">origin_path</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">local_path</span>
@@ -354,7 +361,7 @@
 <span class="sd">            mc globus upload &lt;upload_name&gt; --create</span>
 <span class="sd">            mc globus upload --name &lt;upload_name&gt; --create</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
 
         <span class="n">in_names</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">expr</span><span class="p">:</span>
@@ -367,13 +374,13 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_names</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;create one Globus upload at a time&#39;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;example: mc globus upload &lt;name&gt; --create&#39;</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid globus request&quot;</span><span class="p">)</span>
 
         <span class="n">resulting_objects</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">in_names</span><span class="p">:</span>
             <span class="n">upload</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">create_globus_upload_request</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__update_upload_object</span><span class="p">(</span><span class="n">upload</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span>
-            <span class="n">set_current_globus_upload</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="n">upload</span><span class="p">)</span>
+            <span class="n">set_current_globus_upload</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">upload</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Created Globus upload:&#39;</span><span class="p">,</span> <span class="n">upload</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
             <span class="n">resulting_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">upload</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">resulting_objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
@@ -388,10 +395,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Dry-run is not yet possible when deleting Globus uploads.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="k">return</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid globus request&quot;</span><span class="p">)</span>
 
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="n">project_config</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
         <span class="n">globus_upload_id</span> <span class="o">=</span> <span class="n">project_config</span><span class="o">.</span><span class="n">globus_upload_id</span>
 
@@ -414,15 +420,15 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set one current Globus upload at a time</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;example: mc globus upload --set &lt;name&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid globus request&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">upload</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
-            <span class="n">set_current_globus_upload</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="n">upload</span><span class="p">)</span>
+            <span class="n">set_current_globus_upload</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">),</span> <span class="n">upload</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Set current Globus upload: &#39;&quot;</span> <span class="o">+</span> <span class="n">upload</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="GlobusUploadTaskSubcommand.unset"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusUploadTaskSubcommand.unset">[docs]</a>    <span class="k">def</span> <span class="nf">unset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="n">set_current_globus_upload</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">set_current_globus_upload</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Unset Globus upload</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div></div>
 
@@ -483,7 +489,7 @@
 
 <div class="viewcode-block" id="GlobusDownloadTaskSubcommand.list_data"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusDownloadTaskSubcommand.list_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
         <span class="n">_is_current</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
-        <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">()</span>
+        <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pconfig</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">pconfig</span><span class="o">.</span><span class="n">globus_download_id</span><span class="p">:</span>
             <span class="n">_is_current</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -536,7 +542,7 @@
 <span class="sd">            mc globus download &lt;download_name&gt; --create</span>
 <span class="sd">            mc globus download --name &lt;download_name&gt; --create</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
 
         <span class="n">in_names</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">expr</span><span class="p">:</span>
@@ -549,13 +555,13 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_names</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;create one Globus download at a time&#39;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;example: mc globus download &lt;name&gt; --create&#39;</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid globus request&quot;</span><span class="p">)</span>
 
         <span class="n">resulting_objects</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">in_names</span><span class="p">:</span>
             <span class="n">download</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">create_globus_download_request</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__update_download_object</span><span class="p">(</span><span class="n">download</span><span class="p">,</span> <span class="n">proj</span><span class="p">)</span>
-            <span class="n">set_current_globus_download</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="n">download</span><span class="p">)</span>
+            <span class="n">set_current_globus_download</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">download</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Created Globus download:&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
             <span class="n">resulting_objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">download</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">resulting_objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
@@ -570,10 +576,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Dry-run is not yet possible when deleting Globus downloads.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="k">return</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid globus request&quot;</span><span class="p">)</span>
 
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="n">project_config</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
         <span class="n">globus_download_id</span> <span class="o">=</span> <span class="n">project_config</span><span class="o">.</span><span class="n">globus_download_id</span>
 
@@ -594,7 +599,7 @@
 <div class="viewcode-block" id="GlobusDownloadTaskSubcommand.goto"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusDownloadTaskSubcommand.goto">[docs]</a>    <span class="k">def</span> <span class="nf">goto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Open Globus File Manager in a web browser&quot;&quot;&quot;</span>
 
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="n">destination_id</span> <span class="o">=</span> <span class="n">cliglobus</span><span class="o">.</span><span class="n">get_local_endpoint_id</span><span class="p">()</span>
         <span class="n">destination_path</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">local_path</span>
 
@@ -627,15 +632,17 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set one current Globus download at a time</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;example: mc globus download --set &lt;name&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid globus request&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">download</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
-            <span class="n">set_current_globus_download</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="n">download</span><span class="p">)</span>
+            <span class="n">proj_path</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
+            <span class="n">set_current_globus_download</span><span class="p">(</span><span class="n">proj_path</span><span class="p">,</span> <span class="n">download</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Set current Globus download: &#39;&quot;</span> <span class="o">+</span> <span class="n">download</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="GlobusDownloadTaskSubcommand.unset"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.GlobusDownloadTaskSubcommand.unset">[docs]</a>    <span class="k">def</span> <span class="nf">unset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="n">set_current_globus_download</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">proj_path</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
+        <span class="n">set_current_globus_download</span><span class="p">(</span><span class="n">proj_path</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Unset Globus download</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div></div>
 
@@ -664,7 +671,7 @@
 
     <span class="k">return</span> <span class="n">parser</span></div>
 
-<div class="viewcode-block" id="globus_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.globus_subcommand">[docs]</a><span class="k">def</span> <span class="nf">globus_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+<div class="viewcode-block" id="globus_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.globus.html#materials_commons.cli.subcommands.globus.globus_subcommand">[docs]</a><span class="k">def</span> <span class="nf">globus_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Manage Globus uploads, downloads, and configuration.</span>
 
@@ -688,7 +695,8 @@
 
         <span class="n">globus_interfaces</span> <span class="o">=</span> <span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span> <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">globus_interface_usage</span><span class="p">}</span>
         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">transfertype</span> <span class="ow">in</span> <span class="n">globus_interfaces</span><span class="p">:</span>
-            <span class="n">globus_interfaces</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">transfertype</span><span class="p">][</span><span class="s1">&#39;subcommand&#39;</span><span class="p">](</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="n">globus_interfaces</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">transfertype</span><span class="p">][</span><span class="s1">&#39;subcommand&#39;</span><span class="p">](</span>
+                <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">working_dir</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unrecognized transfertype&#39;</span><span class="p">)</span>
             <span class="n">parser</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
@@ -713,28 +721,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

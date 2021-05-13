@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.exceptions module &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.exceptions module &mdash; materials_commons.cli 2.0b8 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -37,7 +42,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="materials_commons.cli.file_functions module" href="materials_commons.cli.file_functions.html" />
-    <link rel="prev" title="materials_commons.cli.subcommands.up module" href="materials_commons.cli.subcommands.up.html" /> 
+    <link rel="prev" title="materials_commons.cli.cloned_project module" href="materials_commons.cli.cloned_project.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -92,23 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,6 +158,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
         
       <li>materials_commons.cli.exceptions module</li>
@@ -170,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.cli.exceptions.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -187,26 +184,26 @@
   <div class="section" id="module-materials_commons.cli.exceptions">
 <span id="materials-commons-cli-exceptions-module"></span><h1>materials_commons.cli.exceptions module<a class="headerlink" href="#module-materials_commons.cli.exceptions" title="Permalink to this headline">¶</a></h1>
 <dl class="py exception">
-<dt id="materials_commons.cli.exceptions.MCCLIException">
-<em class="property">exception </em><code class="sig-prename descclassname">materials_commons.cli.exceptions.</code><code class="sig-name descname">MCCLIException</code><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#MCCLIException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.exceptions.MCCLIException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.exceptions.MCCLIException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.exceptions.</span></span><span class="sig-name descname"><span class="pre">MCCLIException</span></span><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#MCCLIException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.exceptions.MCCLIException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="materials_commons.cli.exceptions.MissingRemoteException">
-<em class="property">exception </em><code class="sig-prename descclassname">materials_commons.cli.exceptions.</code><code class="sig-name descname">MissingRemoteException</code><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#MissingRemoteException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.exceptions.MissingRemoteException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.exceptions.MissingRemoteException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.exceptions.</span></span><span class="sig-name descname"><span class="pre">MissingRemoteException</span></span><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#MissingRemoteException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.exceptions.MissingRemoteException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="materials_commons.cli.exceptions.MultipleRemoteException">
-<em class="property">exception </em><code class="sig-prename descclassname">materials_commons.cli.exceptions.</code><code class="sig-name descname">MultipleRemoteException</code><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#MultipleRemoteException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.exceptions.MultipleRemoteException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.exceptions.MultipleRemoteException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.exceptions.</span></span><span class="sig-name descname"><span class="pre">MultipleRemoteException</span></span><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#MultipleRemoteException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.exceptions.MultipleRemoteException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="materials_commons.cli.exceptions.NoDefaultRemoteException">
-<em class="property">exception </em><code class="sig-prename descclassname">materials_commons.cli.exceptions.</code><code class="sig-name descname">NoDefaultRemoteException</code><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#NoDefaultRemoteException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.exceptions.NoDefaultRemoteException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.exceptions.NoDefaultRemoteException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.exceptions.</span></span><span class="sig-name descname"><span class="pre">NoDefaultRemoteException</span></span><a class="reference internal" href="../../site-modules/materials_commons/cli/exceptions.html#NoDefaultRemoteException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.exceptions.NoDefaultRemoteException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></p>
 </dd></dl>
 
@@ -217,37 +214,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.cli.file_functions.html" class="btn btn-neutral float-right" title="materials_commons.cli.file_functions module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.cli.subcommands.up.html" class="btn btn-neutral float-left" title="materials_commons.cli.subcommands.up module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.cli.file_functions.html" class="btn btn-neutral float-right" title="materials_commons.cli.file_functions module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.cli.cloned_project.html" class="btn btn-neutral float-left" title="materials_commons.cli.cloned_project module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

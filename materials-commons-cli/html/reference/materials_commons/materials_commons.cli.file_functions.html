@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.file_functions module &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.file_functions module &mdash; materials_commons.cli 2.0b8 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -92,23 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.file_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,6 +158,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
         
       <li>materials_commons.cli.file_functions module</li>
@@ -170,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.cli.file_functions.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -187,8 +184,8 @@
   <div class="section" id="module-materials_commons.cli.file_functions">
 <span id="materials-commons-cli-file-functions-module"></span><h1>materials_commons.cli.file_functions module<a class="headerlink" href="#module-materials_commons.cli.file_functions" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.check_file_selection">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">check_file_selection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">file_selection</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#check_file_selection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.check_file_selection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.check_file_selection">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">check_file_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_selection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#check_file_selection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.check_file_selection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if a file or directory is selected in a dataset file selection, and why.</p>
 <p class="rubric">Notes</p>
 <p>A file is selected in a dataset’s file selection if it is listed explicitly in “include_files”. It is not selected if it is listed in “exclude_files”. If it is neither explicitly included or excluded, its parent directories are searched up to the project root directory to see if they are included or excluded. If the first parent directory listed is in “include_dirs”, then the file is also selected. If the first parent directory listed is in “exclude_dirs”, or if no parent directory is listed at all, the file is not selected.</p>
@@ -217,8 +214,13 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.get_by_path_if_exists">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">get_by_path_if_exists</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">client</span></em>, <em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#get_by_path_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.get_by_path_if_exists" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.download_file_as_string">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">download_file_as_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#download_file_as_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.download_file_as_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.get_by_path_if_exists">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">get_by_path_if_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#get_by_path_if_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.get_by_path_if_exists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get file (or directory) by path in project, if it exists.
 :param int project_id: The id of the project containing the file or directory
 :param file_path: The Materials Commons path to the file or directory
@@ -227,40 +229,68 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.get_parent_id">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">get_parent_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_or_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#get_parent_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.get_parent_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.get_parent_id">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">get_parent_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_or_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#get_parent_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.get_parent_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get file_or_dir.directory_id, else raise</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.isdir">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">isdir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_or_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#isdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.isdir" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.isdir">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">isdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_or_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#isdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.isdir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.isfile">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">isfile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_or_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#isfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.isfile" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.isfile">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">isfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_or_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#isfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.isfile" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.make_local_abspath">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">make_local_abspath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em>, <em class="sig-param"><span class="n">mcpath</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#make_local_abspath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.make_local_abspath" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.make_local_abspath">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">make_local_abspath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mcpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#make_local_abspath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.make_local_abspath" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.file_functions.make_mcpath">
-<code class="sig-prename descclassname">materials_commons.cli.file_functions.</code><code class="sig-name descname">make_mcpath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em>, <em class="sig-param"><span class="n">local_abspath</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#make_mcpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.file_functions.make_mcpath" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.make_mcpath">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">make_mcpath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_abspath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#make_mcpath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.make_mcpath" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>proj_local_path</strong> (<em>str</em>) – Path to project, i.e. “/path/to/project”</p></li>
-<li><p><strong>local_abspath</strong> (<em>str</em>) – Path to file in project, i.e. “/path/to/project/path/to/file”</p></li>
+<li><p><strong>local_abspath</strong> (<em>str</em>) – Path to file in project, i.e. “/path/to/project/
+path/to/file”</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return str mcpath</dt>
-<dd class="field-even"><p>Returns a Materials Commons style path, i.e. “/path/to/file”</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>mcpath (str)</em> –</p>
+<dl class="simple">
+<dt>Returns a Materials Commons style path, i.e. “/path/to/</dt><dd><p>file”</p>
 </dd>
 </dl>
+</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="materials_commons.cli.exceptions.html#materials_commons.cli.exceptions.MCCLIException" title="materials_commons.cli.exceptions.MCCLIException"><strong>MCCLIException</strong></a><strong>, </strong><strong>if any path in clipaths is not within the local project</strong> – </p></li>
+<li><p><strong>directory.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.cli.file_functions.path_in_project">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.file_functions.</span></span><span class="sig-name descname"><span class="pre">path_in_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_abspath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/file_functions.html#path_in_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.file_functions.path_in_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if local path is within the local project directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj_local_path</strong> (<em>str</em>) – Path to project, i.e. “/path/to/project”</p></li>
+<li><p><strong>local_abspath</strong> (<em>str</em>) – Path to file in project, i.e. “/path/to/project/
+path/to/file”</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: True, if local_abspath is within the local project directory.</p>
 </dd></dl>
 
 </div>
@@ -270,37 +300,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.cli.functions.html" class="btn btn-neutral float-right" title="materials_commons.cli.functions module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.cli.exceptions.html" class="btn btn-neutral float-left" title="materials_commons.cli.exceptions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.cli.functions.html" class="btn btn-neutral float-right" title="materials_commons.cli.functions module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.cli.exceptions.html" class="btn btn-neutral float-left" title="materials_commons.cli.exceptions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

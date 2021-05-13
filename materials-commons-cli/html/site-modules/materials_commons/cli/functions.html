@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.functions &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.functions &mdash; materials_commons.cli 2.0b7 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../site-static/documentation_options.js"></script>
         <script src="../../../site-static/jquery.js"></script>
         <script src="../../../site-static/underscore.js"></script>
         <script src="../../../site-static/doctools.js"></script>
-        <script src="../../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
 
@@ -49,7 +54,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -132,6 +137,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -165,6 +172,7 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
+<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
 <span class="kn">import</span> <span class="nn">materials_commons.api.models</span> <span class="k">as</span> <span class="nn">models</span>
 <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
 
@@ -392,7 +400,7 @@
 <span class="sd">        args (argparse.Namespace): The result of argparse&#39;s &quot;parse_args()&quot; method. Checks for &quot;args.remote&quot;.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        :class:`materials_commons.api.Client`: The remote configuration parameters for the appropriate client: either the value specified using the &quot;--remote &lt;email&gt; &lt;url&gt;&quot; option, or else the user&#39;s configured default.</span>
+<span class="sd">        :class:`user_config.RemoteConfig`: The remote configuration parameters for the appropriate client: either the value specified using the &quot;--remote &lt;email&gt; &lt;url&gt;&quot; option, or else the user&#39;s configured default.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">remote</span><span class="p">:</span>
@@ -402,7 +410,7 @@
         <span class="n">remote_config</span> <span class="o">=</span> <span class="n">RemoteConfig</span><span class="p">(</span><span class="n">mcurl</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">remote_config</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">remotes</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MissingRemoteException</span><span class="p">(</span><span class="s2">&quot;Could not find remote: </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">remote_config</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">remote_config</span><span class="o">.</span><span class="n">mcurl</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">remote_config</span>
+        <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">remotes</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">remotes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">remote_config</span><span class="p">)]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">default_remote</span><span class="o">.</span><span class="n">mcurl</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">default_remote</span><span class="o">.</span><span class="n">mcapikey</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NoDefaultRemoteException</span><span class="p">(</span><span class="s2">&quot;Default remote not set&quot;</span><span class="p">)</span>
@@ -443,7 +451,8 @@
     <span class="sd">&quot;&quot;&quot;Print a table with remote Materials Commons instance configuration parameters (email, url, apikey)</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        config_remotes: A dict of :class:`materials_commons.cli.user_config.RemoteConfig`, grouped like: &quot;{&lt;url&gt;: {&lt;email&gt;: RemoteConfig, ...}, ...}&quot;</span>
+<span class="sd">        config_remotes: A dict of :class:`user_config.RemoteConfig`, grouped</span>
+<span class="sd">            like: &quot;{&lt;url&gt;: {&lt;email&gt;: RemoteConfig, ...}, ...}&quot;</span>
 <span class="sd">        show_apikey (bool): If True, print apikeys also.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">config_remotes</span><span class="p">):</span>
@@ -485,7 +494,7 @@
     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="n">pformatter</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="make_local_project_client"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project_client">[docs]</a><span class="k">def</span> <span class="nf">make_local_project_client</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="make_local_project_client"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project_client">[docs]</a><span class="k">def</span> <span class="nf">make_local_project_client</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Construct a client to access project data from the local project configuration</span>
 
 <span class="sd">    Args:</span>
@@ -556,7 +565,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">())</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div></div>
 
-<div class="viewcode-block" id="make_local_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project">[docs]</a><span class="k">def</span> <span class="nf">make_local_project</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="make_local_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project">[docs]</a><span class="k">def</span> <span class="nf">make_local_project</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Read local project config file and use to construct materials_commons.api.models.Project</span>
 
 <span class="sd">    - Checks if &quot;path&quot; is a path located inside a local project directory (by looking for the &quot;.mc&quot; directory).</span>
@@ -577,9 +586,7 @@
 
     <span class="n">proj_path</span> <span class="o">=</span> <span class="n">project_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">proj_path</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;No Materials Commons project found at &quot;</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;No Materials Commons project found at &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
 
     <span class="n">project_config</span> <span class="o">=</span> <span class="n">read_project_config</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
@@ -683,10 +690,8 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<span class="k">def</span> <span class="nf">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the path to a local project directory if it contains &quot;path&quot;, else None&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="c1"># if not os.path.isdir(path):</span>
     <span class="c1">#   raise Exception(&quot;Error, no directory named: &quot; + path)</span>
     <span class="n">curr</span> <span class="o">=</span> <span class="n">path</span>
@@ -701,17 +706,17 @@
             <span class="n">curr</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="project_path"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_path">[docs]</a><span class="k">def</span> <span class="nf">project_path</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="project_path"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_path">[docs]</a><span class="k">def</span> <span class="nf">project_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the path to a local project directory if it contains &quot;path&quot;, else None&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="project_exists"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_exists">[docs]</a><span class="k">def</span> <span class="nf">project_exists</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="project_exists"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_exists">[docs]</a><span class="k">def</span> <span class="nf">project_exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns True if a local project directory exists containing &quot;path&quot; &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span></div>
 
-<span class="k">def</span> <span class="nf">_mcdir</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_mcdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find project .mc directory path if it already exists, else return None&quot;&quot;&quot;</span>
     <span class="n">dirpath</span> <span class="o">=</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dirpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -719,7 +724,7 @@
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="s1">&#39;.mc&#39;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_proj_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_proj_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find project config path if .mc directory already exists, else return None&quot;&quot;&quot;</span>
     <span class="n">dirpath</span> <span class="o">=</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dirpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -820,7 +825,7 @@
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">f</span><span class="p">)</span>
         <span class="k">return</span></div></div>
 
-<div class="viewcode-block" id="read_project_config"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.read_project_config">[docs]</a><span class="k">def</span> <span class="nf">read_project_config</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="read_project_config"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.read_project_config">[docs]</a><span class="k">def</span> <span class="nf">read_project_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Read local project configuration</span>
 
 <span class="sd">    Returns:</span>
@@ -833,26 +838,35 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="clone_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.clone_project">[docs]</a><span class="k">def</span> <span class="nf">clone_project</span><span class="p">(</span><span class="n">remote_config</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">parent_dest</span><span class="p">):</span>
+<div class="viewcode-block" id="clone_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.clone_project">[docs]</a><span class="k">def</span> <span class="nf">clone_project</span><span class="p">(</span><span class="n">remote_config</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">parent_dest</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Clone a remote project to a local directory</span>
 
 <span class="sd">    - Will create the local project directory &quot;&lt;parent_dest&gt;/&lt;project_name&gt;&quot;</span>
 <span class="sd">    - Will save local project configuration &quot;&lt;parent_dest&gt;/.mc/config.json&quot; with project info</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        remote_config (:class:`user_config.RemoteConfig`): Holds configuration variables (email, url, apikey) for the remote instance of Materials Commons where the project to be cloned is stored.</span>
+<span class="sd">        remote_config (:class:`user_config.RemoteConfig`): Holds configuration</span>
+<span class="sd">            variables (email, url, apikey) for the remote instance of Materials</span>
+<span class="sd">            Commons where the project to be cloned is stored.</span>
 <span class="sd">        project_id (int): ID of the project to clone</span>
-<span class="sd">        parent_dest (str): Absolute path to a local directory which will become the parent of the cloned project directory.</span>
+<span class="sd">        parent_dest (str): Absolute path to a local directory which will become</span>
+<span class="sd">            the parent of the cloned project directory.</span>
+<span class="sd">        name (str): Name of created project directory. Default is remote</span>
+<span class="sd">            project name.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        :class:`materials_commons.api.models.Project`: Object representing the cloned project</span>
+<span class="sd">        :class:`materials_commons.api.models.Project`: Object representing the</span>
+<span class="sd">        cloned project</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># get Project</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">remote_config</span><span class="o">.</span><span class="n">make_client</span><span class="p">()</span>
     <span class="n">proj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_project</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">name</span>
+
     <span class="c1"># check if project already exists</span>
-    <span class="n">dest</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_dest</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">dest</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_dest</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">project_path</span><span class="p">(</span><span class="n">dest</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Project already exists at:&quot;</span><span class="p">,</span> <span class="n">project_path</span><span class="p">(</span><span class="n">dest</span><span class="p">))</span>
 
@@ -873,28 +887,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

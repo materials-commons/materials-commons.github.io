@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.subcommands.expt &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.subcommands.expt &mdash; materials_commons.cli 2.0b7 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../site-static/documentation_options.js"></script>
         <script src="../../../../site-static/jquery.js"></script>
         <script src="../../../../site-static/underscore.js"></script>
         <script src="../../../../site-static/doctools.js"></script>
-        <script src="../../../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../site-static/js/theme.js"></script>
 
@@ -49,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -117,6 +122,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -212,7 +219,7 @@
 <div class="viewcode-block" id="ExptSubcommand.list_data"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.expt.html#materials_commons.cli.subcommands.expt.ExptSubcommand.list_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
 
         <span class="n">_is_current</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
-        <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">()</span>
+        <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pconfig</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">pconfig</span><span class="o">.</span><span class="n">experiment_id</span><span class="p">:</span>
             <span class="n">_is_current</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
 
@@ -242,7 +249,7 @@
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ExptSubcommand.create"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.expt.html#materials_commons.cli.subcommands.expt.ExptSubcommand.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="n">expt_list</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">get_all_experiments</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="n">expt_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expt_list</span><span class="p">}</span>
 
@@ -265,10 +272,9 @@
 <div class="viewcode-block" id="ExptSubcommand.delete"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.expt.html#materials_commons.cli.subcommands.expt.ExptSubcommand.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Dry-run is not possible when deleting experiments.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Exiting</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="k">return</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid expt request&quot;</span><span class="p">)</span>
 
-        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">()</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
         <span class="n">project_config</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
         <span class="n">current_experiment_id</span> <span class="o">=</span> <span class="n">project_config</span><span class="o">.</span><span class="n">experiment_id</span>
 
@@ -286,7 +292,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;set one current experiment at a time</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;example: mc expt --set &lt;name&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid expt request&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">expt</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
             <span class="n">set_current_experiment</span><span class="p">(</span><span class="n">expt</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">expt</span><span class="p">)</span>
@@ -294,7 +300,7 @@
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="ExptSubcommand.unset"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.expt.html#materials_commons.cli.subcommands.expt.ExptSubcommand.unset">[docs]</a>    <span class="k">def</span> <span class="nf">unset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="n">set_current_experiment</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">set_current_experiment</span><span class="p">(</span><span class="n">clifuncs</span><span class="o">.</span><span class="n">project_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Unset current experiment</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span></div>
 
@@ -314,28 +320,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

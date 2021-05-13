@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.treedb module &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.treedb module &mdash; materials_commons.cli 2.0b8 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -92,23 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.treedb module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,6 +158,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
         
       <li>materials_commons.cli.treedb module</li>
@@ -170,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.cli.treedb.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -187,8 +184,8 @@
   <div class="section" id="module-materials_commons.cli.treedb">
 <span id="materials-commons-cli-treedb-module"></span><h1>materials_commons.cli.treedb module<a class="headerlink" href="#module-materials_commons.cli.treedb" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="materials_commons.cli.treedb.LocalTree">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">LocalTree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.LocalTree">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.treedb.</span></span><span class="sig-name descname"><span class="pre">LocalTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.cli.treedb.TreeTable" title="materials_commons.cli.treedb.TreeTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.treedb.TreeTable</span></code></a></p>
 <p>Store information on files and directories in the working tree</p>
 <dl class="simple">
@@ -210,36 +207,36 @@ proj_local_path: str</p>
 <div><p>Path to Materials Commons project directory, for storing sqlite db file</p>
 </div></blockquote>
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.LocalTree.default_print_fmt">
-<em class="property">static </em><code class="sig-name descname">default_print_fmt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.default_print_fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.default_print_fmt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.LocalTree.default_print_fmt">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">default_print_fmt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.default_print_fmt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.default_print_fmt" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.LocalTree.insert_non_existent">
-<code class="sig-name descname">insert_non_existent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">checktime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.insert_non_existent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.insert_non_existent" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.LocalTree.insert_non_existent">
+<span class="sig-name descname"><span class="pre">insert_non_existent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checktime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.insert_non_existent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.insert_non_existent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do not insert non-existent</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.LocalTree.needs_update">
-<code class="sig-name descname">needs_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.needs_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.needs_update" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.LocalTree.needs_update">
+<span class="sig-name descname"><span class="pre">needs_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.needs_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.needs_update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.LocalTree.tablename">
-<em class="property">static </em><code class="sig-name descname">tablename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.tablename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.tablename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.LocalTree.tablename">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tablename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.tablename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.tablename" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.LocalTree.treename">
-<em class="property">static </em><code class="sig-name descname">treename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.treename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.treename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.LocalTree.treename">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">treename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#LocalTree.treename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.LocalTree.treename" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.cli.treedb.RemoteTree">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">RemoteTree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">updatetime</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.RemoteTree">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.treedb.</span></span><span class="sig-name descname"><span class="pre">RemoteTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updatetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.cli.treedb.TreeTable" title="materials_commons.cli.treedb.TreeTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.treedb.TreeTable</span></code></a></p>
 <p>Store information on files and directories in the Materials Commons project</p>
 <dl class="simple">
@@ -261,36 +258,36 @@ proj_local_path: str</p>
 <div><p>Path to Materials Commons project directory, for storing sqlite db file</p>
 </div></blockquote>
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.RemoteTree.default_print_fmt">
-<em class="property">static </em><code class="sig-name descname">default_print_fmt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.default_print_fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.default_print_fmt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.RemoteTree.default_print_fmt">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">default_print_fmt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.default_print_fmt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.default_print_fmt" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.RemoteTree.insert_non_existent">
-<code class="sig-name descname">insert_non_existent</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">checktime</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.insert_non_existent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.insert_non_existent" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.RemoteTree.insert_non_existent">
+<span class="sig-name descname"><span class="pre">insert_non_existent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checktime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.insert_non_existent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.insert_non_existent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do insert non-existent</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.RemoteTree.needs_update">
-<code class="sig-name descname">needs_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">existing</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.needs_update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.needs_update" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.RemoteTree.needs_update">
+<span class="sig-name descname"><span class="pre">needs_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">existing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.needs_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.needs_update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.RemoteTree.tablename">
-<em class="property">static </em><code class="sig-name descname">tablename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.tablename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.tablename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.RemoteTree.tablename">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tablename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.tablename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.tablename" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.RemoteTree.treename">
-<em class="property">static </em><code class="sig-name descname">treename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.treename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.treename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.RemoteTree.treename">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">treename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#RemoteTree.treename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.RemoteTree.treename" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.cli.treedb.TreeTable">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">TreeTable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.treedb.</span></span><span class="sig-name descname"><span class="pre">TreeTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable" title="materials_commons.cli.sqltable.SqlTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.sqltable.SqlTable</span></code></a></p>
 <p>Store information on files and directories in a tree</p>
 <p>This is a base class. Derived classes must implement:</p>
@@ -329,8 +326,8 @@ Path to Materials Commons project directory, for storing sqlite db file</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.delete_by_path">
-<code class="sig-name descname">delete_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">recurs</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.delete_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.delete_by_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.delete_by_path">
+<span class="sig-name descname"><span class="pre">delete_by_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.delete_by_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.delete_by_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete individual entry by path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -347,8 +344,8 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.select_all">
-<code class="sig-name descname">select_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fetchsize</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_all" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.select_all">
+<span class="sig-name descname"><span class="pre">select_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fetchsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select all records</p>
 <dl class="field-list simple">
 <dt class="field-odd">Yields</dt>
@@ -358,8 +355,8 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.select_by_id">
-<code class="sig-name descname">select_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.select_by_id">
+<span class="sig-name descname"><span class="pre">select_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select record by id</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -369,8 +366,8 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.select_by_parent_id">
-<code class="sig-name descname">select_by_parent_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_parent_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_parent_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.select_by_parent_id">
+<span class="sig-name descname"><span class="pre">select_by_parent_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_parent_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_parent_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select records by parent_id</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -380,8 +377,8 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.select_by_parent_path">
-<code class="sig-name descname">select_by_parent_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parent_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_parent_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_parent_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.select_by_parent_path">
+<span class="sig-name descname"><span class="pre">select_by_parent_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_parent_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_parent_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select records by parent_path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -391,8 +388,8 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.select_by_path">
-<code class="sig-name descname">select_by_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.select_by_path">
+<span class="sig-name descname"><span class="pre">select_by_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.select_by_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.select_by_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select records by path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -402,13 +399,13 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.tablecolumns">
-<em class="property">static </em><code class="sig-name descname">tablecolumns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.tablecolumns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.tablecolumns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.tablecolumns">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tablecolumns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.tablecolumns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.tablecolumns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.update">
-<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">get_children</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">recurs</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.update" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_children</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recurs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update tree table to accurately reflect a particular directory</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -427,16 +424,16 @@ If True, print status.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.treedb.TreeTable.walk">
-<code class="sig-name descname">walk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">topdown</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.walk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.walk" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.TreeTable.walk">
+<span class="sig-name descname"><span class="pre">walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topdown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#TreeTable.walk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.TreeTable.walk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yields (parent, dirs, files) records recursively starting from directory at <cite>path</cite></p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.treedb.do_with_queue">
-<code class="sig-prename descclassname">materials_commons.cli.treedb.</code><code class="sig-name descname">do_with_queue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">queue</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#do_with_queue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.treedb.do_with_queue" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.treedb.do_with_queue">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.treedb.</span></span><span class="sig-name descname"><span class="pre">do_with_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/treedb.html#do_with_queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.treedb.do_with_queue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -446,37 +443,29 @@ If True, print status.</p></li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.cli.user_config.html" class="btn btn-neutral float-right" title="materials_commons.cli.user_config module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.cli.tree_functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.tree_functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.cli.user_config.html" class="btn btn-neutral float-right" title="materials_commons.cli.user_config module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.cli.tree_functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.tree_functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

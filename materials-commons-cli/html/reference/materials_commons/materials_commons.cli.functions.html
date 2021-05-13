@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.functions module &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.functions module &mdash; materials_commons.cli 2.0b8 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -92,23 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.globus.html">materials_commons.cli.globus module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,6 +158,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
         
       <li>materials_commons.cli.functions module</li>
@@ -170,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.cli.functions.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -187,8 +184,8 @@
   <div class="section" id="module-materials_commons.cli.functions">
 <span id="materials-commons-cli-functions-module"></span><h1>materials_commons.cli.functions module<a class="headerlink" href="#module-materials_commons.cli.functions" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="materials_commons.cli.functions.ProjectConfig">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">ProjectConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">ProjectConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Facilitates reading and writing a JSON file storing local project configuration values</p>
 <p>Project <code class="docutils literal notranslate"><span class="pre">.mc/config.json</span></code> file format:</p>
@@ -208,8 +205,8 @@
 </pre></div>
 </div>
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.project_path">
-<code class="sig-name descname">project_path</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.project_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.project_path">
+<span class="sig-name descname"><span class="pre">project_path</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.project_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Absolute path to local project directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -219,8 +216,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.config_dir">
-<code class="sig-name descname">config_dir</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.config_dir" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.config_dir">
+<span class="sig-name descname"><span class="pre">config_dir</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.config_dir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Absolute path to local project configuration directory (“.mc”).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -230,8 +227,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.config_path">
-<code class="sig-name descname">config_path</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.config_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.config_path">
+<span class="sig-name descname"><span class="pre">config_path</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.config_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Absolute path to local project configuration file (“.mc/config.json”).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -241,8 +238,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.project_id">
-<code class="sig-name descname">project_id</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.project_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.project_id">
+<span class="sig-name descname"><span class="pre">project_id</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.project_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Project ID</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -252,8 +249,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.project_uuid">
-<code class="sig-name descname">project_uuid</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.project_uuid" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.project_uuid">
+<span class="sig-name descname"><span class="pre">project_uuid</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.project_uuid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Project UUID</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -263,8 +260,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.experiment_id">
-<code class="sig-name descname">experiment_id</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.experiment_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.experiment_id">
+<span class="sig-name descname"><span class="pre">experiment_id</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.experiment_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current experiment ID</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -274,8 +271,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.experiment_uuid">
-<code class="sig-name descname">experiment_uuid</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.experiment_uuid" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.experiment_uuid">
+<span class="sig-name descname"><span class="pre">experiment_uuid</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.experiment_uuid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current experiment UUID</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -285,8 +282,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.remote">
-<code class="sig-name descname">remote</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.remote" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.remote">
+<span class="sig-name descname"><span class="pre">remote</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.remote" title="Permalink to this definition">¶</a></dt>
 <dd><p>Holds configuration variables (email, url, apikey) for the remote instance of Materials Commons where the project is stored.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -296,8 +293,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.remote_updatetime">
-<code class="sig-name descname">remote_updatetime</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.remote_updatetime" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.remote_updatetime">
+<span class="sig-name descname"><span class="pre">remote_updatetime</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.remote_updatetime" title="Permalink to this definition">¶</a></dt>
 <dd><p>For use with optional caching, holds the last time local cache data was updated from the remote.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -307,8 +304,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.globus_upload_id">
-<code class="sig-name descname">globus_upload_id</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.globus_upload_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.globus_upload_id">
+<span class="sig-name descname"><span class="pre">globus_upload_id</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.globus_upload_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>ID specifying which Globus upload directory should be used for Globus uploads.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -318,8 +315,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="materials_commons.cli.functions.ProjectConfig.globus_download_id">
-<code class="sig-name descname">globus_download_id</code><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.globus_download_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.globus_download_id">
+<span class="sig-name descname"><span class="pre">globus_download_id</span></span><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.globus_download_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>ID specifying which Globus download directory should be used for Globus downloads.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -335,22 +332,22 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="materials_commons.cli.functions.ProjectConfig.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectConfig.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.save" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectConfig.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save project configuration as a JSON file</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.functions.ProjectConfig.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectConfig.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.to_dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectConfig.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectConfig.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectConfig.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the project configuration as a dict</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.cli.functions.ProjectTable">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">ProjectTable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj_local_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectTable">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">ProjectTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj_local_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="materials_commons.cli.sqltable.html#materials_commons.cli.sqltable.SqlTable" title="materials_commons.cli.sqltable.SqlTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.sqltable.SqlTable</span></code></a></p>
 <p>The ProjectTable creates a sqlite “project” table to cache some basic project data</p>
 <dl class="field-list simple">
@@ -359,14 +356,14 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt id="materials_commons.cli.functions.ProjectTable.default_print_fmt">
-<em class="property">static </em><code class="sig-name descname">default_print_fmt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.default_print_fmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.default_print_fmt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectTable.default_print_fmt">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">default_print_fmt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.default_print_fmt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.default_print_fmt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns project table print formatting parameters</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.functions.ProjectTable.select_all">
-<code class="sig-name descname">select_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.select_all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.select_all" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectTable.select_all">
+<span class="sig-name descname"><span class="pre">select_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.select_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.select_all" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select record by id</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -376,8 +373,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.functions.ProjectTable.tablecolumns">
-<em class="property">static </em><code class="sig-name descname">tablecolumns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.tablecolumns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.tablecolumns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectTable.tablecolumns">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tablecolumns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.tablecolumns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.tablecolumns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns sqlite project table creating parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -387,16 +384,16 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.functions.ProjectTable.tablename">
-<em class="property">static </em><code class="sig-name descname">tablename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.tablename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.tablename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.ProjectTable.tablename">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">tablename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#ProjectTable.tablename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.ProjectTable.tablename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns sqlite project table name “project”</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.add_remote_option">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">add_remote_option</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parser</span></em>, <em class="sig-param"><span class="n">help</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#add_remote_option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.add_remote_option" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.add_remote_option">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">add_remote_option</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">help</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#add_remote_option"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.add_remote_option" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the “–remote &lt;email&gt; &lt;url&gt;” cli option to an ArgumentParser</p>
 <ul class="simple">
 <li><p>This standardizes the use of the “–remote &lt;email&gt; &lt;url&gt;” cli option which is needed in some contexts, but not others</p></li>
@@ -412,20 +409,20 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.as_is">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">as_is</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#as_is"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.as_is" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.as_is">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">as_is</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#as_is"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.as_is" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns value without any changes. A placeholder for when a function is needed.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.checksum">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">checksum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#checksum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.checksum" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.checksum">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">checksum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#checksum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.checksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate MD5 checksum for the file at “path”</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.clone_project">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">clone_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">remote_config</span></em>, <em class="sig-param"><span class="n">project_id</span></em>, <em class="sig-param"><span class="n">parent_dest</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#clone_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.clone_project" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.clone_project">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">clone_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#clone_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.clone_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clone a remote project to a local directory</p>
 <ul class="simple">
 <li><p>Will create the local project directory “&lt;parent_dest&gt;/&lt;project_name&gt;”</p></li>
@@ -434,20 +431,26 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>remote_config</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">user_config.RemoteConfig</span></code>) – Holds configuration variables (email, url, apikey) for the remote instance of Materials Commons where the project to be cloned is stored.</p></li>
+<li><p><strong>remote_config</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">user_config.RemoteConfig</span></code>) – Holds configuration
+variables (email, url, apikey) for the remote instance of Materials
+Commons where the project to be cloned is stored.</p></li>
 <li><p><strong>project_id</strong> (<em>int</em>) – ID of the project to clone</p></li>
-<li><p><strong>parent_dest</strong> (<em>str</em>) – Absolute path to a local directory which will become the parent of the cloned project directory.</p></li>
+<li><p><strong>parent_dest</strong> (<em>str</em>) – Absolute path to a local directory which will become
+the parent of the cloned project directory.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of created project directory. Default is remote
+project name.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Project</span></code> – Object representing the cloned project</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Project</span></code> – Object representing the
+cloned project</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.epoch_time">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">epoch_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#epoch_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.epoch_time" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.epoch_time">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">epoch_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#epoch_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.epoch_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attempts to convert various time representations into s since the epoch</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -474,8 +477,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.format_time">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">format_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_value</span></em>, <em class="sig-param"><span class="n">fmt</span><span class="o">=</span><span class="default_value">'%Y %b %d %H:%M:%S'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#format_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.format_time" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.format_time">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">format_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%Y</span> <span class="pre">%b</span> <span class="pre">%d</span> <span class="pre">%H:%M:%S'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#format_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.format_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attempts to put various time representations into specified format for printing</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -505,14 +508,14 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.getit">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">getit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#getit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.getit" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.getit">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">getit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#getit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.getit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the “name” attribute (or default value) whether “obj” is a dict or an object.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.humanize">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">humanize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_size_bytes</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#humanize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.humanize" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.humanize">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">humanize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_size_bytes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#humanize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.humanize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a nice string representation of file size</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -525,14 +528,14 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.make_file">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">make_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.make_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.make_file">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">make_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.make_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function for writing “text” to a file at “path”.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.make_local_expt">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">make_local_expt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_local_expt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.make_local_expt" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.make_local_expt">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">make_local_expt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_local_expt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.make_local_expt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read local project configuration to construct “current experiment” object</p>
 <ul class="simple">
 <li><p>The “current experiment” is a default experiment for putting newly created samples or processes</p></li>
@@ -548,8 +551,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.make_local_project">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">make_local_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_local_project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.make_local_project" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.make_local_project">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">make_local_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_local_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.make_local_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read local project config file and use to construct materials_commons.api.models.Project</p>
 <ul class="simple">
 <li><p>Checks if “path” is a path located inside a local project directory (by looking for the “.mc” directory).</p></li>
@@ -583,8 +586,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.make_local_project_client">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">make_local_project_client</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_local_project_client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.make_local_project_client" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.make_local_project_client">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">make_local_project_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#make_local_project_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.make_local_project_client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a client to access project data from the local project configuration</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -597,14 +600,14 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.mkdir_if">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">mkdir_if</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#mkdir_if"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.mkdir_if" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.mkdir_if">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">mkdir_if</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#mkdir_if"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.mkdir_if" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function for making a directory, if it does not exist.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.optional_remote">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">optional_remote</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span></em>, <em class="sig-param"><span class="n">default_client</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#optional_remote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.optional_remote" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.optional_remote">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">optional_remote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#optional_remote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.optional_remote" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return remote specified by cli option “–remote”, or the user’s default remote</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -624,22 +627,22 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.optional_remote_config">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">optional_remote_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#optional_remote_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.optional_remote_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.optional_remote_config">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">optional_remote_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#optional_remote_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.optional_remote_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return remote configuration parameters specified by cli option “–remote”, or the user’s default remote</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>args</strong> (<em>argparse.Namespace</em>) – The result of argparse’s “parse_args()” method. Checks for “args.remote”.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.Client</span></code> – The remote configuration parameters for the appropriate client: either the value specified using the “–remote &lt;email&gt; &lt;url&gt;” option, or else the user’s configured default.</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">user_config.RemoteConfig</span></code> – The remote configuration parameters for the appropriate client: either the value specified using the “–remote &lt;email&gt; &lt;url&gt;” option, or else the user’s configured default.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.print_projects">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">print_projects</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">projects</span></em>, <em class="sig-param"><span class="n">current</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.print_projects" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.print_projects">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">print_projects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projects</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_projects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.print_projects" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints a list of projects, including a ‘*’ indicating the project containing the current working directory</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -652,19 +655,20 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.print_remote_help">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">print_remote_help</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_remote_help"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.print_remote_help" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.print_remote_help">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">print_remote_help</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_remote_help"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.print_remote_help" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print a help message for cases when no remotes are configured</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.print_remotes">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">print_remotes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_remotes</span></em>, <em class="sig-param"><span class="n">show_apikey</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_remotes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.print_remotes" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.print_remotes">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">print_remotes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_remotes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_apikey</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_remotes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.print_remotes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print a table with remote Materials Commons instance configuration parameters (email, url, apikey)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_remotes</strong> – A dict of <a class="reference internal" href="materials_commons.cli.user_config.html#materials_commons.cli.user_config.RemoteConfig" title="materials_commons.cli.user_config.RemoteConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.cli.user_config.RemoteConfig</span></code></a>, grouped like: “{&lt;url&gt;: {&lt;email&gt;: RemoteConfig, …}, …}”</p></li>
+<li><p><strong>config_remotes</strong> – A dict of <code class="xref py py-class docutils literal notranslate"><span class="pre">user_config.RemoteConfig</span></code>, grouped
+like: “{&lt;url&gt;: {&lt;email&gt;: RemoteConfig, …}, …}”</p></li>
 <li><p><strong>show_apikey</strong> (<em>bool</em>) – If True, print apikeys also.</p></li>
 </ul>
 </dd>
@@ -672,8 +676,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.print_table">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">print_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">columns</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">out</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.print_table" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.print_table">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">print_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#print_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.print_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print table from list of dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -688,26 +692,26 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.project_exists">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">project_exists</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#project_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.project_exists" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.project_exists">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">project_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#project_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.project_exists" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if a local project directory exists containing “path”</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.project_path">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">project_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#project_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.project_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.project_path">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">project_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#project_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.project_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the path to a local project directory if it contains “path”, else None</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.random_name">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">random_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">max_letters</span><span class="o">=</span><span class="default_value">6</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'-'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#random_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.random_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.random_name">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">random_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_letters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#random_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.random_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a random name for “n” words of max “max_letters” length, joined by “sep”</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.read_project_config">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">read_project_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#read_project_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.read_project_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.read_project_config">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">read_project_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#read_project_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.read_project_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read local project configuration</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -717,20 +721,20 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.remove_hidden_project_files">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">remove_hidden_project_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">project_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#remove_hidden_project_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.remove_hidden_project_files" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.remove_hidden_project_files">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">remove_hidden_project_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#remove_hidden_project_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.remove_hidden_project_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes a local project’s configuration files and directory</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.remove_if">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">remove_if</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#remove_if"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.remove_if" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.remove_if">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">remove_if</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#remove_if"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.remove_if" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function for removing a file, if it exists.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.request_confirmation">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">request_confirmation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#request_confirmation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.request_confirmation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.request_confirmation">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">request_confirmation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#request_confirmation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.request_confirmation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request user confirmation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -750,8 +754,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.functions.rmdir_if">
-<code class="sig-prename descclassname">materials_commons.cli.functions.</code><code class="sig-name descname">rmdir_if</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#rmdir_if"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.functions.rmdir_if" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.functions.rmdir_if">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.functions.</span></span><span class="sig-name descname"><span class="pre">rmdir_if</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/functions.html#rmdir_if"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.functions.rmdir_if" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function for removing a directory, if it exists.</p>
 </dd></dl>
 
@@ -762,37 +766,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.cli.globus.html" class="btn btn-neutral float-right" title="materials_commons.cli.globus module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.cli.file_functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.file_functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.cli.globus.html" class="btn btn-neutral float-right" title="materials_commons.cli.globus module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.cli.file_functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.file_functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

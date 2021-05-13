@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.globus module &mdash; materials_commons.cli 2.0b6 documentation</title>
+  <title>materials_commons.cli.globus module &mdash; materials_commons.cli 2.0b8 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.cli
+            <a href="../../index.html" class="icon icon-home"> materials_commons.cli
           
 
           
@@ -92,23 +97,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mc/index.html">``mc`` Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.cli`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.cli.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.exceptions.html">materials_commons.cli.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.file_functions.html">materials_commons.cli.file_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.functions.html">materials_commons.cli.functions module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.cli.globus module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.list_objects.html">materials_commons.cli.list_objects module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.parser.html">materials_commons.cli.parser module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.print_formatter.html">materials_commons.cli.print_formatter module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.sqltable.html">materials_commons.cli.sqltable module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.tree_functions.html">materials_commons.cli.tree_functions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.treedb.html">materials_commons.cli.treedb module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.cli.user_config.html">materials_commons.cli.user_config module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.cli.html">materials_commons.cli package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.cli.html#module-materials_commons.cli">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +148,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -163,6 +158,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.cli.html">materials_commons.cli package</a> &raquo;</li>
         
       <li>materials_commons.cli.globus module</li>
@@ -170,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.cli.globus.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -187,8 +184,8 @@
   <div class="section" id="module-materials_commons.cli.globus">
 <span id="materials-commons-cli-globus-module"></span><h1>materials_commons.cli.globus module<a class="headerlink" href="#module-materials_commons.cli.globus" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="materials_commons.cli.globus.GlobusOperations">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">GlobusOperations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">local_endpoint_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transfer_client</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.GlobusOperations">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.cli.globus.</span></span><span class="sig-name descname"><span class="pre">GlobusOperations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_endpoint_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transfer_client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Used to perform Globus operations</p>
 <dl class="simple">
@@ -203,8 +200,8 @@ the user’s config file.</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="materials_commons.cli.globus.GlobusOperations.create_all_directories_on_path">
-<code class="sig-name descname">create_all_directories_on_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">endpoint_id</span></em>, <em class="sig-param"><span class="n">endpoint_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.create_all_directories_on_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.create_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.GlobusOperations.create_all_directories_on_path">
+<span class="sig-name descname"><span class="pre">create_all_directories_on_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endpoint_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endpoint_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.create_all_directories_on_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.create_all_directories_on_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create all directories on path at upload endpoint</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -218,8 +215,8 @@ the user’s config file.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.globus.GlobusOperations.download_v0">
-<code class="sig-name descname">download_v0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">download</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.download_v0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.download_v0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.GlobusOperations.download_v0">
+<span class="sig-name descname"><span class="pre">download_v0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localtree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.download_v0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.download_v0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download files and directories from project</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -228,6 +225,8 @@ the user’s config file.</p>
 <li><p><strong>paths</strong> – list of str, Materials Commons paths (absolute path, not including project name
 directory)</p></li>
 <li><p><strong>download</strong> – mcapi.GlobusDownload, Globus download request</p></li>
+<li><p><strong>working_dir</strong> (<em>str</em>) – Current working directory, used for finding
+relative paths and printing messages.</p></li>
 <li><p><strong>recursive</strong> – bool, If True, download directories recursively</p></li>
 <li><p><strong>label</strong> – str, Globus transfer label to make finding tasks simpler</p></li>
 <li><p><strong>force</strong> – bool, If True force download even if local file exists</p></li>
@@ -240,8 +239,8 @@ directory)</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="materials_commons.cli.globus.GlobusOperations.upload_v0">
-<code class="sig-name descname">upload_v0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">proj</span></em>, <em class="sig-param"><span class="n">paths</span></em>, <em class="sig-param"><span class="n">upload</span></em>, <em class="sig-param"><span class="n">recursive</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">localtree</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remotetree</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.upload_v0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.upload_v0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.GlobusOperations.upload_v0">
+<span class="sig-name descname"><span class="pre">upload_v0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localtree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remotetree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#GlobusOperations.upload_v0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.GlobusOperations.upload_v0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Upload files and directories to project</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -249,6 +248,8 @@ directory)</p></li>
 <li><p><strong>proj</strong> – Project</p></li>
 <li><p><strong>paths</strong> – list of str, Materials Commons paths (include project directory)</p></li>
 <li><p><strong>upload</strong> – mcapi.GlobusUpload, Globus upload request</p></li>
+<li><p><strong>working_dir</strong> (<em>str</em>) – Current working directory, used for finding
+relative paths and printing messages.</p></li>
 <li><p><strong>recursive</strong> – bool, If True, upload directories recursively</p></li>
 <li><p><strong>label</strong> – str, Globus transfer label to make finding tasks simpler</p></li>
 </ul>
@@ -262,8 +263,8 @@ directory)</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.globus.check_transfer_types">
-<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">check_transfer_types</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_type</span></em>, <em class="sig-param"><span class="n">target_type</span></em>, <em class="sig-param"><span class="n">recursive</span></em>, <em class="sig-param"><span class="n">verbose</span></em>, <em class="sig-param"><span class="n">printpath</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#check_transfer_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.check_transfer_types" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.check_transfer_types">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.globus.</span></span><span class="sig-name descname"><span class="pre">check_transfer_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">printpath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#check_transfer_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.check_transfer_types" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if source and target types are valid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -282,8 +283,8 @@ directory)</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.globus.get_local_endpoint_id">
-<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">get_local_endpoint_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_local_endpoint_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.get_local_endpoint_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.get_local_endpoint_id">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.globus.</span></span><span class="sig-name descname"><span class="pre">get_local_endpoint_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_local_endpoint_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.get_local_endpoint_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the local endpoint id</p>
 <p>Checks for a local Globus connect personal, if not found checks user config for globus.endpoint_id.</p>
 <blockquote>
@@ -292,14 +293,14 @@ directory)</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.globus.get_local_endpoint_id_or_exit">
-<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">get_local_endpoint_id_or_exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_local_endpoint_id_or_exit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.get_local_endpoint_id_or_exit" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.get_local_endpoint_id_or_exit">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.globus.</span></span><span class="sig-name descname"><span class="pre">get_local_endpoint_id_or_exit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_local_endpoint_id_or_exit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.get_local_endpoint_id_or_exit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the local endpoint id</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.globus.get_transfer_rt_or_login">
-<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">get_transfer_rt_or_login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_transfer_rt_or_login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.get_transfer_rt_or_login" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.get_transfer_rt_or_login">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.globus.</span></span><span class="sig-name descname"><span class="pre">get_transfer_rt_or_login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#get_transfer_rt_or_login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.get_transfer_rt_or_login" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the Globus transfer refresh token, prompting for login if necessary</p>
 <p>If not yet configured, will prompt user to login and enter a code used to obtain the refresh
 token. Once obtained the token will be saved into the user’s config file so future login is
@@ -308,8 +309,8 @@ unnecessary.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="materials_commons.cli.globus.make_transfer_client">
-<code class="sig-prename descclassname">materials_commons.cli.globus.</code><code class="sig-name descname">make_transfer_client</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">transfer_rt</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#make_transfer_client"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.cli.globus.make_transfer_client" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.cli.globus.make_transfer_client">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.globus.</span></span><span class="sig-name descname"><span class="pre">make_transfer_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transfer_rt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/globus.html#make_transfer_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.globus.make_transfer_client" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a Globus TransferClient</p>
 <dl class="simple">
 <dt>transfer_rt: str</dt><dd><p>Globus transfer authentication refresh token. Can be obtained from user’s globus
@@ -327,37 +328,29 @@ obtain from configuration or prompt user to login, use <cite>get_transfer_rt_or_
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.cli.list_objects.html" class="btn btn-neutral float-right" title="materials_commons.cli.list_objects module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.cli.functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.cli.list_objects.html" class="btn btn-neutral float-right" title="materials_commons.cli.list_objects module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.cli.functions.html" class="btn btn-neutral float-left" title="materials_commons.cli.functions module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

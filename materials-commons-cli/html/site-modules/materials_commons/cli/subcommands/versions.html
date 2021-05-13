@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>materials_commons.cli.subcommands.versions &mdash; materials_commons.cli 2.0b7 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../site-static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../site-static/documentation_options.js"></script>
+        <script src="../../../../site-static/jquery.js"></script>
+        <script src="../../../../site-static/underscore.js"></script>
+        <script src="../../../../site-static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>materials_commons.cli.subcommands.versions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for materials_commons.cli.subcommands.versions</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">difflib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.functions</span> <span class="k">as</span> <span class="nn">clifuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.file_functions</span> <span class="k">as</span> <span class="nn">filefuncs</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.tmp_functions</span> <span class="k">as</span> <span class="nn">tmpfuncs</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.print_formatter</span> <span class="kn">import</span> <span class="n">PrintFormatter</span>
+
+<div class="viewcode-block" id="make_version_record"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.make_version_record">[docs]</a><span class="k">def</span> <span class="nf">make_version_record</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">is_current</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;current&#39;</span><span class="p">:</span> <span class="n">is_current</span><span class="p">,</span>
+        <span class="s1">&#39;owner&#39;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">owner</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+        <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">format_time</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">created_at</span><span class="p">),</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">humanize</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">checksum</span><span class="p">,</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="make_versions"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.make_versions">[docs]</a><span class="k">def</span> <span class="nf">make_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Make a list of versions records&quot;&quot;&quot;</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">get_by_path_if_exists</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="s2">&quot;: No such file or directory on remote&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="s2">&quot;: Is a directory on remote&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="s2">&quot;: Not a file on remote&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">file_versions</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">get_file_versions</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+    <span class="n">version_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file_version</span> <span class="ow">in</span> <span class="n">file_versions</span><span class="p">:</span>
+        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">_add_owner</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">file_version</span><span class="p">)</span>
+        <span class="n">version_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">make_version_record</span><span class="p">(</span><span class="n">file_version</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+    <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">_add_owner</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+    <span class="n">version_records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">make_version_record</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">version_records</span></div>
+
+<div class="viewcode-block" id="list_versions"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.list_versions">[docs]</a><span class="k">def</span> <span class="nf">list_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="n">make_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">versions</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">versions</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">versions</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="p">[</span><span class="s1">&#39;created_at&#39;</span><span class="p">])</span>
+
+    <span class="c1"># fmt = [</span>
+    <span class="c1">#     (&#39;current&#39;, &#39;&#39;, &#39;&lt;&#39;, 2, clifuncs.as_is),</span>
+    <span class="c1">#     (&#39;created_at&#39;, &#39;created_at&#39;, &#39;&lt;&#39;, 24, clifuncs.as_is),</span>
+    <span class="c1">#     (&#39;size&#39;, &#39;size&#39;, &#39;&lt;&#39;, 8, clifuncs.as_is),</span>
+    <span class="c1">#     (&#39;id&#39;, &#39;id&#39;, &#39;&lt;&#39;, 36, clifuncs.as_is),</span>
+    <span class="c1">#     (&#39;owner&#39;, &#39;owner&#39;, &#39;&lt;&#39;, 36, clifuncs.as_is),</span>
+    <span class="c1">#     (&#39;checksum&#39;, &#39;checksum&#39;, &#39;&lt;&#39;, 36, clifuncs.as_is),</span>
+    <span class="c1">#     (&#39;version&#39;, &#39;version&#39;, &#39;&lt;&#39;, 8, clifuncs.as_is)</span>
+    <span class="c1"># ]</span>
+
+    <span class="c1"># pformatter = PrintFormatter(fmt)</span>
+    <span class="c1">#</span>
+    <span class="c1"># local_abspath = os.path.join(os.path.dirname(proj.local_path), path)</span>
+    <span class="c1"># print(os.path.relpath(local_abspath) + &quot;:&quot;)</span>
+    <span class="c1"># pformatter.print_header()</span>
+    <span class="c1"># for vers in versions:</span>
+    <span class="c1">#     pformatter.print(vers)</span>
+
+    <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">),</span> <span class="n">path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;checksum&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;checksum&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="n">clifuncs</span><span class="o">.</span><span class="n">print_table</span><span class="p">(</span><span class="n">versions</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="version_as_str"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.version_as_str">[docs]</a><span class="k">def</span> <span class="nf">version_as_str</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">versions</span><span class="p">,</span> <span class="n">vers_indicator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return version as str and standardized version name</span>
+
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    path: str, File path</span>
+<span class="sd">    versions: list of version records, output from `make_versions`</span>
+<span class="sd">    vers_indicator: int or str, version ID, or &#39;local&#39;, or &#39;remote&#39; for current remote version</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    (s, verspath):</span>
+<span class="sd">        s: str, File version as a string</span>
+<span class="sd">        verspath: str, Standardized version path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">vers_indicator</span> <span class="o">==</span> <span class="s1">&#39;local&#39;</span><span class="p">:</span>
+        <span class="n">refpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;: does not exist locally&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid versions request&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;: is not a file locally&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid versions request&quot;</span><span class="p">)</span>
+        <span class="n">versname</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;-local&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">versname</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">select_version</span><span class="p">(</span><span class="n">versions</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">versions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">vers_indicator</span> <span class="o">==</span> <span class="s1">&#39;remote&#39;</span> <span class="ow">and</span> <span class="n">version</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">version</span>
+                <span class="k">elif</span> <span class="nb">str</span><span class="p">(</span><span class="n">version</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">vers_indicator</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">version</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">select_version</span><span class="p">(</span><span class="n">versions</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">vers_indicator</span> <span class="o">+</span> <span class="s2">&quot;: version not found&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid versions request&quot;</span><span class="p">)</span>
+        <span class="n">versname</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">version</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">filefuncs</span><span class="o">.</span><span class="n">download_file_as_string</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">version</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]),</span> <span class="n">versname</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="print_version"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.print_version">[docs]</a><span class="k">def</span> <span class="nf">print_version</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">vers_indicator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    proj: mcapi.Project</span>
+<span class="sd">    path: str, path in project</span>
+<span class="sd">    vers_indicator: str or int,</span>
+<span class="sd">        Version number (positive or negative), or &#39;local&#39;, or &#39;remote&#39; (==&quot;-1&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="n">make_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">,</span> <span class="n">verspath</span> <span class="o">=</span> <span class="n">version_as_str</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">versions</span><span class="p">,</span> <span class="n">vers_indicator</span><span class="p">)</span>
+    <span class="n">refpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+    <span class="n">local_verspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">verspath</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_verspath</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="download_version"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.download_version">[docs]</a><span class="k">def</span> <span class="nf">download_version</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">vers_indicator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    proj: mcapi.Project</span>
+<span class="sd">    path: str, path in project</span>
+<span class="sd">    vers_indicator: str or int</span>
+<span class="sd">        Version number (positive or negative), or &#39;local&#39;, or &#39;remote&#39; (==&quot;-1&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="n">make_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">,</span> <span class="n">verspath</span> <span class="o">=</span> <span class="n">version_as_str</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">versions</span><span class="p">,</span> <span class="n">vers_indicator</span><span class="p">)</span>
+
+    <span class="n">refpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+    <span class="n">local_verspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">verspath</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_verspath</span><span class="p">):</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Overwrite &#39;&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_verspath</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;?&quot;</span><span class="p">)</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;y/n: &#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">ans</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
+                <span class="k">return</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_verspath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wrote:&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_verspath</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="diff_versions"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.diff_versions">[docs]</a><span class="k">def</span> <span class="nf">diff_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">vers_indicator_a</span><span class="p">,</span> <span class="n">vers_indicator_b</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Arguments</span>
+<span class="sd">    ---------</span>
+<span class="sd">    proj: mcapi.Project</span>
+<span class="sd">    path: str, path in project</span>
+<span class="sd">    vers_indicator_a: str or int,</span>
+<span class="sd">        Version number (positive or negative), or &#39;local&#39;, or &#39;remote&#39; (==&quot;-1&quot;) of &#39;from&#39; file.</span>
+<span class="sd">    vers_indicator_b: str or int,</span>
+<span class="sd">        Version number (positive or negative), or &#39;local&#39;, or &#39;remote&#39; (==&quot;-1&quot;) of &#39;to&#39; file.</span>
+<span class="sd">    method: function,</span>
+<span class="sd">        libdiff method to use to compare files</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">versions</span> <span class="o">=</span> <span class="n">make_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="n">s_a</span><span class="p">,</span> <span class="n">verspath_a</span> <span class="o">=</span> <span class="n">version_as_str</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">versions</span><span class="p">,</span> <span class="n">vers_indicator_a</span><span class="p">)</span>
+    <span class="n">s_b</span><span class="p">,</span> <span class="n">verspath_b</span> <span class="o">=</span> <span class="n">version_as_str</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">versions</span><span class="p">,</span> <span class="n">vers_indicator_b</span><span class="p">)</span>
+
+    <span class="n">refpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+    <span class="n">local_verspath_a</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">verspath_a</span><span class="p">)</span>
+    <span class="n">local_verspath_b</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">refpath</span><span class="p">,</span> <span class="n">verspath_b</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">s_a</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="n">keepends</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">s_b</span><span class="o">.</span><span class="n">splitlines</span><span class="p">(</span><span class="n">keepends</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">fromfile</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_verspath_a</span><span class="p">),</span> <span class="n">tofile</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_verspath_b</span><span class="p">))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="make_parser"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.make_parser">[docs]</a><span class="k">def</span> <span class="nf">make_parser</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Make argparse.ArgumentParser for `mc versions`&quot;&quot;&quot;</span>
+
+    <span class="n">mc_versions_description</span> <span class="o">=</span> <span class="s2">&quot;List, print, download, and compare file versions&quot;</span>
+
+    <span class="n">mc_versions_usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    mc versions &lt;pathspec&gt;</span>
+<span class="s2">    mc versions &lt;pathspec&gt; --print --version &lt;version_indicator&gt;</span>
+<span class="s2">    mc versions &lt;pathspec&gt; --down --version &lt;version_indicator&gt;</span>
+<span class="s2">    mc versions &lt;pathspec&gt; --diff --version &lt;version_indicator&gt; &lt;version_indicator&gt; [--context]&quot;&quot;&quot;</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">mc_versions_description</span><span class="p">,</span>
+        <span class="n">usage</span><span class="o">=</span><span class="n">mc_versions_usage</span><span class="p">,</span>
+        <span class="n">prog</span><span class="o">=</span><span class="s1">&#39;mc versions&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;File to list versions of&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Select versions. Use a version id, or </span><span class="se">\&#39;</span><span class="s1">local</span><span class="se">\&#39;</span><span class="s1"> to compare with local version, or </span><span class="se">\&#39;</span><span class="s1">remote</span><span class="se">\&#39;</span><span class="s1"> to indicate current remote version.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="s1">&#39;--print&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print selected version&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--down&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Download selected version&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--diff&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Compare selected versions. By default, </span><span class="se">\&#39;</span><span class="s1">--versions remote local</span><span class="se">\&#39;</span><span class="s1"> is used&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--context&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Print diff using </span><span class="se">\&#39;</span><span class="s1">context diff</span><span class="se">\&#39;</span><span class="s1"> method&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
+
+<div class="viewcode-block" id="versions_subcommand"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.versions.html#materials_commons.cli.subcommands.versions.versions_subcommand">[docs]</a><span class="k">def</span> <span class="nf">versions_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List, print, download, and compare file versions</span>
+
+<span class="sd">    mc versions &lt;pathspec&gt;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">make_parser</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+    <span class="n">pconfig</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">read_project_config</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+
+    <span class="c1"># convert cli input to materials commons path convention: &lt;projectname&gt;/path/to/file_or_dir</span>
+    <span class="n">refpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">refpath</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">print</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--print requires 1 version id provided to -v,--version&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid versions request&quot;</span><span class="p">)</span>
+            <span class="n">print_version</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">down</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--down requires 1 version id provided to -v,--version&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid versions request&quot;</span><span class="p">)</span>
+            <span class="n">download_version</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="o">.</span><span class="n">diff</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;remote&#39;</span><span class="p">,</span> <span class="s1">&#39;local&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--diff requires 2 version ids (or strings &#39;local&#39; or &#39;remote&#39;) if -v,--version is given&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Invalid versions request&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">context</span><span class="p">:</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="n">difflib</span><span class="o">.</span><span class="n">context_diff</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">method</span> <span class="o">=</span> <span class="n">difflib</span><span class="o">.</span><span class="n">unified_diff</span>
+
+            <span class="n">diff_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">method</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">list_versions</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+
+    <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, PRISMS Center.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

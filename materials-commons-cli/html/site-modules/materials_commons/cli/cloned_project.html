@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>materials_commons.cli.cloned_project &mdash; materials_commons.cli 2.0b7 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../site-static/documentation_options.js"></script>
+        <script src="../../../site-static/jquery.js"></script>
+        <script src="../../../site-static/underscore.js"></script>
+        <script src="../../../site-static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> materials_commons.cli
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/mc/index.html">``mc`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">``materials_commons.cli`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">materials_commons.cli</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>materials_commons.cli.cloned_project</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for materials_commons.cli.cloned_project</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="kn">import</span> <span class="nn">materials_commons.cli.exceptions</span> <span class="k">as</span> <span class="nn">cliexcept</span>
+<span class="kn">import</span> <span class="nn">materials_commons.cli.functions</span> <span class="k">as</span> <span class="nn">clifuncs</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.user_config</span> <span class="kn">import</span> <span class="n">Config</span><span class="p">,</span> \
+    <span class="n">get_remote_config_and_login_if_necessary</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.subcommands.down</span> <span class="kn">import</span> <span class="n">down_subcommand</span>
+<span class="kn">from</span> <span class="nn">materials_commons.cli.subcommands.up</span> <span class="kn">import</span> <span class="n">up_subcommand</span>
+
+<span class="c1"># TODO: only call os.getcwd() from parser::main</span>
+
+<div class="viewcode-block" id="ClonedProject"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.cloned_project.html#materials_commons.cli.cloned_project.ClonedProject">[docs]</a><span class="k">class</span> <span class="nc">ClonedProject</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A cloned Materials Commons project instance</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        local_path (pathlib.Path): Location of the cloned Materials Commons</span>
+<span class="sd">            project</span>
+<span class="sd">        proj (materials_commons.api.models.Project): Materials Commons project</span>
+<span class="sd">            object</span>
+<span class="sd">        tmpdir (tempfile.TemporaryDirectory or None): Temporary directory</span>
+<span class="sd">            instance. If not None, the temporary directory is the parent of the</span>
+<span class="sd">            cloned Materials Commons project directory.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mcurl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">proj_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">parent_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a cloned Materials Commons project instance</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            Open a project that has already been cloned:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                path = &quot;/path/to/materials_commons_projects/ProjectName&quot;</span>
+<span class="sd">                mc_proj = ClonedProject(path=path)</span>
+
+<span class="sd">            Clone project to a particular directory or open if already cloned:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                email = &quot;username@domain.com&quot;</span>
+<span class="sd">                mcurl = &quot;https://materialscommons.org/api&quot;</span>
+<span class="sd">                proj_id = 25</span>
+<span class="sd">                parent_path = &quot;/path/to/materials_commons_projects&quot;</span>
+<span class="sd">                name = None  # default uses remote project name</span>
+<span class="sd">                mc_proj = ClonedProject(email=email,</span>
+<span class="sd">                                        mcurl=mcurl,</span>
+<span class="sd">                                        proj_id=proj_id,</span>
+<span class="sd">                                        parent_path=parent_path,</span>
+<span class="sd">                                        name=name)</span>
+
+<span class="sd">            Clone project to a temporary directory:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                email = &quot;username@domain.com&quot;</span>
+<span class="sd">                mcurl = &quot;https://materialscommons.org/api&quot;</span>
+<span class="sd">                proj_id = 25</span>
+<span class="sd">                mc_proj = ClonedProject(email=email, mcurl=mcurl, proj_id=proj_id)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            email (str): User account email</span>
+<span class="sd">            mcurl (str): URL for Materials Commons remote instance containing</span>
+<span class="sd">                the project. Example: &quot;https://materialscommons.org/api&quot;.</span>
+<span class="sd">            proj_id (int): ID of project to clone.</span>
+<span class="sd">            path (str): Path where the project exists, if already cloned.</span>
+<span class="sd">            parent_path (str): Path to parent directory where the project should</span>
+<span class="sd">                be cloned if path is None. If neither path nor parent_path are</span>
+<span class="sd">                given, uses a tempfile.TemporaryDirectory for parent_path.</span>
+<span class="sd">            name (str): Name of created project directory. Default is remote</span>
+<span class="sd">                project name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tmpdir</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">project_exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;No project found at &quot;</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">proj_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;`proj_id` is required if `path` is not provided&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">email</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">mcurl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">default_remote</span><span class="o">.</span><span class="n">mcurl</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">default_remote</span><span class="o">.</span><span class="n">mcapikey</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">NoDefaultRemoteException</span><span class="p">(</span><span class="s2">&quot;Default remote not set&quot;</span><span class="p">)</span>
+                <span class="n">remote_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">default_remote</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">remote_config</span> <span class="o">=</span> <span class="n">get_remote_config_and_login_if_necessary</span><span class="p">(</span>
+                    <span class="n">mcurl</span><span class="o">=</span><span class="n">mcurl</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">parent_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">clone_project</span><span class="p">(</span><span class="n">remote_config</span><span class="p">,</span> <span class="n">proj_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tmpdir</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">parent_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+
+                <span class="c1"># check if project already exists, then construct or clone</span>
+                <span class="n">client</span> <span class="o">=</span> <span class="n">remote_config</span><span class="o">.</span><span class="n">make_client</span><span class="p">()</span>
+                <span class="n">proj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_project</span><span class="p">(</span><span class="n">proj_id</span><span class="p">)</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">project_exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">clone_project</span><span class="p">(</span><span class="n">remote_config</span><span class="p">,</span> <span class="n">proj_id</span><span class="p">,</span> <span class="n">parent_path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ClonedProject.glob"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.cloned_project.html#materials_commons.cli.cloned_project.ClonedProject.glob">[docs]</a>    <span class="k">def</span> <span class="nf">glob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper to construct paths for upload or download</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pattern (str): Pattern, relative to local project directory root,</span>
+<span class="sd">                passed as argument to `self.local_path.glob(pattern)`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of str, File paths found from use of `glob`, made relative to</span>
+<span class="sd">            self.local_path and converted to str.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="p">))</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="ClonedProject.download"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.cloned_project.html#materials_commons.cli.cloned_project.ClonedProject.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">paths</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">only_print</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">globus</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Download requested files from the Materials Commons project</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            recursive (bool): Download directory contents recursively</span>
+<span class="sd">            force (bool): Force overwrite of existing files</span>
+<span class="sd">            only_print (bool): Print file, do not write</span>
+<span class="sd">            output (str): Download file name. Only allowed if `len(paths) == 1`.</span>
+<span class="sd">            globus (bool): Use globus to download files</span>
+<span class="sd">            label (str): Globus transfer label to make finding tasks simpler</span>
+<span class="sd">            no_compare (bool): Download remote without checking if local is</span>
+<span class="sd">                equivalent</span>
+<span class="sd">            *paths (str): Files or directories to download, specified either</span>
+<span class="sd">                using absolute paths or paths relative to the project root</span>
+<span class="sd">                directory (`self.local_path`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: convert to direct function calls rather than arg parsing</span>
+
+        <span class="n">working_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span>
+
+        <span class="n">argv</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">recursive</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-r&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">only_print</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-p&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">force</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-f&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">)</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">globus</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-g&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--label&quot;</span><span class="p">)</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">no_compare</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--no-compare&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+            <span class="c1"># using relpaths is more robust within the working_dir context</span>
+            <span class="c1"># argv += [str(os.path.relpath(os.path.abspath(path), self.local_path)) for path in paths]</span>
+            <span class="n">argv</span> <span class="o">+=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">down_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SystemExit</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid download request&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ClonedProject.upload"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.cloned_project.html#materials_commons.cli.cloned_project.ClonedProject.upload">[docs]</a>    <span class="k">def</span> <span class="nf">upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">paths</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">globus</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Upload requested files to Materials Commons</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            recursive (bool): Download directory contents recursively</span>
+<span class="sd">            limit (str): File size upload limit (MB). Default=&quot;50&quot; (50MB). Does</span>
+<span class="sd">                not apply to Globus uploads.</span>
+<span class="sd">            globus (bool): Use globus to download files</span>
+<span class="sd">            label (str): Globus transfer label to make finding tasks simpler</span>
+<span class="sd">            no_compare (bool): Download remote without checking if local is</span>
+<span class="sd">                equivalent</span>
+<span class="sd">            upload_as (str): Upload a file or directory to a particular location in the project. Raises if `len(paths) != 1`.</span>
+<span class="sd">            *paths (str): Files or directories to upload, specified either</span>
+<span class="sd">                using absolute paths or paths relative to the project root</span>
+<span class="sd">                directory (`self.local_path`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: convert to direct function calls rather than arg parsing</span>
+
+        <span class="n">working_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span>
+
+        <span class="n">argv</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">recursive</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-r&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--limit&quot;</span><span class="p">)</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">limit</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">globus</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-g&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--label&quot;</span><span class="p">)</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">no_compare</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--no-compare&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">upload_as</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--upload-as&quot;</span><span class="p">)</span>
+            <span class="n">argv</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">upload_as</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">):</span>
+            <span class="c1"># using relpaths is more robust within the working_dir context</span>
+            <span class="c1"># argv += [str(os.path.relpath(os.path.abspath(path), self.local_path)) for path in paths]</span>
+            <span class="n">argv</span> <span class="o">+=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">up_subcommand</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">SystemExit</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid upload request&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, PRISMS Center.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
