@@ -3,20 +3,25 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.api.requests module &mdash; materials_commons.api 2.0b3 documentation</title>
+  <title>materials_commons.api.requests module &mdash; materials_commons.api 2.0b4 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -26,10 +31,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
         <script src="../../site-static/jquery.js"></script>
         <script src="../../site-static/underscore.js"></script>
         <script src="../../site-static/doctools.js"></script>
-        <script src="../../site-static/language_data.js"></script>
     
     <script type="text/javascript" src="../../site-static/js/theme.js"></script>
 
@@ -51,7 +56,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> materials_commons.api
+            <a href="../../index.html" class="icon icon-home"> materials_commons.api
           
 
           
@@ -89,17 +94,13 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.api`` Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.api.html">materials_commons.api package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.api.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.client.html">materials_commons.api.client module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.models.html">materials_commons.api.models module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.query_params.html">materials_commons.api.query_params module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">materials_commons.api.requests module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="materials_commons.api.util.html">materials_commons.api.util module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.api.html">materials_commons.api package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="materials_commons.api.html#module-materials_commons.api">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -146,6 +147,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -154,6 +157,8 @@
         
           <li><a href="modules.html">materials_commons</a> &raquo;</li>
         
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
           <li><a href="materials_commons.api.html">materials_commons.api package</a> &raquo;</li>
         
       <li>materials_commons.api.requests module</li>
@@ -161,7 +166,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../site-sources/reference/materials_commons/materials_commons.api.requests.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -178,91 +183,91 @@
   <div class="section" id="module-materials_commons.api.requests">
 <span id="materials-commons-api-requests-module"></span><h1>materials_commons.api.requests module<a class="headerlink" href="#module-materials_commons.api.requests" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateActivityRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateActivityRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">experiment_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateActivityRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateActivityRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateActivityRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateActivityRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateActivityRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateActivityRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateCommunityRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateCommunityRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">public</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateCommunityRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateCommunityRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateCommunityRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateCommunityRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateCommunityRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateCommunityRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateDatasetRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateDatasetRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">license</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">authors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">experiments</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">communities</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tags</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateDatasetRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateDatasetRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateDatasetRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateDatasetRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">communities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateDatasetRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateDatasetRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateDirectoryRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateDirectoryRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateDirectoryRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateDirectoryRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateDirectoryRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateDirectoryRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateDirectoryRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateDirectoryRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateEntityRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateEntityRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">experiment_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateEntityRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateEntityRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateEntityRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateEntityRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateEntityRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateEntityRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateExperimentRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateExperimentRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateExperimentRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateExperimentRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateExperimentRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateExperimentRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateExperimentRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateExperimentRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateLinkRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateLinkRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateLinkRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateLinkRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateLinkRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateLinkRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateLinkRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateLinkRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.CreateProjectRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">CreateProjectRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateProjectRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.CreateProjectRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.CreateProjectRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">CreateProjectRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#CreateProjectRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.CreateProjectRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.RequestCommon">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">RequestCommon</code><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#RequestCommon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.RequestCommon" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.RequestCommon">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">RequestCommon</span></span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#RequestCommon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.RequestCommon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="materials_commons.api.requests.RequestCommon.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#RequestCommon.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.RequestCommon.to_dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.RequestCommon.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#RequestCommon.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.RequestCommon.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.UpdateDatasetRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">UpdateDatasetRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">license</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">authors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">experiments</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">communities</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tags</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateDatasetRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateDatasetRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.UpdateDatasetRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">UpdateDatasetRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">license</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">communities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateDatasetRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateDatasetRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.UpdateDirectoryRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">UpdateDirectoryRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateDirectoryRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateDirectoryRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.UpdateDirectoryRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">UpdateDirectoryRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateDirectoryRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateDirectoryRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.UpdateExperimentRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">UpdateExperimentRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateExperimentRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateExperimentRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.UpdateExperimentRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">UpdateExperimentRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateExperimentRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateExperimentRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.UpdateFileRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">UpdateFileRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateFileRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateFileRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.UpdateFileRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">UpdateFileRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateFileRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateFileRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="materials_commons.api.requests.UpdateProjectRequest">
-<em class="property">class </em><code class="sig-prename descclassname">materials_commons.api.requests.</code><code class="sig-name descname">UpdateProjectRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateProjectRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateProjectRequest" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="materials_commons.api.requests.UpdateProjectRequest">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.requests.</span></span><span class="sig-name descname"><span class="pre">UpdateProjectRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/requests.html#UpdateProjectRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.requests.UpdateProjectRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#materials_commons.api.requests.RequestCommon" title="materials_commons.api.requests.RequestCommon"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.requests.RequestCommon</span></code></a></p>
 </dd></dl>
 
@@ -273,37 +278,29 @@
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="materials_commons.api.util.html" class="btn btn-neutral float-right" title="materials_commons.api.util module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="materials_commons.api.query_params.html" class="btn btn-neutral float-left" title="materials_commons.api.query_params module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="materials_commons.api.util.html" class="btn btn-neutral float-right" title="materials_commons.api.util module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.api.query_params.html" class="btn btn-neutral float-left" title="materials_commons.api.query_params module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2021, PRISMS Center
+        &#169; Copyright 2021, PRISMS Center.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

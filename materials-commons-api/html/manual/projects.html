@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Projects &mdash; materials_commons.api 2.0b4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../site-static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../site-static/documentation_options.js"></script>
+        <script src="../site-static/jquery.js"></script>
+        <script src="../site-static/underscore.js"></script>
+        <script src="../site-static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Experiments" href="experiments.html" />
+    <link rel="prev" title="Initializing the API" href="connect.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> materials_commons.api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="connect.html">Initializing the API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments.html">Experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_upload_download.html">File Upload and Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search.html">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_info.html">Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/materials_commons/modules.html">``materials_commons.api`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">materials_commons.api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">User Manual</a> &raquo;</li>
+        
+      <li>Projects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../site-sources/manual/projects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="projects">
+<h1>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h1>
+<p>A project in Materials Commons is place to store data, such as files and other meta data. It is also the means to
+control access to your data. You can have an unlimited number of projects. Each project can have a different list of
+people who have access to it. The Materials Commons API provides multiple ways to interact with projects. Below are
+some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># First create a client instance</span>
+<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MC_API_TOKEN&quot;</span><span class="p">))</span>
+
+<span class="c1"># Get a list of all your projects</span>
+<span class="n">projects</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_all_projects</span><span class="p">()</span>
+
+<span class="c1"># Get a particular project by its id</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_project</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Create a project with a description</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="s2">&quot;project-name&quot;</span><span class="p">,</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">CreateProjectRequest</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;project description&quot;</span><span class="p">))</span>
+
+<span class="c1"># Create a project without a description</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">create_project</span><span class="p">(</span><span class="s2">&quot;project-name&quot;</span><span class="p">)</span>
+
+<span class="c1"># Pretty print the created projects attributes</span>
+<span class="n">project</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">()</span>
+
+<span class="c1"># Add user to project</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_user_by_email</span><span class="p">(</span><span class="s2">&quot;example-user@example.com&quot;</span><span class="p">)</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">add_user_to_project</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="c1"># Delete the project</span>
+<span class="n">c</span><span class="o">.</span><span class="n">delete_project</span><span class="p">(</span><span class="n">project</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="experiments.html" class="btn btn-neutral float-right" title="Experiments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="connect.html" class="btn btn-neutral float-left" title="Initializing the API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, PRISMS Center.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
