@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.subcommands.ls module &mdash; materials_commons.cli 2.0b8 documentation</title>
+  <title>materials_commons.cli.subcommands.ls module &mdash; materials_commons.cli 2.0b9 documentation</title>
   
 
   
@@ -186,26 +186,13 @@
   <div class="section" id="module-materials_commons.cli.subcommands.ls">
 <span id="materials-commons-cli-subcommands-ls-module"></span><h1>materials_commons.cli.subcommands.ls module<a class="headerlink" href="#module-materials_commons.cli.subcommands.ls" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.ls_subcommand">
-<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">ls_subcommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#ls_subcommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.ls_subcommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>‘ls’ a project directory to see local and remote files and directories.</p>
-<p>mc ls [&lt;pathspec&gt; …]</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.make_parser">
-<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">make_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#make_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.make_parser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make argparse.ArgumentParser for <cite>mc ls</cite></p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.update_dataset_file_selection">
-<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">update_dataset_file_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">proj</span></em>, <em class="sig-param"><span class="pre">dataset_id</span></em>, <em class="sig-param"><span class="pre">mcpaths</span></em>, <em class="sig-param"><span class="pre">files_data</span></em>, <em class="sig-param"><span class="pre">dirs_data</span></em>, <em class="sig-param"><span class="pre">include=False</span></em>, <em class="sig-param"><span class="pre">exclude=False</span></em>, <em class="sig-param"><span class="pre">clear=False</span></em>, <em class="sig-param"><span class="pre">out=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#update_dataset_file_selection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.update_dataset_file_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update a dataset file selection</p>
+<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.change_dataset_file_selection">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">change_dataset_file_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">proj</span></em>, <em class="sig-param"><span class="pre">dataset_id</span></em>, <em class="sig-param"><span class="pre">mcpaths</span></em>, <em class="sig-param"><span class="pre">files_data</span></em>, <em class="sig-param"><span class="pre">dirs_data</span></em>, <em class="sig-param"><span class="pre">include=False</span></em>, <em class="sig-param"><span class="pre">exclude=False</span></em>, <em class="sig-param"><span class="pre">clear=False</span></em>, <em class="sig-param"><span class="pre">out=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#change_dataset_file_selection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.change_dataset_file_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the file selection dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>proj</strong> (<em>mcapi.Project</em>) – Current project, expected to have “remote” and “local_path” attributes</p></li>
+<li><p><strong>proj</strong> (<em>mcapi.Project</em>) – Current project</p></li>
 <li><p><strong>dataset_id</strong> (<em>str</em>) – ID of dataset to be updated</p></li>
 <li><p><strong>mcpaths</strong> (<em>list of str</em>) – Materials Commons format file and directory paths</p></li>
 <li><p><strong>files_data</strong> – File comparisons from the <cite>treecompare</cite> function</p></li>
@@ -223,27 +210,16 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.update_file_selection">
-<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">update_file_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">proj</span></em>, <em class="sig-param"><span class="pre">file_selection</span></em>, <em class="sig-param"><span class="pre">mcpaths</span></em>, <em class="sig-param"><span class="pre">files_data</span></em>, <em class="sig-param"><span class="pre">dirs_data</span></em>, <em class="sig-param"><span class="pre">include=False</span></em>, <em class="sig-param"><span class="pre">exclude=False</span></em>, <em class="sig-param"><span class="pre">clear=False</span></em>, <em class="sig-param"><span class="pre">out=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#update_file_selection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.update_file_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the file selection dict</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>proj</strong> (<em>mcapi.Project</em>) – Current project</p></li>
-<li><p><strong>file_selection</strong> (<em>dict</em>) – File selection before update</p></li>
-<li><p><strong>mcpaths</strong> (<em>list of str</em>) – Materials Commons format file and directory paths</p></li>
-<li><p><strong>files_data</strong> – File comparisons from the <cite>treecompare</cite> function</p></li>
-<li><p><strong>dirs_data</strong> – Directory comparisons from the <cite>treecompare</cite> function</p></li>
-<li><p><strong>include</strong> (<em>bool</em>) – If True, include files and directories in “mcpaths” to the file selection</p></li>
-<li><p><strong>exclude</strong> (<em>bool</em>) – If True, exclude files and directories in “mcpaths” to the file selection</p></li>
-<li><p><strong>clear</strong> (<em>bool</em>) – If True, remove files and directories in “mcpaths” from the file selection so they are not included or excluded</p></li>
-<li><p><strong>out</strong> – Output stream</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The file selection dict, updated.</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.ls_subcommand">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">ls_subcommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">working_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#ls_subcommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.ls_subcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘ls’ a project directory to see local and remote files and directories.</p>
+<p>mc ls [&lt;pathspec&gt; …]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.cli.subcommands.ls.make_parser">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.cli.subcommands.ls.</span></span><span class="sig-name descname"><span class="pre">make_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/cli/subcommands/ls.html#make_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.cli.subcommands.ls.make_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make argparse.ArgumentParser for <cite>mc ls</cite></p>
 </dd></dl>
 
 </div>

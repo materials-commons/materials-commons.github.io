@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.subcommands.proj &mdash; materials_commons.cli 2.0b7 documentation</title>
+  <title>materials_commons.cli.subcommands.proj &mdash; materials_commons.cli 2.0b9 documentation</title>
   
 
   
@@ -169,7 +169,6 @@
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">import</span> <span class="nn">materials_commons.api.models</span> <span class="k">as</span> <span class="nn">models</span>
-<span class="kn">import</span> <span class="nn">materials_commons.cli.tmp_functions</span> <span class="k">as</span> <span class="nn">tmpfuncs</span>
 <span class="kn">from</span> <span class="nn">materials_commons.cli.exceptions</span> <span class="kn">import</span> <span class="n">MCCLIException</span>
 <span class="kn">from</span> <span class="nn">materials_commons.cli.list_objects</span> <span class="kn">import</span> <span class="n">ListObjects</span>
 <span class="kn">from</span> <span class="nn">materials_commons.cli.functions</span> <span class="kn">import</span> <span class="n">read_project_config</span><span class="p">,</span> <span class="n">getit</span><span class="p">,</span> <span class="n">trunc</span><span class="p">,</span> <span class="n">format_time</span><span class="p">,</span> \
@@ -206,7 +205,6 @@
 
         <span class="c1"># add owner to project</span>
         <span class="n">projects</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">get_all_projects</span><span class="p">()</span>
-        <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">add_owner</span><span class="p">(</span><span class="n">remote</span><span class="p">,</span> <span class="n">projects</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">projects</span></div>
 
 <div class="viewcode-block" id="ProjSubcommand.list_data"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.proj.html#materials_commons.cli.subcommands.proj.ProjSubcommand.list_data">[docs]</a>    <span class="k">def</span> <span class="nf">list_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>

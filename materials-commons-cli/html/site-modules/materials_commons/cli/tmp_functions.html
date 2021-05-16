@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.tmp_functions &mdash; materials_commons.cli 2.0b7 documentation</title>
+  <title>materials_commons.cli.tmp_functions &mdash; materials_commons.cli 2.0b9 documentation</title>
   
 
   
@@ -171,37 +171,10 @@
 
 <div class="viewcode-block" id="get_dataset"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tmp_functions.html#materials_commons.cli.tmp_functions.get_dataset">[docs]</a><span class="k">def</span> <span class="nf">get_dataset</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Temporary workaround because Client.get_dataset is returning the wrong dataset&quot;&quot;&quot;</span>
-    <span class="c1"># TODO: update</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="p">{})</span>
-    <span class="n">dataset</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">project_id</span>
-    <span class="n">add_owner</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">project_id</span> <span class="c1"># TODO: update when project_id returned</span>
+    <span class="n">add_owner</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="c1"># TODO: update when owner returned as object</span>
     <span class="k">return</span> <span class="n">dataset</span></div>
-
-<div class="viewcode-block" id="set_file_paths"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tmp_functions.html#materials_commons.cli.tmp_functions.set_file_paths">[docs]</a><span class="k">def</span> <span class="nf">set_file_paths</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Temporary workaround because Client.get_dataset is returning the wrong dataset&quot;&quot;&quot;</span>
-    <span class="c1"># TODO: update</span>
-    <span class="n">directories_by_id</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">directory_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">directories_by_id</span><span class="p">:</span>
-            <span class="n">directory</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_directory</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">directory_id</span><span class="p">)</span>
-            <span class="n">directories_by_id</span><span class="p">[</span><span class="n">directory</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">directory</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directories_by_id</span><span class="p">[</span><span class="n">file</span><span class="o">.</span><span class="n">directory_id</span><span class="p">]</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="get_dataset_file_selection"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tmp_functions.html#materials_commons.cli.tmp_functions.get_dataset_file_selection">[docs]</a><span class="k">def</span> <span class="nf">get_dataset_file_selection</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return dataset file selection dict&quot;&quot;&quot;</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">get_dataset</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s1">&#39;file_selection&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_data</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;dataset does not include &#39;file_selection&#39;&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;file_selection&#39;</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="get_published_dataset_file_selection"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tmp_functions.html#materials_commons.cli.tmp_functions.get_published_dataset_file_selection">[docs]</a><span class="k">def</span> <span class="nf">get_published_dataset_file_selection</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return dataset file selection dict&quot;&quot;&quot;</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">get_published_dataset</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s1">&#39;file_selection&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_data</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;dataset does not include &#39;file_selection&#39;&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s1">&#39;file_selection&#39;</span><span class="p">]</span></div>
 
 <span class="k">def</span> <span class="nf">_add_owner</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">):</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>materials_commons.cli.subcommands.dataset &mdash; materials_commons.cli 2.0b7 documentation</title>
+  <title>materials_commons.cli.subcommands.dataset &mdash; materials_commons.cli 2.0b9 documentation</title>
   
 
   
@@ -242,7 +242,7 @@
     <span class="n">data</span> <span class="o">=</span> <span class="n">_print_dataset_data</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file_selection</span><span class="p">:</span>
         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;file_selection&quot;</span><span class="p">:</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="s2">&quot;file_selection&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">file_selection</span>
         <span class="p">})</span>
     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span></div>
@@ -276,11 +276,6 @@
                 <span class="s1">&#39;goto_globus&#39;</span><span class="p">:</span> <span class="s1">&#39;You want to goto the globus manager for these datasets in a web browser?&#39;</span>
             <span class="p">}</span>
         <span class="p">)</span>
-
-    <span class="c1"># TODO: double check this is no longer valid</span>
-    <span class="c1"># def get_all_from_experiment(self, expt):</span>
-    <span class="c1">#     # return mcapi.get_all_datasets_from_experiment(expt.project.id, expt.id, expt.project.remote)</span>
-    <span class="c1">#     return []</span>
 
 <div class="viewcode-block" id="DatasetSubcommand.get_all_from_project"><a class="viewcode-back" href="../../../../reference/materials_commons/materials_commons.cli.subcommands.dataset.html#materials_commons.cli.subcommands.dataset.DatasetSubcommand.get_all_from_project">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_from_project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">):</span>
         <span class="c1"># # basic call, # TODO: return owner email in dataset data</span>
@@ -331,8 +326,8 @@
 
         <span class="c1"># note: add samples via `mc samp`, processes via `mc proc`, files via `mc ls`</span>
 
-        <span class="c1"># for --create and --clone, set new dataset description</span>
-        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--desc&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Dataset description, for use with --create or --clone.&#39;</span><span class="p">)</span>
+        <span class="c1"># for --create and --clone-as, set new dataset description</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--desc&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Dataset description, for use with --create or --clone-as.&#39;</span><span class="p">)</span>
 
         <span class="c1"># for --details, also print dataset file selection</span>
         <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--file-selection&#39;</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;For use with -d,--details: also print dataset file selection.&#39;</span><span class="p">)</span>
@@ -484,7 +479,7 @@
         <span class="n">proj</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">make_local_project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">working_dir</span><span class="p">)</span>
 
         <span class="c1"># get original dataset with as much data as possible</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 
         <span class="c1"># copy original metadata    # TODO update this</span>
         <span class="n">dataset_request</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">CreateDatasetRequest</span><span class="p">()</span>
@@ -492,7 +487,9 @@
         <span class="n">dataset_request</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">dataset_request</span><span class="o">.</span><span class="n">license</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">dataset_request</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">dataset_request</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># self.experiments = experiments # TODO</span>
+        <span class="c1"># self.communities = communities # TODO</span>
+        <span class="c1"># dataset_request.tags = getattr(dataset, &#39;tags&#39;, None) # TODO</span>
 
         <span class="c1"># update metadata</span>
         <span class="n">dataset_name</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">clone_as</span>
@@ -502,25 +499,8 @@
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Created dataset: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
 
         <span class="c1"># clone file selection</span>
-        <span class="n">file_selection</span> <span class="o">=</span> <span class="n">tmpfuncs</span><span class="o">.</span><span class="n">get_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-
-        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Cloning file selection:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_files&#39;</span><span class="p">]:</span>
-            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;include_file&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
-            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_files&#39;</span><span class="p">]:</span>
-            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;exclude_file&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
-            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;include_dirs&#39;</span><span class="p">]:</span>
-            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;include_dir&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
-            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_selection</span><span class="p">[</span><span class="s1">&#39;exclude_dirs&#39;</span><span class="p">]:</span>
-            <span class="n">update</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;exclude_dir&quot;</span><span class="p">:</span> <span class="n">file</span><span class="p">}</span>
-            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Update: </span><span class="si">{0}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">update</span><span class="p">))</span>
-            <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">update_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">update</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Cloning file selection...</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">change_dataset_file_selection</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">file_selection</span><span class="p">)</span>
 
         <span class="c1"># clone samples, processes, workflow</span>
         <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;** WARNING: Cloning samples, processes, workflows not yet implemented **</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
