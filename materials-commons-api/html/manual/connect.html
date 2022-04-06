@@ -1,77 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Initializing the API &mdash; materials_commons.api 2.0b4 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../site-static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../site-static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Initializing the API &mdash; materials_commons.api 2.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
-    <script src="../site-static/js/html5shiv.min.js"></script>
+    <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../site-static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../site-static/documentation_options.js"></script>
-        <script src="../site-static/jquery.js"></script>
-        <script src="../site-static/underscore.js"></script>
-        <script src="../site-static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../site-static/js/theme.js"></script>
-
-    
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Projects" href="projects.html" />
     <link rel="prev" title="User Manual" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> materials_commons.api
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 2.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
@@ -114,75 +63,33 @@
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">materials_commons.api</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="index.html">User Manual</a> &raquo;</li>
-        
       <li>Initializing the API</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
-            <a href="../site-sources/manual/connect.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+            <a href="../_sources/manual/connect.rst.txt" rel="nofollow"> View page source</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="initializing-the-api">
-<h1>Initializing the API<a class="headerlink" href="#initializing-the-api" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="initializing-the-api">
+<h1>Initializing the API<a class="headerlink" href="#initializing-the-api" title="Permalink to this headline"></a></h1>
 <p>To make use of the API you must first initialize an instance of the client. To initialize the client you can either
 pass in your account email address and password, or use your API Token. The API Token is a convenient way to connect
 initialize the client. You can find your API Token by going to your account details screen on the Materials Commons
@@ -194,8 +101,8 @@ view and copy your token. Once you have your API Token you can initialize the cl
 <span class="n">c</span> <span class="o">=</span> <span class="n">mcapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="s2">&quot;your-api-token-here&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="specifying-the-url">
-<h2>Specifying the URL<a class="headerlink" href="#specifying-the-url" title="Permalink to this headline">¶</a></h2>
+<section id="specifying-the-url">
+<h2>Specifying the URL<a class="headerlink" href="#specifying-the-url" title="Permalink to this headline"></a></h2>
 <p>By default the API will connect to the following instance of Materials Commons: <code class="docutils literal notranslate"><span class="pre">https://materialscommons.org/api</span></code>. If
 you want to connect to a different instance of Materials Commons you can specify the <code class="docutils literal notranslate"><span class="pre">base_url</span></code> when instantiating the
 client. For example, if you were running a local instance of Materials Commons on port 8000:</p>
@@ -205,9 +112,9 @@ client. For example, if you were running a local instance of Materials Commons o
 </div>
 <p>When specifying the URL it is important that it ends with <code class="docutils literal notranslate"><span class="pre">/api</span></code>, for example <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/api</span></code> or
 <code class="docutils literal notranslate"><span class="pre">https://materialscommons.org/api</span></code>.</p>
-</div>
-<div class="section" id="using-your-email-password">
-<h2>Using your email/password<a class="headerlink" href="#using-your-email-password" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="using-your-email-password">
+<h2>Using your email/password<a class="headerlink" href="#using-your-email-password" title="Permalink to this headline"></a></h2>
 <p>As an alternative you can specify your email and password. Though this is not recommended it can be a convenient way
 to connect up if you don’t have easy access to your API Token, or if you just want to perform a quick operation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
@@ -216,9 +123,9 @@ to connect up if you don’t have easy access to your API Token, or if you just 
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">login()</span></code> method also accepts the optional <code class="docutils literal notranslate"><span class="pre">base_url</span></code> argument to connect up to a different instance of the
 Materials Commons server.</p>
-</div>
-<div class="section" id="protecting-your-api-token">
-<h2>Protecting your API Token<a class="headerlink" href="#protecting-your-api-token" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="protecting-your-api-token">
+<h2>Protecting your API Token<a class="headerlink" href="#protecting-your-api-token" title="Permalink to this headline"></a></h2>
 <p>Your API Token gives full access to your data on Materials Commons. If you are writing scripts you don’t want to include
 the token in the scripts. One way to access your token is to place it in an environment variable. For example on Linux
 or Mac based systems, if you are using the bash shell you can add the following line to your .bashrc:</p>
@@ -233,55 +140,38 @@ or Mac based systems, if you are using the bash shell you can add the following 
 </pre></div>
 </div>
 <p>This provides access to your API Token while also keeping it out of your script code.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="projects.html" class="btn btn-neutral float-right" title="Projects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="User Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="projects.html" class="btn btn-neutral float-right" title="Projects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, PRISMS Center.
-
-    </p>
+    <p>&#169; Copyright 2021, PRISMS Center.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
