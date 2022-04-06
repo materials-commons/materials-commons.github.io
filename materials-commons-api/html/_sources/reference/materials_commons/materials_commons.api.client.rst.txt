@@ -1,7 +1,0 @@
-materials\_commons.api.client module
-====================================
-
-.. automodule:: materials_commons.api.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
