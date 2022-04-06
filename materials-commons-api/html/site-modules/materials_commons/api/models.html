@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>materials_commons.api.models &mdash; materials_commons.api 2.0b4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../site-static/documentation_options.js"></script>
+        <script src="../../../site-static/jquery.js"></script>
+        <script src="../../../site-static/underscore.js"></script>
+        <script src="../../../site-static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> materials_commons.api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/materials_commons/modules.html">``materials_commons.api`` Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">materials_commons.api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>materials_commons.api.models</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for materials_commons.api.models</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="n">get_date</span>
+
+
+<div class="viewcode-block" id="from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.from_list">[docs]</a><span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">cls</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.pretty_print">[docs]</a><span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="n">clas</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prints to stdout a formatted version of the object. This will recursively print sub-objects as well as iterate</span>
+<span class="sd">    over lists of objects maintaining proper indenting. Private attributes are ignored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="nb">type</span><span class="p">(</span><span class="n">clas</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">indent</span> <span class="o">+=</span> <span class="mi">4</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">clas</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s1">&#39;__dict__&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="n">pretty_print</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+                <span class="n">pretty_print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">indent</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;_data&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">indent</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Common"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Common">[docs]</a><span class="k">class</span> <span class="nc">Common</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for most models. Contains common attributes shared across most model objects.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    id : int</span>
+<span class="sd">        The id of the object.</span>
+<span class="sd">    uuid : str</span>
+<span class="sd">        The uuid of the object.</span>
+<span class="sd">    name : str</span>
+<span class="sd">        Name of model object.</span>
+<span class="sd">    description : str</span>
+<span class="sd">        Description of the model instance, for example a description of a project.</span>
+<span class="sd">    summary : str</span>
+<span class="sd">        A short description suitable for display in a table.</span>
+<span class="sd">    owner_id : int</span>
+<span class="sd">        The id of the owner of the model instance.</span>
+<span class="sd">    owner : mcapi.Owner</span>
+<span class="sd">        The full owner model associated with the owner_id.</span>
+<span class="sd">    created_at : str</span>
+<span class="sd">        Formatted string datetime when the object was created. String format is &quot;%Y-%m-%dT%H:%M:%S.%fZ&quot;.</span>
+<span class="sd">    updated_at : str</span>
+<span class="sd">        Formatted string datetime when the object was last updated. String format is &quot;%Y-%m-%dT%H:%M:%S.%fZ&quot;.</span>
+<span class="sd">    project_id : int</span>
+<span class="sd">        The project_id is an optional field that exists only if the underlying model has a project_id field. The</span>
+<span class="sd">        project_id is the id of the project the object is associated with.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    pretty_print()</span>
+<span class="sd">        Prints to stdout a formatted version of the object. This will recursively print sub-objects as well as iterate</span>
+<span class="sd">        over lists of objects maintaining proper indenting. Private attributes are ignored.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;owner_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">project_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;project_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">project_id</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">project_id</span>
+        <span class="n">owner</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">owner</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Common.pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Common.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Community"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Community">[docs]</a><span class="k">class</span> <span class="nc">Community</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Community represents a Materials Commons Community of Practice. A Community of Practice is place to gather</span>
+<span class="sd">    similar published datasets together. In addition it contains links and files that are specific to a community. For</span>
+<span class="sd">    example it may contain a link to a forum associated with the community, or a file with suggested naming conventions.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    public : bool</span>
+<span class="sd">        A flag that is true if this community is public and viewable by anyone.</span>
+<span class="sd">    files : list of mcapi.File</span>
+<span class="sd">        Files associated with the community.</span>
+<span class="sd">    links: list of mcapi.Link</span>
+<span class="sd">        Links associated with the community.</span>
+<span class="sd">    datasets: list of mcapi.Dataset</span>
+<span class="sd">        List of published datasets associated with the community.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Community</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">public</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">links</span> <span class="o">=</span> <span class="n">Link</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Community.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Community.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Community</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Community.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Community.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;communities&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Community</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Activity"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Activity">[docs]</a><span class="k">class</span> <span class="nc">Activity</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An activity represents a step that operates on one or more Entities. For example an Entity maybe have been heat</span>
+<span class="sd">    treated. In that case an Activity representing the heat treatment step could be associated with the Entity. An</span>
+<span class="sd">    activity may also have files associated with it. These may represent files produced by that activity. For example</span>
+<span class="sd">    the images produced from running an SEM. All the files from the SEM will be associated with the activity. A subset</span>
+<span class="sd">    of these files may be represented with an Entity that the SEM operated on.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    entities: list of mcapi.Entity</span>
+<span class="sd">        The list of entities associated with this activity.</span>
+<span class="sd">    files: list of mcapi.File</span>
+<span class="sd">        The list of files associated with this activity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Activity</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entities</span> <span class="o">=</span> <span class="n">Entity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Activity.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Activity.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Activity</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Activity.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Activity.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;activities&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Activity</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A dataset represents a collection of files, activities and entities, along with other meta data such as authors,</span>
+<span class="sd">    papers, etc... that is meant to be shared as a whole. A dataset can be published, in which case the dataset is</span>
+<span class="sd">    available to the public, and its associated files can be downloaded.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    license : str</span>
+<span class="sd">        The license (if any) associated with the dataset.</span>
+<span class="sd">    license_url : str</span>
+<span class="sd">        The url of the license associated with the dataset. Currently licenses all come from Open Data Commons.</span>
+<span class="sd">    doi : str</span>
+<span class="sd">        The DOI associated with the dataset.</span>
+<span class="sd">    authors : FIX THIS</span>
+<span class="sd">    file_selection : dict</span>
+<span class="sd">        The file_selection is a selection of files and directories to include/exclude in a dataset when it is published.</span>
+<span class="sd">        The file_selection has the following fields (each field is a list): include_files, exclude_files, include_dirs,</span>
+<span class="sd">        exclude_dirs.</span>
+<span class="sd">    zipfile_size : int</span>
+<span class="sd">        If a zipfile was built for this dataset then this is the size of the zipfile in bytes.</span>
+<span class="sd">    zipfile_name : str</span>
+<span class="sd">        If a zipfile was build for this dataset then this is the name of the zipfile.</span>
+<span class="sd">    workflows : list of mcapi.Workflow</span>
+<span class="sd">        The list of workflows associated with the dataset.</span>
+<span class="sd">    experiments : list of mcapi.Experiment</span>
+<span class="sd">        The list of experiments associated with the dataset.</span>
+<span class="sd">    activities: list of mcapi.Activity</span>
+<span class="sd">        The list of activities included with the dataset.</span>
+<span class="sd">    entities: list of mcapi.Entity</span>
+<span class="sd">        The list of entities included with the dataset.</span>
+<span class="sd">    files : list of mcapi.File</span>
+<span class="sd">        The list of files included with the dataset.</span>
+<span class="sd">    globus_path : str</span>
+<span class="sd">        The globus path for using globus to access the dataset files.</span>
+<span class="sd">    globus_endpoint_id : str</span>
+<span class="sd">        The globus endpoint the dataset files are stored on.</span>
+<span class="sd">    workflows_count : int</span>
+<span class="sd">        Count of workflows included with dataset.</span>
+<span class="sd">    activities_count : int</span>
+<span class="sd">        Count of activities included with dataset.</span>
+<span class="sd">    entities_count : int</span>
+<span class="sd">        Count of entities included with dataset.</span>
+<span class="sd">    comments_count : int</span>
+<span class="sd">        Count of comments associated with dataset.</span>
+<span class="sd">    published_at : str</span>
+<span class="sd">        The date the dataset was published on.</span>
+<span class="sd">    tags : list of mcapi.Tag</span>
+<span class="sd">        The tags associated with the dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Dataset</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">license</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;license&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">license_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_license_link</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doi</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authors</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_selection</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;file_selection&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zipfile_size</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zipfile_size&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zipfile_name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zipfile_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflows</span> <span class="o">=</span> <span class="n">Workflow</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiments</span> <span class="o">=</span> <span class="n">Experiment</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities</span> <span class="o">=</span> <span class="n">Activity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entities</span> <span class="o">=</span> <span class="n">Entity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_path&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_endpoint_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_endpoint_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiments_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;experiments_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">files_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;files_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflows_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;workflows_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;activities_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entities_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entities_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comments_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;comments_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">published_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;published_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_license_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">license</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">license_link</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;license_link&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">license_link</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">license_link</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">license</span> <span class="o">==</span> <span class="s2">&quot;Public Domain Dedication and License (PDDL)&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;https://opendatacommons.org/licenses/pddl/summary&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">license</span> <span class="o">==</span> <span class="s2">&quot;Attribution License (ODC-By)&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;https://opendatacommons.org/licenses/by/summary&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">license</span> <span class="o">==</span> <span class="s2">&quot;Open Database License (ODC-ODbL)&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;https://opendatacommons.org/licenses/odbl/summary&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;https://opendatacommons.org&quot;</span>
+
+<div class="viewcode-block" id="Dataset.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Dataset.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Dataset.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Dataset.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;datasets&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Entity"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Entity">[docs]</a><span class="k">class</span> <span class="nc">Entity</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An entity represent a virtual or physical specimen, sample or object. An entity is what is being measured or</span>
+<span class="sd">    transformed. An example of an entity would be a sheet of metal that is be tested. That sheet might be heated</span>
+<span class="sd">    (Activity), cut (Activity) then viewed on a SEM (Activity).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    activities: list of mcapi.Activity</span>
+<span class="sd">        The list of activities associated with this entity.</span>
+<span class="sd">    files: list of mcapi.File</span>
+<span class="sd">        The list of files associated with this entity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Entity</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities</span> <span class="o">=</span> <span class="n">Activity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Entity.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Entity.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Entity</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Entity.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Entity.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;entities&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Entity</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An experiment is a container for entities, activities, and files.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    workflows : list of mcapi.Workflow</span>
+<span class="sd">        The list of workflows used in the experiment.</span>
+<span class="sd">    activities : list of mcapi.Activity</span>
+<span class="sd">        The list of activities used in the experiment.</span>
+<span class="sd">    entities : list of mcapi.Entity</span>
+<span class="sd">        The list of entities used in the experiment.</span>
+<span class="sd">    files : list of mcapi.File</span>
+<span class="sd">        The list of files used in the experiment.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Experiment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflows</span> <span class="o">=</span> <span class="n">Workflow</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities</span> <span class="o">=</span> <span class="n">Activity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entities</span> <span class="o">=</span> <span class="n">Entity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">files</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Experiment.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Experiment.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Experiment</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Experiment.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Experiment.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;experiments&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Experiment</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="File"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.File">[docs]</a><span class="k">class</span> <span class="nc">File</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A file is an uploaded file associated with a project in Materials Commons.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    mime_type : str</span>
+<span class="sd">    path : str</span>
+<span class="sd">    directory_id : int</span>
+<span class="sd">    size : int</span>
+<span class="sd">    checksum : str</span>
+<span class="sd">    experiments_count : int</span>
+<span class="sd">    activities_count : int</span>
+<span class="sd">    entities_count : int</span>
+<span class="sd">    entity_states_count : int</span>
+<span class="sd">    previous_versions_count : int</span>
+<span class="sd">    directory : mcapi.File</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mime_type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">directory_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;directory_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checksum</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;checksum&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiments_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;experiments_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;activities_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entities_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entities_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_states_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_states_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">previous_versions_count</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;previous_versions_count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">directory</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;directory&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">directory</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_make_path</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">directory</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_make_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<div class="viewcode-block" id="File.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.File.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">File</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="File.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.File.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;files&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">File</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="GlobusUpload"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusUpload">[docs]</a><span class="k">class</span> <span class="nc">GlobusUpload</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GlobusUpload</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_endpoint_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_endpoint_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_url&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_path&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GlobusUpload.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusUpload.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">GlobusUpload</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobusUpload.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusUpload.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s2">&quot;globus_uploads&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GlobusUpload</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="GlobusDownload"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusDownload">[docs]</a><span class="k">class</span> <span class="nc">GlobusDownload</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GlobusDownload</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_endpoint_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_endpoint_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_url&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_path&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GlobusDownload.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusDownload.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">GlobusDownload</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobusDownload.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusDownload.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s2">&quot;globus_uploads&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GlobusDownload</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="GlobusTransfer"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusTransfer">[docs]</a><span class="k">class</span> <span class="nc">GlobusTransfer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A GlobusTransfer represents a started globus transfer, whether its an upload or a download.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    id : int</span>
+<span class="sd">    uuid : str</span>
+<span class="sd">    globus_endpoint_id : str</span>
+<span class="sd">    globus_url : str</span>
+<span class="sd">    globus_path : str</span>
+<span class="sd">    state : str</span>
+<span class="sd">    last_globus_transfer_id_completed : str</span>
+<span class="sd">    latest_globus_transfer_completed_date : str</span>
+<span class="sd">    project_id : int</span>
+<span class="sd">    owner_id : int</span>
+<span class="sd">    transfer_request_id : in</span>
+<span class="sd">    created_at : str</span>
+<span class="sd">    updated_at : str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_endpoint_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_endpoint_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_url&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_path&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_globus_transfer_id_completed</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;last_globus_transfer_id_completed&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latest_globus_transfer_completed_date</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;latest_globus_transfer_completed_date&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;project_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">owner_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;owner_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transfer_request_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;transfer_request_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GlobusTransfer.pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusTransfer.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobusTransfer.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusTransfer.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">GlobusTransfer</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobusTransfer.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.GlobusTransfer.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;globus_transfers&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GlobusTransfer</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Link"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Link">[docs]</a><span class="k">class</span> <span class="nc">Link</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Link represents a URL.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    url : str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Link.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Link.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Link.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Link.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;links&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Link</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A project is the top level object that stores files and meta data about your research project.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    activities : list of mcapi.Activity</span>
+<span class="sd">    workflows : list of mcapi.Workflow</span>
+<span class="sd">    experiments : list of mcapi.Experiment</span>
+<span class="sd">    activities : list of mcapi.Activity</span>
+<span class="sd">    entities : list of mcapi.Entity</span>
+<span class="sd">    members : list of mcapi.User</span>
+<span class="sd">    admins : list of mcapi.User</span>
+<span class="sd">    root_dir : mcapi.File</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;is_active&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities</span> <span class="o">=</span> <span class="n">Activity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflows</span> <span class="o">=</span> <span class="n">Workflow</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiments</span> <span class="o">=</span> <span class="n">Experiment</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activities</span> <span class="o">=</span> <span class="n">Activity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entities</span> <span class="o">=</span> <span class="n">Entity</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">members</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;members&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">admins</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;admins&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_dir</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">root_dir</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rootDir&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">root_dir</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root_dir</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Project.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Project.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Project.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Project.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;projects&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Project</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Server"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Server">[docs]</a><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Server contains information about the Materials Commons server hosting the API.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    globus_endpoint_id : str</span>
+<span class="sd">    institution : str</span>
+<span class="sd">    version : str</span>
+<span class="sd">    last_updated_at : str</span>
+<span class="sd">    first_deployed_at : str</span>
+<span class="sd">    contact : str</span>
+<span class="sd">    description : str</span>
+<span class="sd">    name : str</span>
+<span class="sd">    uuid : str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globus_endpoint_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_endpoint_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">institution</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;institution&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_updated_at</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;last_updated_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_deployed_at</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;first_deployed_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contact</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;contact&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Server.pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Server.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Tag"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Tag">[docs]</a><span class="k">class</span> <span class="nc">Tag</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A tag is an attribute that can be added to different objects in the system. Currently only datasets support tags.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    id : int</span>
+<span class="sd">    name : str</span>
+<span class="sd">    slug : str</span>
+<span class="sd">    created_at : str</span>
+<span class="sd">    updated_at : str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slug</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;slug&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Tag.pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Tag.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Tag.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Tag.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Tag</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Tag.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Tag.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;tags&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Tag</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="User"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A User represents a user account on Materials Commons.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    id : int</span>
+<span class="sd">    uuid : str</span>
+<span class="sd">    name : str</span>
+<span class="sd">    email : str</span>
+<span class="sd">    description : str</span>
+<span class="sd">    affiliation : str</span>
+<span class="sd">    created_at : str</span>
+<span class="sd">    updated_at : str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">affiliation</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;affiliation&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updated_at</span> <span class="o">=</span> <span class="n">get_date</span><span class="p">(</span><span class="s1">&#39;updated_at&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="User.pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.User.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="User.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.User.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="User.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.User.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;users&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+
+
+<div class="viewcode-block" id="Searchable"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Searchable">[docs]</a><span class="k">class</span> <span class="nc">Searchable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A searchable represents the results of a search.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    title : str</span>
+<span class="sd">    url : str</span>
+<span class="sd">    type : str &quot;datasets&quot; || &quot;communities&quot;</span>
+<span class="sd">    item : mcapi.Dataset or mcapi.Community depending on what type is set to</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fill_item</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Searchable.pretty_print"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Searchable.pretty_print">[docs]</a>    <span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pretty_print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_fill_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;datasets&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;searchable&quot;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;communities&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">Community</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;searchable&quot;</span><span class="p">])</span>
+
+<div class="viewcode-block" id="Searchable.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Searchable.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Searchable</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Workflow"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Workflow">[docs]</a><span class="k">class</span> <span class="nc">Workflow</span><span class="p">(</span><span class="n">Common</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A workflow is a graphical and textual representation a user created for an experimental workflow.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Workflow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Workflow.from_list"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Workflow.from_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">from_list</span><span class="p">(</span><span class="n">Workflow</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Workflow.from_list_attr"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.api.models.html#materials_commons.api.models.Workflow.from_list_attr">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_attr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;workflows&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Workflow</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">[]))</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, PRISMS Center.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
