@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>materials_commons.api.models module &mdash; materials_commons.api 2.0b4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../site-static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../site-static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../site-static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../site-static/documentation_options.js"></script>
+        <script src="../../site-static/jquery.js"></script>
+        <script src="../../site-static/underscore.js"></script>
+        <script src="../../site-static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../site-static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="materials_commons.api.query_params module" href="materials_commons.api.query_params.html" />
+    <link rel="prev" title="materials_commons.api.client module" href="materials_commons.api.client.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> materials_commons.api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">``materials_commons.api`` Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="materials_commons.html">materials_commons namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="materials_commons.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="materials_commons.api.html">materials_commons.api package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">materials_commons.api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">materials_commons</a> &raquo;</li>
+        
+          <li><a href="materials_commons.html">materials_commons namespace</a> &raquo;</li>
+        
+          <li><a href="materials_commons.api.html">materials_commons.api package</a> &raquo;</li>
+        
+      <li>materials_commons.api.models module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../site-sources/reference/materials_commons/materials_commons.api.models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-materials_commons.api.models">
+<span id="materials-commons-api-models-module"></span><h1>materials_commons.api.models module<a class="headerlink" href="#module-materials_commons.api.models" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Activity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Activity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Activity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>An activity represents a step that operates on one or more Entities. For example an Entity maybe have been heat
+treated. In that case an Activity representing the heat treatment step could be associated with the Entity. An
+activity may also have files associated with it. These may represent files produced by that activity. For example
+the images produced from running an SEM. All the files from the SEM will be associated with the activity. A subset
+of these files may be represented with an Entity that the SEM operated on.</p>
+<dl class="simple">
+<dt>entities: list of mcapi.Entity</dt><dd><p>The list of entities associated with this activity.</p>
+</dd>
+<dt>files: list of mcapi.File</dt><dd><p>The list of files associated with this activity.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Activity.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Activity.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Activity.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Activity.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'activities'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Activity.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Activity.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Common">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Common</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Common"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Common" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for most models. Contains common attributes shared across most model objects.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>The id of the object.</p>
+</dd>
+<dt>uuid<span class="classifier">str</span></dt><dd><p>The uuid of the object.</p>
+</dd>
+<dt>name<span class="classifier">str</span></dt><dd><p>Name of model object.</p>
+</dd>
+<dt>description<span class="classifier">str</span></dt><dd><p>Description of the model instance, for example a description of a project.</p>
+</dd>
+<dt>summary<span class="classifier">str</span></dt><dd><p>A short description suitable for display in a table.</p>
+</dd>
+<dt>owner_id<span class="classifier">int</span></dt><dd><p>The id of the owner of the model instance.</p>
+</dd>
+<dt>owner<span class="classifier">mcapi.Owner</span></dt><dd><p>The full owner model associated with the owner_id.</p>
+</dd>
+<dt>created_at<span class="classifier">str</span></dt><dd><p>Formatted string datetime when the object was created. String format is “%Y-%m-%dT%H:%M:%S.%fZ”.</p>
+</dd>
+<dt>updated_at<span class="classifier">str</span></dt><dd><p>Formatted string datetime when the object was last updated. String format is “%Y-%m-%dT%H:%M:%S.%fZ”.</p>
+</dd>
+<dt>project_id<span class="classifier">int</span></dt><dd><p>The project_id is an optional field that exists only if the underlying model has a project_id field. The
+project_id is the id of the project the object is associated with.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>pretty_print()</dt><dd><p>Prints to stdout a formatted version of the object. This will recursively print sub-objects as well as iterate
+over lists of objects maintaining proper indenting. Private attributes are ignored.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Common.pretty_print">
+<span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Common.pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Common.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Community">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Community</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Community"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Community" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>Community represents a Materials Commons Community of Practice. A Community of Practice is place to gather
+similar published datasets together. In addition it contains links and files that are specific to a community. For
+example it may contain a link to a forum associated with the community, or a file with suggested naming conventions.</p>
+<dl class="simple">
+<dt>public<span class="classifier">bool</span></dt><dd><p>A flag that is true if this community is public and viewable by anyone.</p>
+</dd>
+<dt>files<span class="classifier">list of mcapi.File</span></dt><dd><p>Files associated with the community.</p>
+</dd>
+<dt>links: list of mcapi.Link</dt><dd><p>Links associated with the community.</p>
+</dd>
+<dt>datasets: list of mcapi.Dataset</dt><dd><p>List of published datasets associated with the community.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Community.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Community.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Community.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Community.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'communities'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Community.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Community.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Dataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>A dataset represents a collection of files, activities and entities, along with other meta data such as authors,
+papers, etc… that is meant to be shared as a whole. A dataset can be published, in which case the dataset is
+available to the public, and its associated files can be downloaded.</p>
+<dl class="simple">
+<dt>license<span class="classifier">str</span></dt><dd><p>The license (if any) associated with the dataset.</p>
+</dd>
+<dt>license_url<span class="classifier">str</span></dt><dd><p>The url of the license associated with the dataset. Currently licenses all come from Open Data Commons.</p>
+</dd>
+<dt>doi<span class="classifier">str</span></dt><dd><p>The DOI associated with the dataset.</p>
+</dd>
+</dl>
+<p>authors : FIX THIS
+file_selection : dict</p>
+<blockquote>
+<div><p>The file_selection is a selection of files and directories to include/exclude in a dataset when it is published.
+The file_selection has the following fields (each field is a list): include_files, exclude_files, include_dirs,
+exclude_dirs.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>zipfile_size<span class="classifier">int</span></dt><dd><p>If a zipfile was built for this dataset then this is the size of the zipfile in bytes.</p>
+</dd>
+<dt>zipfile_name<span class="classifier">str</span></dt><dd><p>If a zipfile was build for this dataset then this is the name of the zipfile.</p>
+</dd>
+<dt>workflows<span class="classifier">list of mcapi.Workflow</span></dt><dd><p>The list of workflows associated with the dataset.</p>
+</dd>
+<dt>experiments<span class="classifier">list of mcapi.Experiment</span></dt><dd><p>The list of experiments associated with the dataset.</p>
+</dd>
+<dt>activities: list of mcapi.Activity</dt><dd><p>The list of activities included with the dataset.</p>
+</dd>
+<dt>entities: list of mcapi.Entity</dt><dd><p>The list of entities included with the dataset.</p>
+</dd>
+<dt>files<span class="classifier">list of mcapi.File</span></dt><dd><p>The list of files included with the dataset.</p>
+</dd>
+<dt>globus_path<span class="classifier">str</span></dt><dd><p>The globus path for using globus to access the dataset files.</p>
+</dd>
+<dt>globus_endpoint_id<span class="classifier">str</span></dt><dd><p>The globus endpoint the dataset files are stored on.</p>
+</dd>
+<dt>workflows_count<span class="classifier">int</span></dt><dd><p>Count of workflows included with dataset.</p>
+</dd>
+<dt>activities_count<span class="classifier">int</span></dt><dd><p>Count of activities included with dataset.</p>
+</dd>
+<dt>entities_count<span class="classifier">int</span></dt><dd><p>Count of entities included with dataset.</p>
+</dd>
+<dt>comments_count<span class="classifier">int</span></dt><dd><p>Count of comments associated with dataset.</p>
+</dd>
+<dt>published_at<span class="classifier">str</span></dt><dd><p>The date the dataset was published on.</p>
+</dd>
+<dt>tags<span class="classifier">list of mcapi.Tag</span></dt><dd><p>The tags associated with the dataset.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Dataset.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Dataset.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Dataset.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Dataset.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'datasets'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Dataset.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Dataset.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Entity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Entity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Entity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>An entity represent a virtual or physical specimen, sample or object. An entity is what is being measured or
+transformed. An example of an entity would be a sheet of metal that is be tested. That sheet might be heated
+(Activity), cut (Activity) then viewed on a SEM (Activity).</p>
+<dl class="simple">
+<dt>activities: list of mcapi.Activity</dt><dd><p>The list of activities associated with this entity.</p>
+</dd>
+<dt>files: list of mcapi.File</dt><dd><p>The list of files associated with this entity.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Entity.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Entity.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Entity.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Entity.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'entities'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Entity.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Entity.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Experiment">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>An experiment is a container for entities, activities, and files.</p>
+<dl class="simple">
+<dt>workflows<span class="classifier">list of mcapi.Workflow</span></dt><dd><p>The list of workflows used in the experiment.</p>
+</dd>
+<dt>activities<span class="classifier">list of mcapi.Activity</span></dt><dd><p>The list of activities used in the experiment.</p>
+</dd>
+<dt>entities<span class="classifier">list of mcapi.Entity</span></dt><dd><p>The list of entities used in the experiment.</p>
+</dd>
+<dt>files<span class="classifier">list of mcapi.File</span></dt><dd><p>The list of files used in the experiment.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Experiment.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Experiment.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Experiment.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Experiment.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'experiments'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Experiment.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Experiment.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.File">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">File</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#File"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.File" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>A file is an uploaded file associated with a project in Materials Commons.</p>
+<p>mime_type : str
+path : str
+directory_id : int
+size : int
+checksum : str
+experiments_count : int
+activities_count : int
+entities_count : int
+entity_states_count : int
+previous_versions_count : int
+directory : mcapi.File</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.File.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#File.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.File.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.File.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'files'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#File.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.File.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusDownload">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">GlobusDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusDownload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusDownload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusDownload.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusDownload.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusDownload.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusDownload.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'globus_uploads'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusDownload.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusDownload.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusTransfer">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">GlobusTransfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusTransfer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusTransfer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A GlobusTransfer represents a started globus transfer, whether its an upload or a download.</p>
+<p>id : int
+uuid : str
+globus_endpoint_id : str
+globus_url : str
+globus_path : str
+state : str
+last_globus_transfer_id_completed : str
+latest_globus_transfer_completed_date : str
+project_id : int
+owner_id : int
+transfer_request_id : in
+created_at : str
+updated_at : str</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusTransfer.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusTransfer.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusTransfer.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusTransfer.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'globus_transfers'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusTransfer.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusTransfer.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusTransfer.pretty_print">
+<span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusTransfer.pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusTransfer.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusUpload">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">GlobusUpload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusUpload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusUpload.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusUpload.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusUpload.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.GlobusUpload.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'globus_uploads'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#GlobusUpload.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.GlobusUpload.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Link">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>A Link represents a URL.</p>
+<p>url : str</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Link.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Link.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Link.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Link.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'links'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Link.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Link.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Project">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>A project is the top level object that stores files and meta data about your research project.</p>
+<p>activities : list of mcapi.Activity
+workflows : list of mcapi.Workflow
+experiments : list of mcapi.Experiment
+activities : list of mcapi.Activity
+entities : list of mcapi.Entity
+members : list of mcapi.User
+admins : list of mcapi.User
+root_dir : mcapi.File</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Project.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Project.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Project.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Project.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'projects'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Project.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Project.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Searchable">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Searchable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Searchable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Searchable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A searchable represents the results of a search.</p>
+<p>title : str
+url : str
+type : str “datasets” || “communities”
+item : mcapi.Dataset or mcapi.Community depending on what type is set to</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Searchable.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Searchable.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Searchable.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Searchable.pretty_print">
+<span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Searchable.pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Searchable.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Server">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A Server contains information about the Materials Commons server hosting the API.</p>
+<p>globus_endpoint_id : str
+institution : str
+version : str
+last_updated_at : str
+first_deployed_at : str
+contact : str
+description : str
+name : str
+uuid : str</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Server.pretty_print">
+<span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Server.pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Server.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Tag">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Tag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A tag is an attribute that can be added to different objects in the system. Currently only datasets support tags.</p>
+<p>id : int
+name : str
+slug : str
+created_at : str
+updated_at : str</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Tag.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Tag.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Tag.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Tag.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tags'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Tag.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Tag.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Tag.pretty_print">
+<span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Tag.pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Tag.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.User">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A User represents a user account on Materials Commons.</p>
+<p>id : int
+uuid : str
+name : str
+email : str
+description : str
+affiliation : str
+created_at : str
+updated_at : str</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.User.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#User.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.User.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.User.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'users'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#User.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.User.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.User.pretty_print">
+<span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#User.pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.User.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="materials_commons.api.models.Workflow">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">Workflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Workflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#materials_commons.api.models.Common" title="materials_commons.api.models.Common"><code class="xref py py-class docutils literal notranslate"><span class="pre">materials_commons.api.models.Common</span></code></a></p>
+<p>A workflow is a graphical and textual representation a user created for an experimental workflow.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Workflow.from_list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Workflow.from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Workflow.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="materials_commons.api.models.Workflow.from_list_attr">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">from_list_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'workflows'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#Workflow.from_list_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.Workflow.from_list_attr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.api.models.from_list">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.from_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="materials_commons.api.models.pretty_print">
+<span class="sig-prename descclassname"><span class="pre">materials_commons.api.models.</span></span><span class="sig-name descname"><span class="pre">pretty_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../site-modules/materials_commons/api/models.html#pretty_print"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#materials_commons.api.models.pretty_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints to stdout a formatted version of the object. This will recursively print sub-objects as well as iterate
+over lists of objects maintaining proper indenting. Private attributes are ignored.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="materials_commons.api.query_params.html" class="btn btn-neutral float-right" title="materials_commons.api.query_params module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="materials_commons.api.client.html" class="btn btn-neutral float-left" title="materials_commons.api.client module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, PRISMS Center.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
