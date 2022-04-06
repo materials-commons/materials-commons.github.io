@@ -1,7 +1,0 @@
-materials\_commons.api.query module
-===================================
-
-.. automodule:: materials_commons.api.query
-   :members:
-   :undoc-members:
-   :show-inheritance:
