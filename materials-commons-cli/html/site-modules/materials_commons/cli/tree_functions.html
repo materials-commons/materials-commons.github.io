@@ -1,94 +1,44 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>materials_commons.cli.tree_functions &mdash; materials_commons.cli 2.0b7 documentation</title>
-  
+  <title>materials_commons.cli.tree_functions &mdash; materials_commons.cli 2.1.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../site-static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../site-static/css/theme.css?v=e59714d7" />
 
   
-  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../site-static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../site-static/documentation_options.js"></script>
-        <script src="../../../site-static/jquery.js"></script>
-        <script src="../../../site-static/underscore.js"></script>
-        <script src="../../../site-static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
-
-    
+      <script src="../../../site-static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../site-static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../site-static/documentation_options.js?v=179ab080"></script>
+      <script src="../../../site-static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../site-static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../site-static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html" class="icon icon-home"> materials_commons.cli
           
-
-          
+          <a href="../../../index.html" class="icon icon-home">
+            materials_commons.cli
           </a>
-
-          
-            
-            
-              <div class="version">
-                2.0
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
@@ -99,85 +49,50 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">materials_commons.cli</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>materials_commons.cli.tree_functions</li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">materials_commons.cli.tree_functions</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for materials_commons.cli.tree_functions</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">from</span> <span class="nn">sortedcontainers</span> <span class="kn">import</span> <span class="n">SortedSet</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">igittigitt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sortedcontainers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortedSet</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
-<span class="kn">import</span> <span class="nn">materials_commons.cli.exceptions</span> <span class="k">as</span> <span class="nn">cliexcept</span>
-<span class="kn">import</span> <span class="nn">materials_commons.cli.functions</span> <span class="k">as</span> <span class="nn">clifuncs</span>
-<span class="kn">import</span> <span class="nn">materials_commons.cli.file_functions</span> <span class="k">as</span> <span class="nn">filefuncs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">materials_commons.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcapi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">materials_commons.cli.exceptions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cliexcept</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">materials_commons.cli.functions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">clifuncs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">materials_commons.cli.file_functions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">filefuncs</span>
 
-<div class="viewcode-block" id="clipaths_to_local_abspaths"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.clipaths_to_local_abspaths">[docs]</a><span class="k">def</span> <span class="nf">clipaths_to_local_abspaths</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">clipaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert CLI paths input to local absolute paths</span>
+<div class="viewcode-block" id="clipaths_to_local_abspaths">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.clipaths_to_local_abspaths">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clipaths_to_local_abspaths</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">clipaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert CLI paths input to local absolute paths</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        proj_local_path (str): Path to Materials Commons project</span>
@@ -201,8 +116,11 @@
         <span class="n">local_abspaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">local_abspaths</span></div>
 
-<div class="viewcode-block" id="clipaths_to_mcpaths"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.clipaths_to_mcpaths">[docs]</a><span class="k">def</span> <span class="nf">clipaths_to_mcpaths</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">clipaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert CLI paths input to Materials Commons standardized paths</span>
+
+<div class="viewcode-block" id="clipaths_to_mcpaths">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.clipaths_to_mcpaths">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clipaths_to_mcpaths</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">clipaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert CLI paths input to Materials Commons standardized paths</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        proj_local_path (str): Path to Materials Commons project</span>
@@ -227,8 +145,11 @@
         <span class="n">mcpaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mcpath</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">mcpaths</span></div>
 
-<div class="viewcode-block" id="make_local_abspaths_for_upload"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.make_local_abspaths_for_upload">[docs]</a><span class="k">def</span> <span class="nf">make_local_abspaths_for_upload</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Clean paths for uploads</span>
+
+<div class="viewcode-block" id="make_local_abspaths_for_upload">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.make_local_abspaths_for_upload">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_local_abspaths_for_upload</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean paths for uploads</span>
 
 <span class="sd">    This is written for identifying uploads. If the top directory is included</span>
 <span class="sd">    it replaces it with all children except `.mc`.</span>
@@ -251,8 +172,11 @@
             <span class="n">_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">_paths</span></div>
 
-<div class="viewcode-block" id="make_mcpaths_for_upload"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.make_mcpaths_for_upload">[docs]</a><span class="k">def</span> <span class="nf">make_mcpaths_for_upload</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Clean paths for uploads</span>
+
+<div class="viewcode-block" id="make_mcpaths_for_upload">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.make_mcpaths_for_upload">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_mcpaths_for_upload</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean paths for uploads</span>
 
 <span class="sd">    This is written for identifying uploads. If the top directory is included</span>
 <span class="sd">    it replaces it with all children except `.mc`.</span>
@@ -275,8 +199,504 @@
             <span class="n">_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">_paths</span></div>
 
-<div class="viewcode-block" id="standard_upload"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.standard_upload">[docs]</a><span class="k">def</span> <span class="nf">standard_upload</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Upload files to Materials Commons</span>
+
+<div class="viewcode-block" id="upload_file">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.upload_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">upload_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">mcpath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">update_remotetree</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload one file</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Creates parent and intermediate directories as necessary</span>
+<span class="sd">        - Does not allow filename change, with message:</span>
+<span class="sd">            `--upload-as file name changed (skipping)`</span>
+<span class="sd">        - Will not upload files over the size `limit`, with message:</span>
+<span class="sd">            `file too large (size={1}MB, limit={0}MB) (not uploaded)`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (:class:`materials_commons.api.Project`): Project instance with</span>
+<span class="sd">            proj.local_path indicating local project location</span>
+<span class="sd">        local_abspath (str): Local absolute path to file to be uploaded</span>
+<span class="sd">        mcpath (dict): Path where the file will be uploaded. Currently, the basename must be</span>
+<span class="sd">            the same as local_abspath.</span>
+<span class="sd">        parent_id (str): ID of parent directory where the file will be uploaded. May be</span>
+<span class="sd">            None, in which case the directory os.path.dirname(mcpath) will be created.</span>
+<span class="sd">        working_dir (str): Current working directory, used for making relative</span>
+<span class="sd">            paths and printing messages.</span>
+<span class="sd">        limit (int): The limit in MB on the size of the file allowed to be uploaded.</span>
+<span class="sd">        remotetree (RemoteTree): A RemoteTree object stores remote file and</span>
+<span class="sd">            directory information to minimize API calls and data transfer.</span>
+<span class="sd">            Optional, will be used and updated if provided.</span>
+<span class="sd">        update_remotetree (bool): Set to False to skip updating remotetree for the uploaded</span>
+<span class="sd">            file. Used when updating via parent directory is preferrable.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (file_result, error_result):</span>
+
+<span class="sd">        file_result: file</span>
+<span class="sd">            Successfully uploaded files</span>
+
+<span class="sd">        error_results: str</span>
+<span class="sd">            Error messages for unsuccessful file uploads</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">error_result</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="c1"># for upload_as, if destination basename differs from source, we do a rename</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span> <span class="o">!=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">mcpath</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: --upload-as file name changed (skipping)&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">extended_msg</span> <span class="o">=</span> <span class="s2">&quot;The --upload-as option may be used to upload a directory with a different &quot;</span>\
+            <span class="s2">&quot;name, or upload a file to a different directory. To change a file name, first &quot;</span>\
+            <span class="s2">&quot;upload, then mv.&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">extended_msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># if remote parent does not exist / not known -&gt; mkdir</span>
+    <span class="c1">#   -&gt; raises exception for failing to mkdir</span>
+    <span class="k">if</span> <span class="n">parent_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">parent_mcpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">mcpath</span><span class="p">)</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="n">mkdir</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">parent_mcpath</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_intermediates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parent</span><span class="o">.</span><span class="n">path</span> <span class="o">!=</span> <span class="n">parent_mcpath</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Upload error: &quot;</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot; expected parent.path=&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">parent_mcpath</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot; got parent.path=&quot;</span> <span class="o">+</span> <span class="n">parent</span><span class="o">.</span><span class="n">path</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="n">parent_id</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="c1"># if file size &gt; limit -&gt; error</span>
+    <span class="n">file_size_mb</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span>
+    <span class="k">if</span> <span class="n">file_size_mb</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: file too large (size=</span><span class="si">{1}</span><span class="s2">MB, limit=</span><span class="si">{0}</span><span class="s2">MB) (not uploaded)&quot;</span><span class="o">.</span>\
+            <span class="nb">format</span><span class="p">(</span><span class="n">limit</span><span class="p">,</span> <span class="n">file_size_mb</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># else: -&gt; upload, return results</span>
+    <span class="n">file_result</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">parent_id</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_result</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: unknown error (not uploaded)&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">remotetree</span> <span class="ow">and</span> <span class="n">update_remotetree</span> <span class="ow">and</span> <span class="n">file_result</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;upload_file remotetree.update&quot;</span><span class="p">)</span>
+        <span class="n">remotetree</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="n">remotetree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mcpath</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">remotetree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">printdestpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span>
+        <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">mcpath</span><span class="p">),</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">printpath</span> <span class="o">==</span> <span class="n">printdestpath</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;uploaded:&quot;</span><span class="p">,</span> <span class="n">printpath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;uploaded:&quot;</span><span class="p">,</span> <span class="n">printpath</span><span class="p">,</span> <span class="s2">&quot;as&quot;</span><span class="p">,</span> <span class="n">printdestpath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">error_result</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="check_and_upload_file">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.check_and_upload_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_and_upload_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">upload_as</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">child_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">update_remotetree</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks validity and upload one file</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Checks that target is not a directory, with message:</span>
+<span class="sd">            `remote is directory (skipping)`</span>
+<span class="sd">        - Depending on options given, checks if existing remote file is equivalent, with message:</span>
+<span class="sd">            `local is equivalent to remote (skipping)&quot;</span>
+<span class="sd">        - Options allow providing the remote parent directory ID, or parent directory `child_data`</span>
+<span class="sd">          `treecompare` output to reduce the number of API calls</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (:class:`materials_commons.api.Project`): Project instance with</span>
+<span class="sd">            proj.local_path indicating local project location</span>
+<span class="sd">        local_abspath (str): Local absolute path to file to be uploaded</span>
+<span class="sd">        working_dir (str): Current working directory, used for making relative</span>
+<span class="sd">            paths and printing messages.</span>
+<span class="sd">        limit (int): The limit in MB on the size of the file allowed to be uploaded.</span>
+<span class="sd">        no_compare (bool): By default, this function checks local and remote</span>
+<span class="sd">            file checksum to avoid downloading files that already exist. If</span>
+<span class="sd">            no_compare is True, this check is skipped and all specified files</span>
+<span class="sd">            are downloaded, even if an equivalent file already exists locally.</span>
+<span class="sd">        upload_as (str): Materials Commons style path specifying where to</span>
+<span class="sd">            upload. Requires `len(paths) == 1`.</span>
+<span class="sd">        localtree (LocalTree): A LocalTree object stores local file checksums</span>
+<span class="sd">            to avoid unnecessary hashing. Optional, will be used and updated if</span>
+<span class="sd">            provided and checksum == True.</span>
+<span class="sd">        remotetree (RemoteTree): A RemoteTree object stores remote file and</span>
+<span class="sd">            directory information to minimize API calls and data transfer.</span>
+<span class="sd">            Optional, will be used and updated if provided.</span>
+<span class="sd">        parent_id (str): ID of parent directory where the file will be uploaded. May be</span>
+<span class="sd">            None, in which case the directory will be created if necessary.</span>
+<span class="sd">        child_data (dict or None): If available, the `child_data` output from `treecompare`.</span>
+<span class="sd">            If this file is being uploaded as part of a directory upload, the `child_data`</span>
+<span class="sd">            comparing the local and remote files might already be available.</span>
+<span class="sd">        update_remotetree (bool): Set to False to skip updating remotetree for the uploaded</span>
+<span class="sd">            file. Used when updating via parent directory is preferrable.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (file_result, error_result):</span>
+
+<span class="sd">        file_result: file</span>
+<span class="sd">            Successfully uploaded files</span>
+
+<span class="sd">        error_results: str</span>
+<span class="sd">            Error messages for unsuccessful file uploads</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">error_result</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="c1"># get checksum info to compare local and remote files?</span>
+    <span class="n">checksum</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">no_compare</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Materials Commons style path, where to upload</span>
+    <span class="n">mcpath</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">upload_as</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mcpath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_mcpath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mcpath</span> <span class="o">=</span> <span class="n">upload_as</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">child_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">mcpath</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">:</span>
+
+        <span class="c1"># if remote exists and is a directory -&gt; error, continue</span>
+        <span class="k">if</span> <span class="n">child_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;directory&#39;</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: remote is directory (skipping)&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">error_resuts</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span>
+
+        <span class="c1"># if local and remote files exists, and checksums known and match -&gt; skip, continue</span>
+        <span class="k">if</span> <span class="s1">&#39;eq&#39;</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">]</span> <span class="ow">and</span> <span class="n">child_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;eq&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: local is equivalent to remote (skipping)&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">error_resuts</span><span class="p">[</span><span class="n">child_local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span>
+
+        <span class="c1"># else, get parent_id if not already known (might be None)</span>
+        <span class="k">if</span> <span class="n">parent_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">parent_id</span> <span class="o">=</span> <span class="n">child_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;parent_id&#39;</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> <span class="n">child_data</span><span class="p">,</span> <span class="n">non_existing</span> <span class="o">=</span> <span class="n">treecompare</span><span class="p">(</span>
+            <span class="n">proj</span><span class="p">,</span> <span class="p">[</span><span class="n">mcpath</span><span class="p">],</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+            <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># if remote exists and is a directory -&gt; error, continue</span>
+        <span class="k">if</span> <span class="n">mcpath</span> <span class="ow">in</span> <span class="n">dirs_data</span> <span class="ow">and</span> <span class="n">dirs_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;directory&#39;</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: remote is directory (skipping)&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># if remote file exists</span>
+        <span class="k">if</span> <span class="n">mcpath</span> <span class="ow">in</span> <span class="n">files_data</span><span class="p">:</span>
+            <span class="n">file_data</span> <span class="o">=</span> <span class="n">files_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">]</span>
+
+            <span class="c1"># if checksums known and match -&gt; skip, continue</span>
+            <span class="k">if</span> <span class="s1">&#39;eq&#39;</span> <span class="ow">in</span> <span class="n">file_data</span> <span class="ow">and</span> <span class="n">file_data</span><span class="p">[</span><span class="s1">&#39;eq&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: local is equivalent to remote (skipping)&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">file_result</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+            <span class="c1"># else, get parent_id if not already known (still might be None)</span>
+            <span class="k">if</span> <span class="n">parent_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">parent_id</span> <span class="o">=</span> <span class="n">file_data</span><span class="p">[</span><span class="s1">&#39;parent_id&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">upload_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">mcpath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="n">parent_id</span><span class="p">,</span>
+                       <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span>
+                       <span class="n">update_remotetree</span><span class="o">=</span><span class="n">update_remotetree</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="filter_local_abspaths">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.filter_local_abspaths">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_local_abspaths</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">local_abspaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter local_abspaths, skipping .mc and those specified by .mcignore</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj_local_path (str): Path to project</span>
+<span class="sd">        local_abspaths (List of str): Local absolute paths to file or directories to be uploaded</span>
+<span class="sd">        working_dir (str): Current working directory, used for making relative</span>
+<span class="sd">            paths and printing messages.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        _local_abspaths: List of str</span>
+<span class="sd">            Filtered local absolute paths</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ignore_parser</span> <span class="o">=</span> <span class="n">igittigitt</span><span class="o">.</span><span class="n">IgnoreParser</span><span class="p">()</span>
+    <span class="n">ignore_parser</span><span class="o">.</span><span class="n">parse_rule_files</span><span class="p">(</span><span class="n">base_dir</span><span class="o">=</span><span class="n">proj_local_path</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;.mcignore&quot;</span><span class="p">,</span>
+        <span class="n">add_default_patterns</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_local_abspaths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">local_abspath</span> <span class="ow">in</span> <span class="n">local_abspaths</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;.mc&quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">ignore_parser</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)):</span>
+            <span class="k">continue</span>
+        <span class="n">_local_abspaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_local_abspaths</span></div>
+
+
+
+<div class="viewcode-block" id="check_and_upload_directory">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.check_and_upload_directory">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_and_upload_directory</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks validity and uploads a directory and contents recursively</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Checks that target is not a file, with message:</span>
+<span class="sd">            `remote is file (skipping)`</span>
+<span class="sd">        - Options allow providing the remote parent directory ID to reduce the number of API calls</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (:class:`materials_commons.api.Project`): Project instance with</span>
+<span class="sd">            proj.local_path indicating local project location</span>
+<span class="sd">        local_abspath (str): Local absolute path to directory to be uploaded recursively</span>
+<span class="sd">        working_dir (str): Current working directory, used for making relative</span>
+<span class="sd">            paths and printing messages.</span>
+<span class="sd">        limit (int): The limit in MB on the size of the files allowed to be uploaded.</span>
+<span class="sd">        no_compare (bool): By default, this function checks local and remote</span>
+<span class="sd">            file checksum to avoid downloading files that already exist. If</span>
+<span class="sd">            no_compare is True, this check is skipped and all specified files</span>
+<span class="sd">            are downloaded, even if an equivalent file already exists locally.</span>
+<span class="sd">        upload_as (str or None): Materials Commons style path specifying where to</span>
+<span class="sd">            upload. If None, use the equivalent location within the project.</span>
+<span class="sd">        localtree (LocalTree): A LocalTree object stores local file checksums</span>
+<span class="sd">            to avoid unnecessary hashing. Optional, will be used and updated if</span>
+<span class="sd">            provided and checksum == True.</span>
+<span class="sd">        remotetree (RemoteTree): A RemoteTree object stores remote file and</span>
+<span class="sd">            directory information to minimize API calls and data transfer.</span>
+<span class="sd">            Optional, will be used and updated if provided.</span>
+<span class="sd">        parent_id (str): ID of parent directory where the file will be uploaded. May be</span>
+<span class="sd">            None, in which case the directory will be created if necessary.</span>
+
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (file_results, error_results):</span>
+
+<span class="sd">        file_results: dict of path: file</span>
+<span class="sd">            Successfully uploaded files</span>
+
+<span class="sd">        error_results: dict of path: str</span>
+<span class="sd">            Error messages for unsuccessful or skipped uploads</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">error_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: not a directory (skipping)&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">error_results</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span>
+
+    <span class="c1"># get checksum info to compare local and remote files?</span>
+    <span class="n">checksum</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">no_compare</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Materials Commons style path, where to upload</span>
+    <span class="n">mcpath</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">upload_as</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mcpath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_mcpath</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mcpath</span> <span class="o">=</span> <span class="n">upload_as</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># check remote &amp; children</span>
+    <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> <span class="n">child_data</span><span class="p">,</span> <span class="n">non_existing</span> <span class="o">=</span> <span class="n">treecompare</span><span class="p">(</span>
+        <span class="n">proj</span><span class="p">,</span> <span class="p">[</span><span class="n">mcpath</span><span class="p">],</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+        <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># if remote exists and is a file -&gt; error, continue</span>
+    <span class="k">if</span> <span class="n">mcpath</span> <span class="ow">in</span> <span class="n">files_data</span> <span class="ow">and</span> <span class="n">files_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;file&#39;</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: remote is file (skipping)&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">error_results</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span>
+
+    <span class="nb">id</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># if remote directory exists, get id</span>
+    <span class="k">if</span> <span class="n">mcpath</span> <span class="ow">in</span> <span class="n">dirs_data</span> <span class="ow">and</span> <span class="n">dirs_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;directory&#39;</span><span class="p">:</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="n">dirs_data</span><span class="p">[</span><span class="n">mcpath</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+    <span class="c1"># if remote directory does not exist -&gt; create directory</span>
+    <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">dir</span> <span class="o">=</span> <span class="n">mkdir</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">mcpath</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">create_intermediates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="n">parent_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: error creating directory (skipping)&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">error_results</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="nb">dir</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="c1"># collect children</span>
+    <span class="n">child_local_abspaths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
+        <span class="n">child_local_abspaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+
+    <span class="c1"># filter out .mc and those specified by .mcignore</span>
+    <span class="n">child_local_abspaths</span> <span class="o">=</span> <span class="n">filter_local_abspaths</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">child_local_abspaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="c1"># upload children</span>
+    <span class="k">for</span> <span class="n">child_local_abspath</span> <span class="ow">in</span> <span class="n">child_local_abspaths</span><span class="p">:</span>
+        <span class="n">child_upload_as</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">upload_as</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">child_upload_as</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mcpath</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">child_local_abspath</span><span class="p">))</span>
+
+        <span class="c1"># for each child file: do check_and_upload_file</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">child_local_abspath</span><span class="p">):</span>
+
+            <span class="n">file_result</span><span class="p">,</span> <span class="n">error_msg</span> <span class="o">=</span> <span class="n">check_and_upload_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">child_local_abspath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span>
+                <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="n">child_upload_as</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">child_data</span><span class="o">=</span><span class="n">child_data</span><span class="p">,</span> <span class="n">update_remotetree</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">file_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">file_results</span><span class="p">[</span><span class="n">child_local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_result</span>
+            <span class="k">if</span> <span class="n">error_msg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">error_results</span><span class="p">[</span><span class="n">child_local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">error_msg</span>
+
+        <span class="c1"># for each child directory: do recursive check_and_upload_directory</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">child_local_abspath</span><span class="p">):</span>
+
+            <span class="n">file_results_tmp</span><span class="p">,</span> <span class="n">error_results_tmp</span> <span class="o">=</span> \
+                <span class="n">check_and_upload_directory</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">child_local_abspath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+                    <span class="n">no_compare</span><span class="o">=</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="n">child_upload_as</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                    <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">tpath</span> <span class="ow">in</span> <span class="n">file_results_tmp</span><span class="p">:</span>
+                <span class="n">file_results</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_results_tmp</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">tpath</span> <span class="ow">in</span> <span class="n">error_results_tmp</span><span class="p">:</span>
+                <span class="n">error_results</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span> <span class="o">=</span> <span class="n">error_results_tmp</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span>
+
+        <span class="c1"># local child does not actually exist, could happen in race conditions</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="standard_upload_v2">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.standard_upload_v2">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">standard_upload_v2</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload files and directories to Materials Commons</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        proj (:class:`materials_commons.api.Project`): Project instance with</span>
+<span class="sd">            proj.local_path indicating local project location</span>
+<span class="sd">        paths (List of str):</span>
+<span class="sd">            List of paths to upload. Expects local absolute paths, or paths</span>
+<span class="sd">            relative to working_dir.</span>
+<span class="sd">        working_dir (str): Current working directory, used for finding relative</span>
+<span class="sd">            paths and printing messages.</span>
+<span class="sd">        recursive (bool): If True, remove directories recursively. Otherwise,</span>
+<span class="sd">            will not remove directories.</span>
+<span class="sd">        limit (int): The limit in MB on the size of the file allowed to be uploaded.</span>
+<span class="sd">        no_compare (bool): By default, this function checks local and remote</span>
+<span class="sd">            file checksum to avoid downloading files that already exist. If</span>
+<span class="sd">            no_compare is True, this check is skipped and all specified files</span>
+<span class="sd">            are downloaded, even if an equivalent file already exists locally.</span>
+<span class="sd">        upload_as (str): Materials Commons style path specifying where to</span>
+<span class="sd">            upload. Requires `len(paths) == 1`.</span>
+<span class="sd">        localtree (LocalTree): A LocalTree object stores local file checksums</span>
+<span class="sd">            to avoid unnecessary hashing. Optional, will be used and updated if</span>
+<span class="sd">            provided and checksum == True.</span>
+<span class="sd">        remotetree (RemoteTree): A RemoteTree object stores remote file and</span>
+<span class="sd">            directory information to minimize API calls and data transfer.</span>
+<span class="sd">            Optional, will be used and updated if provided.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (file_results, error_results):</span>
+
+<span class="sd">        file_results: dict of path: file</span>
+<span class="sd">            Successfully uploaded files</span>
+
+<span class="sd">        error_results: dict of path: str</span>
+<span class="sd">            Error messages for unsuccessful file uploads</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">error_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># upload_as only allowed with 1 input path</span>
+    <span class="k">if</span> <span class="n">upload_as</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Upload error: to &#39;upload as&#39; only 1 input path is allowed&quot;</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># check for non-existing paths, paths already uploaded, etc.</span>
+    <span class="n">local_abspaths_to_upload</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># convert input paths (absolute or relative to working_dir) to local_abspath</span>
+    <span class="n">local_abspaths</span> <span class="o">=</span> <span class="n">clipaths_to_local_abspaths</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="c1"># filter, skipping .mc, those specified by .mcignore</span>
+    <span class="n">local_abspaths</span> <span class="o">=</span> <span class="n">filter_local_abspaths</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">local_abspaths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">local_abspath</span> <span class="ow">in</span> <span class="n">local_abspaths</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
+
+            <span class="n">file_result</span><span class="p">,</span> <span class="n">error_msg</span> <span class="o">=</span> <span class="n">check_and_upload_file</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span>
+                <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="n">upload_as</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">file_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">file_results</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_result</span>
+            <span class="k">if</span> <span class="n">error_msg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">error_results</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">error_msg</span>
+
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
+
+            <span class="n">printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">working_dir</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: is a directory (not uploaded)&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">error_results</span><span class="p">[</span><span class="n">local_abspath</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+                <span class="k">continue</span>
+
+            <span class="n">file_results_tmp</span><span class="p">,</span> <span class="n">error_results_tmp</span> <span class="o">=</span> \
+                <span class="n">check_and_upload_directory</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+                    <span class="n">no_compare</span><span class="o">=</span><span class="n">no_compare</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="n">upload_as</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+                    <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">tpath</span> <span class="ow">in</span> <span class="n">file_results_tmp</span><span class="p">:</span>
+                <span class="n">file_results</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_results_tmp</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">tpath</span> <span class="ow">in</span> <span class="n">error_results_tmp</span><span class="p">:</span>
+                <span class="n">error_results</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span> <span class="o">=</span> <span class="n">error_results_tmp</span><span class="p">[</span><span class="n">tpath</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># should not happen, except maybe in race conditions</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Upload error: path does not exist&quot;</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot; path=&quot;</span> <span class="o">+</span> <span class="n">local_abspath</span>
+            <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="standard_upload">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.standard_upload">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">standard_upload</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">upload_as</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload files to Materials Commons</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        proj (:class:`materials_commons.api.Project`): Project instance with</span>
@@ -346,7 +766,8 @@
         <span class="n">mcpaths</span> <span class="o">=</span> <span class="n">make_mcpaths_for_upload</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">)</span>
 
         <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">,</span> <span class="n">child_data</span><span class="p">,</span> <span class="n">non_existing</span> <span class="o">=</span> <span class="n">treecompare</span><span class="p">(</span>
-            <span class="n">proj</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
+            <span class="n">proj</span><span class="p">,</span> <span class="n">mcpaths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span>
+            <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="c1"># check for files that are already uploaded or do not exist</span>
         <span class="k">for</span> <span class="n">mcpath</span> <span class="ow">in</span> <span class="n">mcpaths</span><span class="p">:</span>
@@ -469,8 +890,9 @@
 
     <span class="k">return</span> <span class="p">(</span><span class="n">file_results</span><span class="p">,</span> <span class="n">error_results</span><span class="p">)</span></div>
 
-<span class="k">class</span> <span class="nc">_TreeCompare</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper for the treecompare function.</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_TreeCompare</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper for the treecompare function.</span>
 
 <span class="sd">    It was slightly easier to write as a class so that variables could be stored as class attributes and assumed present in each subroutine.</span>
 
@@ -488,7 +910,7 @@
 <span class="sd">        data transfer. Will be used and updated if provided.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">proj</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span> <span class="o">=</span> <span class="n">localtree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span> <span class="o">=</span> <span class="n">remotetree</span>
@@ -496,14 +918,14 @@
         <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;l_size&#39;</span><span class="p">,</span> <span class="s1">&#39;l_type&#39;</span><span class="p">,</span> <span class="s1">&#39;l_checksum&#39;</span><span class="p">,</span> <span class="s1">&#39;r_mtime&#39;</span><span class="p">,</span> <span class="s1">&#39;r_size&#39;</span><span class="p">,</span> <span class="s1">&#39;r_type&#39;</span><span class="p">,</span> <span class="s1">&#39;r_checksum&#39;</span><span class="p">,</span> <span class="s1">&#39;r_obj&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;parent_id&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">record_init</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">_update_local_via_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_local_via_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="c1"># update self.localtree for path (and if it is a directory, update the children)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_children</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_data_from_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_update_local_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_local_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">record</span><span class="p">[</span><span class="s1">&#39;l_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clifuncs</span><span class="o">.</span><span class="n">epoch_time</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">))</span>
         <span class="n">record</span><span class="p">[</span><span class="s1">&#39;l_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
@@ -513,8 +935,8 @@
         <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
             <span class="n">record</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;directory&#39;</span>
 
-    <span class="k">def</span> <span class="nf">_update_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get local file or directory (and children) information&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get local file or directory (and children) information&quot;&quot;&quot;</span>
         <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
@@ -531,6 +953,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_update_local_record</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span><span class="p">[</span><span class="n">path</span><span class="p">],</span> <span class="n">local_abspath</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">)</span>
 
             <span class="c1"># children</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_children</span><span class="p">:</span>
+                <span class="k">return</span>
             <span class="k">if</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
@@ -545,14 +969,14 @@
 
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">_update_remote_via_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_remote_via_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="c1"># update self.remotetree for path (and if it is a directory, update the children)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_children</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_update_data_from_tree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_update_remote_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_remote_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
         <span class="n">record</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span>
         <span class="n">record</span><span class="p">[</span><span class="s1">&#39;parent_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">directory_id</span>
         <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">size</span>
@@ -565,10 +989,12 @@
             <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;directory&#39;</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">_update_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get remote file or directory (and children) information&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get remote file or directory (and children) information&quot;&quot;&quot;</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">get_by_path_if_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;deleted_at&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
             <span class="k">if</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">files_data</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">files_data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">record_init</span><span class="p">)</span>
@@ -580,6 +1006,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_update_remote_record</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span><span class="p">[</span><span class="n">path</span><span class="p">],</span> <span class="n">obj</span><span class="p">)</span>
 
                 <span class="c1"># children</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_children</span><span class="p">:</span>
+                    <span class="k">return</span>
                 <span class="k">if</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">list_directory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">id</span><span class="p">):</span>
@@ -592,7 +1020,7 @@
 
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">_update_record_from_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">file_or_dir</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_record_from_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">file_or_dir</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
         <span class="n">record</span><span class="p">[</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;_mtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_or_dir</span><span class="p">[</span><span class="s1">&#39;mtime&#39;</span><span class="p">]</span>
         <span class="n">record</span><span class="p">[</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_or_dir</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span>
         <span class="n">record</span><span class="p">[</span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_or_dir</span><span class="p">[</span><span class="s1">&#39;otype&#39;</span><span class="p">]</span>
@@ -602,8 +1030,8 @@
         <span class="k">if</span> <span class="s1">&#39;parent_id&#39;</span> <span class="ow">in</span> <span class="n">file_or_dir</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">record</span><span class="p">[</span><span class="s1">&#39;parent_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_or_dir</span><span class="p">[</span><span class="s1">&#39;parent_id&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_update_data_from_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Common data conversion from tree to output data&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_data_from_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Common data conversion from tree to output data&quot;&quot;&quot;</span>
 
         <span class="n">res</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">select_by_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -623,6 +1051,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_update_record_from_tree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span><span class="p">[</span><span class="n">path</span><span class="p">],</span> <span class="n">file_or_dir</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span>
 
             <span class="c1"># children</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_children</span><span class="p">:</span>
+                <span class="k">return</span>
             <span class="k">if</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">results</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">select_by_parent_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -641,8 +1071,8 @@
 
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Compare local and remote tree differences for paths</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compare local and remote tree differences for paths</span>
 
 <span class="sd">        paths: List of str</span>
 <span class="sd">            List of Materials Commons style paths (absolute path, not including project name directory)</span>
@@ -651,6 +1081,9 @@
 <span class="sd">        checksum: bool (optional, default=False)</span>
 <span class="sd">            If True, calculate MD5 checksum of local files and compare to remote. If localtree was</span>
 <span class="sd">            provided to the constructor, the checksums will be saved in the localtree database.</span>
+
+<span class="sd">        get_children: bool (optional, default=True)</span>
+<span class="sd">            If True, compare children of directories.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -663,7 +1096,8 @@
 <span class="sd">                Contains directory comparisons</span>
 
 <span class="sd">            child_data: dict of dirpath: childpath: file or directory comparison</span>
-<span class="sd">                Contains directory children comparisons</span>
+<span class="sd">                Contains directory children comparisons, if</span>
+<span class="sd">                `get_children==True`, else empty dict.</span>
 
 <span class="sd">            not_existing: list of str</span>
 <span class="sd">                Paths that do not exist locally or remotely</span>
@@ -700,6 +1134,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">files_data</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_children</span> <span class="o">=</span> <span class="n">get_children</span>
 
         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span> <span class="ow">and</span> <span class="n">checksum</span><span class="p">:</span>
@@ -729,8 +1164,11 @@
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">files_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">child_data</span><span class="p">,</span> <span class="n">not_existing</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="treecompare"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.treecompare">[docs]</a><span class="k">def</span> <span class="nf">treecompare</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="treecompare">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.treecompare">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">treecompare</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">get_children</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compare files and directories on the local and remote trees.</span>
 
 <span class="sd">    Arguments</span>
@@ -753,6 +1191,10 @@
 <span class="sd">        A RemoteTree object stores remote file and directory information to minimize API calls and</span>
 <span class="sd">        data transfer. Will be used and updated if provided.</span>
 
+<span class="sd">    get_children: bool (optional, default=True)</span>
+<span class="sd">        If True, compare children of directories.</span>
+
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        (files_data, dirs_data, child_data, not_existing):</span>
@@ -764,7 +1206,8 @@
 <span class="sd">            Contains directory comparisons</span>
 
 <span class="sd">        child_data: dict of dirpath: childpath: file or directory comparison</span>
-<span class="sd">            Contains directory children comparisons</span>
+<span class="sd">            Contains directory children comparisons, if</span>
+<span class="sd">            `get_children==True`, else empty dict.</span>
 
 <span class="sd">        not_existing: list of str</span>
 <span class="sd">            Paths that do not exist locally or remotely</span>
@@ -799,10 +1242,13 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_treecomparer</span> <span class="o">=</span> <span class="n">_TreeCompare</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="n">localtree</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="n">remotetree</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_treecomparer</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">_treecomparer</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">checksum</span><span class="o">=</span><span class="n">checksum</span><span class="p">,</span> <span class="n">get_children</span><span class="o">=</span><span class="n">get_children</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="get_types"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.get_types">[docs]</a><span class="k">def</span> <span class="nf">get_types</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Use treecompare output to get local and remote types</span>
+
+<div class="viewcode-block" id="get_types">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.get_types">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_types</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Use treecompare output to get local and remote types</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        path (str): Path to check for type</span>
@@ -827,44 +1273,67 @@
 
     <span class="k">return</span> <span class="p">(</span><span class="n">l_type</span><span class="p">,</span> <span class="n">r_type</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="is_type_mismatch"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.is_type_mismatch">[docs]</a><span class="k">def</span> <span class="nf">is_type_mismatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check treecompare filds_data and dirs_data output to check for type mismatch&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="is_type_mismatch">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.is_type_mismatch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_type_mismatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check treecompare filds_data and dirs_data output to check for type mismatch</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Not existing is not a type mismatch</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        _is_type_mismatch (bool):</span>
+<span class="sd">            This is True if l_type and r_type are different and not None, otherwise it is False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">l_type</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">get_types</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">files_data</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">l_type</span> <span class="ow">and</span> <span class="n">r_type</span> <span class="ow">and</span> <span class="n">l_type</span> <span class="o">!=</span> <span class="n">r_type</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="is_child_data_mismatch"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.is_child_data_mismatch">[docs]</a><span class="k">def</span> <span class="nf">is_child_data_mismatch</span><span class="p">(</span><span class="n">child_data</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Check treecompare child_data file comparison for type mismatch&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="is_child_data_mismatch">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.is_child_data_mismatch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_child_data_mismatch</span><span class="p">(</span><span class="n">child_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check treecompare child_data file comparison for type mismatch</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Not existing is not a type mismatch</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        _is_type_mismatch (bool):</span>
+<span class="sd">            This is True if l_type and r_type are different and not None, otherwise it is False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">child_data</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">child_data</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">child_data</span><span class="p">[</span><span class="s1">&#39;l_type&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">child_data</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span></div>
 
-<span class="k">class</span> <span class="nc">_Mover</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper for the move function&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_Mover</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper for the move function&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">proj</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remote_only</span> <span class="o">=</span> <span class="n">remote_only</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span> <span class="o">=</span> <span class="n">localtree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span> <span class="o">=</span> <span class="n">remotetree</span>
 
-    <span class="k">def</span> <span class="nf">_move_remote_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_move_remote_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">file_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">files_data</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">!=</span> <span class="n">to_directory_path</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">move_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">rename_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">file_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_move_remote_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_move_remote_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">directory_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span><span class="p">[</span><span class="n">path</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">!=</span> <span class="n">to_directory_path</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">move_directory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">rename_directory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">directory_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_move_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Move file or directory on remote</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_move_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Move file or directory on remote</span>
 
 <span class="sd">        Arguments</span>
 <span class="sd">        ---------</span>
@@ -877,14 +1346,18 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_move_remote_directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">to_directory_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_move_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_move_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="n">src</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
+            <span class="c1"># printpath = os.path.relpath(src)</span>
+            <span class="c1"># print(printpath + &quot;: does not exist (skipping)&quot;)</span>
+            <span class="k">return</span>
         <span class="n">dest</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">to_directory_path</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
         <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate_destination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_destination</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
         <span class="n">dest_path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">dest_local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">)</span>
         <span class="n">dest_printpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">dest_local_abspath</span><span class="p">)</span>
@@ -936,7 +1409,7 @@
 
         <span class="k">return</span> <span class="n">valid_usage</span>
 
-    <span class="k">def</span> <span class="nf">_validate_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">to_directory_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
@@ -961,6 +1434,7 @@
             <span class="k">return</span> <span class="kc">False</span>
 
         <span class="c1"># if not remote_only, check that local and remote types match</span>
+        <span class="c1"># - Note, not existing is not a type mismatch</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote_only</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">is_type_mismatch</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">files_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirs_data</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">printpath</span> <span class="o">+</span> <span class="s2">&quot;: local and remote types do not match&quot;</span><span class="p">)</span>
@@ -968,7 +1442,7 @@
 
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">):</span>
         <span class="n">dest_path</span> <span class="o">=</span> <span class="n">paths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -1026,8 +1500,10 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">to_directory_path</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<div class="viewcode-block" id="move"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.move">[docs]</a><span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Move files and directories</span>
+<div class="viewcode-block" id="move">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.move">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Move files and directories</span>
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
@@ -1053,9 +1529,10 @@
     <span class="n">_mover</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">_Remover</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Helper for the remove function&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_Remover</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper for the remove function&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proj</span> <span class="o">=</span> <span class="n">proj</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">recursive</span> <span class="o">=</span> <span class="n">recursive</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">no_compare</span> <span class="o">=</span> <span class="n">no_compare</span>
@@ -1064,7 +1541,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span> <span class="o">=</span> <span class="n">localtree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span> <span class="o">=</span> <span class="n">remotetree</span>
 
-    <span class="k">def</span> <span class="nf">_update_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_remote</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -1073,7 +1550,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remotetree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_update_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -1081,7 +1558,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_remove_remote_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_remote_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(dry run) rm remote:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
@@ -1099,7 +1576,7 @@
                 <span class="k">return</span> <span class="kc">False</span>
 
 
-    <span class="k">def</span> <span class="nf">_remove_local_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_local_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(dry run) rm local:&quot;</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
@@ -1107,8 +1584,8 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rm local:&quot;</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
             <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_remove_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">updatetree</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove a file</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">updatetree</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a file</span>
 
 <span class="sd">        - Will remove local and remote as specified by constructor options.</span>
 <span class="sd">        - Will update local and remote tree after deletion if updatree==True</span>
@@ -1153,14 +1630,13 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">_update_local</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
             <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">_remove_remote_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_remote_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dry_run</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(dry run) rm remote:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rm remote:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rm remote directory:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rm remote:&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">delete_directory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
                 <span class="k">return</span> <span class="kc">True</span>
             <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -1172,7 +1648,7 @@
                 <span class="k">return</span> <span class="kc">False</span>
 
 
-    <span class="k">def</span> <span class="nf">_remove_local_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_local_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
             <span class="k">return</span>
@@ -1180,12 +1656,11 @@
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(dry run) rm local:&quot;</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rm local:&quot;</span><span class="p">,</span> <span class="n">local_abspath</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_remove_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">updatetree</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove a directory</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">updatetree</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a directory</span>
 
-<span class="sd">        - Before calling, all children ought to be deleted, but this will double check</span>
 <span class="sd">        - Will remove local and remote as specified by constructor options.</span>
 <span class="sd">        - Will always update local and remote tree once before deletion to check for children, and if updatetree==True will update again after deletion</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1195,20 +1670,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_update_remote</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="n">local_abspath</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">make_local_abspath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">proj</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_local</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-            <span class="n">local_children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">select_by_parent_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">localtree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">local_children</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">local_children</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">local_abspath</span> <span class="o">+</span> <span class="s2">&quot;: could not remove all local children (skipping)&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
-
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_remote_directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_remove_local_directory</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -1216,7 +1677,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_update_remote</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_update_local</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
 
         <span class="n">checksum</span><span class="o">=</span><span class="kc">True</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_compare</span><span class="p">:</span>
@@ -1258,22 +1719,16 @@
                 <span class="nb">print</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;: does not exist on remote&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
 
-            <span class="k">for</span> <span class="n">childpath</span><span class="p">,</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">child_data</span><span class="p">[</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;file&#39;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_remove_file</span><span class="p">(</span><span class="n">childpath</span><span class="p">,</span> <span class="n">record</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;r_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;directory&#39;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">childpath</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span> <span class="c1"># local child without matching remote</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">childpath</span> <span class="o">+</span> <span class="s2">&quot;: does not exist on remote&quot;</span><span class="p">)</span>
-
             <span class="bp">self</span><span class="o">.</span><span class="n">_remove_directory</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dirs_data</span><span class="p">[</span><span class="n">path</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_update_remote</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_update_local</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="s2">&quot;Error in rm_file: unknown error&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="remove"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.remove">[docs]</a><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Remove files and directories</span>
+<div class="viewcode-block" id="remove">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.remove">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">no_compare</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">localtree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove files and directories</span>
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
@@ -1308,8 +1763,12 @@
         <span class="n">_remover</span><span class="p">(</span><span class="n">p</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="mkdir"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.mkdir">[docs]</a><span class="k">def</span> <span class="nf">mkdir</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">create_intermediates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Make directories</span>
+
+<div class="viewcode-block" id="mkdir">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.tree_functions.html#materials_commons.cli.tree_functions.mkdir">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mkdir</span><span class="p">(</span><span class="n">proj</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">remote_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">create_intermediates</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remotetree</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+          <span class="n">parent_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make directories</span>
 
 <span class="sd">    Arguments</span>
 <span class="sd">    ---------</span>
@@ -1329,6 +1788,9 @@
 <span class="sd">    remotetree: RemoteTree object (optional, default=None)</span>
 <span class="sd">        A RemoteTree object stores remote file and directory information to minimize API calls and</span>
 <span class="sd">        data transfer. Will be used and updated if provided.</span>
+
+<span class="sd">    parent_id (str): ID of parent directory where the directory should be created, if already</span>
+<span class="sd">        known. May be None, in which case the parent directory will be found using `path`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -1354,6 +1816,17 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">remote_only</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;: is a local file&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">parent_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">create_directory</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">parent_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">remotetree</span><span class="p">:</span>
+            <span class="n">remotetree</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+            <span class="n">remotetree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">remotetree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">remote_only</span><span class="p">:</span>
+            <span class="n">clifuncs</span><span class="o">.</span><span class="n">mkdir_if</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
     <span class="n">result</span> <span class="o">=</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">get_by_path_if_exists</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">filefuncs</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">remote_only</span><span class="p">:</span>
@@ -1381,52 +1854,41 @@
             <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">cliexcept</span><span class="o">.</span><span class="n">MCCLIException</span><span class="p">(</span><span class="n">parent_path</span> <span class="o">+</span> <span class="s2">&quot;: parent directory does not exist&quot;</span><span class="p">)</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">proj</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">create_directory</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">parent</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">remotetree</span><span class="p">:</span>
+                <span class="n">remotetree</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+                <span class="n">remotetree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">remotetree</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">remote_only</span><span class="p">:</span>
                 <span class="n">clifuncs</span><span class="o">.</span><span class="n">mkdir_if</span><span class="p">(</span><span class="n">local_abspath</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">result</span></div>
+
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, PRISMS Center.
-
-    </p>
+    <p>&#169; Copyright 2021, PRISMS Center.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

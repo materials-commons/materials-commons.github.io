@@ -1,6 +1,0 @@
-.. manual/overview.rst
-
-Overview
-========
-
-... more TODO ...

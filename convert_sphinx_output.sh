@@ -1,6 +1,5 @@
 # html created by `python setup.py build_sphinx` must be modified so jekyll styles it correctly
 # copy sphinx html into this repository then run this script on it
-cd $1
 mv _static site-static
 mv _modules site-modules
 mv _sources site-sources

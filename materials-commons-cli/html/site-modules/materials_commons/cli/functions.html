@@ -1,94 +1,44 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>materials_commons.cli.functions &mdash; materials_commons.cli 2.0b7 documentation</title>
-  
+  <title>materials_commons.cli.functions &mdash; materials_commons.cli 2.1.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../site-static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../site-static/css/theme.css?v=e59714d7" />
 
   
-  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../site-static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../site-static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  <!--[if lt IE 9]>
-    <script src="../../../site-static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../site-static/documentation_options.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../site-static/documentation_options.js"></script>
-        <script src="../../../site-static/jquery.js"></script>
-        <script src="../../../site-static/underscore.js"></script>
-        <script src="../../../site-static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../../../site-static/js/theme.js"></script>
-
-    
+      <script src="../../../site-static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../site-static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../site-static/documentation_options.js?v=179ab080"></script>
+      <script src="../../../site-static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../site-static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../site-static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html" class="icon icon-home"> materials_commons.cli
           
-
-          
+          <a href="../../../index.html" class="icon icon-home">
+            materials_commons.cli
           </a>
-
-          
-            
-            
-              <div class="version">
-                2.0
-              </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
@@ -99,147 +49,131 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">materials_commons.cli</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>materials_commons.cli.functions</li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">materials_commons.cli.functions</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for materials_commons.cli.functions</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">dateutil</span>
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dateutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
-<span class="kn">import</span> <span class="nn">materials_commons.api</span> <span class="k">as</span> <span class="nn">mcapi</span>
-<span class="kn">import</span> <span class="nn">materials_commons.api.models</span> <span class="k">as</span> <span class="nn">models</span>
-<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">materials_commons.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mcapi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">materials_commons.api.models</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
 
-<span class="kn">from</span> <span class="nn">materials_commons.cli.exceptions</span> <span class="kn">import</span> <span class="n">MCCLIException</span><span class="p">,</span> <span class="n">MissingRemoteException</span><span class="p">,</span> \
+<span class="kn">from</span><span class="w"> </span><span class="nn">materials_commons.cli.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCCLIException</span><span class="p">,</span> <span class="n">MissingRemoteException</span><span class="p">,</span> \
     <span class="n">MultipleRemoteException</span><span class="p">,</span> <span class="n">NoDefaultRemoteException</span>
-<span class="kn">from</span> <span class="nn">materials_commons.cli.print_formatter</span> <span class="kn">import</span> <span class="n">PrintFormatter</span><span class="p">,</span> <span class="n">trunc</span>
-<span class="kn">from</span> <span class="nn">materials_commons.cli.sqltable</span> <span class="kn">import</span> <span class="n">SqlTable</span>
-<span class="kn">from</span> <span class="nn">materials_commons.cli.user_config</span> <span class="kn">import</span> <span class="n">Config</span><span class="p">,</span> <span class="n">RemoteConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">materials_commons.cli.print_formatter</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrintFormatter</span><span class="p">,</span> <span class="n">trunc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">materials_commons.cli.sqltable</span><span class="w"> </span><span class="kn">import</span> <span class="n">SqlTable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">materials_commons.cli.user_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span><span class="p">,</span> <span class="n">RemoteConfig</span>
 
 <span class="c1"># TODO: mcapi.Config, mcapi.Remote, mcapi.RemoteConfig</span>
 
-<div class="viewcode-block" id="mkdir_if"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.mkdir_if">[docs]</a><span class="k">def</span> <span class="nf">mkdir_if</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convenience function for making a directory, if it does not exist. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="mkdir_if">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.mkdir_if">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">mkdir_if</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convenience function for making a directory, if it does not exist. &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="remove_if"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.remove_if">[docs]</a><span class="k">def</span> <span class="nf">remove_if</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convenience function for removing a file, if it exists. &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="remove_if">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.remove_if">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_if</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convenience function for removing a file, if it exists. &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="rmdir_if"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.rmdir_if">[docs]</a><span class="k">def</span> <span class="nf">rmdir_if</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convenience function for removing a directory, if it exists. &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="rmdir_if">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.rmdir_if">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">rmdir_if</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convenience function for removing a directory, if it exists. &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="make_file"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_file">[docs]</a><span class="k">def</span> <span class="nf">make_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convenience function for writing &quot;text&quot; to a file at &quot;path&quot;. &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="make_file">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convenience function for writing &quot;text&quot; to a file at &quot;path&quot;. &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="remove_hidden_project_files"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.remove_hidden_project_files">[docs]</a><span class="k">def</span> <span class="nf">remove_hidden_project_files</span><span class="p">(</span><span class="n">project_path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Removes a local project&#39;s configuration files and directory&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="remove_hidden_project_files">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.remove_hidden_project_files">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_hidden_project_files</span><span class="p">(</span><span class="n">project_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Removes a local project&#39;s configuration files and directory&quot;&quot;&quot;</span>
     <span class="n">remove_if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="s2">&quot;.mc&quot;</span><span class="p">,</span> <span class="s2">&quot;config.json&quot;</span><span class="p">))</span>
     <span class="n">remove_if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="s2">&quot;.mc&quot;</span><span class="p">,</span> <span class="s2">&quot;project.db&quot;</span><span class="p">))</span>
     <span class="n">rmdir_if</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="s2">&quot;.mc&quot;</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="getit"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.getit">[docs]</a><span class="k">def</span> <span class="nf">getit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the &quot;name&quot; attribute (or default value) whether &quot;obj&quot; is a dict or an object.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="getit">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.getit">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">getit</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the &quot;name&quot; attribute (or default value) whether &quot;obj&quot; is a dict or an object.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="as_is"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.as_is">[docs]</a><span class="k">def</span> <span class="nf">as_is</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns value without any changes. A placeholder for when a function is needed.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="as_is">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.as_is">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">as_is</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns value without any changes. A placeholder for when a function is needed.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="epoch_time"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.epoch_time">[docs]</a><span class="k">def</span> <span class="nf">epoch_time</span><span class="p">(</span><span class="n">time_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Attempts to convert various time representations into s since the epoch</span>
+
+<div class="viewcode-block" id="epoch_time">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.epoch_time">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">epoch_time</span><span class="p">(</span><span class="n">time_value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attempts to convert various time representations into s since the epoch</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        time_value: A representation of time.</span>
+<span class="sd">        time_value: A representation of time, expects UTC time.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        An integer s since the epoch. Uses the following:</span>
+<span class="sd">        An float s since the epoch. Uses the following:</span>
 
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
 <span class="sd">            | If this type      | Then do this conversion                                    |</span>
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
-<span class="sd">            | str               | time.mktime(dateutil.parser.parse(time_value).timetuple()) |</span>
+<span class="sd">            | str               | dateutil.parser.parse(time_value).timestamp()              |</span>
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
 <span class="sd">            | float, int        | time_value                                                 |</span>
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
-<span class="sd">            | datetime.datetime | time.mktime(time_value.timetuple())                        |</span>
+<span class="sd">            | datetime.datetime | time_value.replace(tzinfo=datetime.timezone.utc).timestamp() |</span>
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
-<span class="sd">            | dict              | time_value[&#39;epoch_time&#39;]                                   |</span>
+<span class="sd">            | dict              | float(time_value[&#39;epoch_time&#39;])                            |</span>
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
 <span class="sd">            | None              | None                                                       |</span>
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
@@ -247,28 +181,31 @@
 <span class="sd">            +-------------------+------------------------------------------------------------+</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span> <span class="c1"># expect ISO 8601 str</span>
-        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
-        <span class="k">return</span> <span class="n">time_value</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">time_value</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">time_value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;epoch_time&#39;</span> <span class="ow">in</span> <span class="n">time_value</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">time_value</span><span class="p">[</span><span class="s1">&#39;epoch_time&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">time_value</span><span class="p">[</span><span class="s1">&#39;epoch_time&#39;</span><span class="p">])</span>
     <span class="k">elif</span> <span class="n">time_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">time_value</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="format_time"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.format_time">[docs]</a><span class="k">def</span> <span class="nf">format_time</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%Y %b </span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Attempts to put various time representations into specified format for printing</span>
+
+<div class="viewcode-block" id="format_time">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.format_time">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_time</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%Y %b </span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attempts to put various time representations into specified format for printing</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        time_value: A representation of time.</span>
+<span class="sd">        time_value: A representation of time, expects UTC time.</span>
 
 <span class="sd">        fmt (str): Format to use for the return value.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A string representation using the specified format. Uses the following:</span>
+<span class="sd">        A string representation, in local time, using the specified format. Uses the following:</span>
 
 <span class="sd">            +-------------------+-------------------------------------------------+</span>
 <span class="sd">            | If this type      | Then do this conversion                         |</span>
@@ -277,7 +214,7 @@
 <span class="sd">            +-------------------+-------------------------------------------------+</span>
 <span class="sd">            | float, int        | time.strftime(fmt, time.localtime(time_value))  |</span>
 <span class="sd">            +-------------------+-------------------------------------------------+</span>
-<span class="sd">            | datetime.datetime | time.strftime(fmt, time.localtime(time_value))  |</span>
+<span class="sd">            | datetime.datetime | time_value.strftime(fmt)                        |</span>
 <span class="sd">            +-------------------+-------------------------------------------------+</span>
 <span class="sd">            | dict              | format_time(time_value[&#39;epoch_time&#39;])           |</span>
 <span class="sd">            +-------------------+-------------------------------------------------+</span>
@@ -287,11 +224,11 @@
 <span class="sd">            +-------------------+-------------------------------------------------+</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span> <span class="c1"># expect ISO 8601 str</span>
-        <span class="k">return</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dateutil</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
         <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time_value</span><span class="p">))</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">time_value</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">time_value</span><span class="o">.</span><span class="n">astimezone</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;epoch_time&#39;</span> <span class="ow">in</span> <span class="n">time_value</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">format_time</span><span class="p">(</span><span class="n">time_value</span><span class="p">[</span><span class="s1">&#39;epoch_time&#39;</span><span class="p">])</span>
     <span class="k">elif</span> <span class="n">time_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -299,19 +236,25 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">time_value</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="checksum"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.checksum">[docs]</a><span class="k">def</span> <span class="nf">checksum</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate MD5 checksum for the file at &quot;path&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="checksum">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.checksum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">checksum</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate MD5 checksum for the file at &quot;path&quot; &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="random_name"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.random_name">[docs]</a><span class="k">def</span> <span class="nf">random_name</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_letters</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generates a random name for &quot;n&quot; words of max &quot;max_letters&quot; length, joined by &quot;sep&quot; &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">random</span>
+
+<div class="viewcode-block" id="random_name">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.random_name">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">random_name</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_letters</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a random name for &quot;n&quot; words of max &quot;max_letters&quot; length, joined by &quot;sep&quot; &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
     <span class="n">word_file</span> <span class="o">=</span> <span class="s2">&quot;/usr/share/dict/words&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">word_file</span><span class="p">):</span>
         <span class="n">WORDS</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">word_file</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">requests</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
         <span class="n">word_site</span> <span class="o">=</span> <span class="s2">&quot;http://svnweb.freebsd.org/csrg/share/dict/words?view=co&amp;content-type=text/plain&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word_site</span><span class="p">)</span>
         <span class="n">WORDS</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
@@ -328,8 +271,11 @@
     <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="print_table"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_table">[docs]</a><span class="k">def</span> <span class="nf">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[],</span> <span class="n">headers</span><span class="o">=</span><span class="p">[],</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print table from list of dict</span>
+
+<div class="viewcode-block" id="print_table">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_table">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[],</span> <span class="n">headers</span><span class="o">=</span><span class="p">[],</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print table from list of dict</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        data: list of dict, Data to print</span>
@@ -345,8 +291,11 @@
     <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">tabulate_in</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">))</span>
     <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="print_projects"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_projects">[docs]</a><span class="k">def</span> <span class="nf">print_projects</span><span class="p">(</span><span class="n">projects</span><span class="p">,</span> <span class="n">current</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Prints a list of projects, including a &#39;*&#39; indicating the project containing the current working directory</span>
+
+<div class="viewcode-block" id="print_projects">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_projects">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_projects</span><span class="p">(</span><span class="n">projects</span><span class="p">,</span> <span class="n">current</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a list of projects, including a &#39;*&#39; indicating the project containing the current working directory</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        projects: A list of :class:`materials_commons.api.Project`</span>
@@ -370,8 +319,11 @@
     <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;owner&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;modified_at&#39;</span><span class="p">]</span>
     <span class="n">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="print_remote_help"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remote_help">[docs]</a><span class="k">def</span> <span class="nf">print_remote_help</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Print a help message for cases when no remotes are configured&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="print_remote_help">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remote_help">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_remote_help</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print a help message for cases when no remotes are configured&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add a remote with:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    mc remote --add EMAIL URL&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;List current remotes with:&quot;</span><span class="p">)</span>
@@ -380,8 +332,11 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    mc remote -l&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="add_remote_option"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.add_remote_option">[docs]</a><span class="k">def</span> <span class="nf">add_remote_option</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">help</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Add the &quot;--remote &lt;email&gt; &lt;url&gt;&quot; cli option to an ArgumentParser</span>
+
+<div class="viewcode-block" id="add_remote_option">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.add_remote_option">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_remote_option</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">help</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add the &quot;--remote &lt;email&gt; &lt;url&gt;&quot; cli option to an ArgumentParser</span>
 
 <span class="sd">    - This standardizes the use of the &quot;--remote &lt;email&gt; &lt;url&gt;&quot; cli option which is needed in some contexts, but not others</span>
 
@@ -393,8 +348,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--remote&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;EMAIL&#39;</span><span class="p">,</span> <span class="s1">&#39;URL&#39;</span><span class="p">),</span> <span class="n">help</span><span class="o">=</span><span class="n">help</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="optional_remote_config"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.optional_remote_config">[docs]</a><span class="k">def</span> <span class="nf">optional_remote_config</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return remote configuration parameters specified by cli option &quot;--remote&quot;, or the user&#39;s default remote</span>
+
+<div class="viewcode-block" id="optional_remote_config">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.optional_remote_config">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">optional_remote_config</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return remote configuration parameters specified by cli option &quot;--remote&quot;, or the user&#39;s default remote</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        args (argparse.Namespace): The result of argparse&#39;s &quot;parse_args()&quot; method. Checks for &quot;args.remote&quot;.</span>
@@ -416,8 +374,11 @@
             <span class="k">raise</span> <span class="n">NoDefaultRemoteException</span><span class="p">(</span><span class="s2">&quot;Default remote not set&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">default_remote</span></div>
 
-<div class="viewcode-block" id="optional_remote"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.optional_remote">[docs]</a><span class="k">def</span> <span class="nf">optional_remote</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">default_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return remote specified by cli option &quot;--remote&quot;, or the user&#39;s default remote</span>
+
+<div class="viewcode-block" id="optional_remote">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.optional_remote">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">optional_remote</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">default_client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return remote specified by cli option &quot;--remote&quot;, or the user&#39;s default remote</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        args (argparse args): The result of argparse&#39;s &quot;parse_args()&quot; method. Checks for &quot;args.remote&quot;.</span>
@@ -447,8 +408,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">default_client</span></div>
 
-<div class="viewcode-block" id="print_remotes"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remotes">[docs]</a><span class="k">def</span> <span class="nf">print_remotes</span><span class="p">(</span><span class="n">config_remotes</span><span class="p">,</span> <span class="n">show_apikey</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Print a table with remote Materials Commons instance configuration parameters (email, url, apikey)</span>
+
+<div class="viewcode-block" id="print_remotes">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.print_remotes">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_remotes</span><span class="p">(</span><span class="n">config_remotes</span><span class="p">,</span> <span class="n">show_apikey</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print a table with remote Materials Commons instance configuration parameters (email, url, apikey)</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        config_remotes: A dict of :class:`user_config.RemoteConfig`, grouped</span>
@@ -460,7 +424,7 @@
         <span class="k">return</span>
     <span class="n">default_remote</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span><span class="o">.</span><span class="n">default_remote</span>
 
-    <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">itemgetter</span>
     <span class="c1">#data = sorted([vars(rconfig) for rconfig in config_remotes], key=itemgetter(&#39;mcurl&#39;, &#39;email&#39;))</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -477,7 +441,7 @@
     <span class="k">if</span> <span class="n">show_apikey</span><span class="p">:</span>
         <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;apikey&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">width</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="n">col</span><span class="p">]))</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 
     <span class="n">fmt</span> <span class="o">=</span> <span class="p">[</span>
@@ -494,8 +458,11 @@
     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
         <span class="n">pformatter</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="make_local_project_client"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project_client">[docs]</a><span class="k">def</span> <span class="nf">make_local_project_client</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct a client to access project data from the local project configuration</span>
+
+<div class="viewcode-block" id="make_local_project_client">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project_client">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_local_project_client</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a client to access project data from the local project configuration</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        path (str): Path to anywhere inside a local project directory</span>
@@ -516,21 +483,29 @@
     <span class="n">remote_config_with_apikey</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">remotes</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">remotes</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">remote_config</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">remote_config_with_apikey</span><span class="o">.</span><span class="n">make_client</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ProjectTable"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable">[docs]</a><span class="k">class</span> <span class="nc">ProjectTable</span><span class="p">(</span><span class="n">SqlTable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The ProjectTable creates a sqlite &quot;project&quot; table to cache some basic project data&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ProjectTable.default_print_fmt"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.default_print_fmt">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">default_print_fmt</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Returns project table print formatting parameters&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ProjectTable">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProjectTable</span><span class="p">(</span><span class="n">SqlTable</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The ProjectTable creates a sqlite &quot;project&quot; table to cache some basic project data&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ProjectTable.default_print_fmt">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.default_print_fmt">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">default_print_fmt</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns project table print formatting parameters&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">as_is</span><span class="p">),</span>
             <span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="n">as_is</span><span class="p">),</span>
             <span class="p">(</span><span class="s2">&quot;checktime&quot;</span><span class="p">,</span> <span class="s2">&quot;checktime&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">format_time</span><span class="p">)</span>
         <span class="p">]</span></div>
 
-<div class="viewcode-block" id="ProjectTable.tablecolumns"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.tablecolumns">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">tablecolumns</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Returns sqlite project table creating parameters</span>
+
+<div class="viewcode-block" id="ProjectTable.tablecolumns">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.tablecolumns">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tablecolumns</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns sqlite project table creating parameters</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            A dict, with column name as key, and list of column creation args for value.</span>
@@ -543,30 +518,40 @@
             <span class="s2">&quot;checktime&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;real&quot;</span><span class="p">]</span>     <span class="c1"># last time the remote data was queried (s since epoch)</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="ProjectTable.tablename"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.tablename">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">tablename</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot;Returns sqlite project table name &quot;project&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ProjectTable.tablename">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.tablename">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">tablename</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns sqlite project table name &quot;project&quot; &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;project&quot;</span></div>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj_local_path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proj_local_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            proj_local_path (str): Path to local project directory</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ProjectTable</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">proj_local_path</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ProjectTable.select_all"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.select_all">[docs]</a>    <span class="k">def</span> <span class="nf">select_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Select record by id</span>
+<div class="viewcode-block" id="ProjectTable.select_all">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectTable.select_all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select record by id</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">             sqlite3.Row or None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tablename</span><span class="p">())</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">curs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div>
+</div>
 
-<div class="viewcode-block" id="make_local_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project">[docs]</a><span class="k">def</span> <span class="nf">make_local_project</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read local project config file and use to construct materials_commons.api.models.Project</span>
+
+<div class="viewcode-block" id="make_local_project">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_project">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_local_project</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read local project config file and use to construct materials_commons.api.models.Project</span>
 
 <span class="sd">    - Checks if &quot;path&quot; is a path located inside a local project directory (by looking for the &quot;.mc&quot; directory).</span>
 <span class="sd">    - Use local project configuration to:</span>
@@ -630,8 +615,11 @@
     <span class="n">proj</span><span class="o">.</span><span class="n">remote</span> <span class="o">=</span> <span class="n">client</span>
     <span class="k">return</span> <span class="n">proj</span></div>
 
-<div class="viewcode-block" id="make_local_expt"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_expt">[docs]</a><span class="k">def</span> <span class="nf">make_local_expt</span><span class="p">(</span><span class="n">proj</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read local project configuration to construct &quot;current experiment&quot; object</span>
+
+<div class="viewcode-block" id="make_local_expt">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.make_local_expt">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_local_expt</span><span class="p">(</span><span class="n">proj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read local project configuration to construct &quot;current experiment&quot; object</span>
 
 <span class="sd">    - The &quot;current experiment&quot; is a default experiment for putting newly created samples or processes</span>
 
@@ -650,8 +638,11 @@
 
     <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="humanize"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.humanize">[docs]</a><span class="k">def</span> <span class="nf">humanize</span><span class="p">(</span><span class="n">file_size_bytes</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Get a nice string representation of file size</span>
+
+<div class="viewcode-block" id="humanize">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.humanize">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">humanize</span><span class="p">(</span><span class="n">file_size_bytes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a nice string representation of file size</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        file_size_bytes (int): File size in bytes</span>
@@ -665,8 +656,11 @@
         <span class="k">if</span> <span class="n">_size</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;T&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">_size</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span></div>
 
-<div class="viewcode-block" id="request_confirmation"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.request_confirmation">[docs]</a><span class="k">def</span> <span class="nf">request_confirmation</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Request user confirmation</span>
+
+<div class="viewcode-block" id="request_confirmation">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.request_confirmation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">request_confirmation</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Request user confirmation</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        msg (str): For example, the value &quot;Are you sure you want to permanently delete these?&quot;, will prompt user with: ::</span>
@@ -690,8 +684,9 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
-<span class="k">def</span> <span class="nf">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the path to a local project directory if it contains &quot;path&quot;, else None&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the path to a local project directory if it contains &quot;path&quot;, else None&quot;&quot;&quot;</span>
     <span class="c1"># if not os.path.isdir(path):</span>
     <span class="c1">#   raise Exception(&quot;Error, no directory named: &quot; + path)</span>
     <span class="n">curr</span> <span class="o">=</span> <span class="n">path</span>
@@ -706,33 +701,41 @@
             <span class="n">curr</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="project_path"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_path">[docs]</a><span class="k">def</span> <span class="nf">project_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns the path to a local project directory if it contains &quot;path&quot;, else None&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="project_path">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_path">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">project_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the path to a local project directory if it contains &quot;path&quot;, else None&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="project_exists"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_exists">[docs]</a><span class="k">def</span> <span class="nf">project_exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Returns True if a local project directory exists containing &quot;path&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="project_exists">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.project_exists">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">project_exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns True if a local project directory exists containing &quot;path&quot; &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span></div>
 
-<span class="k">def</span> <span class="nf">_mcdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find project .mc directory path if it already exists, else return None&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_mcdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find project .mc directory path if it already exists, else return None&quot;&quot;&quot;</span>
     <span class="n">dirpath</span> <span class="o">=</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dirpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="s1">&#39;.mc&#39;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_proj_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find project config path if .mc directory already exists, else return None&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_proj_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find project config path if .mc directory already exists, else return None&quot;&quot;&quot;</span>
     <span class="n">dirpath</span> <span class="o">=</span> <span class="n">_proj_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dirpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="s1">&#39;.mc&#39;</span><span class="p">,</span> <span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ProjectConfig"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectConfig">[docs]</a><span class="k">class</span> <span class="nc">ProjectConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Facilitates reading and writing a JSON file storing local project configuration values</span>
+<div class="viewcode-block" id="ProjectConfig">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProjectConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Facilitates reading and writing a JSON file storing local project configuration values</span>
 
 <span class="sd">    Project ``.mc/config.json`` file format: ::</span>
 
@@ -764,8 +767,8 @@
 <span class="sd">        globus_download_id (int or None): ID specifying which Globus download directory should be used for Globus downloads.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Construct by reading local project configuration file if it exists</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct by reading local project configuration file if it exists</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            project_path (str): Absolute path to local project directory. Will read `&lt;project_path&gt;/.mc/config.json`. All attributes will be None if the configuration file does not exist.</span>
@@ -801,8 +804,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">globus_upload_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_upload_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">globus_download_id</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;globus_download_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ProjectConfig.to_dict"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectConfig.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the project configuration as a dict&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ProjectConfig.to_dict">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectConfig.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the project configuration as a dict&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;remote&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;mcurl&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">mcurl</span><span class="p">,</span>
@@ -817,16 +822,23 @@
             <span class="s1">&#39;globus_download_id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">globus_download_id</span><span class="p">,</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="ProjectConfig.save"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectConfig.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Save project configuration as a JSON file&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ProjectConfig.save">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.ProjectConfig.save">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save project configuration as a JSON file&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span><span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">f</span><span class="p">)</span>
-        <span class="k">return</span></div></div>
+        <span class="k">return</span></div>
+</div>
 
-<div class="viewcode-block" id="read_project_config"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.read_project_config">[docs]</a><span class="k">def</span> <span class="nf">read_project_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Read local project configuration</span>
+
+<div class="viewcode-block" id="read_project_config">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.read_project_config">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_project_config</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read local project configuration</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">         If the project configuration file (&quot;&lt;project&gt;/.mc/config.json&quot;) exists, returns a :class:`ProjectConfig` instance. Else, returns None.</span>
@@ -838,8 +850,11 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="clone_project"><a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.clone_project">[docs]</a><span class="k">def</span> <span class="nf">clone_project</span><span class="p">(</span><span class="n">remote_config</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">parent_dest</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Clone a remote project to a local directory</span>
+
+<div class="viewcode-block" id="clone_project">
+<a class="viewcode-back" href="../../../reference/materials_commons/materials_commons.cli.functions.html#materials_commons.cli.functions.clone_project">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clone_project</span><span class="p">(</span><span class="n">remote_config</span><span class="p">,</span> <span class="n">project_id</span><span class="p">,</span> <span class="n">parent_dest</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clone a remote project to a local directory</span>
 
 <span class="sd">    - Will create the local project directory &quot;&lt;parent_dest&gt;/&lt;project_name&gt;&quot;</span>
 <span class="sd">    - Will save local project configuration &quot;&lt;parent_dest&gt;/.mc/config.json&quot; with project info</span>
@@ -881,49 +896,34 @@
     <span class="n">project_config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">make_local_project</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">proj</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, PRISMS Center.
-
-    </p>
+    <p>&#169; Copyright 2021, PRISMS Center.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
